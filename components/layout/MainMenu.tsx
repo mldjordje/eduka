@@ -9,11 +9,11 @@ export default function MainMenu() {
   </li>
 
   <li>
-    <Link href="/o-nama">O nama</Link>
+    <Link href="/about">O nama</Link>
   </li>
 
   <li>
-    <Link href="/vesti">Vesti</Link>
+    <Link href="/blog">Vesti</Link>
   </li>
 
   <li>
@@ -34,6 +34,9 @@ export default function MainMenu() {
       <li>
         <Link href="/edukacija/kme">KME edukacija</Link>
       </li>
+       <li>
+    <Link href="/contact">Kontakt</Link>
+  </li>
     </ul>
   </li>
 </ul>
