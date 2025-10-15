@@ -1,0 +1,25 @@
+{
+    "blogs": [
+        {
+            "title": "Understanding Dental Anxiety and How to Overcome It",
+            "image": "assets/img/blog/vl-blog-thumb-1.1.png",
+            "date": "Thu Nov 02 2025",
+            "author": "Mr. Dewey Ward",
+            "link": "/blog-single"
+        },
+        {
+            "title": "Dental Implants vs. Dentures: Which is Right for You?",
+            "image": "assets/img/blog/vl-blog-thumb-1.2.png",
+            "date": "Thu Nov 02 2025",
+            "author": "Greg Botsford",
+            "link": "/blog-single"
+        },
+        {
+            "title": "Foods for Healthy Teeth: What to Eat and Avoid",
+            "image": "assets/img/blog/vl-blog-thumb-iner1.3.png",
+            "date": "Thu Nov 02 2025",
+            "author": "Connie Kirlin",
+            "link": "/blog-single"
+        }
+    ]
+}
