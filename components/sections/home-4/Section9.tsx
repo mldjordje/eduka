@@ -25,16 +25,16 @@ export default function Section9() {
                         <div className="row align-items-center">
                             <div className="col-lg-6 mb-30">
                                 <div className="vl-cta-content4">
-                                    <h3 className="title text-anime-style-3">Don’t Wait Your Smile Deserves the Best</h3>
+                                    <h3 className="title text-anime-style-3">Iskoristite sve benefite članstva u Educi</h3>
                                     <p className="para pt-16 pb-32" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        Your journey to a healthier, more confident smile starts here at <br /> Whether you’re due for a routine check-up, need restorative.
+                                        Prijavite se i obezbedite pristup stručnim kursevima, mentorstvu i mreži kolega posvećenih unapređenju zdravstvenog sistema.
                                     </p>
                                     <div className="vl-ct4a-btns" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        <Link href="/contact" className="vl-btn-primar4y">
-                                            Schedule Appointment
+                                        <Link href="/prijava" className="vl-btn-primar4y">
+                                            Popunite prijavu
                                         </Link>
-                                        <Link href="/contact" className="vl-btn-sec4ondary">
-                                            Contact Us
+                                        <Link href="/prijava" className="vl-btn-sec4ondary">
+                                            Kontaktirajte nas
                                         </Link>
                                     </div>
                                 </div>

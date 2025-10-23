@@ -28,9 +28,9 @@ export default function Section1({ background }: { background: string }) {
                             <div className="vl-choose-us-inner-content">
                                 {/* section title */}
                                 <div className="vl-section-title">
-                                    <h5 className="subtitle">Why Choose us</h5>
-                                    <h2 className="title text-anime-style-3 pt-16 pb-12 mr-20">Top Reason To Trust Us with Your Smile Every Smile</h2>
-                                    <p className="para pb-32">We’re dedicated to providing exceptional dental care with a personal touch. Our team of experienced professionals combines advanced technology.</p>
+                                    <h5 className="subtitle">Zašto Eduka</h5>
+                                    <h2 className="title text-anime-style-3 pt-16 pb-12 mr-20">Poverenje zasnovano na znanju i iskustvu zdravstvenih radnika</h2>
+                                    <p className="para pb-32">Naša zajednica okuplja predavače i praktičare koji svakodnevno unapređuju sistem zdravstvene zaštite kroz kontinuiranu edukaciju i razmenu najboljih praksi.</p>
                                 </div>
                                 {/* line progress bar item*/}
                                 <div className="vl-bar-single-item">
@@ -62,8 +62,8 @@ export default function Section1({ background }: { background: string }) {
                                 </div>
                                 {/* btn */}
                                 <div className="vl-progress-btn mt-12">
-                                    <Link href="/contact" className="vl-btn-primary">
-                                        Contact Us
+                                    <Link href="/prijava" className="vl-btn-primary">
+                                        Pridruži se Educi
                                     </Link>
                                 </div>
                             </div>

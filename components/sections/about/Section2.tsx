@@ -11,9 +11,9 @@ export default function Section2() {
                             <div className="vl-mission-content-inner mr-60">
                                 {/* section title */}
                                 <div className="vl-section-title">
-                                    <h5 className="subtitle">Our Mission Vision</h5>
-                                    <h2 className="title text-anime-style-3 pt-16 pb-16">Vision &amp; Mission Excellence in Dental Care Smile</h2>
-                                    <p className="para pb-32">Our mission is to provide exceptional dental care enhances the health, confidence, &amp; well-being of our patients we are committed fostering.</p>
+                                    <h5 className="subtitle">Naša misija i vizija</h5>
+                                    <h2 className="title text-anime-style-3 pt-16 pb-16">Podrška zdravstvenim radnicima kroz kontinuiranu edukaciju</h2>
+                                    <p className="para pb-32">Eduka razvija akreditovane programe, stručno usavršavanje i mentorstvo kako bi članovi unapredili znanje, veštine i kvalitet zdravstvene zaštite.</p>
                                 </div>
                                 {/* mission tabs */}
                                 <div className="vl-mission-tabs">
@@ -41,15 +41,15 @@ export default function Section2() {
                                             {/* tab content */}
                                             <div className="vl-tab-content">
                                                 <p className="para pt-30 pb-20">
-                                                    <span>Client-Centric:</span> We aim to inspire healthier communities by promoting <br /> the importance of oral health and creating smiles that last a lifetime. <br /> Together, we’re transforming lives, one smile at a time.
+                                                    <span>Članovi u fokusu:</span> Povezujemo zdravstvene radnike sa predavačima i institucijama kako bi stručna znanja bila primenjiva u svakodnevnom radu i dostupna u svim sredinama.
                                                 </p>
                                                 <p className="para pb-32">
-                                                    <span>Personalized Approach:</span> Our vision is to a leader in dental excellence, continually advancing our services through innovation, education.
+                                                    <span>Praktična podrška:</span> Pratimo potrebe članova i kreiramo programe koji prate najnovije standarde, tehnologije i propise u zdravstvenom sistemu.
                                                 </p>
                                                 {/* tab btn */}
                                                 <div className="vl-tab-btn">
-                                                    <Link href="/contact" className="vl-btn-primary">
-                                                        Get Started Now
+                                                    <Link href="/prijava" className="vl-btn-primary">
+                                                        Postani član
                                                     </Link>
                                                 </div>
                                             </div>
@@ -58,15 +58,15 @@ export default function Section2() {
                                             {/* tab content */}
                                             <div className="vl-tab-content">
                                                 <p className="para pt-30 pb-20">
-                                                    <span>Client-Centric:</span> We aim to inspire healthier communities by promoting <br /> the importance of oral health and creating smiles that last a lifetime. <br /> Together, we’re transforming lives, one smile at a time.
+                                                    <span>Koreni zajednice:</span> Eduka je nastala na inicijativu zdravstvenih radnika koji su želeli sistemsku podršku u profesionalnom razvoju i umrežavanju.
                                                 </p>
                                                 <p className="para pb-32">
-                                                    <span>Personalized Approach:</span> Our vision is to a leader in dental excellence, continually advancing our services through innovation, education.
+                                                    <span>Kontinuirani rast:</span> Više od decenije gradimo partnerstva sa zdravstvenim ustanovama, organizujemo konferencije i radionice širom regiona.
                                                 </p>
                                                 {/* tab btn */}
                                                 <div className="vl-tab-btn">
-                                                    <Link href="/contact" className="vl-btn-primary">
-                                                        Get Started Now
+                                                    <Link href="/prijava" className="vl-btn-primary">
+                                                        Učlani se
                                                     </Link>
                                                 </div>
                                             </div>
@@ -75,15 +75,15 @@ export default function Section2() {
                                             {/* tab content */}
                                             <div className="vl-tab-content">
                                                 <p className="para pt-30 pb-20">
-                                                    <span>Client-Centric:</span> We aim to inspire healthier communities by promoting <br /> the importance of oral health and creating smiles that last a lifetime. <br /> Together, we’re transforming lives, one smile at a time.
+                                                    <span>Zašto Eduka:</span> Pružamo pouzdane informacije, stručno vođene programe i platformu za saradnju zdravstvenih profesionalaca.
                                                 </p>
                                                 <p className="para pb-32">
-                                                    <span>Personalized Approach:</span> Our vision is to a leader in dental excellence, continually advancing our services through innovation, education.
+                                                    <span>Stvarni rezultati:</span> Naši članovi napreduju u karijeri, unapređuju radna mesta i kvalitet usluga koje pružaju svojim pacijentima.
                                                 </p>
                                                 {/* tab btn */}
                                                 <div className="vl-tab-btn">
-                                                    <Link href="/contact" className="vl-btn-primary">
-                                                        Get Started Now
+                                                    <Link href="/prijava" className="vl-btn-primary">
+                                                        Prijavi se danas
                                                     </Link>
                                                 </div>
                                             </div>
@@ -110,7 +110,7 @@ export default function Section2() {
                                             <span className="title counter">15</span>
                                             <span>+</span>
                                         </h3>
-                                        <span className="deseg">Years Experience</span>
+                                        <span className="deseg">Godina iskustva</span>
                                     </div>
                                 </div>
                             </div>

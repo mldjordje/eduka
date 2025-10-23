@@ -119,7 +119,12 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/edukacija/online" className="vl-btn-primary">
+                      <Link
+                        href="https://eduka.rs/edukacije"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="vl-btn-primary"
+                      >
                         Pogledaj edukacije
                       </Link>
                     </div>
@@ -174,7 +179,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/postanite-clan" className="vl-btn-primary">
+                      <Link href="/prijava" className="vl-btn-primary">
                         Postani član
                       </Link>
                     </div>

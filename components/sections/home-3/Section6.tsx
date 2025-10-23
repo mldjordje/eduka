@@ -12,16 +12,16 @@ export default function Section6() {
               <div className="vl-before-content-wraper3">
                 <div className="vl-section-title3 mb-60">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    After Before
+                    Podrška zajednici
                   </h5>
                   <h2 className="title pt-16 text-anime-style-3">
-                    Your Complete Guide <br /> to Dental Health
+                    Eduka povezuje zdravstvene <br /> radnike širom regiona
                   </h2>
                 </div>
               </div>
               <div className="vl-before-btn3" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                <Link href="/contact" className="btn-primary3">
-                  Contact Now
+                <Link href="/prijava" className="btn-primary3">
+                  Prijavi se
                   <span>
                     <i className="fa-regular fa-arrow-right" />
                   </span>

@@ -1,0 +1,334 @@
+"use client";
+
+import Layout from "@/components/layout/Layout";
+import SectionHeader from "@/components/layout/SectionHeader";
+import type { ApplicationSubmission } from "@/types/application";
+import type { BlogPost } from "@/types/blog";
+import Link from "next/link";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
+
+const initialPostForm = {
+  title: "",
+  slug: "",
+  author: "",
+  image: "",
+  excerpt: "",
+  content: "",
+  tags: "",
+  date: "",
+};
+
+export default function CmsPage() {
+  const [isAuthed, setIsAuthed] = useState<boolean>(false);
+  const [loginUser, setLoginUser] = useState("");
+  const [loginPass, setLoginPass] = useState("");
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
+  const [form, setForm] = useState(initialPostForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const flag = typeof window !== "undefined" ? localStorage.getItem("cmsAuth") : null;
+      if (flag === "true") {
+        setIsAuthed(true);
+      }
+    } catch {}
+
+    if (!isAuthed) return;
+    fetch("/api/posts")
+      .then((res) => res.json())
+      .then((data: BlogPost[]) => setPosts(data))
+      .catch(() => setPosts([]));
+
+    fetch("/api/applications")
+      .then((res) => res.json())
+      .then((data: ApplicationSubmission[]) => setApplications(data))
+      .catch(() => setApplications([]));
+  }, [isAuthed]);
+
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault();
+    setLoginError(null);
+    const ok = loginUser === "eduka" && loginPass === "eduka";
+    if (ok) {
+      try {
+        localStorage.setItem("cmsAuth", "true");
+      } catch {}
+      setIsAuthed(true);
+    } else {
+      setLoginError("Pogrešno korisničko ime ili lozinka.");
+    }
+  };
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("cmsAuth");
+    } catch {}
+    setIsAuthed(false);
+    setPosts([]);
+    setApplications([]);
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setMessage(null);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          tags: form.tags,
+        }),
+      });
+
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.message || "Neuspešno čuvanje objave");
+      }
+
+      const createdPost: BlogPost = await response.json();
+      setPosts((prev) => [createdPost, ...prev]);
+      setForm({ ...initialPostForm });
+      setMessage("Objava je uspešno sačuvana!");
+    } catch (err: any) {
+      setError(err.message || "Greška prilikom čuvanja objave");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const latestApplications = useMemo(() => applications.slice(0, 5), [applications]);
+
+  const formatDate = (value: string) => {
+    if (!value) {
+      return "-";
+    }
+
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? "-" : parsed.toLocaleDateString("sr-RS");
+  };
+
+  if (!isAuthed) {
+    return (
+      <Layout>
+        <SectionHeader title="CMS" isGroup={false} linkGroup="" pageGroup="" current="Login" />
+        <section className="pt-100 pb-70">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-md-6">
+                <div className="vl-off-white-bg p-40 br-20">
+                  <h3 className="title pb-20">Prijava na CMS</h3>
+                  {loginError && <div className="alert alert-danger">{loginError}</div>}
+                  <form onSubmit={handleLogin}>
+                    <div className="pb-16">
+                      <label className="form-label">Korisničko ime</label>
+                      <input className="form-control" value={loginUser} onChange={(e) => setLoginUser(e.target.value)} />
+                    </div>
+                    <div className="pb-24">
+                      <label className="form-label">Lozinka</label>
+                      <input type="password" className="form-control" value={loginPass} onChange={(e) => setLoginPass(e.target.value)} />
+                    </div>
+                    <button type="submit" className="vl-btn-primary">Prijavi se</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <SectionHeader title="CMS" isGroup={false} linkGroup="" pageGroup="" current="CMS" />
+      <section className="pt-100 pb-70">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 d-flex justify-content-end pb-20">
+              <button className="vl-btn-primary" onClick={handleLogout}>Odjava</button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 mb-40">
+              <div className="vl-off-white-bg p-40 br-20">
+                <h3 className="title pb-20">Kreiranje nove blog objave</h3>
+                <p className="pb-16">
+                  Popunite formu kako biste kreirali novu objavu. Slika treba da bude putanja do slike iz foldera <code>public</code>
+                  , a sadržaj možete uneti u više pasusa koristeći novi red.
+                </p>
+                {message && <div className="alert alert-success">{message}</div>}
+                {error && <div className="alert alert-danger">{error}</div>}
+                <form onSubmit={handleSubmit} className="cms-form">
+                  <div className="row">
+                    <div className="col-12 pb-16">
+                      <label className="form-label">Naslov *</label>
+                      <input
+                        type="text"
+                        name="title"
+                        value={form.title}
+                        onChange={handleInputChange}
+                        required
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Slug</label>
+                      <input
+                        type="text"
+                        name="slug"
+                        value={form.slug}
+                        onChange={handleInputChange}
+                        placeholder="automatski ako ostane prazno"
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Autor *</label>
+                      <input
+                        type="text"
+                        name="author"
+                        value={form.author}
+                        onChange={handleInputChange}
+                        required
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Datum objave</label>
+                      <input
+                        type="date"
+                        name="date"
+                        value={form.date}
+                        onChange={handleInputChange}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Putanja do slike</label>
+                      <input
+                        type="text"
+                        name="image"
+                        value={form.image}
+                        onChange={handleInputChange}
+                        placeholder="npr. assets/img/blog/vl-blog-thumb-1.1.png"
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-12 pb-16">
+                      <label className="form-label">Kratak opis</label>
+                      <textarea
+                        name="excerpt"
+                        value={form.excerpt}
+                        onChange={handleInputChange}
+                        rows={3}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-12 pb-16">
+                      <label className="form-label">Sadržaj *</label>
+                      <textarea
+                        name="content"
+                        value={form.content}
+                        onChange={handleInputChange}
+                        rows={6}
+                        required
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-12 pb-24">
+                      <label className="form-label">Tagovi (odvojeni zarezom)</label>
+                      <input
+                        type="text"
+                        name="tags"
+                        value={form.tags}
+                        onChange={handleInputChange}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="col-12">
+                      <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>
+                        {isSubmitting ? "Čuvanje..." : "Sačuvaj objavu"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="col-lg-6 mb-40">
+              <div className="vl-off-white-bg p-40 br-20 h-100">
+                <h3 className="title pb-12">Poslednje objave</h3>
+                <p className="pb-16">Sveže objave su prikazane redom kojim su objavljene.</p>
+                <div className="cms-post-list">
+                  {posts.length === 0 && <p>Još uvek nema objava.</p>}
+                  {posts.map((post) => (
+                    <div key={post.slug} className="cms-post-item">
+                      <h4 className="cms-post-title">
+                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                      </h4>
+                      <div className="cms-post-meta">
+                        <span>{formatDate(post.date)}</span>
+                        <span>{post.author}</span>
+                      </div>
+                      <p>{post.excerpt}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div className="vl-off-white-bg p-40 br-20">
+                <h3 className="title pb-12">Nove prijave posetilaca</h3>
+                <p className="pb-20">Prikaz poslednjih 5 prijava sa forme za posetioce.</p>
+                {latestApplications.length === 0 && <p>Nema pristiglih prijava.</p>}
+                {latestApplications.length > 0 && (
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Ime i prezime</th>
+                          <th>Email</th>
+                          <th>Telefon</th>
+                          <th>Željeni termin</th>
+                          <th>Poruka</th>
+                          <th>Poslato</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {latestApplications.map((application) => (
+                          <tr key={application.id}>
+                            <td>{application.name}</td>
+                            <td>{application.email}</td>
+                            <td>{application.phone}</td>
+                            <td>{application.preferredDate ? new Date(application.preferredDate).toLocaleDateString("sr-RS") : "/"}</td>
+                            <td>{application.message}</td>
+                            <td>{new Date(application.createdAt).toLocaleString("sr-RS")}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}

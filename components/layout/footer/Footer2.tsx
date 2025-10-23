@@ -48,23 +48,25 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-2">
-                                <h3 className="vl-footer-widget-title mb-24">Quick Links</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Brzi linkovi</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="/">Home Page</Link>
+                                            <Link href="/">Početna</Link>
                                         </li>
                                         <li>
-                                            <Link href="/about">About Us</Link>
+                                            <Link href="/about">O nama</Link>
                                         </li>
                                         <li>
-                                            <Link href="/contact">Appointment</Link>
+                                            <Link href="https://eduka.rs/edukacije" target="_blank" rel="noopener noreferrer">
+                                                Edukacije
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link href="/blog">News &amp; Blog</Link>
+                                            <Link href="/blog">Blog</Link>
                                         </li>
                                         <li>
-                                            <Link href="/service">Service</Link>
+                                            <Link href="/prijava">Prijava</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,23 +74,27 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-3 ml-40">
-                                <h3 className="vl-footer-widget-title mb-24">Our Services</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Resursi</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="#">General Dental</Link>
+                                            <Link href="https://eduka.rs/edukacije" target="_blank" rel="noopener noreferrer">
+                                                Akreditovane edukacije
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Cosmetic Dental</Link>
+                                            <Link href="https://eduka.rs" target="_blank" rel="noopener noreferrer">
+                                                Eduka vesti
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Whitening Care</Link>
+                                            <Link href="mailto:info@eduka.rs">Podrška za članove</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Implants</Link>
+                                            <Link href="/blog">Stručni članci</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Care</Link>
+                                            <Link href="/prijava">Postanite član</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,7 +102,7 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-4 col-md-6 mb-30">
                             <div className="vl-footer-widget-4">
-                                <h3 className="vl-footer-widget-title mb-24">Contact Us</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Kontakt</h3>
                                 {/* icon list */}
                                 <div className="vl-footer-icon-list">
                                     <ul>
@@ -105,7 +111,7 @@ export default function Footer() {
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="" />
                                                 </span>
-                                                +1 123 456 7890
+                                                +381 11 123 4567
                                             </Link>
                                         </li>
                                         <li>
@@ -113,7 +119,7 @@ export default function Footer() {
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="" />
                                                 </span>
-                                                421 Allen, Mexico 4233
+                                                Bulevar oslobođenja 1, Beograd
                                             </Link>
                                         </li>
                                         <li>
@@ -121,7 +127,7 @@ export default function Footer() {
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="" />
                                                 </span>
-                                                dentistsolution@com
+                                                info@eduka.rs
                                             </Link>
                                         </li>
                                         <li>
@@ -129,7 +135,7 @@ export default function Footer() {
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="" />
                                                 </span>
-                                                dentistsolution.com
+                                                www.eduka.rs
                                             </Link>
                                         </li>
                                     </ul>
@@ -142,7 +148,7 @@ export default function Footer() {
                     <div className="vl-footer-copyright-text">
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
-                                <p className="para">© 2025 Dentalx ,Inc. All Rights Reserved.</p>
+                                <p className="para">© {new Date().getFullYear()} Eduka. Sva prava zadržana.</p>
                             </div>
                             <div className="col-lg-6 col-md-6">
                                 <div className="copy-right-menu">

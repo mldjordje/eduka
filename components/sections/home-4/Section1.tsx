@@ -39,8 +39,8 @@ export default function Section1() {
                                     </div>
                                     <div className="vl-contact-flex2 mt-16">
                                         <h4 className="title">Available for your need</h4>
-                                        <Link href="/contact" className="top-btn">
-                                            Appointment
+                                        <Link href="/prijava" className="top-btn">
+                                            Prijava
                                         </Link>
                                     </div>
                                 </div>
@@ -62,8 +62,8 @@ export default function Section1() {
                                 </div>
                             </div>
                             <div className="vl-banne4r-btn mt-32" data-aos="fade-up" data-aos-duration={1200} data-aos-delay={300}>
-                                <Link href="/contact" className="vl-btn-primar4y">
-                                    Schedule a Consultation
+                                <Link href="/prijava" className="vl-btn-primar4y">
+                                    Pošaljite prijavu
                                 </Link>
                             </div>
                         </div>

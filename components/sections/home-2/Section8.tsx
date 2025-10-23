@@ -20,7 +20,7 @@ export default function Section8() {
                             {/* single blog box */}
                             <div className="vl-single-blog-box2" data-aos="fade-right" data-aos-duration={800} data-aos-delay={300}>
                                 <div className="vl-blog-thumb image-anime">
-                                    <Link href="/blog-single">
+                                    <Link href="/blog">
                                         <img className="w-100 br-30" src="assets/img/blog/vl-blog2.1.png" alt="" />
                                     </Link>
                                 </div>
@@ -40,7 +40,7 @@ export default function Section8() {
                                         </Link>
                                     </div>
                                     <h3 className="title pt-18 pb-14">
-                                        <Link href="/blog-single">
+                                        <Link href="/blog">
                                             Why Regular Dental Checkups Are More <br />
                                             Important Than You Think
                                         </Link>
@@ -49,7 +49,7 @@ export default function Section8() {
                                         Regular dental checkups are essential not only maintaining a <br />
                                         healthy smile but also for your overall health many people.
                                     </p>
-                                    <Link href="/blog-single" className="blog-learnmore">
+                                    <Link href="/blog" className="blog-learnmore">
                                         read more
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
@@ -62,7 +62,7 @@ export default function Section8() {
                             {/* single blog box */}
                             <div className="vl-single-blog-box2" data-aos="fade-left" data-aos-duration={800} data-aos-delay={300}>
                                 <div className="vl-blog-thumb image-anime">
-                                    <Link href="/blog-single">
+                                    <Link href="/blog">
                                         <img className="w-100 br-30" src="assets/img/blog/vl-blog2.2.png" alt="" />
                                     </Link>
                                 </div>
@@ -82,7 +82,7 @@ export default function Section8() {
                                         </Link>
                                     </div>
                                     <h3 className="title pt-18 pb-14">
-                                        <Link href="/blog-single">
+                                        <Link href="/blog">
                                             You Only Need to See a Dentist When You <br />
                                             Have a Problem
                                         </Link>
@@ -91,7 +91,7 @@ export default function Section8() {
                                         Many people believe that if they don’t have any pain or visible <br />
                                         issues, there’s no need to visit the dentist however, routine.
                                     </p>
-                                    <Link href="/blog-single" className="blog-learnmore">
+                                    <Link href="/blog" className="blog-learnmore">
                                         read more
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />

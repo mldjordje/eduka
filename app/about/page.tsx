@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       <Layout>
-        <SectionHeader title="About Us" current="About Us" isGroup={false} linkGroup="" pageGroup="" />
+        <SectionHeader title="O nama" current="O nama" isGroup={false} linkGroup="" pageGroup="" />
         <Section2Home1 />
         <Section1 background="vl-off-white-bg" />
         <Section2 />

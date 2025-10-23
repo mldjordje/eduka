@@ -1,25 +1,25 @@
 {
     "blogs": [
         {
-            "title": "Understanding Dental Anxiety and How to Overcome It",
+            "title": "Razumevanje dentalne anksioznosti i kako je prevazići",
             "image": "assets/img/blog/vl-blog-thumb-1.1.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Mr. Dewey Ward",
-            "link": "/blog-single"
+            "date": "2024-05-01",
+            "author": "Dr. Milica Petrović",
+            "link": "/blog/razumevanje-straha-od-zubara"
         },
         {
-            "title": "Dental Implants vs. Dentures: Which is Right for You?",
+            "title": "Implantati ili proteze: kako izabrati pravo rešenje",
             "image": "assets/img/blog/vl-blog-thumb-1.2.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Greg Botsford",
-            "link": "/blog-single"
+            "date": "2024-05-10",
+            "author": "Dr. Marko Ilić",
+            "link": "/blog/implantati-ili-proteze"
         },
         {
-            "title": "Foods for Healthy Teeth: What to Eat and Avoid",
+            "title": "Ishrana za zdrave zube: šta jesti, a šta izbegavati",
             "image": "assets/img/blog/vl-blog-thumb-iner1.3.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Connie Kirlin",
-            "link": "/blog-single"
+            "date": "2024-05-15",
+            "author": "Nutricionista Jelena Anđelković",
+            "link": "/blog/ishrana-za-zdrave-zube"
         }
     ]
 }

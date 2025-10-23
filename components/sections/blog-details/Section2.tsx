@@ -1,8 +1,31 @@
 "use client";
 import Link from "next/link";
-import blogData from "@/public/data/blogmore.json";
-export default function Section1() {
-    const currentBlog = blogData.blogs;
+import { useEffect, useState } from "react";
+import type { BlogPost } from "@/types/blog";
+
+interface MoreBlogProps {
+    excludeSlug?: string;
+}
+
+export default function Section1({ excludeSlug }: MoreBlogProps) {
+    const [posts, setPosts] = useState<BlogPost[]>([]);
+
+    useEffect(() => {
+        fetch("/api/posts")
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Greška");
+                }
+                return res.json();
+            })
+            .then((data: BlogPost[]) => {
+                const filtered = excludeSlug ? data.filter((post) => post.slug !== excludeSlug) : data;
+                setPosts(filtered.slice(0, 3));
+            })
+            .catch(() => setPosts([]));
+    }, [excludeSlug]);
+
+    const currentBlog = posts;
     return (
         <>
             {/*================= Blog section Start =================*/}
@@ -17,13 +40,17 @@ export default function Section1() {
                         </div>
                     </div>
                     <div className="row">
-                        {currentBlog.map((blogs, index) => (
-                            <div className="col-lg-4 col-md-6 mb-30" key={index}>
+                        {currentBlog.map((blogs, index) => {
+                            const imageSrc = blogs.image.startsWith("http")
+                                ? blogs.image
+                                : `/${blogs.image.replace(/^\//, "")}`;
+                            return (
+                                <div className="col-lg-4 col-md-6 mb-30" key={index}>
                                 {/* single blog box */}
                                 <div className="vl-single-blog-box">
                                     <div className="vl-blog-thumb image-anime">
-                                        <Link href="/blog-single">
-                                            <img className="w-100" src={blogs.image} alt={blogs.link} />
+                                        <Link href={`/blog/${blogs.slug}`}>
+                                            <img className="w-100" src={imageSrc} alt={blogs.title} />
                                         </Link>
                                     </div>
                                     <div className="vl-blog-content">
@@ -41,10 +68,11 @@ export default function Section1() {
                                                 {blogs.author}
                                             </Link>
                                         </div>
-                                        <h3 className="title pt-20 pb-24">
-                                            <Link href={blogs.link}>{blogs.title}</Link>
+                                        <h3 className="title pt-20 pb-12">
+                                            <Link href={`/blog/${blogs.slug}`}>{blogs.title}</Link>
                                         </h3>
-                                        <Link href={blogs.link} className="blog-learnmore">
+                                        <p>{blogs.excerpt}</p>
+                                        <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
                                             Learn more
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
@@ -52,8 +80,9 @@ export default function Section1() {
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

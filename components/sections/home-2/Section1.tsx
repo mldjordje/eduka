@@ -26,11 +26,11 @@ export default function Section1() {
         <div className="container p-relative">
           {/* btn */}
           <div className="vl-tlk-btn">
-            <Link href="/contact" className="vl-talkbtn">
+            <Link href="/prijava" className="vl-talkbtn">
               <span>
                 <i className="fa-regular fa-arrow-right" />
               </span>
-              Let’s Talk
+              Prijavi se
             </Link>
           </div>
           <div className="row">
