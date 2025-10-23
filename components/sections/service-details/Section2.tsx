@@ -10,7 +10,7 @@ export default function Section2() {
                         <div className="vl-service-sec-title-iner">
                             {/* section title */}
                             <div className="vl-section-title text-center mb-60">
-                                <h2 className="title text-anime-style-3">More Service</h2>
+                                <h2 className="title text-anime-style-3">Dodatne usluge i podrška</h2>
                             </div>
                         </div>
                     </div>
@@ -20,18 +20,18 @@ export default function Section2() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.1.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.1.svg" alt="Personalizovani plan obuke" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Restorative Solutions</Link>
+                                        <Link href="/contact">Plan obuke za ustanove</Link>
                                     </h4>
                                     <p className="para">
-                                        We’re proud to offer a comprehensive <br /> range of dental services designed to meet <br /> the unique needs each patient.
+                                        U saradnji sa upravama zdravstvenih ustanova kreiramo godišnje planove edukacije prilagođene vašem timu i specifičnim potrebama pacijenata.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/contact" className="service-learnmore">
+                                        Zakažite konsultaciju
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -45,18 +45,18 @@ export default function Section2() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.2.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.2.svg" alt="Mentorske sesije" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Root Canal Therapy</Link>
+                                        <Link href="/clanstvo">Mentorski susreti</Link>
                                     </h4>
                                     <p className="para">
-                                        Our Preventive Care services focus on <br /> regular cleanings, exams, and education to <br /> help you maintain optimal oral health.
+                                        Redovni sastanci sa mentorima i stručnim timom Eduke pomažu u rešavanju konkretnih situacija na odeljenjima.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/clanstvo" className="service-learnmore">
+                                        Upoznajte mentore
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -70,18 +70,18 @@ export default function Section2() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.3.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.3.svg" alt="Objave i publikacije" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Smile Brightening</Link>
+                                        <Link href="/blog">Stručne publikacije</Link>
                                     </h4>
                                     <p className="para">
-                                        For those in need Restorative Solutions, <br /> we offer fillings, crowns, bridges, and <br /> implants, restoring function.
+                                        Članovi dobijaju pristup priručnicima, vodičima i stručnoj literaturi koju zajednički pripremamo sa partnerima i fakultetima.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/blog" className="service-learnmore">
+                                        Preuzmite materijale
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>

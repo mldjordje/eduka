@@ -10,9 +10,9 @@ export default function Section4() {
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-section-title4 text-center mb-60">
                                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                    Our Work
+                                    Naš rad
                                 </h5>
-                                <h2 className="title pt-16 text-anime-style-3">Our Work Creating Healthier The Happier Smiles</h2>
+                                <h2 className="title pt-16 text-anime-style-3">Kako Eduka podržava zdravstvene radnike</h2>
                             </div>
                         </div>
                     </div>
@@ -28,9 +28,9 @@ export default function Section4() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Ongoing Support &amp; Growth</Link>
+                                        <Link href="/clanstvo">Kontinuirana podrška članovima</Link>
                                     </h4>
-                                    <p className="para pt-16">Post launch, provide ongoing support, updates, and maintenance to ensure.</p>
+                                    <p className="para pt-16">Pratimo vaše potrebe i pružamo redovne informacije, konsultacije i mentorsku pomoć tokom cele godine.</p>
                                 </div>
                             </div>
                         </div>
@@ -45,9 +45,9 @@ export default function Section4() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Development &amp; Testing</Link>
+                                        <Link href="/service">Planiranje edukacija</Link>
                                     </h4>
-                                    <p className="para pt-16">Once the design approved developers bring it to life with clean, responsive.</p>
+                                    <p className="para pt-16">Program osmišljavamo zajedno sa ustanovama, prilagođavamo temama i testiramo sadržaj pre realizacije.</p>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +62,9 @@ export default function Section4() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Discovery &amp; Strategy</Link>
+                                        <Link href="/about">Analiza potreba zajednice</Link>
                                     </h4>
-                                    <p className="para pt-16">We start learning about your business, your goals, and your target audience. </p>
+                                    <p className="para pt-16">Razgovaramo sa članovima, ustanovama i komorama kako bismo definisali prioritete i strategiju razvoja sestrinske prakse.</p>
                                 </div>
                             </div>
                         </div>

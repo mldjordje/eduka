@@ -8,9 +8,9 @@ export default function Section4() {
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-section-title text-center mb-60">
                                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                    How It Work
+                                    Članstvo i podrška
                                 </h5>
-                                <h2 className="title pt-16 text-anime-style-3">How Our Dental Care Works</h2>
+                                <h2 className="title pt-16 text-anime-style-3">Kako funkcioniše Eduka</h2>
                             </div>
                         </div>
                     </div>
@@ -27,9 +27,9 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Comfortable and Precise Treatment</h4>
+                                                <h4 className="title pb-16">Prijava za članstvo</h4>
                                                 <p className="para">
-                                                    Includes follow-up care &amp; guidance maintaining your <br /> results, with our team always available to answer.
+                                                    Popunite pristupnicu i dostavite dokaz o licenci ili zaposlenju. Naš tim proverava dokumentaciju i pruža pomoć oko procedure.
                                                 </p>
                                             </div>
                                         </div>
@@ -43,9 +43,9 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Post-Treatment Care and Follow-Up</h4>
+                                                <h4 className="title pb-16">Akreditovane aktivnosti</h4>
                                                 <p className="para">
-                                                    Is your treatment phase, where we use the latest <br /> technology techniques to deliver precise, gentle care.
+                                                    Članovi dobijaju kalendar skupova, informacije o bodovima i linkove za prijavu na seminare, online obuke i radionice.
                                                 </p>
                                             </div>
                                         </div>
@@ -59,9 +59,9 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Personalized Treatment Plan</h4>
+                                                <h4 className="title pb-16">Praćenje bodova</h4>
                                                 <p className="para">
-                                                    We develop a personalized treatment tailored to your <br /> specific requirement, ensuring informed every option.
+                                                    Nakon učešća izdaje se potvrda o prisustvu i broj ostvarenih bodova, a u bazi udruženja vodimo evidenciju za svaku godinu.
                                                 </p>
                                             </div>
                                         </div>
@@ -75,9 +75,9 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Your First Consultation</h4>
+                                                <h4 className="title pb-16">Podrška zajednice</h4>
                                                 <p className="para">
-                                                    Begins with a warm welcome &amp; thorough consultation, <br /> where we take the time to understand needs, goals.
+                                                    Eduka povezuje članove kroz interne grupe, savetovanja i zajedničke projekte koji doprinose kvalitetnijoj zdravstvenoj zaštiti.
                                                 </p>
                                             </div>
                                         </div>

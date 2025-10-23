@@ -10,8 +10,8 @@ export default function Section3() {
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-work-inner-content">
                                 <div className="vl-section-title text-center mb-60">
-                                    <h5 className="subtitle">Our Work</h5>
-                                    <h2 className="title pt-16 text-anime-style-3">Our Work Creating Healthier The Happier Smiles</h2>
+                                    <h5 className="subtitle">Naš rad</h5>
+                                    <h2 className="title pt-16 text-anime-style-3">Stvaramo prilike za učenje i profesionalni razvoj</h2>
                                 </div>
                             </div>
                         </div>
@@ -22,15 +22,15 @@ export default function Section3() {
                             <div className="vl-work-icon-bo4x-inner">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="Ikonica edukacije" />
                                     </span>
                                     <div className="number">1</div>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Ongoing Support &amp; Growth</Link>
+                                        <Link href="/service">Edukacije i KME programi</Link>
                                     </h4>
-                                    <p className="para pt-16">Post launch, provide ongoing support, updates, and maintenance to ensure.</p>
+                                    <p className="para pt-16">Organizujemo seminare, radionice i licence obnavljamo kroz kontinuirane medicinske edukacije odobrene od strane Ministarstva zdravlja.</p>
                                 </div>
                             </div>
                         </div>
@@ -39,15 +39,15 @@ export default function Section3() {
                             <div className="vl-work-icon-bo4x-inner">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="Ikonica projekata" />
                                     </span>
                                     <div className="number">2</div>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Development &amp; Testing</Link>
+                                        <Link href="/blog">Projekti i partnerstva</Link>
                                     </h4>
-                                    <p className="para pt-16">Once the design approved developers bring it to life with clean, responsive.</p>
+                                    <p className="para pt-16">Saradnja sa zdravstvenim ustanovama, lokalnom samoupravom i stručnim udruženjima rezultira projektima koji poboljšavaju praksu i uslove rada.</p>
                                 </div>
                             </div>
                         </div>
@@ -56,15 +56,15 @@ export default function Section3() {
                             <div className="vl-work-icon-bo4x-inner">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-inner1.1.svg" alt="Ikonica podrške" />
                                     </span>
                                     <div className="number">3</div>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Discovery &amp; Strategy</Link>
+                                        <Link href="/clanstvo">Podrška članovima</Link>
                                     </h4>
-                                    <p className="para pt-16">We start learning about your business, your goals, and your target audience. </p>
+                                    <p className="para pt-16">Članovima obezbeđujemo savetovanje, mentorski rad i pravovremene informacije o svim važnim izmenama u regulativi i licenciranju.</p>
                                 </div>
                             </div>
                         </div>

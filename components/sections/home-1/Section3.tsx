@@ -58,9 +58,9 @@ export default function Section3() {
               <div className="vl-service-section-title">
                 <div className="vl-section-title mb-60">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    Our Service
+                    Programi
                   </h5>
-                  <h2 className="title pt-16 text-anime-style-3">Your Complete Guide to Dental Health</h2>
+                  <h2 className="title pt-16 text-anime-style-3">Naši programi i aktivnosti</h2>
                 </div>
               </div>
             </div>
@@ -79,11 +79,14 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/service-single">Restorative Solutions</Link>
+                      <Link href="/service">Akreditovane edukacije uživo</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Whether you’re here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
-                    <Link href="/service-single" className="learnmore">
-                      Learn More
+                    <p className="para pt-16 pb-24">
+                      Redovno organizujemo akreditovane KME programe i stručne skupove u Nišu i regionu, uz predavače iz
+                      zdravstvenih ustanova i fakulteta.
+                    </p>
+                    <Link href="/service" className="learnmore">
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -101,11 +104,14 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/service-single">Periodontal Therapy</Link>
+                      <Link href="/service-left">Online seminari i vebinari</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">For a younger patients, Pediatric Dentistry offers a comfortable and fun environment, helping children build healthy habits.</p>
-                    <Link href="/service-single" className="learnmore">
-                      Learn More
+                    <p className="para pt-16 pb-24">
+                      Digitalna platforma omogućava da pratite predavanja, panel diskusije i video materijale kada vama
+                      najviše odgovara.
+                    </p>
+                    <Link href="/service-left" className="learnmore">
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -123,11 +129,14 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/service-single">Pediatric Dentistry</Link>
+                      <Link href="/service-right">Radionice i praktične obuke</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Our Cosmetic Dentistry options, including whitening &amp; veneers, are crafted enhance your confidence with a radiant, beautiful.</p>
-                    <Link href="/service-single" className="learnmore">
-                      Learn More
+                    <p className="para pt-16 pb-24">
+                      Kroz ciljane radionice vežbamo praktične veštine i razmenjujemo iskustva iz svakodnevnog rada u
+                      zdravstvenim ustanovama.
+                    </p>
+                    <Link href="/service-right" className="learnmore">
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -145,11 +154,14 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/service-single">Restorative Solutions</Link>
+                      <Link href="/clanstvo">Podrška članovima i partnerima</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Whether you’re here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
-                    <Link href="/service-single" className="learnmore">
-                      Learn More
+                    <p className="para pt-16 pb-24">
+                      Članovima obezbeđujemo pravovremene informacije, administrativnu podršku i umrežavanje sa kolegama
+                      iz cele Srbije.
+                    </p>
+                    <Link href="/clanstvo" className="learnmore">
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>

@@ -12,7 +12,7 @@ export default function Section1() {
                         <div className="vl-service-sec-title-iner">
                             {/* section title */}
                             <div className="vl-section-title text-center mb-60">
-                                <h2 className="title text-anime-style-3">More Blog</h2>
+                                <h2 className="title text-anime-style-3">Još vesti</h2>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ export default function Section1() {
                                             <Link href={blogs.link}>{blogs.title}</Link>
                                         </h3>
                                         <Link href={blogs.link} className="blog-learnmore">
-                                            Learn more
+                                            Pročitaj više
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
                                             </span>

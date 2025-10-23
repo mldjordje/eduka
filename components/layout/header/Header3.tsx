@@ -29,8 +29,8 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                                 {/* header button box */}
                                 <div className="d-none d-lg-block">
                                     <div className="vl-header-butto3n">
-                                        <Link href="#" className="btn-primary3">
-                                            View Our Property
+                                        <Link href="/contact" className="btn-primary3">
+                                            Kontaktirajte Eduku
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
                                             </span>

@@ -11,8 +11,8 @@ export default function Section2() {
               <div className="vl-thumb-service-inner-section-title">
                 {/* section title */}
                 <div className="vl-section-title text-center mb-60">
-                  <h5 className="subtitle">Our Service</h5>
-                  <h2 className="title text-anime-style-3 pt-16">Your Complete Guide to Dental Health</h2>
+                  <h5 className="subtitle">Programi edukacije</h5>
+                  <h2 className="title text-anime-style-3 pt-16">Znanje koje unapređuje negu pacijenata</h2>
                 </div>
               </div>
             </div>
@@ -24,18 +24,18 @@ export default function Section2() {
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
-                      <img src="assets/img/icons/vl-service-icon-1.1.svg" alt="" />
+                      <img src="assets/img/icons/vl-service-icon-1.1.svg" alt="KME obuke" />
                     </span>
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="#">Restorative Solutions</Link>
+                      <Link href="/service-single">Akreditovane KME obuke</Link>
                     </h4>
                     <p className="para pt-16 pb-24">
-                      Whether you’re here for routine care or <br /> specialized treatment, our is committed <br /> to providing gentle, compassionate care.
+                      Obnavljanje licence kroz tematske celine iz oblasti sestrinstva, javnog zdravlja i urgentne medicine uz sertifikate Zdravstvenog saveta Srbije.
                     </p>
-                    <Link href="#" className="learnmore">
-                      Learn More
+                    <Link href="/service-single" className="learnmore">
+                      Raspored termina
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -50,16 +50,16 @@ export default function Section2() {
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
-                      <img src="./assets/img/icons/vl-service-icon-1.2.svg" alt="" />
+                      <img src="./assets/img/icons/vl-service-icon-1.2.svg" alt="E-učenje" />
                     </span>
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="#">Periodontal Therapy</Link>
+                      <Link href="/service">Webinari i e-kursevi</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">For a younger patients, Pediatric Dentistry offers a comfortable and fun environment, helping children build healthy habits.</p>
-                    <Link href="#" className="learnmore">
-                      Learn More
+                    <p className="para pt-16 pb-24">Predavanja dostupna na zahtev, snimljene procedure i testovi znanja koji omogućavaju učenje sopstvenim tempom.</p>
+                    <Link href="/service" className="learnmore">
+                      Pregled kurseva
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -74,18 +74,18 @@ export default function Section2() {
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
-                      <img src="./assets/img/icons/vl-service-icon-1.4.svg" alt="" />
+                      <img src="./assets/img/icons/vl-service-icon-1.4.svg" alt="Stručne konferencije" />
                     </span>
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="#">Pediatric Dentistry</Link>
+                      <Link href="/blog">Stručne konferencije</Link>
                     </h4>
                     <p className="para pt-16 pb-24">
-                      Our Cosmetic Dentistry options, including whitening &amp; veneers, are crafted enhance <br /> your confidence with a radiant, beautiful.
+                      Godišnji skupovi koji okupljaju predavače iz kliničke prakse, visokoškolskih ustanova i udruženja pacijenata.
                     </p>
-                    <Link href="#" className="learnmore">
-                      Learn More
+                    <Link href="/blog" className="learnmore">
+                      Vesti sa događaja
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -100,18 +100,18 @@ export default function Section2() {
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
-                      <img src="./assets/img/icons/vl-service-icon-1.3.svg" alt="" />
+                      <img src="./assets/img/icons/vl-service-icon-1.3.svg" alt="Podrška članovima" />
                     </span>
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="#">Restorative Solutions</Link>
+                      <Link href="/clanstvo">Savjetodavna podrška</Link>
                     </h4>
                     <p className="para pt-16 pb-24">
-                      Whether you’re here for routine care or specialized treatment team is committed <br /> to providing gentle, compassionate care.
+                      Pomažemo članovima da planiraju profesionalni razvoj, pripreme dokumentaciju i povežu se sa kolegama iz drugih ustanova.
                     </p>
-                    <Link href="#" className="learnmore">
-                      Learn More
+                    <Link href="/clanstvo" className="learnmore">
+                      Kako postati član
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>

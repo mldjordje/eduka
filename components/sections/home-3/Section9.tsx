@@ -11,9 +11,9 @@ export default function Section9() {
               <div className="vl-blog-sectitle3">
                 <div className="vl-section-title3 text-center mb-60">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    LATEST NEWS &amp; Blog
+                    Najnovije vesti i priče
                   </h5>
-                  <h2 className="title pt-16 text-anime-style-3">What to Expect During Your First Visit to Our Dental Clinic</h2>
+                  <h2 className="title pt-16 text-anime-style-3">Aktuelnosti iz rada udruženja i zdravstvenih ustanova</h2>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function Section9() {
                           <span>
                             <img src="assets/img/icons/vl-date-icon-2.1.svg" alt="" />
                           </span>
-                          18 October 2025
+                          12. mart 2024.
                         </Link>
                       </li>
                       <li>
@@ -45,21 +45,21 @@ export default function Section9() {
                           <span>
                             <img src="assets/img/icons/vl-user2.1.svg" alt="" />
                           </span>
-                          Dawid Malan
+                          Vesna Jovanović
                         </Link>
                       </li>
                     </ul>
                   </div>
                   <h3 className="title pt-18">
                     <Link href="/blog-single">
-                      Why Regular Dental Checkups Are More <br /> Important Than You Think
+                      Kako smo organizovali regionalni simpozijum o palijativnoj nezi
                     </Link>
                   </h3>
                   <p className="para pt-14 pb-24">
-                    Regular dental checkups are essential not only maintaining a <br /> healthy smile but also for your overall health many people.
+                    Donosimo pregled tema, predavača i utisaka sa skupa na kome je učestvovalo više od 150 medicinskih sestara iz Niša i okoline.
                   </p>
                   <Link href="/blog-single" className="readmore">
-                    Read More
+                    Pročitaj više
                     <span>
                       <i className="fa-regular fa-arrow-right" />
                     </span>
@@ -85,7 +85,7 @@ export default function Section9() {
                           <span>
                             <img src="assets/img/icons/vl-date-icon-2.1.svg" alt="" />
                           </span>
-                          18 October 2025
+                          28. april 2024.
                         </Link>
                       </li>
                       <li>
@@ -93,21 +93,21 @@ export default function Section9() {
                           <span>
                             <img src="assets/img/icons/vl-user2.1.svg" alt="" />
                           </span>
-                          Dawid Malan
+                          Jelena Petrović
                         </Link>
                       </li>
                     </ul>
                   </div>
                   <h3 className="title pt-18">
                     <Link href="/blog-single">
-                      You Only Need to See a Dentist When You <br /> Have a Problem
+                      Digitalne edukacije za smenski rad: iskustva naših članova
                     </Link>
                   </h3>
                   <p className="para pt-14 pb-24">
-                    Many people believe that if they don’t have any pain or visible <br /> issues, there’s no need to visit the dentist however, routine.
+                    U tekstu predstavljamo platformu za e-učenje, savete za praćenje predavanja i načine na koje kombinujemo online i uživo radionice.
                   </p>
                   <Link href="/blog-single" className="readmore">
-                    Read More
+                    Pročitaj više
                     <span>
                       <i className="fa-regular fa-arrow-right" />
                     </span>

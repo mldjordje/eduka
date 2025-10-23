@@ -47,23 +47,23 @@ export default function Section1() {
                                         <div className="team-social">
                                             <ul>
                                                 <li>
-                                                    <Link href="#">
-                                                        <i className="fa-brands fa-x-twitter" />
+                                                    <Link href="https://www.facebook.com/edukanis" target="_blank" rel="noopener noreferrer">
+                                                        <i className="fa-brands fa-facebook-f" />
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="#">
+                                                    <Link href="https://www.linkedin.com/company/udruzenje-eduka" target="_blank" rel="noopener noreferrer">
                                                         <i className="fa-brands fa-linkedin-in" />
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="#">
+                                                    <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                                         <i className="fa-brands fa-instagram" />
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="#">
-                                                        <i className="fa-brands fa-facebook-f" />
+                                                    <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                                                        <i className="fa-brands fa-youtube" />
                                                     </Link>
                                                 </li>
                                             </ul>

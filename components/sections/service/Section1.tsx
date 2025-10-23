@@ -12,18 +12,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.1.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.1.svg" alt="Seminari uživo" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Restorative Solutions</Link>
+                                        <Link href="/service-single">Seminari uživo</Link>
                                     </h4>
                                     <p className="para">
-                                        We’re proud to offer a comprehensive <br /> range of dental services designed to meet <br /> the unique needs each patient.
+                                        Eduka organizuje stručne skupove i kongrese u saradnji sa zdravstvenim ustanovama i predavačima iz prakse.
                                     </p>
                                     <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                        Detaljnije
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -37,18 +37,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.2.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.2.svg" alt="Online edukacije" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Root Canal Therapy</Link>
+                                        <Link href="/service">Online edukacije</Link>
                                     </h4>
                                     <p className="para">
-                                        Our Preventive Care services focus on <br /> regular cleanings, exams, and education to <br /> help you maintain optimal oral health.
+                                        Platforma za e-učenje omogućava dostupnost stručnih sadržaja bez obzira na mesto rada i smenu.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/service" className="service-learnmore">
+                                        Pogledajte ponudu
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -62,18 +62,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.3.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.3.svg" alt="Radionice" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Smile Brightening</Link>
+                                        <Link href="/service-single">Praktične radionice</Link>
                                     </h4>
                                     <p className="para">
-                                        For those in need Restorative Solutions, <br /> we offer fillings, crowns, bridges, and <br /> implants, restoring function.
+                                        Interaktivne radionice donose najnovije protokole i standarde za negu pacijenata u različitim granama medicine.
                                     </p>
                                     <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                        Kako izgleda radionica
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -87,19 +87,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.4.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.4.svg" alt="Mentorske grupe" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Emergency Dental Care</Link>
+                                        <Link href="/clanstvo">Mentorske grupe</Link>
                                     </h4>
                                     <p className="para">
-                                        Whether you’re here for routine care or specialized treatment,
-                                        <br /> our team is committed to providing gentle, compassionate care <br /> tailored to every stage of life.
+                                        Članovi dobijaju pristup mreži mentora koji pomažu u pripremi za stručne ispite, licenciranje i primenu novih standarda.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/clanstvo" className="service-learnmore">
+                                        Učlanite se
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -113,20 +112,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.5.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.5.svg" alt="Konsalting" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Advanced Orthodontics</Link>
+                                        <Link href="/contact">Savjetovanje ustanova</Link>
                                     </h4>
                                     <p className="para">
-                                        For those in need of Restorative Solutions, we offer fillings, crowns,
-                                        <br /> bridges, and implants, restoring function and aesthetics to your smile.
-                                        <br /> Our Cosmetic Dentistry options, including whitening.
+                                        Pomažemo zdravstvenim ustanovama da planiraju edukativne programe, usklade dokumentaciju i pripreme timove za akreditacije.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/contact" className="service-learnmore">
+                                        Zakažite razgovor
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>
@@ -140,68 +137,18 @@ export default function Section1() {
                             <div className="vl-service-icon-bo2x-iner text-center">
                                 <div className="icon">
                                     <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.6.svg" alt="" />
+                                        <img src="assets/img/icons/vl-service-icon-iner1.6.svg" alt="Humanitarni programi" />
                                     </span>
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Smile Brightening</Link>
+                                        <Link href="/blog">Humanitarne akcije</Link>
                                     </h4>
                                     <p className="para">
-                                        For those in need Restorative Solutions, <br /> we offer fillings, crowns, bridges, and <br /> implants, restoring function.
+                                        Uključujemo članove u akcije prevencije i promocije zdravlja u lokalnoj zajednici kako bi se ojačalo poverenje pacijenata.
                                     </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
-                                        <span>
-                                            <i className="fa-regular fa-arrow-right" />
-                                        </span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        {/* single service box end */}
-                        {/* single service box start */}
-                        <div className="col-lg-4 col-md-6 mb-30">
-                            <div className="vl-service-icon-bo2x-iner text-center">
-                                <div className="icon">
-                                    <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.7.svg" alt="" />
-                                    </span>
-                                </div>
-                                <div className="content">
-                                    <h4 className="title">
-                                        <Link href="/service-single">Smile Brightening</Link>
-                                    </h4>
-                                    <p className="para">
-                                        For those in need Restorative Solutions, <br /> we offer fillings, crowns, bridges, and <br /> implants, restoring function.
-                                    </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
-                                        <span>
-                                            <i className="fa-regular fa-arrow-right" />
-                                        </span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        {/* single service box end */}
-                        {/* single service box start */}
-                        <div className="col-lg-4 col-md-6 mb-30">
-                            <div className="vl-service-icon-bo2x-iner text-center">
-                                <div className="icon">
-                                    <span>
-                                        <img src="assets/img/icons/vl-service-icon-iner1.1.svg" alt="" />
-                                    </span>
-                                </div>
-                                <div className="content">
-                                    <h4 className="title">
-                                        <Link href="/service-single">Smile Brightening</Link>
-                                    </h4>
-                                    <p className="para">
-                                        For those in need Restorative Solutions, <br /> we offer fillings, crowns, bridges, and <br /> implants, restoring function.
-                                    </p>
-                                    <Link href="/service-single" className="service-learnmore">
-                                        Learn More
+                                    <Link href="/blog" className="service-learnmore">
+                                        Aktuelne aktivnosti
                                         <span>
                                             <i className="fa-regular fa-arrow-right" />
                                         </span>

@@ -1,24 +1,24 @@
 {
     "blogs": [
         {
-            "title": "Understanding Dental Anxiety and How to Overcome It",
+            "title": "Najava seminara: Bezbednost pacijenata u bolničkim uslovima",
             "image": "assets/img/blog/vl-blog-thumb-1.1.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Mr. Dewey Ward",
+            "date": "Mart 12, 2024",
+            "author": "Udruženje Eduka",
             "link": "/blog-single"
         },
         {
-            "title": "Dental Implants vs. Dentures: Which is Right for You?",
+            "title": "Izveštaj sa prolećne škole sestrinstva u Nišu",
             "image": "assets/img/blog/vl-blog-thumb-1.2.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Greg Botsford",
+            "date": "April 04, 2024",
+            "author": "Tim za edukaciju",
             "link": "/blog-single"
         },
         {
-            "title": "Foods for Healthy Teeth: What to Eat and Avoid",
+            "title": "Online obuka: Upravljanje medicinskom dokumentacijom",
             "image": "assets/img/blog/vl-blog-thumb-iner1.3.png",
-            "date": "Thu Nov 02 2025",
-            "author": "Connie Kirlin",
+            "date": "Maj 18, 2024",
+            "author": "Platforma Eduka",
             "link": "/blog-single"
         }
     ]

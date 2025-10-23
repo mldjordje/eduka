@@ -31,9 +31,9 @@ export default function Section6() {
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-section-title text-center mb-60">
                                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                    Testimonial
+                                    Utisci članova
                                 </h5>
-                                <h2 className="title pt-16 text-anime-style-3">See Why Patients Love Us</h2>
+                                <h2 className="title pt-16 text-anime-style-3">Iskustva zdravstvenih radnika sa Edukom</h2>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,8 @@ export default function Section6() {
                                         </div>
                                         <div className="vl-testimonial-content">
                                             <p className="para">
-                                                "Working with Recrute was a game-changer for our <br /> finance department. They quickly understood our an <br /> needs and provided us with highly qualified best to <br /> candidates who not only fit the job description”
+                                                „Kroz Eduku sam za kratko vreme prikupila sve potrebne bodove za obnovu licence. Organizacija seminara je izuzetna,
+                                                a predavači dele praktična znanja koja primenjujemo svakodnevno.”
                                             </p>
                                         </div>
                                         {/* testimonial auth */}
@@ -65,9 +66,9 @@ export default function Section6() {
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">
-                                                    <Link href="/testimonial">Shakib Mahmud</Link>
-                                                </h4>
-                                                <p className="deseg">Operating Officer</p>
+                                                <Link href="/testimonial">Jelena Petrović</Link>
+                                            </h4>
+                                            <p className="deseg">Medicinska sestra, KC Niš</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -80,7 +81,8 @@ export default function Section6() {
                                         </div>
                                         <div className="vl-testimonial-content">
                                             <p className="para">
-                                                "Working with Recrute was a game-changer for our <br /> finance department. They quickly understood our an <br /> needs and provided us with highly qualified best to <br /> candidates who not only fit the job description”
+                                                „Online platforma mi omogućava da pratim vebinare kada imam slobodan termin. Materijali ostaju dostupni, pa
+                                                gradivo mogu da obnovim i podelim sa kolegama na odeljenju.”
                                             </p>
                                         </div>
                                         {/* testimonial auth */}
@@ -90,9 +92,9 @@ export default function Section6() {
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">
-                                                    <Link href="/testimonial">Shakib Mahmud</Link>
-                                                </h4>
-                                                <p className="deseg">Operating Officer</p>
+                                                <Link href="/testimonial">Milan Stojanović</Link>
+                                            </h4>
+                                            <p className="deseg">Zdravstveni tehničar, Dom zdravlja Aleksinac</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -105,7 +107,8 @@ export default function Section6() {
                                         </div>
                                         <div className="vl-testimonial-content">
                                             <p className="para">
-                                                "Working with Recrute was a game-changer for our <br /> finance department. They quickly understood our an <br /> needs and provided us with highly qualified best to <br /> candidates who not only fit the job description”
+                                                „Kao dugogodišnji član cenim što Eduka povezuje različite profile zdravstvenih radnika. Razmena iskustava i saveti
+                                                starijih kolega pomažu da unapredimo organizaciju rada u našoj ustanovi.”
                                             </p>
                                         </div>
                                         {/* testimonial auth */}
@@ -115,9 +118,9 @@ export default function Section6() {
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">
-                                                    <Link href="/testimonial">Shakib Mahmud</Link>
-                                                </h4>
-                                                <p className="deseg">Operating Officer</p>
+                                                <Link href="/testimonial">Slađana Krstić</Link>
+                                            </h4>
+                                            <p className="deseg">Glavna sestra, UKC Niš</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>

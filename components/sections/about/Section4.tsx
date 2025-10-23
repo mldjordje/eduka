@@ -50,7 +50,7 @@ export default function Section4() {
             <div className="col-lg-4">
               <div className="vl-brand-iner-title">
                 <h3 className="title">
-                  Trusted by the industry's <br /> leading insurance provider
+                  Partnerstva sa zdravstvenim ustanovama i edukativnim centrima širom regiona
                 </h3>
               </div>
             </div>
@@ -58,19 +58,19 @@ export default function Section4() {
               <Swiper {...swiperOptions} id="brand-active" className="p-relative owl-carousel owl-theme">
                 {/* single brand item */}
                 <SwiperSlide className="vl-single-brand-item">
-                  <img src="assets/img/brand/vl-brand-1.1.png" alt="" />
+                  <img src="assets/img/brand/vl-brand-1.1.png" alt="Partner Eduke" />
                 </SwiperSlide>
                 {/* single brand item */}
                 <SwiperSlide className="vl-single-brand-item">
-                  <img src="assets/img/brand/vl-brand-1.2.png" alt="" />
+                  <img src="assets/img/brand/vl-brand-1.2.png" alt="Partner Eduke" />
                 </SwiperSlide>
                 {/* single brand item */}
                 <SwiperSlide className="vl-single-brand-item">
-                  <img src="assets/img/brand/vl-brand-1.3.png" alt="" />
+                  <img src="assets/img/brand/vl-brand-1.3.png" alt="Partner Eduke" />
                 </SwiperSlide>
                 {/* single brand item */}
                 <SwiperSlide className="vl-single-brand-item">
-                  <img src="assets/img/brand/vl-brand-1.2.png" alt="" />
+                  <img src="assets/img/brand/vl-brand-1.2.png" alt="Partner Eduke" />
                 </SwiperSlide>
               </Swiper>
             </div>

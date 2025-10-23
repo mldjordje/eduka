@@ -16,10 +16,10 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                             <div className="vl-sidebar">
                                 {/* search widget */}
                                 <div className="vl-widegt-1 vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Search</h4>
+                                    <h4 className="title pb-24">Pretraga</h4>
                                     <div className="vl-searh-form-wid">
                                         <form action="#">
-                                            <input type="text" placeholder="Search..." />
+                                            <input type="text" placeholder="Unesite ključnu reč" />
                                             <span>
                                                 <i className="fa-regular fa-magnifying-glass" />
                                             </span>
@@ -28,12 +28,12 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 </div>
                                 {/* rec post widget */}
                                 <div className="vl-widegt-rec-post vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Recent Blogs</h4>
+                                    <h4 className="title pb-24">Poslednje objave</h4>
                                     {/* single post item */}
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
-                                            <Link href="#">
-                                                <img src="assets/img/blog/vl-rec-blog-1.1.png" alt="" />
+                                            <Link href="/blog-single">
+                                                <img src="assets/img/blog/vl-rec-blog-1.1.png" alt="Najava KME seminara" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -44,14 +44,14 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                             <span>
                                                                 <img src="assets/img/icons/vl-rec-date-icon1.1.svg" alt="" />
                                                             </span>
-                                                            10/10/2025
+                                                            12/03/2024
                                                         </Link>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <h3 className="title">
                                                 <Link href="/blog-single">
-                                                    Foods for Healthy <br /> Teeth: What to Eat an...
+                                                    Novi ciklus KME edukacija u Nišu
                                                 </Link>
                                             </h3>
                                         </div>
@@ -59,8 +59,8 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     {/* single post item */}
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
-                                            <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.2.png" alt="" />
+                                            <Link href="/blog-single">
+                                                <img src="assets/img/blog/vl-rec-blog-1.2.png" alt="Radionice palijativne nege" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -71,14 +71,14 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                             <span>
                                                                 <img src="assets/img/icons/vl-rec-date-icon1.1.svg" alt="" />
                                                             </span>
-                                                            16/10/2025
+                                                            05/03/2024
                                                         </Link>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <h3 className="title">
                                                 <Link href="/blog-single">
-                                                    How to Care for Your <br /> Teeth After a Filling or...
+                                                    Radionice palijativne nege za timove domova zdravlja
                                                 </Link>
                                             </h3>
                                         </div>
@@ -86,8 +86,8 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     {/* single post item */}
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
-                                            <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.3.png" alt="" />
+                                            <Link href="/blog-single">
+                                                <img src="assets/img/blog/vl-rec-blog-1.3.png" alt="Volonterski klub Eduke" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -98,41 +98,14 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                             <span>
                                                                 <img src="assets/img/icons/vl-rec-date-icon1.1.svg" alt="" />
                                                             </span>
-                                                            08/10/2025
+                                                            27/02/2024
                                                         </Link>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <h3 className="title">
                                                 <Link href="/blog-single">
-                                                    Braces vs. Invisalign: <br /> Which is Right for You?
-                                                </Link>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    {/* single post item */}
-                                    <div className="vl-rec-post-flex">
-                                        <div className="vl-thumb">
-                                            <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.4.png" alt="" />
-                                            </Link>
-                                        </div>
-                                        <div className="vl-content">
-                                            <div className="meta">
-                                                <ul>
-                                                    <li>
-                                                        <Link href="#">
-                                                            <span>
-                                                                <img src="assets/img/icons/vl-rec-date-icon1.1.svg" alt="" />
-                                                            </span>
-                                                            07/10/2025
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <h3 className="title">
-                                                <Link href="/blog-single">
-                                                    Foods That Promote <br /> Strong Teeth and Gums...
+                                                    Volonterski klub Eduke podržava mlade kolege
                                                 </Link>
                                             </h3>
                                         </div>
@@ -140,46 +113,43 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 </div>
                                 {/* tag widget */}
                                 <div className="vl-tags-widget vl-off-white-bg mb-14">
-                                    <h4 className="title pb-24">Popular Tags</h4>
+                                    <h4 className="title pb-24">Teme</h4>
                                     <div className="vl-tags-list">
                                         <ul>
                                             <li>
-                                                <Link href="#">HealthySmiles</Link>
+                                                <Link href="#">KME</Link>
                                             </li>
                                             <li>
-                                                <Link href="#">OralHealthMatters</Link>
+                                                <Link href="#">Radionice</Link>
                                             </li>
                                             <li>
-                                                <Link href="#">PreventiveDentistry</Link>
+                                                <Link href="#">Javno zdravlje</Link>
                                             </li>
                                             <li>
-                                                <Link href="#">BrightSmiles</Link>
+                                                <Link href="#">Mentorstvo</Link>
                                             </li>
                                             <li>
-                                                <Link href="#">DentistryExperts</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="#">TeethWhitening</Link>
+                                                <Link href="#">Volontiranje</Link>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 {/* auth widget */}
                                 <div className="vl-auth-widget vl-off-white-bg mb-15">
-                                    <h4 className="title pb-24">Our Author</h4>
+                                    <h4 className="title pb-24">Autori Eduke</h4>
                                     <div className="vl-auth-box-grid">
                                         <div className="vl-auth-thumb">
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.1.png" alt="" />
+                                                <img src="assets/img/team/vl-auth-iner1.1.png" alt="Autor 1" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.2.png" alt="" />
+                                                <img src="assets/img/team/vl-auth-iner1.2.png" alt="Autor 2" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.3.png" alt="" />
+                                                <img src="assets/img/team/vl-auth-iner1.3.png" alt="Autor 3" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.4.png" alt="" />
+                                                <img src="assets/img/team/vl-auth-iner1.4.png" alt="Autor 4" />
                                             </Link>
                                         </div>
                                     </div>
@@ -187,45 +157,45 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 {/* phone widget */}
                                 <div className="vl-widegt-3 vl-off-white-bg mb-30">
                                     <h4 className="title pb-24">
-                                        If You Need Any Help <br /> Contact With Us
+                                        Treba vam dodatna informacija?
                                     </h4>
-                                    <Link href="tel:+1234567890" className="phone">
+                                    <Link href="tel:+38118210400" className="phone">
                                         <span>
                                             <i className="fa-light fa-phone" />
                                         </span>
-                                        +123 456 7890
+                                        +381 (18) 210 400
                                     </Link>
                                 </div>
                                 {/* social widget */}
                                 <div className="vl-widegt-4 vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Follow Us</h4>
+                                    <h4 className="title pb-24">Pratite Eduku</h4>
                                     <div className="vl-sidebar-social">
                                         <ul>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.facebook.com/edukanis" target="_blank" rel="noopener noreferrer">
                                                     <span>
                                                         <i className="fa-brands fa-facebook-f" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
-                                                        <i className="fa-brands fa-x-twitter" />
+                                                        <i className="fa-brands fa-instagram" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
                                                         <i className="fa-brands fa-linkedin-in" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
-                                                        <i className="fa-brands fa-instagram" />
+                                                        <i className="fa-brands fa-youtube" />
                                                     </span>
                                                 </Link>
                                             </li>
@@ -236,292 +206,89 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                         </div>
                         <div className={`col-lg-8 mb-30 ${left ? "" : "order-1"} ${single ? "mx-auto" : ""}`}>
                             <div className={`vl-sidebar-details ${left ? "ml-80" : "mr-80"} ${single ? "me-0" : ""}`}>
-                                {/* thumbnail */}
-                                <div className="vl-blog-large-thumb-iner mb-32">
-                                    <img className="w-100 br-8" src="assets/img/blog/vl-blog-large-thumb1.1.png" alt="" />
+                                <div className="vl-blog-thumb mb-24">
+                                    <img className="w-100 br-8" src="assets/img/blog/vl-blog-details-thumb1.1.png" alt="Predavanje Eduke" />
                                 </div>
-                                {/* meta */}
-                                <div className="vl-blog-meta-list">
-                                    <ul>
-                                        <li>
-                                            <Link href="#">
-                                                <span>
-                                                    <img className="auth-thumb" src="assets/img/team/auth-meta1.1.png" alt="" />
-                                                </span>
-                                                Adil Rashid
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="#">
-                                                <span>
-                                                    <img className="icon" src="assets/img/icons/vl-blog-details-date-icon1.1.svg" alt="" />
-                                                </span>
-                                                8/10/2025
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="#">
-                                                <span>
-                                                    <img className="icon" src="assets/img/icons/vl-tag-1.1.svg" alt="" />
-                                                </span>
-                                                Dental &amp; Dentist Clinic
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="#">
-                                                <span>
-                                                    <img className="icon" src="assets/img/icons/vl-chat1.1.svg" alt="" />
-                                                </span>
-                                                2 Comments
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                                {/* content one */}
-                                <div className="vl-sidebar-conten2t mb-32">
-                                    <h3 className="title">
-                                        Dental Implants vs. Dentures: Which <br /> is Right for You?
-                                    </h3>
-                                    <p className="para pt-16">Welcome to our blog, where we share valuable insights, expert tips, &amp; the latest updates in dental care. At we believe in empowering our patients with knowledge make informed decisions about their health. Whether you’re curious about preventive care, interested.</p>
-                                    <p className="para pt-16">Explore topics ranging from everyday oral hygiene tips to advanced treatment options, all designed to help you achieve a healthy, confident smile stay connected for regular.</p>
-                                </div>
-                                {/* icon block */}
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 mb-30">
-                                        <div className="vl-deatils-icon-block-flex">
-                                            <div className="icon">
-                                                <span>
-                                                    <img src="assets/img/icons/vl-service-details-icon1.1.svg" alt="" />
-                                                </span>
-                                            </div>
-                                            <div className="content">
-                                                <h4 className="title pb-16">Advanced Dentistry</h4>
-                                                <p className="para">Using the latest technology, we provide effective &amp; comfortable.</p>
-                                            </div>
-                                        </div>
+                                <div className="vl-sidebar-conten1t">
+                                    <h2 className="title">KME seminar: Bezbedna zdravstvena nega u praksi</h2>
+                                    <div className="vl-blog-meta pb-24">
+                                        <Link href="#">
+                                            <span>
+                                                <img src="assets/img/icons/vl-date-icon-1.1.svg" alt="" />
+                                            </span>
+                                            12. mart 2024.
+                                        </Link>
+                                        <Link href="#">
+                                            <span>
+                                                <img src="assets/img/icons/vl-blog-user1.1.svg" alt="" />
+                                            </span>
+                                            Tim Eduke
+                                        </Link>
                                     </div>
-                                    <div className="col-lg-6 col-md-6 mb-30">
-                                        <div className="vl-deatils-icon-block-flex">
-                                            <div className="icon">
-                                                <span>
-                                                    <img src="assets/img/icons/vl-service-details-icon1.2.svg" alt="" />
-                                                </span>
-                                            </div>
-                                            <div className="content">
-                                                <h4 className="title pb-16">Preventive Restorative</h4>
-                                                <p className="para">Our clinic specializes maintaining oral health restoring functionality.</p>
-                                            </div>
-                                        </div>
+                                    <p className="para">
+                                        Na martovskom KME seminaru fokusirali smo se na bezbedne protokole za negu pacijenata u internističkim i hirurškim granama. Predavači iz Kliničkog centra Niš i partneri iz primarne zdravstvene zaštite delili su primere dobre prakse i najčešće izazove sa kojima se kolege susreću.
+                                    </p>
+                                    <p className="para pt-16">
+                                        Edukacija je organizovana kroz kombinaciju interaktivnih predavanja, radnih stolova i studija slučaja. Učesnici su mogli da provere svoja znanja kroz simulacije, kao i da unaprede komunikacijske veštine u radu sa pacijentima i njihovim porodicama.
+                                    </p>
+                                </div>
+                                <div className="vl-service-video-thumb p-relative mt-24 mb-32">
+                                    <img className="w-100 br-8" src="assets/img/blog/vl-blog-details-video-thumb1.1.png" alt="Video sa seminara" />
+                                    <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
+                                        <span>
+                                            <i className="fa-solid fa-play" />
+                                        </span>
                                     </div>
                                 </div>
-                                {/* content one */}
                                 <div className="vl-sidebar-conten1t mb-32">
-                                    <h3 className="title">Comprehensive Dental Care for Every Need</h3>
-                                    <p className="para pt-16">We understand that staying informed about your oral health essential. Our blog provides helpful articles on everything from preventive care to the latest advancements dentistry. Whether you’re looking for tips on improving your daily oral hygiene routine or exploring.</p>
-                                </div>
-                                {/* check box */}
-                                <div className="row">
-                                    <div className="col-lg-12 mb-16">
-                                        <div className="vl-service-check-lis2t">
-                                            <ul>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Tailored Care for Every Stage of Life
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Comprehensive Care for Every Smile
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Tailored Solutions Your Dental Needs
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Tailored Solutions for Your Dental Needs
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Preventive, Restorative, and Cosmetic
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Expert Care for All Ages
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* video thumb area */}
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 mb-30">
-                                        <div className="vl-blog-sm-thumb">
-                                            <img className="w-100" src="assets/img/blog/vl-blog-sm-thumb-1.1.png" alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 col-md-6 mb-30">
-                                        <div className="vl-service-video-thum2b p-relative">
-                                            <img className="w-100 br-8" src="assets/img/blog/vl-blog-sm-video-thumb-1.2.png" alt="" />
-                                            <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
+                                    <h3 className="title">Ključne poruke sa predavanja</h3>
+                                    <p className="para pt-16">
+                                        Predstavljeni su savremeni standardi higijene ruku, kontrola bolničkih infekcija i pristup pacijentima u palijativnoj nezi. Poseban segment bio je posvećen koordinaciji timova i dokumentovanju medicinskih procedura.
+                                    </p>
+                                    <div className="vl-service-check-list mt-20">
+                                        <ul>
+                                            <li>
                                                 <span>
-                                                    <i className="fa-solid fa-play" />
+                                                    <i className="fa-regular fa-check" />
                                                 </span>
-                                            </div>
-                                        </div>
+                                                Primena protokola za prevenciju infekcija u svakodnevnom radu
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i className="fa-regular fa-check" />
+                                                </span>
+                                                Komunikacija sa porodicom i edukacija pacijenata
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i className="fa-regular fa-check" />
+                                                </span>
+                                                Timsku saradnju između bolničkih i patronažnih službi
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                                {/* tags */}
-                                <div className="row">
-                                    <div className="col-lg-7 mb-30">
-                                        <div className="vl-single-tags">
-                                            <h4 className="title">Our Tags:</h4>
-                                            <ul>
-                                                <li>
-                                                    <Link href="#">Dentist</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#">Creative</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#">Development</Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-5 mb-30">
-                                        <div className="vl-blog-share">
-                                            <h4 className="title">Share:</h4>
-                                            <ul>
-                                                <li>
-                                                    <Link href="#">
-                                                        <span>
-                                                            <i className="fa-brands fa-facebook-f" />
-                                                        </span>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#">
-                                                        <span>
-                                                            <i className="fa-brands fa-x-twitter" />
-                                                        </span>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#">
-                                                        <span>
-                                                            <i className="fa-brands fa-linkedin-in" />
-                                                        </span>
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <div className="vl-sidebar-conten1t mb-32">
+                                    <h3 className="title">Šta sledi u narednim mesecima</h3>
+                                    <p className="para pt-16">
+                                        U aprilu nas očekuje ciklus radionica posvećen palijativnoj nezi i rehabilitaciji, a tokom maja organizujemo regionalni skup posvećen inovacijama u sestrinstvu. Svi članovi Eduke će blagovremeno dobiti raspored i materijale za pripremu.
+                                    </p>
                                 </div>
-                                {/* blog comments */}
-                                <div className="vl-blog-comemts">
-                                    <h4 className="title mb-30">Blog Comments (2)</h4>
-                                    {/* single comment */}
-                                    <div className="vl-single-coments-box mb-30">
-                                        <div className="vl-cmnts-flex">
-                                            <div className="vl-auth-flex">
-                                                <div className="auth">
-                                                    <span>
-                                                        <img src="assets/img/team/vl-auth-iner1.4.png" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div className="content">
-                                                    <h4 className="title">
-                                                        <Link href="/testimonial">Matthew Larson</Link>
-                                                    </h4>
-                                                    <span>8/10/2025</span>
-                                                </div>
-                                            </div>
-                                            <div className="vl-replay">
-                                                <h4 className="title">
-                                                    <Link href="#">
-                                                        <span>
-                                                            <img src="assets/img/icons/vl-replay.svg" alt="" />
-                                                        </span>
-                                                        Replay
-                                                    </Link>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <p className="para">We love hearing from our readers! If you have any questions, thoughts, or personal experiences related to our blog posts, feel free to share them in the comments below. Your feedback helps us create content that’s meaningful and useful to you.</p>
+                                <div className="vl-tags-share-flex">
+                                    <div className="vl-tags-list pb-12">
+                                        <h5 className="title">Tagovi:</h5>
+                                        <ul>
+                                            <li>
+                                                <Link href="#">edukacije</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="#">bezbednost pacijenata</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="#">sestrinstvo</Link>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    {/* single comment */}
-                                    <div className="vl-single-coments-box ml-30 mb-30">
-                                        <div className="vl-cmnts-flex">
-                                            <div className="vl-auth-flex">
-                                                <div className="auth">
-                                                    <span>
-                                                        <img src="assets/img/team/vl-auth-iner1.3.png" alt="" />
-                                                    </span>
-                                                </div>
-                                                <div className="content">
-                                                    <h4 className="title">
-                                                        <Link href="/testimonial">Sergio Daugherty</Link>
-                                                    </h4>
-                                                    <span>8/10/2025</span>
-                                                </div>
-                                            </div>
-                                            <div className="vl-replay">
-                                                <h4 className="title">
-                                                    <Link href="#">
-                                                        <span>
-                                                            <img src="assets/img/icons/vl-replay.svg" alt="" />
-                                                        </span>
-                                                        Replay
-                                                    </Link>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <p className="para">Whether you want to learn more about a topic or share your own dental tips, we encourage an open conversation. Our team is here to answer any questions and engage with you as you take charge of your oral health.</p>
-                                    </div>
-                                </div>
-                                {/* comments form */}
-                                <div className="vl-coments-form">
-                                    <h4 className="title">Leave a Reply</h4>
-                                    <p className="para pb-32">Provide clear contact information, including phone number, email, and address.</p>
-                                    <form action="#">
-                                        <div className="vl-cmnts-form">
-                                            <div className="row">
-                                                <div className="col-lg-6">
-                                                    <input className="mb-20" type="text" placeholder="First Name" />
-                                                </div>
-                                                <div className="col-lg-6">
-                                                    <input className="mb-20" type="text" placeholder="Last Name" />
-                                                </div>
-                                                <div className="col-lg-6">
-                                                    <input className="mb-20" name="email" type="email" placeholder="Email" />
-                                                </div>
-                                                <div className="col-lg-6">
-                                                    <input className="mb-20" type="number" placeholder="Phone" />
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <input className="mb-20" type="text" placeholder="Subject" />
-                                                </div>
-                                                <div className="col-lg-12">
-                                                    <textarea name="message" id="mesage" placeholder="Message" defaultValue={""} />
-                                                </div>
-                                                <div className="vl-cmt-btn mt-30">
-                                                    <button className="vl-btn-primary">Send Now</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -529,7 +296,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                 </div>
             </section>
             {/*================= Blog Details section End =================*/}
-            <ModalVideo channel="youtube" videoId="wn_wKQ_UR90" isOpen={isOpen} onClose={() => setOpen(false)} />
+            <ModalVideo channel="youtube" videoId="vR24qT-I5ko" isOpen={isOpen} onClose={() => setOpen(false)} />
         </>
     );
 }
