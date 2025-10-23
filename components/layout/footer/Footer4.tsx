@@ -16,29 +16,29 @@ export default function Footer() {
                                 </div>
                                 <div className="vl-footer-content">
                                     <p className="pt-24 pb-24">
-                                        We’re dedicated to providing <br /> high-quality, compassionate <br />
-                                        dental care for patients of all <br /> ages from preventive care.
+                                        Udruženje Eduka neguje kulturu kontinuiranog učenja i pruža siguran prostor za
+                                        razmenu znanja među zdravstvenim radnicima Nišavskog okruga.
                                     </p>
                                 </div>
                                 <div className="vl-footer-social">
                                     <ul>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="https://www.facebook.com/edukanis" target="_blank" rel="noopener noreferrer">
                                                 <i className="fa-brands fa-facebook-f" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="https://www.linkedin.com/company/udruzenje-eduka" target="_blank" rel="noopener noreferrer">
                                                 <i className="fa-brands fa-linkedin-in" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                                 <i className="fa-brands fa-instagram" />
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
                                                 <i className="fa-brands fa-youtube" />
                                             </Link>
                                         </li>
@@ -48,23 +48,23 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-2">
-                                <h3 className="vl-footer-widget-title mb-24">Quick Links</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Brzi linkovi</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="/">Home Page</Link>
+                                            <Link href="/">Početna</Link>
                                         </li>
                                         <li>
-                                            <Link href="/about">About Us</Link>
+                                            <Link href="/about">O udruženju</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Appointment</Link>
+                                            <Link href="/clanstvo">Članstvo</Link>
                                         </li>
                                         <li>
-                                            <Link href="/blog">News &amp; Blog</Link>
+                                            <Link href="/blog">Aktuelnosti</Link>
                                         </li>
                                         <li>
-                                            <Link href="/service">Service</Link>
+                                            <Link href="/service">Edukacije</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,23 +72,23 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-3 ml-40">
-                                <h3 className="vl-footer-widget-title mb-24">Our Services</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Programi Eduke</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="#">General Dental</Link>
+                                            <Link href="/service">Stručna usavršavanja</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Cosmetic Dental</Link>
+                                            <Link href="/service-single">Akreditovani seminari</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Whitening Care</Link>
+                                            <Link href="/clanstvo">Mentorska podrška</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Implants</Link>
+                                            <Link href="/blog">Izveštaji i vesti</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Care</Link>
+                                            <Link href="/contact">Kontakt centar</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,12 +96,12 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-4 col-md-6 mb-30">
                             <div className="vl-footer-widget-4">
-                                <h3 className="vl-footer-widget-title mb-24">Subscribe Newsletter</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Prijavite se na newsletter</h3>
                                 {/* subcribe form */}
                                 <div className="vl-newslater-form">
-                                    <input name="email" type="email" placeholder="Enter Your Email" />
+                                    <input name="email" type="email" placeholder="Unesite vašu e-mail adresu" />
                                     <button type="submit" className="w-100 mt-16 vl-btn-primar4y">
-                                        Subscribe
+                                        Prijavi se
                                     </button>
                                 </div>
                             </div>
@@ -112,16 +112,16 @@ export default function Footer() {
                     <div className="vl-footer-copyright-text-4">
                         <div className="row">
                             <div className="col-lg-6">
-                                <p className="para">© 2025 Dentalx ,Inc. All Rights Reserved.</p>
+                                <p className="para">© {new Date().getFullYear()} Udruženje medicinskih sestara „Eduka“.</p>
                             </div>
                             <div className="col-lg-6">
                                 <div className="copy-right-menu">
                                     <ul>
                                         <li>
-                                            <Link href="#">Privacy Policy </Link>
+                                            <Link href="/about">O nama</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Terms &amp; Conditions</Link>
+                                            <Link href="/contact">Pišite nam</Link>
                                         </li>
                                     </ul>
                                 </div>

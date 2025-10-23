@@ -13,16 +13,16 @@ export default function Section2() {
                                     <div className="vl-choose-content3">
                                         <div className="vl-section-title3">
                                             <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                                Why Choose us
+                                                Zašto odabrati Eduku
                                             </h5>
-                                            <h2 className="title text-anime-style-3 pt-16 pb-16">Caring for Your Smile Inside &amp; Out</h2>
+                                            <h2 className="title text-anime-style-3 pt-16 pb-16">Brinemo o vašem stručnom razvoju</h2>
                                             <p className="para pb-32" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                                We believe building lasting relationships with our patients, taking the time understand your unique needs and goals from preventive care.
+                                                Gradimo partnerstvo sa članovima, pratimo potrebe zdravstvenih ustanova i organizujemo programe koji unapređuju svakodnevni rad sa pacijentima.
                                             </p>
                                             <div className="vl-choose-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                                                 <Link href="/about" className="btn-primary3">
                                                     <cite />
-                                                    Learn More
+                                                    Saznajte više
                                                     <span>
                                                         <i className="fa-regular fa-arrow-right" />
                                                     </span>
@@ -42,23 +42,23 @@ export default function Section2() {
                             {/* single box */}
                             <div className="vl-choose-box mb-30">
                                 <h4 className="title pb-16">
-                                    <Link href="#">Experienced and Caring Team</Link>
+                                    <Link href="/team">Iskusan tim edukatora</Link>
                                 </h4>
-                                <p className="para">Our team is not only highly skilled but also dedicated to making each patient feel at ease. We understand that dental visits.</p>
+                                <p className="para">Naši predavači su medicinske sestre i tehničari sa višegodišnjim iskustvom koji prenose praktična rešenja i dele realne studije slučaja.</p>
                             </div>
                             {/* single box */}
                             <div className="vl-choose-box mb-30">
                                 <h4 className="title pb-16">
-                                    <Link href="#">Commitment to Safety and Comfort</Link>
+                                    <Link href="/service">Akreditacija i kvalitet</Link>
                                 </h4>
-                                <p className="para">We prioritize safety and follow strict sterilization and sanitation protocols to ensure a clean, secure environment additionally.</p>
+                                <p className="para">Svi programi prolaze reviziju, prate smernice komora i donose bodove za obnovu licence, uz stalnu evaluaciju zadovoljstva polaznika.</p>
                             </div>
                             {/* single box */}
                             <div className="vl-choose-box mb-30">
                                 <h4 className="title pb-16">
-                                    <Link href="#">Comprehensive Services Under One Roof</Link>
+                                    <Link href="/clanstvo">Sve usluge na jednom mestu</Link>
                                 </h4>
-                                <p className="para">Whether you need a routine cleaning, restorative care, cosmetic treatments, we offer a full range of dental services to meet all.</p>
+                                <p className="para">Od stručnih skupova do mentorski vođenih projekata i pravne podrške, Eduka objedinjuje resurse potrebne zdravstvenim radnicima Nišavskog okruga.</p>
                             </div>
                         </div>
                     </div>

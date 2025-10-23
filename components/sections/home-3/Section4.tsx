@@ -18,9 +18,9 @@ export default function Section4() {
                 <div className="vl-video-content3">
                   <div className="vl-section-title3 mb-32 text-center">
                     <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                      visit clinic
+                      Posetite Eduku
                     </h5>
-                    <h2 className="title pt-16 text-anime-style-3">Comprehensive Dental Care For All Ages</h2>
+                    <h2 className="title pt-16 text-anime-style-3">Pogledajte kako izgledaju naši edukativni skupovi</h2>
                   </div>
                   <div className="video-play-btn3" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                     <div className="play-icon">
@@ -29,7 +29,7 @@ export default function Section4() {
                           <i className="fa-solid fa-play" />
                         </div>
                       </div>
-                      <cite className="play-text">Play Video</cite>
+                      <cite className="play-text">Pogledaj video</cite>
                     </div>
                   </div>
                 </div>

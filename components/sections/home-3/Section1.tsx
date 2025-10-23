@@ -17,15 +17,16 @@ export default function Section1() {
             <div className="col-lg-6 mb-30">
               <div className="vl-banner-area-content3 mt-60">
                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                  Confident Smile Begins Here
+                  Eduka – zajednica koja osnažuje zdravstvene radnike
                 </h5>
-                <h1 className="title text-anime-style-3 pt-16 pb-16">You'er Trusted Dental Clinic</h1>
+                <h1 className="title text-anime-style-3 pt-16 pb-16">Programi stručnog usavršavanja iz Niša</h1>
                 <p className="para pb-32" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                  Our dedicated team of professionals is committed delivering <br /> personalized, high-quality dental care comfortable &amp; friendly.
+                  Naši koordinatori prate vaše potrebe, obezbeđuju akreditovane obuke i omogućavaju razmenu iskustava kroz
+                  mentorsku podršku i lokalne projekte.
                 </p>
                 <div className="vl-banner-btn3" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                  <Link href="#" className="vl-btn-primary3">
-                    View Our Property
+                  <Link href="/clanstvo" className="vl-btn-primary3">
+                    Postanite član Eduke
                     <span>
                       <i className="fa-regular fa-arrow-right" />
                     </span>
@@ -38,7 +39,7 @@ export default function Section1() {
               <div className="vl-banner-video-thum4b d-none d-lg-block">
                 <img className="w-100" src="assets/img/banner/vl-banner-video-thumb-4.1.png" alt="" />
                 <div className="video-play-btn3">
-                  <Link href="https://www.youtube.com/watch?v=vR24qT-I5ko" className="popup-video">
+                  <Link href="https://www.youtube.com" className="popup-video" target="_blank" rel="noopener noreferrer">
                     <span>
                       <i className="fa-solid fa-play" />
                     </span>
@@ -67,7 +68,7 @@ export default function Section1() {
                   <div className="col-lg-4">
                     <div className="vl-appintment-title">
                       <h2 className="title pt-16 pb-16">
-                        Book an <br /> Appointment
+                        Prijavite se <br /> za edukaciju
                       </h2>
                     </div>
                   </div>
@@ -77,23 +78,23 @@ export default function Section1() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="vl-form-appointmrnt">
-                              <input className="mb-16" type="text" placeholder="First Name" />
-                              <input className="mb-16" type="email" placeholder="Your Email" />
+                              <input className="mb-16" type="text" placeholder="Ime" />
+                              <input className="mb-16" type="email" placeholder="Email adresa" />
                               <select name="select" className="nice-select wide vl-select-date2">
-                                <option data-display="Service Type">Preventive Dentistry</option>
-                                <option value={1}>Restorative Dentistry</option>
-                                <option value={2}>Cosmetic Dentistry</option>
+                                <option data-display="Vrsta programa">Online radionica</option>
+                                <option value={1}>KME seminar</option>
+                                <option value={2}>Mentorska podrška</option>
                               </select>
                             </div>
                           </div>
                           <div className="col-lg-6">
-                            <input className="mb-16" type="text" placeholder="Last Name" />
+                            <input className="mb-16" type="text" placeholder="Prezime" />
                             <div className="mb-16">
-                              <input type="date" placeholder="Date" />
+                              <input type="date" placeholder="Datum" />
                             </div>
                             <div className="vl-appoint-btn">
                               <button className="btn-primary3 w-100">
-                                Book Now
+                                Pošalji upit
                                 <span>
                                   <i className="fa-regular fa-arrow-right" />
                                 </span>

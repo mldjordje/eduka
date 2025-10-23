@@ -1,99 +1,98 @@
 [
     {
         "id": 1,
-        "name": "Desiree Wolf",
-        "position": "Pediatrics",
+        "name": "Vesna Jovanović",
+        "position": "Predsednica udruženja",
         "avatar": "assets/img/team/vl-team-thumb-3.1.png"
     },
     {
         "id": 2,
-        "name": "Preston Padberg",
-        "position": "Cardiology",
+        "name": "Jelena Petrović",
+        "position": "Koordinatorka za KME",
         "avatar": "assets/img/team/vl-team-thumb-3.2.png"
     },
     {
         "id": 3,
-        "name": "Harry Hickle V",
-        "position": "Orthopedics",
+        "name": "Milan Stanković",
+        "position": "Programski menadžer",
         "avatar": "assets/img/team/vl-team-thumb-3.3.png"
     },
     {
         "id": 4,
-        "name": "Alicia Luettgen",
-        "position": "Deromatology",
+        "name": "Katarina Ilić",
+        "position": "Mentorka volontera",
         "avatar": "assets/img/team/vl-team-thumb-3.4.png"
     },
     {
         "id": 5,
-        "name": "Terrell Will",
-        "position": "Pediatrics",
-        "avatar": "assets/img/team/vl-team-thumb-3.5.png"
+        "name": "Nikola Ristić",
+        "position": "Koordinator digitalnih obuka",
+        "avatar": "assets/img/team/vl-team-thumb-3.3.png"
     },
     {
         "id": 6,
-        "name": "Angel Hayes Jr.",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.6.png"
+        "name": "Ivana Marković",
+        "position": "Stručna saradnica",
+        "avatar": "assets/img/team/vl-team-thumb-3.5.png"
     },
     {
         "id": 7,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Nemanja Ristić",
+        "position": "Mentor za kliničku praksu",
+        "avatar": "assets/img/team/vl-team-thumb-3.6.png"
     },
     {
         "id": 8,
-        "name": "Samuel Waters II",
-        "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "name": "Slađana Krstić",
+        "position": "Supervizorka za edukaciju",
+        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
     },
     {
         "id": 9,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Gordana Milenković",
+        "position": "Koordinatorka terenskih aktivnosti",
+        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
     },
     {
         "id": 10,
-        "name": "Samuel Waters II",
-        "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "name": "Maja Ilić",
+        "position": "Asistent za članstvo",
+        "avatar": "assets/img/team/vl-team-thumb-3.5.png"
     },
     {
         "id": 11,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Stefan Trajković",
+        "position": "Logistička podrška",
+        "avatar": "assets/img/team/vl-team-thumb-3.6.png"
     },
     {
         "id": 12,
-        "name": "Samuel Waters II",
-        "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "name": "Ana Đorđević",
+        "position": "Koordinatorka volontera",
+        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
     },
-
     {
         "id": 13,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Miloš Petković",
+        "position": "IT podrška",
+        "avatar": "assets/img/team/vl-team-thumb-3.3.png"
     },
     {
         "id": 14,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Dragana Pavlović",
+        "position": "Organizatorka događaja",
+        "avatar": "assets/img/team/vl-team-thumb-3.4.png"
     },
     {
         "id": 15,
-        "name": "Samuel Waters II",
-        "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "name": "Aleksandra Tasić",
+        "position": "PR i komunikacije",
+        "avatar": "assets/img/team/vl-team-thumb-3.1.png"
     },
     {
         "id": 16,
-        "name": "Chester Reynolds",
-        "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "name": "Dejan Jovanović",
+        "position": "Predsednik sekcije za KME",
+        "avatar": "assets/img/team/vl-team-thumb-3.2.png"
     }
 ]
