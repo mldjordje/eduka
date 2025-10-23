@@ -190,10 +190,7 @@ export default function CmsPage() {
             <div className="col-lg-6 mb-40">
               <div className="vl-off-white-bg p-40 br-20">
                 <h3 className="title pb-20">Kreiranje nove blog objave</h3>
-                <p className="pb-16">
-                  Popunite formu kako biste kreirali novu objavu. Slika treba da bude putanja do slike iz foldera <code>public</code>
-                  , a sadržaj možete uneti u više pasusa koristeći novi red.
-                </p>
+                <p className="pb-16">Otpremajte sliku direktno sa svog uredaja.</p>
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit} className="cms-form">
@@ -245,20 +242,7 @@ export default function CmsPage() {
                       <label className="form-label">Slika (upload)</label>
                       <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                       {isUploading && <small>Otpremanje...</small>}
-                    </div>
-                    <div className="col-md-6 pb-16">
-                      <label className="form-label">Putanja do slike (opciono)</label>
-                      <input type="text" name="image" value={form.image} onChange={handleInputChange} placeholder="npr. /uploads/slika.png" className="form-control" />
-                    </div>
-                    {form.image && (
-                      <div className="col-12 pb-16">
-                        <label className="form-label">Pregled slike</label>
-                        <div className="vl-blog-thumb image-anime" style={{maxWidth: 300}}>
-                          <img className="w-100" src={form.image.startsWith("http") ? form.image : /} alt="Pregled slike" />
-                        </div>
-                      </div>
-                    )}
-                    <div className="col-12 pb-16">
+                    </div>\n<div className="col-12 pb-16">
                       <label className="form-label">Sadržaj *</label>
                       <textarea
                         name="content"
@@ -291,7 +275,7 @@ export default function CmsPage() {
             <div className="col-lg-6 mb-40">
               <div className="vl-off-white-bg p-40 br-20 h-100">
                 <h3 className="title pb-12">Poslednje objave</h3>
-                <p className="pb-16">Sveže objave su prikazane redom kojim su objavljene.</p>
+                <p className="pb-16">Sve�e objave su prikazane redom kojim su objavljene.</p>
                 <div className="cms-post-list">
                   {posts.length === 0 && <p>Još uvek nema objava.</p>}
                   {posts.map((post) => (
@@ -341,10 +325,7 @@ export default function CmsPage() {
                           </tr>
                         ))}
                       </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
+                    </table>\n</div>
             </div>
           </div>
         </div>
