@@ -6,13 +6,14 @@ import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 interface BlogPostPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) {
     return { title: "Blog" };
   }
@@ -36,7 +37,8 @@ function formatDate(date: string) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();

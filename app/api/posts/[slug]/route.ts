@@ -6,10 +6,11 @@ const FILE_NAME = "blogPosts.json";
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
+  const { slug } = await context.params;
   const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
-  const post = posts.find((item) => item.slug === params.slug);
+  const post = posts.find((item) => item.slug === slug);
 
   if (!post) {
     return NextResponse.json({ message: "Članak nije pronađen." }, { status: 404 });
