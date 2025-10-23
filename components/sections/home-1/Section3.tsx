@@ -79,11 +79,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Programi usavr�avanja</Link>
+                      <Link href="/about">Programi usavršavanja</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Whether you’re here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
+                    <p className="para pt-16 pb-24">Bilo da se prijavljujete za obuku ili savetovanje, obezbeđujemo jasne informacije i podršku na svakom koraku.</p>
                     <Link href="/about" className="learnmore">
-                      Saznaj vi�e
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -101,11 +101,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Strucne radionice</Link>
+                      <Link href="/about">Stručne radionice</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">For a younger patients, Pediatric Dentistry offers a comfortable and fun environment, helping children build healthy habits.</p>
+                    <p className="para pt-16 pb-24">Prilagođeno različitim profilima zdravstvenih radnika i saradnika, sa praktičnim primerima i smernicama.</p>
                     <Link href="/about" className="learnmore">
-                      Saznaj vi�e
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -125,9 +125,9 @@ export default function Section3() {
                     <h4 className="title pt-24">
                       <Link href="/about">Online obuke</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Our Cosmetic Dentistry options, including whitening &amp; veneers, are crafted enhance your confidence with a radiant, beautiful.</p>
+                    <p className="para pt-16 pb-24">Materijali i resursi za kontinuirano usavršavanje i profesionalni razvoj.</p>
                     <Link href="/about" className="learnmore">
-                      Saznaj vi�e
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -145,11 +145,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Programi usavr�avanja</Link>
+                      <Link href="/about">Programi usavršavanja</Link>
                     </h4>
-                    <p className="para pt-16 pb-24">Whether you’re here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
+                    <p className="para pt-16 pb-24">Bilo da se prijavljujete za obuku ili savetovanje, obezbeđujemo jasne informacije i podršku na svakom koraku.</p>
                     <Link href="/about" className="learnmore">
-                      Saznaj vi�e
+                      Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -173,6 +173,4 @@ export default function Section3() {
     </>
   );
 }
-
-
 
