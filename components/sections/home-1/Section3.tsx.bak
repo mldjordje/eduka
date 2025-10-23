@@ -58,9 +58,9 @@ export default function Section3() {
               <div className="vl-service-section-title">
                 <div className="vl-section-title mb-60">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    Na≈°e usluge
+                    Our Service
                   </h5>
-                  <h2 className="title pt-16 text-anime-style-3">Vodiƒç kroz na≈°e programe</h2>
+                  <h2 className="title pt-16 text-anime-style-3">Your Complete Guide to Dental Health</h2>
                 </div>
               </div>
             </div>
@@ -79,11 +79,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Programi usavröavanja</Link>
+                      <Link href="/service-single">Restorative Solutions</Link>
                     </h4>
                     <p className="para pt-16 pb-24">Whether you‚Äôre here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj viöe
+                    <Link href="/service-single" className="learnmore">
+                      Learn More
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -101,11 +101,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Strucne radionice</Link>
+                      <Link href="/service-single">Periodontal Therapy</Link>
                     </h4>
                     <p className="para pt-16 pb-24">For a younger patients, Pediatric Dentistry offers a comfortable and fun environment, helping children build healthy habits.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj viöe
+                    <Link href="/service-single" className="learnmore">
+                      Learn More
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -123,11 +123,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Online obuke</Link>
+                      <Link href="/service-single">Pediatric Dentistry</Link>
                     </h4>
                     <p className="para pt-16 pb-24">Our Cosmetic Dentistry options, including whitening &amp; veneers, are crafted enhance your confidence with a radiant, beautiful.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj viöe
+                    <Link href="/service-single" className="learnmore">
+                      Learn More
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -145,11 +145,11 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/about">Programi usavröavanja</Link>
+                      <Link href="/service-single">Restorative Solutions</Link>
                     </h4>
                     <p className="para pt-16 pb-24">Whether you‚Äôre here for routine care or specialized treatment, our is committed to providing gentle, compassionate care.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj viöe
+                    <Link href="/service-single" className="learnmore">
+                      Learn More
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -173,6 +173,3 @@ export default function Section3() {
     </>
   );
 }
-
-
-

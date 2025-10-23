@@ -23,16 +23,16 @@ export default function Section2() {
                             <div className="vl-about-content-wrap">
                                 <div className="vl-section-title">
                                     <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        About Us
+                                        O nama
                                     </h5>
-                                    <h2 className="title text-anime-style-3 pt-16 pb-16 mr-20">Our Story Caring for Your Smile</h2>
+                                    <h2 className="title text-anime-style-3 pt-16 pb-16 mr-20">Naša priča: podrška znanju i praksi</h2>
                                     <p className="para pb-32" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        We believe building lasting relationships with <br /> our patients, taking the time understand your unique needs and goals from preventive care.
+                                        Verujemo u trajne odnose sa našim članovima i polaznicima, posvećeni vašim potrebama i ciljevima kroz kontinuiranu edukaciju.
                                     </p>
                                 </div>
                                 <div className="vl-about-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                                     <Link href="/about" className="vl-btn-primary">
-                                        Learn More
+                                        Saznaj više
                                     </Link>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ export default function Section2() {
                                     <h3>
                                         <span className="title">24X7</span>
                                     </h3>
-                                    <span className="deseg">Emergency Service</span>
+                                    <span className="deseg">Dostupnost</span>
                                 </div>
                                 {/* single counter box */}
                                 <div className="single-couter-box text-center mb-30">
@@ -60,7 +60,7 @@ export default function Section2() {
                                         <span className="title counter">25</span>
                                         <span>K+</span>
                                     </h3>
-                                    <span className="deseg">Recover Patient</span>
+                                    <span className="deseg">Članova</span>
                                 </div>
                                 {/* single counter box */}
                                 <div className="single-couter-box text-center mb-30">
@@ -68,7 +68,7 @@ export default function Section2() {
                                         <span className="title counter">15</span>
                                         <span>+</span>
                                     </h3>
-                                    <span className="deseg">Years Experience</span>
+                                    <span className="deseg">Godina iskustva</span>
                                 </div>
                             </div>
                         </div>

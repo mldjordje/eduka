@@ -32,9 +32,9 @@ export default function Section8() {
             <div className="col-lg-6 mx-auto">
               <div className="vl-section-title text-center mb-60">
                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                  Our Blog
+                  Blog
                 </h5>
-                <h2 className="title pt-16 text-anime-style-3">How to Handle a Dental Emergency Quick Tips</h2>
+                <h2 className="title pt-16 text-anime-style-3">Najnovije objave i najave</h2>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function Section8() {
                     </h3>
                     <p>{blogs.excerpt}</p>
                     <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
-                      Learn more
+                      Saznaj više
                       <span>
                         <i className="fa-regular fa-arrow-right" />
                       </span>
