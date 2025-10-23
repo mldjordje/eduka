@@ -11,7 +11,7 @@ export default function SectionHeader({ title, current, isGroup, linkGroup, page
             <div className="vl-breadcrumb-list">
               <ul>
                 <li>
-                  <Link href="/">Home</Link>
+                  <Link href="/">Početna</Link>
                 </li>
 
                 <li>

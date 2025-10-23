@@ -1,56 +1,38 @@
 [
     {
-        "quote": "Our patient smile speak volume about the quality of care we provide. We’re proud to share stories from individuals and families who have experienced our commitment exceptional dental care.",
-        "author": "Tricia Halvorson",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Eduka mi je omogućila da redovno pratim akreditovane seminare i na vreme obnovim licencu. Organizacija je besprekorna, a teme su uvek usklađene sa praksom.",
+        "author": "Jelena Petrović",
+        "position": "Medicinska sestra, KC Niš",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.1.png"
     },
     {
-        "quote": "From overcoming dental anxieties to achieving-changing transformations, our patients trust us to deliver results with compassion and expertise. Their feedback inspires us to continue.",
-        "author": "Emilio Price",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Online edukacije su sjajno rešenje za zaposlene u smenama. Materijali ostaju dostupni, pa svako može da uči svojim tempom i vrati se lekcijama kada mu je potrebno.",
+        "author": "Milan Stojanović",
+        "position": "Zdravstveni tehničar, DZ Aleksinac",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.2.png"
     },
     {
-        "quote": "At nothing makes happier than hearing from satisfied patients. Their stories of brighter smiles, renewed confidence, & exceptional experiences our dedication to providing the highest quality care.",
-        "author": "Miss Kellie Rice",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Posebno cenim radionice koje razvijaju praktične veštine. Eduka okuplja sjajne predavače koji prenose konkretne savete iz rada sa pacijentima.",
+        "author": "Slađana Krstić",
+        "position": "Glavna sestra, UKC Niš",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.3.png"
     },
     {
-        "quote": "From routine check-ups to advanced treatments, we strive to ensure every visit is positive and stress-free. Read our testimonials see how we’ve made difference in the lives of our patients.",
-        "author": "Emma Trantow",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Kao mladi tehničar dobio sam podršku mentora i priliku da se povežem sa kolegama iz različitih ustanova. Takva mreža saradnje je neprocenjiva.",
+        "author": "Nemanja Ristić",
+        "position": "Medicinski tehničar, Klinika za anesteziju",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.4.png"
     },
     {
-        "quote": "Every smile has a story, & we honored to be part of yours. At our patients kind words inspire us to go above & beyond delivering personalized, compassionate care whether it’s a quick cleaning.",
-        "author": "Billie Ritchie",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Udruženje nas redovno obaveštava o novim pravilnicima i konkursima. Lakše je pratiti sve obaveze kada postoji pouzdan izvor informacija.",
+        "author": "Ivana Marković",
+        "position": "Stručni saradnik u zdravstvu",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.5.png"
     },
     {
-        "quote": "Whether a quick cleaning or a complex procedure, we treat every patient like family, ensuring comfort & satisfaction every step. Discover what our patients say about their experiences with us.",
-        "author": "Jeremy Shahan",
-        "position": "CEO, Wingree Ltd",
+        "quote": "Edukativni skupovi su prilika da razmenimo iskustva i pokrenemo zajedničke projekte. Eduka daje glas zdravstvenim radnicima iz Nišavskog okruga.",
+        "author": "Dejan Jovanović",
+        "position": "Predsednik sekcije za KME",
         "avatar": "assets/img/testimonial/vl-testimonial-auth-1.6.png"
-    },
-    {
-        "quote": "Your trust means the world to us, and we’re proud to share the heartfelt Best testimonials of our happy patients. At we believe in building last relationships through exceptional care & genuine.",
-        "author": "Rayd Homenick",
-        "position": "CEO, Wingree Ltd",
-        "avatar": "assets/img/testimonial/vl-testimonial-auth-1.7.png"
-    },
-    {
-        "quote": "Our patient stories highlight expertise our team the welcoming environment we strive to create. See how we helped other achieve healthier more confident smiles & let us do the same for you!",
-        "author": "Gregg Kuhn",
-        "position": "CEO, Wingree Ltd",
-        "avatar": "assets/img/testimonial/vl-testimonial-auth-1.8.png"
-    },
-    {
-        "quote": "Our patients’ satisfaction is foundation of everything we do Hearing how we’ve helped people overcome dental fears, brighter smiles, or maintain excellent oral health motivates us to keep.",
-        "author": "Hannah Luettgen",
-        "position": "CEO, Wingree Ltd",
-        "avatar": "assets/img/testimonial/vl-testimonial-auth-1.9.png"
     }
 ]

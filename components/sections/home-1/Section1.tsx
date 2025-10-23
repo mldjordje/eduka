@@ -64,7 +64,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/o-nama" className="vl-btn-primary">
+                      <Link href="/about" className="vl-btn-primary">
                         Saznaj više
                       </Link>
                     </div>
@@ -119,7 +119,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/edukacija/online" className="vl-btn-primary">
+                      <Link href="/service" className="vl-btn-primary">
                         Pogledaj edukacije
                       </Link>
                     </div>
@@ -174,7 +174,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/postanite-clan" className="vl-btn-primary">
+                      <Link href="/pricing-plan" className="vl-btn-primary">
                         Postani član
                       </Link>
                     </div>

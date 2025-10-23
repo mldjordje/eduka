@@ -12,16 +12,16 @@ export default function Section5() {
                             <div className="vl-before-content-wraper">
                                 <div className="vl-section-title mb-60">
                                     <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        After Before
+                                        Foto arhiva
                                     </h5>
                                     <h2 className="title pt-16 text-anime-style-3">
-                                        Your Complete Guide <br /> to Dental Health
+                                        Trenuci sa naših seminara i radionica
                                     </h2>
                                 </div>
                             </div>
                             <div className="vl-before-btn">
-                                <Link href="/contact" className="vl-btn-primary">
-                                    Contact Now
+                                <Link href="/about" className="vl-btn-primary">
+                                    Saznaj više o nama
                                 </Link>
                             </div>
                         </div>

@@ -11,37 +11,37 @@ export default function Section7() {
               <div className="vl-contact-text-wraper-1">
                 <div className="vl-section-title mb-32">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    Contact Us
+                    Kontakt
                   </h5>
-                  <h2 className="title pt-16 text-anime-style-3">Book Your Appointment</h2>
+                  <h2 className="title pt-16 text-anime-style-3">Pišite nam ili zakažite sastanak</h2>
                 </div>
                 <div className="vl-contact-form" data-aos="fade-right" data-aos-duration={800} data-aos-delay={300}>
                   <form action="#">
                     <div className="row">
                       <div className="col-lg-6 mb-24">
-                        <input name="text" type="text" placeholder="First Name" />
+                        <input name="text" type="text" placeholder="Ime" />
                       </div>
                       <div className="col-lg-6 mb-24">
-                        <input name="text" type="text" placeholder="Last Name" />
+                        <input name="text" type="text" placeholder="Prezime" />
                       </div>
                       <div className="col-lg-6 mb-24">
-                        <input name="email" type="email" placeholder="Email Address" />
+                        <input name="email" type="email" placeholder="Email adresa" />
                       </div>
                       <div className="col-lg-6 mb-24">
                         <select name="select-date" className="nice-select wide vl-select-date">
-                          <option data-display="Date">Monday - Friday(9AM - 10PM)</option>
-                          <option value={1}>Sunday(9AM - 10PM)</option>
-                          <option value={2}>Saturday(10AM - 4PM)</option>
+                          <option data-display="Termin">Ponedeljak - Petak (08:00 - 16:00)</option>
+                          <option value={1}>Subota (po dogovoru)</option>
+                          <option value={2}>Online konsultacije</option>
                         </select>
                       </div>
                       <div className="col-lg-12 mb-24">
-                        <textarea name="message" id="message" placeholder="Your Message" defaultValue={""} />
+                        <textarea name="message" id="message" placeholder="Vaša poruka" defaultValue={""} />
                       </div>
                     </div>
                   </form>
                   <div className="col-lg-6">
                     <div className="vl-contact-btn">
-                      <button className="vl-btn-primary">Submit</button>
+                      <button className="vl-btn-primary">Pošalji poruku</button>
                     </div>
                   </div>
                 </div>
@@ -53,25 +53,25 @@ export default function Section7() {
                 <div className="vl-contact-info-box">
                   <div className="vl-single-info-box">
                     <div className="vl-contact-info-box-flex">
-                      <h4 className="title">Monday - Friday</h4>
-                      <span className="time">9AM - 10PM</span>
+                      <h4 className="title">Ponedeljak - Petak</h4>
+                      <span className="time">08:00 - 16:00</span>
                     </div>
                   </div>
                   <div className="vl-single-info-box">
                     <div className="vl-contact-info-box-flex">
-                      <h4 className="title">Sunday</h4>
-                      <span className="time">9AM - 10PM</span>
+                      <h4 className="title">Subota</h4>
+                      <span className="time">Po dogovoru</span>
                     </div>
                   </div>
                   <div className="vl-single-info-box">
                     <div className="vl-contact-info-box-flex">
-                      <h4 className="title">Saturday</h4>
-                      <span className="time">10AM - 4PM</span>
+                      <h4 className="title">Online podrška</h4>
+                      <span className="time">dostupna članovima</span>
                     </div>
                   </div>
                   <div className="vl-contact-info-btn mt-12">
-                    <Link href="tel:+11234567890" className="w-100 text-center vl-btn-primary">
-                      Call +1 (123) 456-7890
+                    <Link href="tel:+38118210400" className="w-100 text-center vl-btn-primary">
+                      Pozovite +381 (18) 210 400
                     </Link>
                   </div>
                 </div>

@@ -12,12 +12,12 @@ export default function Section9() {
               <div className="col-lg-5" />
               <div className="col-lg-5">
                 <div className="vl-cta-content">
-                  <h3 className="title text-anime-style-3 pb-32">Don’t Wait Your Smile Deserves the Best</h3>
+                  <h3 className="title text-anime-style-3 pb-32">Prijavite se za obaveštenja o novim edukacijama</h3>
                   <div className="vl-cta-form">
                     <form action="#">
-                      <input name="email" type="email" placeholder="Enter Your Email" />
+                      <input name="email" type="email" placeholder="Unesite svoju email adresu" />
                       <div className="cta-submit-btn">
-                        <button className="vl-btn-primary">Subscribe Now</button>
+                        <button className="vl-btn-primary">Prijavi se</button>
                       </div>
                     </form>
                   </div>
