@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <SectionHeader title="Our Blog" isGroup={false} linkGroup="" pageGroup="" current="Our Blog" />
+        <SectionHeader title="Blog" isGroup={false} linkGroup="" pageGroup="" current="Blog" />
         <Section1 />
         <Section9 />
       </Layout>

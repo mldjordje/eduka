@@ -27,6 +27,8 @@ export default function CmsPage() {
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
   const [form, setForm] = useState(initialPostForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -76,6 +78,28 @@ export default function CmsPage() {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setUploadError(null);
+    setIsUploading(true);
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: data });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Upload nije uspeo.");
+      }
+      const body = await res.json();
+      setForm((prev) => ({ ...prev, image: body.path }));
+    } catch (e: any) {
+      setUploadError(e.message || "Greška pri uploadu.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleSubmit = async (event: FormEvent) => {
@@ -217,27 +241,23 @@ export default function CmsPage() {
                         className="form-control"
                       />
                     </div>
+                                        <div className="col-md-6 pb-16">
+                      <label className="form-label">Slika (upload)</label>
+                      <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
+                      {isUploading && <small>Otpremanje...</small>}
+                    </div>
                     <div className="col-md-6 pb-16">
-                      <label className="form-label">Putanja do slike</label>
-                      <input
-                        type="text"
-                        name="image"
-                        value={form.image}
-                        onChange={handleInputChange}
-                        placeholder="npr. assets/img/blog/vl-blog-thumb-1.1.png"
-                        className="form-control"
-                      />
+                      <label className="form-label">Putanja do slike (opciono)</label>
+                      <input type="text" name="image" value={form.image} onChange={handleInputChange} placeholder="npr. /uploads/slika.png" className="form-control" />
                     </div>
-                    <div className="col-12 pb-16">
-                      <label className="form-label">Kratak opis</label>
-                      <textarea
-                        name="excerpt"
-                        value={form.excerpt}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="form-control"
-                      />
-                    </div>
+                    {form.image && (
+                      <div className="col-12 pb-16">
+                        <label className="form-label">Pregled slike</label>
+                        <div className="vl-blog-thumb image-anime" style={{maxWidth: 300}}>
+                          <img className="w-100" src={form.image.startsWith("http") ? form.image : /} alt="Pregled slike" />
+                        </div>
+                      </div>
+                    )}
                     <div className="col-12 pb-16">
                       <label className="form-label">Sadržaj *</label>
                       <textarea
