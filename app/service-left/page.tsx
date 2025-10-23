@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <SectionHeader title="Our Service Details" isGroup={true} linkGroup="/service" pageGroup="Our Service" current="Our Service Details" />
+        <SectionHeader title="Detalji edukacije" isGroup={true} linkGroup="/service" pageGroup="Edukacije" current="Detalji edukacije" />
         <Section1 left={true} />
         <Section2 />
         <Section9 />

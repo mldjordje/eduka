@@ -64,7 +64,7 @@ export default function Footer() {
                                             <Link href="/blog">Aktuelnosti</Link>
                                         </li>
                                         <li>
-                                            <Link href="/pricing-plan">Članstvo</Link>
+                                            <Link href="/clanstvo">Članstvo</Link>
                                         </li>
                                     </ul>
                                 </div>

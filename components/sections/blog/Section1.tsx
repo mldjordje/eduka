@@ -66,7 +66,7 @@ export default function Section1() {
                                             <Link href={blogs.link}>{blogs.title}</Link>
                                         </h3>
                                         <Link href={blogs.link} className="blog-learnmore">
-                                            Learn more
+                                            Pročitaj više
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
                                             </span>

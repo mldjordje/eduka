@@ -16,10 +16,10 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                             <div className="vl-sidebar">
                                 {/* search widget */}
                                 <div className="vl-widegt-1 vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Search</h4>
+                                    <h4 className="title pb-24">Pretraga</h4>
                                     <div className="vl-searh-form-wid">
                                         <form action="#">
-                                            <input type="text" placeholder="Search..." />
+                                            <input type="text" placeholder="Unesite pojam" />
                                             <span>
                                                 <i className="fa-regular fa-magnifying-glass" />
                                             </span>
@@ -28,12 +28,12 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 </div>
                                 {/* service widget */}
                                 <div className="vl-widegt-2 vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Our Services</h4>
+                                    <h4 className="title pb-24">Programi Eduke</h4>
                                     <div className="vl-service-list">
                                         <ul>
                                             <li>
-                                                <Link href="/service-single">
-                                                    Advanced Orthodontics
+                                                <Link href="/service">
+                                                    Online edukacije
                                                     <span>
                                                         <i className="fa-regular fa-angle-right" />
                                                     </span>
@@ -41,31 +41,31 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                             </li>
                                             <li>
                                                 <Link href="/service-single">
-                                                    Periodontal Therapy
+                                                    Akreditovane KME
                                                     <span>
                                                         <i className="fa-regular fa-angle-right" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/service-single">
-                                                    Pediatric Dentistry
+                                                <Link href="/service-left">
+                                                    Praktične radionice
                                                     <span>
                                                         <i className="fa-regular fa-angle-right" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/service-single">
-                                                    Smile Brightening
+                                                <Link href="/clanstvo">
+                                                    Mentorska podrška
                                                     <span>
                                                         <i className="fa-regular fa-angle-right" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/service-single">
-                                                    Emergency Dental Care
+                                                <Link href="/contact">
+                                                    Konsultacije za ustanove
                                                     <span>
                                                         <i className="fa-regular fa-angle-right" />
                                                     </span>
@@ -77,45 +77,45 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 {/* phone widget */}
                                 <div className="vl-widegt-3 vl-off-white-bg mb-30">
                                     <h4 className="title pb-24">
-                                        If You Need Any Help <br /> Contact With Us
+                                        Treba vam pomoć? <br /> Javite se Educi
                                     </h4>
-                                    <Link href="tel:+1234567890" className="phone">
+                                    <Link href="tel:+38118210400" className="phone">
                                         <span>
                                             <i className="fa-light fa-phone" />
                                         </span>
-                                        +123 456 7890
+                                        +381 (18) 210 400
                                     </Link>
                                 </div>
                                 {/* social widget */}
                                 <div className="vl-widegt-4 vl-off-white-bg mb-30">
-                                    <h4 className="title pb-24">Follow Us</h4>
+                                    <h4 className="title pb-24">Pratite nas</h4>
                                     <div className="vl-sidebar-social">
                                         <ul>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.facebook.com/edukanis" target="_blank" rel="noopener noreferrer">
                                                     <span>
                                                         <i className="fa-brands fa-facebook-f" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
-                                                        <i className="fa-brands fa-x-twitter" />
+                                                        <i className="fa-brands fa-instagram" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
                                                         <i className="fa-brands fa-linkedin-in" />
                                                     </span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="#">
+                                                <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
                                                     <span>
-                                                        <i className="fa-brands fa-instagram" />
+                                                        <i className="fa-brands fa-youtube" />
                                                     </span>
                                                 </Link>
                                             </li>
@@ -128,13 +128,13 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                             <div className={`vl-sidebar-details ${left ? "ml-80" : "mr-80"} ${single ? "me-0" : ""}`}>
                                 {/* thumb */}
                                 <div className="vl-thumb-larg mb-32">
-                                    <img className="br-8 w-100" src="assets/img/service/vl-service-learg-thumb-1.1.png" alt="" />
+                                    <img className="br-8 w-100" src="assets/img/service/vl-service-learg-thumb-1.1.png" alt="Program Eduke" />
                                 </div>
                                 {/* content one */}
                                 <div className="vl-sidebar-conten1t mb-32">
-                                    <h3 className="title">Root Canal Therapy</h3>
-                                    <p className="para pt-16">we offer a comprehensive range of dental services designed to meet the unique needs of every patient. From preventive care like routine cleanings and exams to restorative treatments such as fillings, crowns, and dental implants, we ensure your oral health.</p>
-                                    <p className="para pt-16">For those looking to enhance smile, we provide advanced cosmetic solutions, including teeth whitening and veneers. Our team is dedicated to delivering personalized care in a comfortable and welcoming environment, using state-of-the-art technology.</p>
+                                    <h3 className="title">Program kontinuirane medicinske edukacije</h3>
+                                    <p className="para pt-16">Kroz Edukine programe zdravstveni radnici obnavljaju licencu i stiču praktična znanja neophodna za savremenu negu pacijenata. Svako predavanje je usklađeno sa propisima Ministarstva zdravlja i sprovodi se uz mentore sa bogatim iskustvom.</p>
+                                    <p className="para pt-16">Teme obuhvataju prevenciju infekcija, urgentne procedure, unapređenje komunikacije sa pacijentima i organizaciju rada u timovima. Učesnici dobijaju materijale, testove znanja i potvrde o broju ostvarenih poena.</p>
                                 </div>
                                 {/* icon block */}
                                 <div className="row">
@@ -142,12 +142,12 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                         <div className="vl-deatils-icon-block-flex">
                                             <div className="icon">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-service-details-icon1.1.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-service-details-icon1.1.svg" alt="Iskustvo predavača" />
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Advanced Dentistry</h4>
-                                                <p className="para">Using the latest technology, we provide effective &amp; comfortable.</p>
+                                                <h4 className="title pb-16">Stručni predavači</h4>
+                                                <p className="para">Predavanja vode edukatori iz kliničke prakse i visokoškolskih ustanova sa dugogodišnjim iskustvom.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -155,26 +155,26 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                         <div className="vl-deatils-icon-block-flex">
                                             <div className="icon">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-service-details-icon1.2.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-service-details-icon1.2.svg" alt="Praktične radionice" />
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Preventive Restorative</h4>
-                                                <p className="para">Our clinic specializes maintaining oral health restoring functionality.</p>
+                                                <h4 className="title pb-16">Praktične radionice</h4>
+                                                <p className="para">Radionice omogućavaju vežbanje procedura kroz simulacije i rad u malim grupama.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 {/* content one */}
                                 <div className="vl-sidebar-conten1t mt-18 mb-32">
-                                    <h3 className="title">Comprehensive Dental Care for Every Need</h3>
-                                    <p className="para pt-16">From routine check-ups to advanced treatments, we provide a full spectrum of services to keep your smile healthy &amp; beautiful. Our personalized approach ensures your specific needs are met with care and expertise. Whatever your dental needs, we’re here to help.</p>
+                                    <h3 className="title">Šta dobijate pohađanjem programa</h3>
+                                    <p className="para pt-16">Pored sticanja obaveznih KME bodova, učesnici usvajaju znanja koja se odmah primenjuju u svakodnevnom radu. Nakon obuke pružamo podršku kroz mentorsku mrežu i dostupne konsultacije.</p>
                                 </div>
                                 {/* video & check box */}
                                 <div className="row align-items-center">
                                     <div className="col-lg-6 col-md-6 mb-30">
                                         <div className="vl-service-video-thumb p-relative">
-                                            <img className="w-100 br-8" src="assets/img/service/vl-service-video-thumb1.1.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/service/vl-service-video-thumb1.1.png" alt="Video sa edukacije" />
                                             <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
                                                 <span>
                                                     <i className="fa-solid fa-play" />
@@ -189,104 +189,67 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                     <span>
                                                         <i className="fa-regular fa-check" />
                                                     </span>
-                                                    Tailored Care for Every Stage of Life
+                                                    Sertifikat sa ostvarenim KME poenima
                                                 </li>
                                                 <li>
                                                     <span>
                                                         <i className="fa-regular fa-check" />
                                                     </span>
-                                                    Comprehensive Care for Every Smile
+                                                    Materijali i protokoli spremni za primenu
                                                 </li>
                                                 <li>
                                                     <span>
                                                         <i className="fa-regular fa-check" />
                                                     </span>
-                                                    Tailored Solutions Your Dental Needs
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    TYour Smile, Our Expertise
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                        <i className="fa-regular fa-check" />
-                                                    </span>
-                                                    Expert Care for All Ages
+                                                    Mentorstvo i podrška nakon obuke
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                {/* service faq */}
-                                <div className="vl-faq-service mt-18">
-                                    <div className="accordion" id="accordionExample">
-                                        <div className="vl-accordion-item">
-                                            <h2 className="accordion-header" id="headingOne">
-                                                <button className="vl-accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    What are the signs I need a dental check-up?
-                                                    <span className="vl-faqarrow">
-                                                        <i className="fa-regular fa-angle-down" />
-                                                    </span>
+                                {/* content two */}
+                                <div className="vl-sidebar-conten1t mt-18 mb-32">
+                                    <h3 className="title">Kako se prijaviti</h3>
+                                    <p className="para pt-16">Prijava se vrši putem formulara na našem sajtu ili slanjem upita na kontakt adresu. Nakon prijave dobijate potvrdu rezervisanog mesta i uputstva za pripremu.</p>
+                                    <p className="para pt-16">Za kolektive pripremamo posebne termine i prilagođene programe sa naglaskom na teme koje su vam najpotrebnije.</p>
+                                </div>
+                                {/* faq */}
+                                <div className="vl-sidebar-conten1t">
+                                    <h3 className="title">Najčešća pitanja</h3>
+                                    <div className="vl-service-details-accordion" id="accordionExample">
+                                        <div className="accordion-item">
+                                            <h5 className="accordion-header" id="headingOne">
+                                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Koliko KME poena donosi seminar?
                                                 </button>
-                                            </h2>
+                                            </h5>
                                             <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                <div className="vl-accordion-body">
-                                                    <p className="para">
-                                                        If you have a dental emergency, such as a knocked-out tooth or severe <br /> pain, contact our clinic immediately. We’ll guide you through
-                                                    </p>
+                                                <div className="accordion-body">
+                                                    <p className="para">Broj poena zavisi od vrste programa i objavljuje se uz svaki poziv. Nakon uspešno položenog testa znanja izdaje se sertifikat sa upisanim bodovima.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="vl-accordion-item">
-                                            <h2 className="accordion-header" id="headingTwo">
-                                                <button className="vl-accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Do you offer payment plans or insurance?
-                                                    <span className="vl-faqarrow">
-                                                        <i className="fa-regular fa-angle-down" />
-                                                    </span>
+                                        <div className="accordion-item">
+                                            <h5 className="accordion-header" id="headingTwo">
+                                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Da li je moguće organizovati obuku u našoj ustanovi?
                                                 </button>
-                                            </h2>
+                                            </h5>
                                             <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                <div className="vl-accordion-body">
-                                                    <p className="para">
-                                                        If you have a dental emergency, such as a knocked-out tooth or severe <br /> pain, contact our clinic immediately. We’ll guide you through
-                                                    </p>
+                                                <div className="accordion-body">
+                                                    <p className="para">Naravno, tim Eduke dolazi u vašu ustanovu sa kompletnim programom, opremom i materijalom. Kontaktirajte nas kako bismo dogovorili termine i teme.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="vl-accordion-item">
-                                            <h2 className="accordion-header" id="headingThree">
-                                                <button className="vl-accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    What are my options for replacing teeth?
-                                                    <span className="vl-faqarrow">
-                                                        <i className="fa-regular fa-angle-down" />
-                                                    </span>
+                                        <div className="accordion-item">
+                                            <h5 className="accordion-header" id="headingThree">
+                                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Kako funkcionišu online edukacije?
                                                 </button>
-                                            </h2>
+                                            </h5>
                                             <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                                <div className="vl-accordion-body">
-                                                    <p className="para">
-                                                        If you have a dental emergency, such as a knocked-out tooth or severe <br /> pain, contact our clinic immediately. We’ll guide you through
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="vl-accordion-item">
-                                            <h2 className="accordion-header" id="heading4">
-                                                <button className="vl-accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                                    How long does a dental crown or filling last?
-                                                    <span className="vl-faqarrow">
-                                                        <i className="fa-regular fa-angle-down" />
-                                                    </span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapse4" className="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
-                                                <div className="vl-accordion-body">
-                                                    <p className="para">
-                                                        If you have a dental emergency, such as a knocked-out tooth or severe <br /> pain, contact our clinic immediately. We’ll guide you through
-                                                    </p>
+                                                <div className="accordion-body">
+                                                    <p className="para">Webinari se održavaju uživo ili kao snimljeni kursevi. Nakon završetka dobijate test i potvrdu o pohađanju, a materijali su dostupni u svakom trenutku.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -298,7 +261,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                 </div>
             </section>
             {/*================= Service Details section End =================*/}
-            <ModalVideo channel="youtube" isOpen={isOpen} videoId="wn_wKQ_UR90" onClose={() => setOpen(false)} />
+            <ModalVideo channel="youtube" videoId="vR24qT-I5ko" isOpen={isOpen} onClose={() => setOpen(false)} />
         </>
     );
 }

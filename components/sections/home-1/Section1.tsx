@@ -174,7 +174,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/pricing-plan" className="vl-btn-primary">
+                      <Link href="/clanstvo" className="vl-btn-primary">
                         Postani član
                       </Link>
                     </div>

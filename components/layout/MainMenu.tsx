@@ -11,15 +11,15 @@ export default function MainMenu() {
         <Link href="/about">O udruženju</Link>
       </li>
       <li className="has-dropdown">
-        <Link href="#">
-          Edukacija
+        <Link href="/service">
+          Edukacije
           <span>
             <i className="fa-regular fa-angle-down" />
           </span>
         </Link>
         <ul className="sub-menu">
           <li>
-            <Link href="/service">Online edukacija</Link>
+            <Link href="/service">Online edukacije</Link>
           </li>
           <li>
             <Link href="/service-single">Akreditovane KME</Link>
@@ -30,7 +30,7 @@ export default function MainMenu() {
         <Link href="/blog">Aktuelnosti</Link>
       </li>
       <li>
-        <Link href="/pricing-plan">Članstvo</Link>
+        <Link href="/clanstvo">Članstvo</Link>
       </li>
       <li>
         <Link href="/contact">Kontakt</Link>

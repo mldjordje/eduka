@@ -3,23 +3,17 @@ import Link from "next/link";
 export default function Section1() {
   return (
     <>
-      {/*================= Pricing section Start =================*/}
+      {/*================= Membership section Start =================*/}
       <section className="vl-pricing-inner fix pt-100 pb-70">
         <div className="container">
           <div className="row">
-            {/* single pricing box */}
+            {/* single membership box */}
             <div className="col-lg-4 col-md-6 mb-30">
               <div className="vl-pricie-bo4x-iner">
-                <div className="vl-pricie-box-price" data-background="./assets/img/shape/vl-pricing-box-iner-bg.svg">
-                  <h4 className="price">
-                    <span>$</span>40
-                  </h4>
-                  <span className="month">Per Month</span>
-                </div>
                 <div className="vl-single-pricing-box">
                   <div className="vl-pricing-box-content">
-                    <h5 className="sub-title">Basic Packages</h5>
-                    <h2 className="title pt-16">Basic Plan</h2>
+                    <h5 className="sub-title">Za zdravstvene radnike</h5>
+                    <h2 className="title pt-16">Pojedinačno članstvo</h2>
                   </div>
                   <div className="vl-pricing-list">
                     <ul>
@@ -27,55 +21,43 @@ export default function Section1() {
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Daily Prevention
+                        KME bodovi kroz akreditovane programe
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Functional Appliances
+                        Pristup mentorskoj mreži i savetovanju
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Ceramic/Clear Braces
+                        Popusti na seminare i radionice
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Teeth Whitening
-                      </li>
-                      <li>
-                        <span>
-                          <i className="fa-regular fa-check" />
-                        </span>
-                        Teeth Braces
+                        Redovan newsletter sa stručnim novostima
                       </li>
                     </ul>
                   </div>
                   <div className="vl-pricing-btn mt-32">
-                    <Link href="#" className="vl-btn-primary">
-                      Purchase Package
+                    <Link href="/contact" className="vl-btn-primary">
+                      Prijavite se
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
-            {/* single pricing box */}
+            {/* single membership box */}
             <div className="col-lg-4 col-md-6 mb-30">
               <div className="vl-pricie-bo4x-iner active">
-                <div className="vl-pricie-box-price" data-background="./assets/img/shape/vl-price-heading-bg.svg">
-                  <h4 className="price">
-                    <span>$</span>60
-                  </h4>
-                  <span className="month">Per Month</span>
-                </div>
                 <div className="vl-single-pricing-box">
                   <div className="vl-pricing-box-content">
-                    <h5 className="sub-title">Standard Plan Packages</h5>
-                    <h2 className="title pt-16">Standard Plan</h2>
+                    <h5 className="sub-title">Za ustanove i timove</h5>
+                    <h2 className="title pt-16">Institucionalno članstvo</h2>
                   </div>
                   <div className="vl-pricing-list">
                     <ul>
@@ -83,37 +65,31 @@ export default function Section1() {
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Daily Prevention
+                        Plan obuke prilagođen vašim odeljenjima
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Functional Appliances
+                        Interni seminari i radionice u vašem prostoru
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Ceramic/Clear Braces
+                        Podrška u pripremi za akreditaciju ustanove
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Teeth Whitening
-                      </li>
-                      <li>
-                        <span>
-                          <i className="fa-regular fa-check" />
-                        </span>
-                        Teeth Braces
+                        Konsultacije za razvoj procedura i protokola
                       </li>
                     </ul>
                   </div>
                   <div className="vl-pricing-btn mt-32">
-                    <Link href="#" className="vl-btn-primary">
-                      Purchase Package
+                    <Link href="/contact" className="vl-btn-primary">
+                      Zatražite ponudu
                     </Link>
                   </div>
                 </div>
@@ -121,16 +97,10 @@ export default function Section1() {
             </div>
             <div className="col-lg-4 col-md-6 mb-30">
               <div className="vl-pricie-bo4x-iner">
-                <div className="vl-pricie-box-price" data-background="./assets/img/shape/vl-pricing-box-iner-bg.svg">
-                  <h4 className="price">
-                    <span>$</span>90
-                  </h4>
-                  <span className="month">Per Month</span>
-                </div>
                 <div className="vl-single-pricing-box">
                   <div className="vl-pricing-box-content">
-                    <h5 className="sub-title">Premium PlanPackages</h5>
-                    <h2 className="title pt-16">Premium Plan</h2>
+                    <h5 className="sub-title">Za buduće profesionalce</h5>
+                    <h2 className="title pt-16">Studenti i volonteri</h2>
                   </div>
                   <div className="vl-pricing-list">
                     <ul>
@@ -138,37 +108,31 @@ export default function Section1() {
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Daily Prevention
+                        Prakse i volontiranje na edukativnim događajima
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Functional Appliances
+                        Besplatni online kursevi uvodnog nivoa
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Ceramic/Clear Braces
+                        Mentorska podrška pri izboru specijalizacije
                       </li>
                       <li>
                         <span>
                           <i className="fa-regular fa-check" />
                         </span>
-                        Teeth Whitening
-                      </li>
-                      <li>
-                        <span>
-                          <i className="fa-regular fa-check" />
-                        </span>
-                        Teeth Braces
+                        Umrežavanje sa stručnjacima iz regiona
                       </li>
                     </ul>
                   </div>
                   <div className="vl-pricing-btn mt-32">
-                    <Link href="#" className="vl-btn-primary">
-                      Purchase Package
+                    <Link href="/clanstvo#koraci" className="vl-btn-primary">
+                      Pridružite se
                     </Link>
                   </div>
                 </div>
@@ -177,7 +141,7 @@ export default function Section1() {
           </div>
         </div>
       </section>
-      {/*================= Pricing section End =================*/}
+      {/*================= Membership section End =================*/}
     </>
   );
 }

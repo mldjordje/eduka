@@ -11,11 +11,12 @@ interface MobileMenuProps {
     offcanvas_social?: string;
 }
 
-export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_bg, offcanvas_menu, offcanvas_social }: MobileMenuProps) {
-    const [isAccordion, setIsAccordion] = useState(0);
-    const handleAccordion = (key: any) => {
+export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_bg = "", offcanvas_menu = "", offcanvas_social = "" }: MobileMenuProps) {
+    const [isAccordion, setIsAccordion] = useState<number | null>(null);
+    const handleAccordion = (key: number) => {
         setIsAccordion((prevState) => (prevState === key ? null : key));
     };
+
     return (
         <>
             {isMobileMenu && <div className="vl-offcanvas-overlay vl-offcanvas-overlay-open" onClick={handleMobileMenu} />}
@@ -26,7 +27,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     <div className="vl-offcanvas-header d-flex justify-content-between align-items-center mb-40">
                         <div className="vl-offcanvas-logo">
                             <Link href="/">
-                                <img src="assets/img/logo/vl-logo-1.1.png" alt="" />
+                                <img src="assets/img/logo/vl-logo-1.1.png" alt="Eduka logo" />
                             </Link>
                         </div>
                         <div className="vl-offcanvas-close">
@@ -38,37 +39,25 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     <div className={`vl-offcanvas-menu ${offcanvas_menu} d-lg-none mb-40`}>
                         <nav>
                             <ul>
-                                <li className={`has-dropdown ${isAccordion == 1 ? "active" : ""}`}>
-                                    <Link href="#" onClick={() => handleAccordion(1)}>
-                                        Home
+                                <li>
+                                    <Link href="/">Početna</Link>
+                                </li>
+                                <li>
+                                    <Link href="/about">O udruženju</Link>
+                                </li>
+                                <li className={`has-dropdown ${isAccordion === 1 ? "active" : ""}`}>
+                                    <Link href="/service" onClick={(event) => { event.preventDefault(); handleAccordion(1); }}>
+                                        Edukacije
                                         <span>
                                             <i className="fa-regular fa-angle-down" />
                                         </span>
                                     </Link>
-                                    <ul className="sub-menu" style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
+                                    <ul className="sub-menu" style={{ display: `${isAccordion === 1 ? "block" : "none"}` }}>
                                         <li>
-                                            <Link href="/">Home 1 - Multi Page</Link>
+                                            <Link href="/service">Online edukacije</Link>
                                         </li>
                                         <li>
-                                            <Link href="/index-single-one">Home 1 - One Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-2">Home 2 - Multi Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-single-two">Home 2 - One Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-3">Home 3 - Multi Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-single-three">Home 3 - One Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-4">Home 4 - Multi Page</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/index-single-four">Home 4 - One Page</Link>
+                                            <Link href="/service-single">Akreditovane KME</Link>
                                         </li>
                                     </ul>
                                     <button className="vl-menu-close" onClick={() => handleAccordion(1)}>
@@ -76,142 +65,67 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                     </button>
                                 </li>
                                 <li>
-                                    <Link href="/about">About us</Link>
-                                </li>
-                                <li className={`has-dropdown ${isAccordion == 2 ? "active" : ""}`}>
-                                    <Link href="#" onClick={() => handleAccordion(2)}>
-                                        Services
-                                        <span>
-                                            <i className="fa-regular fa-angle-down" />
-                                        </span>
-                                    </Link>
-                                    <ul className="sub-menu" style={{ display: `${isAccordion == 2 ? "block" : "none"}` }}>
-                                        <li>
-                                            <Link href="/service">Service</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/service-left">Service Left</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/service-right">Service Right</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/service-single">Service Single</Link>
-                                        </li>
-                                    </ul>
-                                    <button className="vl-menu-close" onClick={() => handleAccordion(2)}>
-                                        <i className="fas fa-chevron-right" />
-                                    </button>
-                                </li>
-                                <li className={`has-dropdown ${isAccordion == 3 ? "active" : ""}`}>
-                                    <Link href="#" onClick={() => handleAccordion(3)}>
-                                        Pages
-                                        <span>
-                                            <i className="fa-regular fa-angle-down" />
-                                        </span>
-                                    </Link>
-                                    <ul className="sub-menu" style={{ display: `${isAccordion == 3 ? "block" : "none"}` }}>
-                                        <li>
-                                            <Link href="/team">Team</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/testimonial">Testimonial</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/faq">FAQ</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/pricing-plan">Pricing Plan</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/404">404</Link>
-                                        </li>
-                                    </ul>
-                                    <button className="vl-menu-close" onClick={() => handleAccordion(3)}>
-                                        <i className="fas fa-chevron-right" />
-                                    </button>
-                                </li>
-                                <li className={`has-dropdown ${isAccordion == 4 ? "active" : ""}`}>
-                                    <Link href="#" onClick={() => handleAccordion(4)}>
-                                        Blog
-                                        <span>
-                                            <i className="fa-regular fa-angle-down" />
-                                        </span>
-                                    </Link>
-                                    <ul className="sub-menu" style={{ display: `${isAccordion == 4 ? "block" : "none"}` }}>
-                                        <li>
-                                            <Link href="/blog">Blog</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/blog-left">Blog Left</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/blog-right">Blog Right</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/blog-single">Blog Single</Link>
-                                        </li>
-                                    </ul>
-                                    <button className="vl-menu-close" onClick={() => handleAccordion(4)}>
-                                        <i className="fas fa-chevron-right" />
-                                    </button>
+                                    <Link href="/blog">Aktuelnosti</Link>
                                 </li>
                                 <li>
-                                    <Link href="/contact">Contact</Link>
+                                    <Link href="/clanstvo">Članstvo</Link>
+                                </li>
+                                <li>
+                                    <Link href="/contact">Kontakt</Link>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                     <div className="vl-offcanvas-info mb-40">
-                        <h3 className="vl-offcanvas-sm-title">Contact Us</h3>
+                        <h3 className="vl-offcanvas-sm-title">Kontakt</h3>
                         <span>
-                            <Link href="#">
+                            <Link href="tel:+38118210400">
                                 <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="" />
+                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="telefon" />
                                 </span>
-                                +57 9954 6476
+                                +381 (18) 210 400
                             </Link>
                         </span>
                         <br />
                         <span>
-                            <Link href="#">
+                            <Link href="mailto:kontakt@eduka.co.rs">
                                 <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="" />
+                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="e-mail" />
                                 </span>
-                                dentistsolution@com
+                                kontakt@eduka.co.rs
                             </Link>
                         </span>
                         <br />
                         <span>
-                            <Link href="#">
+                            <Link href="https://maps.app.goo.gl" target="_blank" rel="noopener noreferrer">
                                 <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="" />
+                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="adresa" />
                                 </span>
-                                421 Allen, Mexico 4233
+                                Niš, Srbija
                             </Link>
                         </span>
                     </div>
                     <div className="vl-offcanvas-social mb-40">
-                        <h3 className="vl-offcanvas-sm-title">Follow Us</h3>
+                        <h3 className="vl-offcanvas-sm-title">Pratite nas</h3>
                         <div className={`vl-footer-social ${offcanvas_social}`}>
                             <ul>
                                 <li>
-                                    <Link href="#">
+                                    <Link href="https://www.facebook.com/edukanis" target="_blank" rel="noopener noreferrer">
                                         <i className="fa-brands fa-facebook-f" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="#">
-                                        <i className="fa-brands fa-linkedin-in" />
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#">
+                                    <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                         <i className="fa-brands fa-instagram" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="#">
+                                    <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-brands fa-linkedin-in" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
                                         <i className="fa-brands fa-youtube" />
                                     </Link>
                                 </li>
@@ -220,6 +134,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     </div>
                 </div>
             </div>
+            {/* offcanvas menu end */}
         </>
     );
 }

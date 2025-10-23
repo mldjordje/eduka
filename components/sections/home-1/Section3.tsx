@@ -154,13 +154,13 @@ export default function Section3() {
                   </div>
                   <div className="content">
                     <h4 className="title pt-24">
-                      <Link href="/pricing-plan">Podrška članovima i partnerima</Link>
+                      <Link href="/clanstvo">Podrška članovima i partnerima</Link>
                     </h4>
                     <p className="para pt-16 pb-24">
                       Članovima obezbeđujemo pravovremene informacije, administrativnu podršku i umrežavanje sa kolegama
                       iz cele Srbije.
                     </p>
-                    <Link href="/pricing-plan" className="learnmore">
+                    <Link href="/clanstvo" className="learnmore">
                       Saznaj više
                       <span className="right-arow">
                         <i className="fa-regular fa-arrow-right" />
