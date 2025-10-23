@@ -23,6 +23,7 @@ export default function CmsPage() {
   const [loginUser, setLoginUser] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [loginError, setLoginError] = useState<string | null>(null);
+
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
   const [form, setForm] = useState(initialPostForm);
@@ -35,12 +36,11 @@ export default function CmsPage() {
   useEffect(() => {
     try {
       const flag = typeof window !== "undefined" ? localStorage.getItem("cmsAuth") : null;
-      if (flag === "true") {
-        setIsAuthed(true);
-      }
+      if (flag === "true") setIsAuthed(true);
     } catch {}
 
     if (!isAuthed) return;
+
     fetch("/api/posts")
       .then((res) => res.json())
       .then((data: BlogPost[]) => setPosts(data))
@@ -67,9 +67,7 @@ export default function CmsPage() {
   };
 
   const handleLogout = () => {
-    try {
-      localStorage.removeItem("cmsAuth");
-    } catch {}
+    try { localStorage.removeItem("cmsAuth"); } catch {}
     setIsAuthed(false);
     setPosts([]);
     setApplications([]);
@@ -107,22 +105,16 @@ export default function CmsPage() {
     setIsSubmitting(true);
     setMessage(null);
     setError(null);
-
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          tags: form.tags,
-        }),
+        body: JSON.stringify({ ...form, tags: form.tags }),
       });
-
       if (!response.ok) {
-        const body = await response.json();
+        const body = await response.json().catch(() => ({}));
         throw new Error(body.message || "Neuspešno čuvanje objave");
       }
-
       const createdPost: BlogPost = await response.json();
       setPosts((prev) => [createdPost, ...prev]);
       setForm({ ...initialPostForm });
@@ -137,10 +129,7 @@ export default function CmsPage() {
   const latestApplications = useMemo(() => applications.slice(0, 5), [applications]);
 
   const formatDate = (value: string) => {
-    if (!value) {
-      return "-";
-    }
-
+    if (!value) return "-";
     const parsed = new Date(value);
     return Number.isNaN(parsed.getTime()) ? "-" : parsed.toLocaleDateString("sr-RS");
   };
@@ -190,83 +179,55 @@ export default function CmsPage() {
             <div className="col-lg-6 mb-40">
               <div className="vl-off-white-bg p-40 br-20">
                 <h3 className="title pb-20">Kreiranje nove blog objave</h3>
-                <p className="pb-16">Otpremajte sliku direktno sa svog uredaja.</p>
+                <p className="pb-16">Otpremajte sliku direktno sa svog uređaja.</p>
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
+                {uploadError && <div className="alert alert-danger">{uploadError}</div>}
                 <form onSubmit={handleSubmit} className="cms-form">
                   <div className="row">
                     <div className="col-12 pb-16">
                       <label className="form-label">Naslov *</label>
-                      <input
-                        type="text"
-                        name="title"
-                        value={form.title}
-                        onChange={handleInputChange}
-                        required
-                        className="form-control"
-                      />
+                      <input type="text" name="title" value={form.title} onChange={handleInputChange} required className="form-control" />
                     </div>
                     <div className="col-md-6 pb-16">
                       <label className="form-label">Slug</label>
-                      <input
-                        type="text"
-                        name="slug"
-                        value={form.slug}
-                        onChange={handleInputChange}
-                        placeholder="automatski ako ostane prazno"
-                        className="form-control"
-                      />
+                      <input type="text" name="slug" value={form.slug} onChange={handleInputChange} placeholder="automatski ako ostane prazno" className="form-control" />
                     </div>
                     <div className="col-md-6 pb-16">
                       <label className="form-label">Autor *</label>
-                      <input
-                        type="text"
-                        name="author"
-                        value={form.author}
-                        onChange={handleInputChange}
-                        required
-                        className="form-control"
-                      />
+                      <input type="text" name="author" value={form.author} onChange={handleInputChange} required className="form-control" />
                     </div>
                     <div className="col-md-6 pb-16">
                       <label className="form-label">Datum objave</label>
-                      <input
-                        type="date"
-                        name="date"
-                        value={form.date}
-                        onChange={handleInputChange}
-                        className="form-control"
-                      />
+                      <input type="date" name="date" value={form.date} onChange={handleInputChange} className="form-control" />
                     </div>
-                                        <div className="col-md-6 pb-16">
+                    <div className="col-md-6 pb-16">
                       <label className="form-label">Slika (upload)</label>
                       <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                       {isUploading && <small>Otpremanje...</small>}
-                    </div>\n<div className="col-12 pb-16">
+                    </div>
+                    <div className="col-12 pb-16">
+                      <label className="form-label">Kratak opis</label>
+                      <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
+                    </div>
+                    <div className="col-12 pb-16">
                       <label className="form-label">Sadržaj *</label>
-                      <textarea
-                        name="content"
-                        value={form.content}
-                        onChange={handleInputChange}
-                        rows={6}
-                        required
-                        className="form-control"
-                      />
+                      <textarea name="content" value={form.content} onChange={handleInputChange} rows={6} required className="form-control" />
                     </div>
                     <div className="col-12 pb-24">
                       <label className="form-label">Tagovi (odvojeni zarezom)</label>
-                      <input
-                        type="text"
-                        name="tags"
-                        value={form.tags}
-                        onChange={handleInputChange}
-                        className="form-control"
-                      />
+                      <input type="text" name="tags" value={form.tags} onChange={handleInputChange} className="form-control" />
                     </div>
+                    {form.image && (
+                      <div className="col-12 pb-16">
+                        <label className="form-label">Pregled slike</label>
+                        <div className="vl-blog-thumb image-anime" style={{ maxWidth: 300 }}>
+                          <img className="w-100" src={form.image.startsWith("http") ? form.image : `/${form.image.replace(/^\//, "")}`} alt="Pregled slike" />
+                        </div>
+                      </div>
+                    )}
                     <div className="col-12">
-                      <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>
-                        {isSubmitting ? "Čuvanje..." : "Sačuvaj objavu"}
-                      </button>
+                      <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>{isSubmitting ? "Čuvanje..." : "Sačuvaj objavu"}</button>
                     </div>
                   </div>
                 </form>
@@ -275,7 +236,7 @@ export default function CmsPage() {
             <div className="col-lg-6 mb-40">
               <div className="vl-off-white-bg p-40 br-20 h-100">
                 <h3 className="title pb-12">Poslednje objave</h3>
-                <p className="pb-16">Sve�e objave su prikazane redom kojim su objavljene.</p>
+                <p className="pb-16">Sveže objave su prikazane redom kojim su objavljene.</p>
                 <div className="cms-post-list">
                   {posts.length === 0 && <p>Još uvek nema objava.</p>}
                   {posts.map((post) => (
@@ -325,7 +286,10 @@ export default function CmsPage() {
                           </tr>
                         ))}
                       </tbody>
-                    </table>\n</div>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -333,3 +297,4 @@ export default function CmsPage() {
     </Layout>
   );
 }
+

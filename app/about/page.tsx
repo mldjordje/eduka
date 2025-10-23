@@ -7,7 +7,7 @@ import Section3 from "@/components/sections/about/Section3";
 import Section6Home1 from "@/components/sections/home-1/Section6";
 import Section4 from "@/components/sections/about/Section4";
 import Section9 from "@/components/sections/home-1/Section9";
-import Section7Home1 from "@/components/sections/home-3/Section7";
+import Section7Home1 from "@/components/sections/home-1/Section7";
 export default function About() {
   return (
     <>
@@ -19,7 +19,7 @@ export default function About() {
         <Section3 />
         <Section6Home1 />
         <Section4 />
-        <Section7Home1 text_2="text-2" />
+        <Section7Home1 />
         <Section9 />
       </Layout>
     </>
