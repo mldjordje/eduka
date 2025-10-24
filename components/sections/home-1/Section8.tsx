@@ -7,7 +7,9 @@ export default function Section8() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
-    fetch("/api/posts")
+    const base = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+    const url = base ? `${base}/posts.php` : "/api/posts";
+    fetch(url)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Greška");
