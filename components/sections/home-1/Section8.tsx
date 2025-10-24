@@ -32,9 +32,9 @@ export default function Section8() {
             <div className="col-lg-6 mx-auto">
               <div className="vl-section-title text-center mb-60">
                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                  Blog
+                  Vesti
                 </h5>
-                <h2 className="title pt-16 text-anime-style-3">Najnovije objave i najave</h2>
+                <h2 className="title pt-16 text-anime-style-3">Najnovije vesti i najave</h2>
               </div>
             </div>
           </div>

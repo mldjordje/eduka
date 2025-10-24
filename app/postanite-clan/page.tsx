@@ -56,7 +56,9 @@ export default function ApplicationPage() {
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/applications", {
+      const base = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+      const endpoint = base ? `${base}/applications.php` : "/api/applications";
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -218,4 +220,3 @@ export default function ApplicationPage() {
     </Layout>
   );
 }
-

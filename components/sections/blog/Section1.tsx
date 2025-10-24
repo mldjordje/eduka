@@ -12,7 +12,9 @@ export default function Section1() {
     useEffect(() => {
         const controller = new AbortController();
 
-        fetch("/api/posts", { signal: controller.signal })
+        const base = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+        const url = base ? `${base}/posts.php` : "/api/posts";
+        fetch(url, { signal: controller.signal })
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Greška prilikom učitavanja blogova");

@@ -33,6 +33,9 @@ export default function CmsPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+  const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
+
   useEffect(() => {
     try {
       const flag = typeof window !== "undefined" ? localStorage.getItem("cmsAuth") : null;
@@ -41,12 +44,12 @@ export default function CmsPage() {
 
     if (!isAuthed) return;
 
-    fetch("/api/posts")
+    fetch(`${API_BASE ? API_BASE : ""}${API_BASE ? "/posts.php" : "/api/posts"}`)
       .then((res) => res.json())
       .then((data: BlogPost[]) => setPosts(data))
       .catch(() => setPosts([]));
 
-    fetch("/api/applications")
+    fetch(`${API_BASE ? API_BASE : ""}${API_BASE ? "/applications.php" : "/api/applications"}`)
       .then((res) => res.json())
       .then((data: ApplicationSubmission[]) => setApplications(data))
       .catch(() => setApplications([]));
@@ -86,13 +89,15 @@ export default function CmsPage() {
     try {
       const data = new FormData();
       data.append("file", file);
-      const res = await fetch("/api/upload", { method: "POST", body: data });
+      const endpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(endpoint, { method: "POST", body: data });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.message || "Upload nije uspeo.");
       }
       const body = await res.json();
-      setForm((prev) => ({ ...prev, image: body.path }));
+      const url = body.url || body.path; // PHP vraća url, lokalni API vraća path
+      setForm((prev) => ({ ...prev, image: url }));
     } catch (e: any) {
       setUploadError(e.message || "Greška pri uploadu.");
     } finally {
@@ -106,7 +111,8 @@ export default function CmsPage() {
     setMessage(null);
     setError(null);
     try {
-      const response = await fetch("/api/posts", {
+      const endpoint = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, tags: form.tags }),
@@ -297,4 +303,3 @@ export default function CmsPage() {
     </Layout>
   );
 }
-
