@@ -72,7 +72,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/contact" onClick={handleMobileMenu}>
+                                    <Link href="/prijava" onClick={handleMobileMenu}>
                                         Kontakt
                                     </Link>
                                 </li>

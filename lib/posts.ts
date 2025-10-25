@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/types/blog";
 
-const BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || '').replace(/\/+$/,'');
 
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {

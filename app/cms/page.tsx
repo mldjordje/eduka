@@ -33,7 +33,7 @@ export default function CmsPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+  const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
   const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
 
   useEffect(() => {
@@ -44,12 +44,14 @@ export default function CmsPage() {
 
     if (!isAuthed) return;
 
-    fetch(`${API_BASE ? API_BASE : ""}${API_BASE ? "/posts.php" : "/api/posts"}`)
+    const postsUrl = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
+    fetch(postsUrl)
       .then((res) => res.json())
       .then((data: BlogPost[]) => setPosts(data))
       .catch(() => setPosts([]));
 
-    fetch(`${API_BASE ? API_BASE : ""}${API_BASE ? "/applications.php" : "/api/applications"}`)
+    const appsUrl = API_BASE ? `${API_BASE}/applications.php` : "/api/applications";
+    fetch(appsUrl)
       .then((res) => res.json())
       .then((data: ApplicationSubmission[]) => setApplications(data))
       .catch(() => setApplications([]));

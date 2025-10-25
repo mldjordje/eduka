@@ -36,7 +36,7 @@ export default function MainMenu() {
         </ul>
       </li>
       <li>
-        <Link href="/contact">Kontakt</Link>
+        <Link href="/prijava">Kontakt</Link>
       </li>
     </ul>
   );

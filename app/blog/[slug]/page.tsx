@@ -44,9 +44,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const imageSrc = post.image.startsWith("http")
-    ? post.image
-    : `/${post.image.replace(/^\//, "")}`;
+  const raw = post.image || "";
+  const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "");
+  const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
+  const imageSrc = /^https?:\/\//.test(raw)
+    ? raw
+    : (raw.replace(/^\//, "").startsWith("uploads/")
+      ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
+      : `/${raw.replace(/^\//, "")}`);
 
   return (
     <>

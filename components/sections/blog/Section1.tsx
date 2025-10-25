@@ -12,7 +12,7 @@ export default function Section1() {
     useEffect(() => {
         const controller = new AbortController();
 
-        const base = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+        const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
         const url = base ? `${base}/posts.php` : "/api/posts";
         fetch(url, { signal: controller.signal })
             .then((res) => {
@@ -70,9 +70,14 @@ export default function Section1() {
                             </div>
                         )}
                         {currentBlog.map((blogs, index) => {
-                            const imageSrc = blogs.image.startsWith("http")
-                                ? blogs.image
-                                : `/${blogs.image.replace(/^\//, "")}`;
+                            const raw = blogs.image || "";
+                            const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL((process.env.NEXT_PUBLIC_API_BASE_URL as string)).origin : "");
+                            const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL((process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string)).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
+                            const imageSrc = /^https?:\/\//.test(raw)
+                                ? raw
+                                : (raw.replace(/^\//, "").startsWith("uploads/")
+                                    ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
+                                    : `/${raw.replace(/^\//, "")}`);
                             return (
                                 <div className="col-lg-4 col-md-6 mb-30" key={index}>
                                 {/* single blog box */}
