@@ -10,7 +10,7 @@ export default function Section2() {
                         <div className="col-lg-4 col-md-6 order-lg-1 order-md-2 mb-30">
                             <div className="vl-about-thumb-1 p-relative">
                                 <div className="vl-about-radius-thumb reveal image-anime">
-                                    <img className="w-100" src="assets/img/about/vl-about-thumb-1.1.png" alt="" />
+                                    <img className="w-100" src="assets/img/eduka/workshop-audience-front.png" alt="Eduka radionica" />
                                 </div>
                                 <div className="vl-about-star-shape">
                                     <div className="shape">
@@ -39,7 +39,7 @@ export default function Section2() {
                         </div>
                         <div className="col-lg-4 col-md-6 order-md-3 mb-30">
                             <div className="vl-about-thumb-2 reveal image-anime">
-                                <img className="w-100" src="assets/img/about/vl-about-thumb-1.2.png" alt="" />
+                                <img className="w-100" src="assets/img/eduka/workshop-presenter.png" alt="Predavač na radionici" />
                             </div>
                         </div>
                     </div>

@@ -96,7 +96,7 @@ export default function Section2() {
                             {/* mission thumb */}
                             <div className="vl-mission-iner-thumb">
                                 <div className="vl-mission-thumb-iner reveal image-anime">
-                                    <img className="w-100" src="assets/img/about/vl-mission-thumb-iner1.1.png" alt="" />
+                                    <img className="w-100" src="assets/img/eduka/workshop-demonstration.png" alt="Praktična demonstracija u Educi" />
                                 </div>
                                 {/* counter */}
                                 <div className="vl-tab-counter-box">

@@ -41,7 +41,7 @@ export default function Section9() {
                             </div>
                             <div className="col-lg-6 mb-30">
                                 <div className="vl-cta-thumb4" data-aos="fade-left" data-aos-duration={800} data-aos-delay={300}>
-                                    <img src="assets/img/cta/vl-cta-thumb-4.1.png" alt="" />
+                                    <img src="assets/img/eduka/workshop-audience-side.png" alt="Zainteresovani učesnici" />
                                 </div>
                             </div>
                         </div>

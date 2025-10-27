@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import type { Metadata } from "next";
 import Section1 from "@/components/sections/home-1/Section1";
 import Section2 from "@/components/sections/home-1/Section2";
 import Section3 from "@/components/sections/home-1/Section3";
@@ -25,3 +26,27 @@ export default function Home() {
         </>
     );
 }
+
+export const metadata: Metadata = {
+  title: "Početna",
+  description:
+    "Udruženje Eduka – kontinuirana edukacija, radionice i razmena znanja zdravstvenih radnika Nišavskog okruga.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Eduka – Početna",
+    description:
+      "Udruženje Eduka okuplja medicinske radnike i zdravstvene saradnike radi unapređenja struke i kvaliteta zdravstvene zaštite.",
+    url: "https://eduka.rs/",
+    images: [
+      {
+        url: "/assets/img/eduka/workshop-presenter.png",
+        width: 1200,
+        height: 630,
+        alt: "Eduka hero",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};

@@ -3,97 +3,97 @@
         "id": 1,
         "name": "Desiree Wolf",
         "position": "Pediatrics",
-        "avatar": "assets/img/team/vl-team-thumb-3.1.png"
+        "avatar": "assets/img/eduka/workshop-presenter.png"
     },
     {
         "id": 2,
         "name": "Preston Padberg",
         "position": "Cardiology",
-        "avatar": "assets/img/team/vl-team-thumb-3.2.png"
+        "avatar": "assets/img/eduka/workshop-lecture.png"
     },
     {
         "id": 3,
         "name": "Harry Hickle V",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.3.png"
+        "avatar": "assets/img/eduka/workshop-audience-side.png"
     },
     {
         "id": 4,
         "name": "Alicia Luettgen",
         "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.4.png"
+        "avatar": "assets/img/eduka/workshop-demonstration.png"
     },
     {
         "id": 5,
         "name": "Terrell Will",
         "position": "Pediatrics",
-        "avatar": "assets/img/team/vl-team-thumb-3.5.png"
+        "avatar": "assets/img/eduka/workshop-audience-front.png"
     },
     {
         "id": 6,
         "name": "Angel Hayes Jr.",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.6.png"
+        "avatar": "assets/img/eduka/workshop-presenter.png"
     },
     {
         "id": 7,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-lecture.png"
     },
     {
         "id": 8,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "avatar": "assets/img/eduka/workshop-audience-side.png"
     },
     {
         "id": 9,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-demonstration.png"
     },
     {
         "id": 10,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "avatar": "assets/img/eduka/workshop-audience-front.png"
     },
     {
         "id": 11,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-presenter.png"
     },
     {
         "id": 12,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "avatar": "assets/img/eduka/workshop-lecture.png"
     },
 
     {
         "id": 13,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-audience-side.png"
     },
     {
         "id": 14,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-demonstration.png"
     },
     {
         "id": 15,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/team/vl-team-thumb-3.8.png"
+        "avatar": "assets/img/eduka/workshop-audience-front.png"
     },
     {
         "id": 16,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/team/vl-team-thumb-3.7.png"
+        "avatar": "assets/img/eduka/workshop-presenter.png"
     }
 ]

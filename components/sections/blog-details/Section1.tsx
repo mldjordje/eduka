@@ -33,7 +33,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
                                             <Link href="#">
-                                                <img src="assets/img/blog/vl-rec-blog-1.1.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-presenter.png" alt="" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -60,7 +60,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
                                             <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.2.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -87,7 +87,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
                                             <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.3.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-lecture.png" alt="" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -114,7 +114,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <div className="vl-rec-post-flex">
                                         <div className="vl-thumb">
                                             <Link href="">
-                                                <img src="assets/img/blog/vl-rec-blog-1.4.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-demonstration.png" alt="" />
                                             </Link>
                                         </div>
                                         <div className="vl-content">
@@ -170,16 +170,16 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <div className="vl-auth-box-grid">
                                         <div className="vl-auth-thumb">
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.1.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-presenter.png" alt="" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.2.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.3.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-demonstration.png" alt="" />
                                             </Link>
                                             <Link href="/team">
-                                                <img src="assets/img/team/vl-auth-iner1.4.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-lecture.png" alt="" />
                                             </Link>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                             <div className={`vl-sidebar-details ${left ? "ml-80" : "mr-80"} ${single ? "me-0" : ""}`}>
                                 {/* thumbnail */}
                                 <div className="vl-blog-large-thumb-iner mb-32">
-                                    <img className="w-100 br-8" src="assets/img/blog/vl-blog-large-thumb1.1.png" alt="" />
+                                    <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="" />
                                 </div>
                                 {/* meta */}
                                 <div className="vl-blog-meta-list">
@@ -246,7 +246,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                         <li>
                                             <Link href="#">
                                                 <span>
-                                                    <img className="auth-thumb" src="assets/img/team/auth-meta1.1.png" alt="" />
+                                                    <img className="auth-thumb" src="assets/img/eduka/workshop-audience-front.png" alt="" />
                                                 </span>
                                                 Adil Rashid
                                             </Link>
@@ -368,12 +368,12 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 <div className="row">
                                     <div className="col-lg-6 col-md-6 mb-30">
                                         <div className="vl-blog-sm-thumb">
-                                            <img className="w-100" src="assets/img/blog/vl-blog-sm-thumb-1.1.png" alt="" />
+                                            <img className="w-100" src="assets/img/eduka/workshop-audience-side.png" alt="" />
                                         </div>
                                     </div>
                                     <div className="col-lg-6 col-md-6 mb-30">
                                         <div className="vl-service-video-thum2b p-relative">
-                                            <img className="w-100 br-8" src="assets/img/blog/vl-blog-sm-video-thumb-1.2.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-lecture.png" alt="" />
                                             <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
                                                 <span>
                                                     <i className="fa-solid fa-play" />
@@ -438,7 +438,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                             <div className="vl-auth-flex">
                                                 <div className="auth">
                                                     <span>
-                                                        <img src="assets/img/team/vl-auth-iner1.4.png" alt="" />
+                                                        <img src="assets/img/eduka/workshop-lecture.png" alt="" />
                                                     </span>
                                                 </div>
                                                 <div className="content">
@@ -467,7 +467,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                             <div className="vl-auth-flex">
                                                 <div className="auth">
                                                     <span>
-                                                        <img src="assets/img/team/vl-auth-iner1.3.png" alt="" />
+                                                        <img src="assets/img/eduka/workshop-demonstration.png" alt="" />
                                                     </span>
                                                 </div>
                                                 <div className="content">

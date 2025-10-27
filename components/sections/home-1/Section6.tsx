@@ -40,7 +40,7 @@ export default function Section6() {
                     <div className="row position-relative">
                         <div className="col-lg-5 mb-30">
                             <div className="vl-testimonial-large-thumb reveal image-anime">
-                                <img className="w-100 br-8" src="assets/img/testimonial/vl-testimonial-large-thumb-1.1.png" alt="" />
+                                <img className="w-100 br-8" src="assets/img/eduka/workshop-audience-front.png" alt="Zadovoljni učesnici edukacije" />
                             </div>
                         </div>
                         <div className="col-lg-7 mb-30" id="testimonal-active">
@@ -61,7 +61,7 @@ export default function Section6() {
                                         {/* testimonial auth */}
                                         <div className="vl-testimonal-auth-flex">
                                             <div className="vl-auth-thumb">
-                                                <img src="assets/img/testimonial/vl-testimonal-sm-thumb-1.1.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-presenter.png" alt="Predavač Eduke" />
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">
@@ -86,7 +86,7 @@ export default function Section6() {
                                         {/* testimonial auth */}
                                         <div className="vl-testimonal-auth-flex">
                                             <div className="vl-auth-thumb">
-                                                <img src="assets/img/testimonial/vl-testimonal-sm-thumb-1.1.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-lecture.png" alt="Predavač tokom prezentacije" />
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">
@@ -111,7 +111,7 @@ export default function Section6() {
                                         {/* testimonial auth */}
                                         <div className="vl-testimonal-auth-flex">
                                             <div className="vl-auth-thumb">
-                                                <img src="assets/img/testimonial/vl-testimonal-sm-thumb-1.1.png" alt="" />
+                                                <img src="assets/img/eduka/workshop-audience-side.png" alt="Učesnik programa" />
                                             </div>
                                             <div className="vl-auth-content">
                                                 <h4 className="title pb-16">

@@ -94,22 +94,22 @@ export default function Section4() {
                                 <div className="tab-content" id="v-pills-tabContent">
                                     <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/portfolio/vl-work-thumb-1.1.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-demonstration.png" alt="Prikaz praktične demonstracije" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/portfolio/vl-work-thumb-1.2.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Predavanje na Eduka događaju" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/portfolio/vl-work-thumb-1.3.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-lecture.png" alt="Predavanje uz prezentaciju" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/portfolio/vl-work-thumb-1.2.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-audience-side.png" alt="Učesnici edukacije" />
                                         </div>
                                     </div>
                                 </div>

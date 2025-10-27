@@ -70,7 +70,7 @@ export default function Section3() {
           <div className="box-swiper-padding">
             <Swiper {...swiperOptions} className="owl-carousel owl-theme" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
               {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/service/vl-service-thumb1.1.png">
+              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-presenter.png">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
@@ -92,7 +92,7 @@ export default function Section3() {
                 </div>
               </SwiperSlide>
               {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/service/vl-service-thumb1.2.png">
+              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-lecture.png">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
@@ -114,7 +114,7 @@ export default function Section3() {
                 </div>
               </SwiperSlide>
               {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/service/vl-service-thumb1.3.png">
+              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-demonstration.png">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
@@ -136,7 +136,7 @@ export default function Section3() {
                 </div>
               </SwiperSlide>
               {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/service/vl-service-thumb1.1.png">
+              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-audience-front.png">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">

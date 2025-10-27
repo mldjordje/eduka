@@ -34,7 +34,7 @@ export default function Section1() {
                                             <p className="deseg">DomĒL = Lepe puncfurg BGH</p>
                                         </div>
                                         <div className="thumb image-anime">
-                                            <img src="assets/img/banner/vl-auth4.1.png" alt="" />
+                                            <img src="assets/img/eduka/workshop-presenter.png" alt="Predavač Eduke" />
                                         </div>
                                     </div>
                                     <div className="vl-contact-flex2 mt-16">
@@ -73,7 +73,7 @@ export default function Section1() {
             <div className="vl-banner-thumbnail">
                 <div className="container">
                     <div className="vl-banner-large-thumb">
-                        <img className="w-100" src="assets/img/banner/vl-banner-thumb-4.1.png" alt="" />
+                        <img className="w-100" src="assets/img/eduka/workshop-audience-front.png" alt="Učesnici na radionici" />
                     </div>
                 </div>
             </div>

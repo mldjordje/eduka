@@ -96,7 +96,7 @@ export default function Section6() {
                                 </div>
                                 <div className="vl-testimonial-auth-flx">
                                     <div className="auth-thumb image-anime">
-                                        <img src="assets/img/testimonial/vl-testimonial-auth4.1.png" alt="" />
+                                        <img src="assets/img/eduka/workshop-presenter.png" alt="" />
                                     </div>
                                     <div className="auth-content">
                                         <h5 className="title">
@@ -137,7 +137,7 @@ export default function Section6() {
                                 </div>
                                 <div className="vl-testimonial-auth-flx">
                                     <div className="auth-thumb image-anime">
-                                        <img src="assets/img/testimonial/vl-testimonial-auth4.2.png" alt="" />
+                                        <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
                                     </div>
                                     <div className="auth-content">
                                         <h5 className="title">
@@ -178,7 +178,7 @@ export default function Section6() {
                                 </div>
                                 <div className="vl-testimonial-auth-flx">
                                     <div className="auth-thumb image-anime">
-                                        <img src="assets/img/testimonial/vl-testimonial-auth4.3.png" alt="" />
+                                        <img src="assets/img/eduka/workshop-lecture.png" alt="" />
                                     </div>
                                     <div className="auth-content">
                                         <h5 className="title">
@@ -219,7 +219,7 @@ export default function Section6() {
                                 </div>
                                 <div className="vl-testimonial-auth-flx">
                                     <div className="auth-thumb image-anime">
-                                        <img src="assets/img/testimonial/vl-testimonial-auth4.2.png" alt="" />
+                                        <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
                                     </div>
                                     <div className="auth-content">
                                         <h5 className="title">

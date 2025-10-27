@@ -4,7 +4,7 @@ export default function Section9() {
       {/*================= Cta section start =================*/}
       <section className="vl-cta-area">
         <div className="container">
-          <div className="vl-cta-bg" data-background="./assets/img/cta/vl-cta-bg-1.1.png">
+          <div className="vl-cta-bg" data-background="./assets/img/eduka/workshop-lecture.png">
             <div className="vl-line-shape">
               <img src="assets/img/shape/cta-left-arrow-shape-1.1.svg" alt="" />
             </div>

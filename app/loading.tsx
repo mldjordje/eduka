@@ -5,7 +5,7 @@ export default function Loading() {
         <div className="loading-container">
           <div className="loading" />
           <div id="loading-icon">
-            <img src="assets/img/preloader/vl-preloader-1.1.png" alt="" />
+            <img src="assets/img/eduka/workshop-presenter.png" alt="Eduka logo prikaz" />
           </div>
         </div>
       </div>

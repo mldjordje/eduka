@@ -22,7 +22,7 @@ export default function Section8() {
                             <div className="vl-single-blog-bo4x" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                                 <div className="vl-thumb image-anime">
                                     <Link href="/blog">
-                                        <img className="w-100" src="assets/img/blog/vl-blog4.1.png" alt="" />
+                                        <img className="w-100" src="assets/img/eduka/workshop-demonstration.png" alt="Praktična demonstracija" />
                                     </Link>
                                 </div>
                                 <div className="vl-blog-content">

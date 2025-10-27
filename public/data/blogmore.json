@@ -2,21 +2,21 @@
     "blogs": [
         {
             "title": "Razumevanje dentalne anksioznosti i kako je prevazići",
-            "image": "assets/img/blog/vl-blog-thumb-1.1.png",
+            "image": "assets/img/eduka/workshop-presenter.png",
             "date": "2024-05-01",
             "author": "Dr. Milica Petrović",
             "link": "/blog/razumevanje-straha-od-zubara"
         },
         {
             "title": "Implantati ili proteze: kako izabrati pravo rešenje",
-            "image": "assets/img/blog/vl-blog-thumb-1.2.png",
+            "image": "assets/img/eduka/workshop-audience-side.png",
             "date": "2024-05-10",
             "author": "Dr. Marko Ilić",
             "link": "/blog/implantati-ili-proteze"
         },
         {
             "title": "Ishrana za zdrave zube: šta jesti, a šta izbegavati",
-            "image": "assets/img/blog/vl-blog-thumb-iner1.3.png",
+            "image": "assets/img/eduka/workshop-demonstration.png",
             "date": "2024-05-15",
             "author": "Nutricionista Jelena Anđelković",
             "link": "/blog/ishrana-za-zdrave-zube"

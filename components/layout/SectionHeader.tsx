@@ -4,7 +4,7 @@ export default function SectionHeader({ title, current, isGroup, linkGroup, page
   return (
     <>
       {/*================= Breadcrumb section start =================*/}
-      <section className="vl-breadcrumb-area" data-background="assets/img/breadcrumb/vl-about-breadcrumb.png">
+      <section className="vl-breadcrumb-area" data-background="assets/img/eduka/workshop-lecture.png">
         <div className="container">
           <div className="vl-breadcrumb-content">
             <h2 className="title">{title}</h2>

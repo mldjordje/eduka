@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       title: body.title,
       author: body.author,
       date: body.date || new Date().toISOString(),
-      image: body.image || "assets/img/blog/vl-blog-thumb-1.1.png",
+      image: body.image || "assets/img/eduka/workshop-presenter.png",
       excerpt: body.excerpt || body.content.slice(0, 140).concat("..."),
       content: body.content,
       tags: Array.isArray(body.tags)

@@ -14,7 +14,7 @@ export default function Section1({ background }: { background: string }) {
                     <div className="row">
                         <div className="col-lg-6 mb-30">
                             <div className="vl-about-thm4b-inner mr-30">
-                                <img className="w-100" src="assets/img/about/vl-about-inner1.1.png" alt="" />
+                                <img className="w-100" src="assets/img/eduka/workshop-presenter.png" alt="Predavanje u Eduka prostorijama" />
                                 <div className="vl-video-pla4y">
                                     <div className="popup-video" onClick={() => setOpen(true)}>
                                         <span>

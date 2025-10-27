@@ -38,7 +38,7 @@ return (
       <div className="swiper-wrapper">
         <SwiperSlide className="swiper-slide">
           {/* single slider */}
-          <div className="vl-banner-area" data-background="./assets/img/banner/vl-banner-1.1.png">
+          <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-presenter.png">
             <div className="shape shape-1">
               <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
             </div>
@@ -72,7 +72,7 @@ return (
                 </div>
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
-                    <img src="assets/img/banner/vl-popup-video-thumb.png" alt="" />
+                    <img src="assets/img/eduka/workshop-audience-side.png" alt="" />
                     <div className="play-button-container">
                       <div className="play-button" onClick={() => setOpen(true)}>
                         <div className="play-icon popup-video">
@@ -93,7 +93,7 @@ return (
 
         <SwiperSlide className="swiper-slide">
           {/* single slider */}
-          <div className="vl-banner-area" data-background="./assets/img/banner/vl-banner-1.1.png">
+          <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-lecture.png">
             <div className="shape shape-1">
               <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
             </div>
@@ -132,7 +132,7 @@ return (
                 </div>
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
-                    <img src="assets/img/banner/vl-popup-video-thumb.png" alt="" />
+                    <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
                     <div className="play-button-container">
                       <div className="play-button" onClick={() => setOpen(true)}>
                         <div className="play-icon popup-video">
@@ -153,7 +153,7 @@ return (
 
         <SwiperSlide className="swiper-slide">
           {/* single slider */}
-          <div className="vl-banner-area" data-background="./assets/img/banner/vl-banner-1.1.png">
+          <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-demonstration.png">
             <div className="shape shape-1">
               <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
             </div>
@@ -187,7 +187,7 @@ return (
                 </div>
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
-                    <img src="assets/img/banner/vl-popup-video-thumb.png" alt="" />
+                    <img src="assets/img/eduka/workshop-audience-side.png" alt="" />
                     <div className="play-button-container">
                       <div className="play-button" onClick={() => setOpen(true)}>
                         <div className="play-icon popup-video">

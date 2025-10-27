@@ -128,7 +128,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                             <div className={`vl-sidebar-details ${left ? "ml-80" : "mr-80"} ${single ? "me-0" : ""}`}>
                                 {/* thumb */}
                                 <div className="vl-thumb-larg mb-32">
-                                    <img className="br-8 w-100" src="assets/img/service/vl-service-learg-thumb-1.1.png" alt="" />
+                                    <img className="br-8 w-100" src="assets/img/eduka/workshop-demonstration.png" alt="Praktična radionica Eduke" />
                                 </div>
                                 {/* content one */}
                                 <div className="vl-sidebar-conten1t mb-32">
@@ -174,7 +174,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 <div className="row align-items-center">
                                     <div className="col-lg-6 col-md-6 mb-30">
                                         <div className="vl-service-video-thumb p-relative">
-                                            <img className="w-100 br-8" src="assets/img/service/vl-service-video-thumb1.1.png" alt="" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Edukativni video prikaz" />
                                             <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
                                                 <span>
                                                     <i className="fa-solid fa-play" />

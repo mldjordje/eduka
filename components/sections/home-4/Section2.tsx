@@ -14,7 +14,7 @@ export default function Section2() {
                     <div className="row">
                         <div className="col-lg-6 mb-30">
                             <div className="vl-about-thm4b mr-30" data-aos="fade-right" data-aos-duration={800} data-aos-delay={300}>
-                                <img className="w-100" src="assets/img/about/vl-about4.1.png" alt="" />
+                                <img className="w-100" src="assets/img/eduka/workshop-presenter.png" alt="Predavanje za zdravstvene radnike" />
                                 <div className="vl-video-pla4y">
                                     <div className="popup-video" onClick={() => setOpen(true)}>
                                         <span>

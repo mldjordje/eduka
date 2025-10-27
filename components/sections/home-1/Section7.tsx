@@ -48,7 +48,7 @@ export default function Section7() {
               </div>
             </div>
             <div className="col-lg-6 mb-30" data-aos="fade-left" data-aos-duration={800} data-aos-delay={300}>
-              <div className="vl-contact-thumb1 image-anime" data-background="./assets/img/contact/vl-contact-thumb-1.1.png">
+              <div className="vl-contact-thumb1 image-anime" data-background="./assets/img/eduka/workshop-audience-side.png">
                 {/* contact-info */}
                 <div className="vl-contact-info-box">
                   <div className="vl-single-info-box">

@@ -4,6 +4,7 @@ import Section2 from "@/components/sections/blog-details/Section2";
 import Section9 from "@/components/sections/home-1/Section9";
 import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -11,16 +12,42 @@ interface BlogPostPageProps {
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) {
     return { title: "Blog" };
   }
 
+  const raw = post.image || "";
+  const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "");
+  const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
+  const imageSrc = /^https?:\/\//.test(raw)
+    ? raw
+    : (raw.replace(/^\//, "").startsWith("uploads/")
+      ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
+      : `/${raw.replace(/^\//, "")}`);
+
   return {
     title: `${post.title} | Eduka Blog`,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      title: `${post.title} | Eduka Blog`,
+      description: post.excerpt,
+      url: `https://eduka.rs/blog/${post.slug}`,
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : undefined,
+      tags: post.tags && post.tags.length ? post.tags : undefined,
+      images: imageSrc ? [{ url: imageSrc }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Eduka Blog`,
+      description: post.excerpt,
+      images: imageSrc ? [imageSrc] : undefined,
+    },
   };
 }
 

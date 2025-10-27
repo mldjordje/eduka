@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import type { Metadata } from "next";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section2Home1 from "@/components/sections/home-1/Section2";
 import Section1 from "@/components/sections/about/Section1";
@@ -25,3 +26,16 @@ export default function About() {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: "O nama",
+  description:
+    "O udruženju Eduka – misija, vizija i aktivnosti usmerene na kontinuiranu edukaciju zdravstvenih radnika.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "O nama | Eduka",
+    description:
+      "Upoznajte udruženje Eduka i naše aktivnosti u oblasti edukacije i profesionalnog razvoja zdravstvenih radnika.",
+    url: "https://eduka.rs/about",
+  },
+};
