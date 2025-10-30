@@ -137,7 +137,7 @@ export default function CmsPage() {
     setError(null);
     try {
       const endpoint = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
-      const response = await fetch(uploadEndpoint, {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, tags: form.tags }),
