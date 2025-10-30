@@ -1,8 +1,9 @@
-import Layout from "@/components/layout/Layout";
+﻿import Layout from "@/components/layout/Layout";
 import type { Metadata } from "next";
 import Section1 from "@/components/sections/blog/Section1";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section9 from "@/components/sections/home-1/Section9";
+
 export default function Home() {
   return (
     <>
@@ -17,11 +18,11 @@ export default function Home() {
 
 export const metadata: Metadata = {
   title: "Vesti",
-  description: "Novosti, edukacije i saveti iz udruženja Eduka.",
+  description: "Novosti i obavestenja udruzenja Eduka.",
   alternates: { canonical: "/vesti" },
   openGraph: {
-    title: "Eduka � Vesti",
-    description: "Novosti, edukacije i saveti iz udruženja Eduka.",
+    title: "Eduka - Vesti",
+    description: "Novosti i obavestenja udruzenja Eduka.",
     url: "https://eduka.rs/vesti",
   },
 };
