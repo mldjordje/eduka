@@ -1,8 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import "@/node_modules/react-modal-video/css/modal-video.css";
-import ModalVideo from "react-modal-video";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -73,17 +71,7 @@ return (
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
                     <img src="assets/img/eduka/workshop-audience-side.png" alt="" />
-                    <div className="play-button-container">
-                      <div className="play-button" onClick={() => setOpen(true)}>
-                        <div className="play-icon popup-video">
-                          <i className="fa-duotone fa-solid fa-play" />
-                        </div>
-                        {/* Play icon */}
-                      </div>
-                      <div className="wave wave-1" />
-                      <div className="wave wave-2" />
-                      <div className="wave wave-3" />
-                    </div>
+                    {/* video removed */}
                   </div>
                 </div>
               </div>
@@ -133,17 +121,7 @@ return (
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
                     <img src="assets/img/eduka/workshop-audience-front.png" alt="" />
-                    <div className="play-button-container">
-                      <div className="play-button" onClick={() => setOpen(true)}>
-                        <div className="play-icon popup-video">
-                          <i className="fa-duotone fa-solid fa-play" />
-                        </div>
-                        {/* Play icon */}
-                      </div>
-                      <div className="wave wave-1" />
-                      <div className="wave wave-2" />
-                      <div className="wave wave-3" />
-                    </div>
+                    {/* video removed */}
                   </div>
                 </div>
               </div>
@@ -188,17 +166,7 @@ return (
                 <div className="col-lg-6 p-relative">
                   <div className="video-shape">
                     <img src="assets/img/eduka/workshop-audience-side.png" alt="" />
-                    <div className="play-button-container">
-                      <div className="play-button" onClick={() => setOpen(true)}>
-                        <div className="play-icon popup-video">
-                          <i className="fa-duotone fa-solid fa-play" />
-                        </div>
-                        {/* Play icon */}
-                      </div>
-                      <div className="wave wave-1" />
-                      <div className="wave wave-2" />
-                      <div className="wave wave-3" />
-                    </div>
+                    {/* video removed */}
                   </div>
                 </div>
               </div>
@@ -209,7 +177,7 @@ return (
       <div className="swiper-pagination"></div>
     </Swiper>
     {/*================= Banner section End =================*/}
-    <ModalVideo channel="youtube" isOpen={isOpen} videoId="3MdqSkr7yfs-U" onClose={() => setOpen(false)} />
+    {/* video modal removed */}
   </>
 );
 

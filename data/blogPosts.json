@@ -1,5 +1,17 @@
 [
   {
+    "slug": "testtesttest",
+    "title": "test",
+    "author": "test",
+    "date": "2025-10-22",
+    "image": "/uploads/test2.jpg",
+    "excerpt": "test",
+    "content": "test",
+    "tags": [
+      "test"
+    ]
+  },
+  {
     "slug": "razumevanje-straha-od-zubara",
     "title": "Razumevanje dentalne anksioznosti i kako je prevazići",
     "author": "Dr. Milica Petrović",
@@ -7,7 +19,11 @@
     "image": "assets/img/eduka/workshop-presenter.png",
     "excerpt": "Šta sve uzrokuje strah od zubara i kako pacijentima možemo pomoći da se osećaju opuštenije pre i tokom tretmana.",
     "content": "Poseta zubaru kod mnogih pacijenata izaziva nelagodnost. U tekstu prolazimo kroz najčešće razloge za strah, kao i tehnike pripreme, razgovora i bezbolnih procedura koje mogu da smanje anksioznost. Delimo i iskustva pacijenata kojima je prvi pregled promenio percepciju o stomatolozima.",
-    "tags": ["psihologija", "saveti", "prevencija"]
+    "tags": [
+      "psihologija",
+      "saveti",
+      "prevencija"
+    ]
   },
   {
     "slug": "implantati-ili-proteze",
@@ -17,7 +33,10 @@
     "image": "assets/img/eduka/workshop-audience-side.png",
     "excerpt": "Pregled prednosti i mana implantata i totalnih proteza, uz praktične savete za izbor najboljeg rešenja.",
     "content": "U tekstu upoređujemo implantate i mobilne proteze sa aspekta trajnosti, udobnosti i cene. Kroz tabelarni prikaz pomažemo pacijentima da procene koja opcija odgovara njihovom stilu života, navikama i budžetu. Na kraju donosimo mini vodič kroz proces ugradnje implantata.",
-    "tags": ["implantologija", "rehabilitacija"]
+    "tags": [
+      "implantologija",
+      "rehabilitacija"
+    ]
   },
   {
     "slug": "ishrana-za-zdrave-zube",
@@ -27,6 +46,9 @@
     "image": "assets/img/eduka/workshop-demonstration.png",
     "excerpt": "Otkrivamo namirnice koje pozitivno utiču na gleđ i desni, ali i one koje ubrzavaju nastanak karijesa.",
     "content": "Zdrava ishrana je jedan od stubova oralne higijene. U blogu delimo jelovnik prepun kalcijuma, vitamina D i vlakana, koji jača zube i desni. Navodimo i praktične savete kako da se smanji unos šećera tokom dana, kao i preporuke za užine nakon tretmana izbeljivanja.",
-    "tags": ["ishrana", "preventiva"]
+    "tags": [
+      "ishrana",
+      "preventiva"
+    ]
   }
 ]

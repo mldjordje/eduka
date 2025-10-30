@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import type { ApplicationSubmission } from "@/types/application";
 import type { BlogPost } from "@/types/blog";
+import type { GalleryImage } from "@/types/gallery";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 
@@ -26,6 +27,7 @@ export default function CmsPage() {
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
+  const [gallery, setGallery] = useState<GalleryImage[]>([]);
   const [form, setForm] = useState(initialPostForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -35,6 +37,20 @@ export default function CmsPage() {
 
   const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
   const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
+
+  const buildPrintHtml = (app: ApplicationSubmission) => {
+    const safe = (v?: string) => (v ?? "");
+    const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
+    return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica – ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">Štampaj<\/button>\n<h1>Pristupnica – podaci o podnosiocu<\/h1>\n<div class="muted">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class="section grid">\n<div class="label">Ime i prezime<\/div><div class="val">${safe(app.name)}<\/div>\n<div class="label">Adresa<\/div><div class="val">${safe(app.address)}<\/div>\n<div class="label">E‑mail<\/div><div class="val">${safe(app.email)}<\/div>\n<div class="label">Telefon<\/div><div class="val">${safe(app.phone)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">JMBG<\/div><div class="val">${safe(app.jmbg)}<\/div>\n<div class="label">Broj licence<\/div><div class="val">${safe(app.licenseNumber)}<\/div>\n<div class="label">Lični broj<\/div><div class="val">${safe(app.idNumber)}<\/div>\n<div class="label">Zanimanje<\/div><div class="val">${safe(app.profession)}<\/div>\n<div class="label">Ustanova<\/div><div class="val">${safe(app.institution)}<\/div>\n<div class="label">Staž<\/div><div class="val">${safe(app.yearsOfService)}<\/div>\n<div class="label">Stepen obrazovanja<\/div><div class="val">${safe(app.educationLevel as any)}<\/div>\n<div class="label">Komora<\/div><div class="val">${safe(app.chamber)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">Opcija članarine<\/div><div class="val">${(app.membershipFeeOption === 'monthly') ? 'Odbijanje od plate (200 RSD mesečno)' : (app.membershipFeeOption === 'annual' ? 'Godišnje (2.400 RSD)' : '')}<\/div>\n<div class="label">Saglasnost<\/div><div class="val">${app.agreementAccepted ? 'DA' : 'NE'}<\/div>\n<\/div>\n</body>\n</html>`;
+  };
+
+  const handlePrint = (app: ApplicationSubmission) => {
+    const w = window.open("", "_blank", "noopener,noreferrer,width=900,height=700");
+    if (!w) return;
+    w.document.open();
+    w.document.write(buildPrintHtml(app));
+    w.document.close();
+  };
 
   useEffect(() => {
     try {
@@ -55,6 +71,12 @@ export default function CmsPage() {
       .then((res) => res.json())
       .then((data: ApplicationSubmission[]) => setApplications(data))
       .catch(() => setApplications([]));
+
+    // gallery
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data: GalleryImage[]) => setGallery(data))
+      .catch(() => setGallery([]));
   }, [isAuthed]);
 
   const handleLogin = (e: FormEvent) => {
@@ -131,6 +153,28 @@ export default function CmsPage() {
       setError(err.message || "Greška prilikom čuvanja objave");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleGalleryUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      const endpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(endpoint, { method: "POST", body: data });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
+      const url: string = body.url || body.path;
+      const save = await fetch("/api/gallery", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
+      if (!save.ok) throw new Error("Greška pri upisu u galeriju");
+      const created: GalleryImage = await save.json();
+      setGallery((prev) => [created, ...prev]);
+    } catch (e) {
+      // no-op minimal
+    } finally {
+      if (event.target) event.target.value = "";
     }
   };
 
@@ -250,7 +294,7 @@ export default function CmsPage() {
                   {posts.map((post) => (
                     <div key={post.slug} className="cms-post-item">
                       <h4 className="cms-post-title">
-                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                        <Link href={`/vesti/${post.slug}`}>{post.title}</Link>
                       </h4>
                       <div className="cms-post-meta">
                         <span>{formatDate(post.date)}</span>
@@ -260,6 +304,32 @@ export default function CmsPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div className="vl-off-white-bg p-40 br-20">
+                <h3 className="title pb-12">Galerija</h3>
+                <div className="row pb-16">
+                  <div className="col-md-6">
+                    <label className="form-label">Dodaj sliku u galeriju</label>
+                    <input type="file" accept="image/*" className="form-control" onChange={handleGalleryUpload} />
+                  </div>
+                </div>
+                {gallery.length === 0 && <p>Galerija je prazna.</p>}
+                {gallery.length > 0 && (
+                  <div className="row">
+                    {gallery.map((g) => {
+                      const src = g.url.startsWith("http") ? g.url : `/${g.url.replace(/^\//, "")}`;
+                      return (
+                        <div className="col-sm-6 col-md-4 col-lg-3 mb-16" key={g.id}>
+                          <div className="vl-blog-thumb image-anime"><img src={src} alt={g.name || "galerija"} className="w-100" /></div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -280,6 +350,7 @@ export default function CmsPage() {
                           <th>Željeni termin</th>
                           <th>Poruka</th>
                           <th>Poslato</th>
+                          <th>Akcije</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -291,6 +362,7 @@ export default function CmsPage() {
                             <td>{application.preferredDate ? new Date(application.preferredDate).toLocaleDateString("sr-RS") : "/"}</td>
                             <td>{application.message}</td>
                             <td>{new Date(application.createdAt).toLocaleString("sr-RS")}</td>
+                            <td><button type="button" className="vl-btn-primary" onClick={() => handlePrint(application)}>Štampaj</button></td>
                           </tr>
                         ))}
                       </tbody>

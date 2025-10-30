@@ -57,8 +57,18 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                     </ul>
                                 </li>
                                 <li>
-                                    <Link href="/blog" onClick={handleMobileMenu}>
-                                        Blog
+                                    <Link href="/vesti" onClick={handleMobileMenu}>
+                                        Vesti
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/galerija" onClick={handleMobileMenu}>
+                                        Galerija
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/simpozijum" onClick={handleMobileMenu}>
+                                        Simpozijum
                                     </Link>
                                 </li>
                                 <li>
@@ -113,9 +123,9 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                         <div className={`vl-footer-social ${offcanvas_social}`}>
                             <ul>
                                 <li>
-                                    <Link href="#">
+                                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                                         <i className="fa-brands fa-facebook-f" />
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link href="#">
@@ -123,9 +133,9 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="#">
+                                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                         <i className="fa-brands fa-instagram" />
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link href="#">

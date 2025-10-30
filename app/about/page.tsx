@@ -19,6 +19,14 @@ export default function About() {
         <Section2 />
         <Section3 />
         <Section6Home1 />
+        <section className="pt-40 pb-20">
+          <div className="container">
+            <h3 className="title pb-12">Hipokratova zakletva</h3>
+            <p className="pb-12">[Ovde dodati puni tekst Hipokratove zakletve na srpskom jeziku]</p>
+            <h3 className="title pb-12">Florens Najtingel zakletva</h3>
+            <p className="pb-12">[Ovde dodati puni tekst zakletve medicinskih sestara – Florence Nightingale]</p>
+          </div>
+        </section>
         <Section4 />
         <Section7Home1 />
         <Section9 />

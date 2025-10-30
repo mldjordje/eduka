@@ -50,7 +50,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                 </ul>
                                             </div>
                                             <h3 className="title">
-                                            <Link href="/blog">
+                                            <Link href="/vesti">
                                                     Foods for Healthy <br /> Teeth: What to Eat an...
                                                 </Link>
                                             </h3>
@@ -77,7 +77,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                 </ul>
                                             </div>
                                             <h3 className="title">
-                                            <Link href="/blog">
+                                            <Link href="/vesti">
                                                     How to Care for Your <br /> Teeth After a Filling or...
                                                 </Link>
                                             </h3>
@@ -104,7 +104,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                 </ul>
                                             </div>
                                             <h3 className="title">
-                                            <Link href="/blog">
+                                            <Link href="/vesti">
                                                     Braces vs. Invisalign: <br /> Which is Right for You?
                                                 </Link>
                                             </h3>
@@ -131,7 +131,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                                 </ul>
                                             </div>
                                             <h3 className="title">
-                                            <Link href="/blog">
+                                            <Link href="/vesti">
                                                     Foods That Promote <br /> Strong Teeth and Gums...
                                                 </Link>
                                             </h3>

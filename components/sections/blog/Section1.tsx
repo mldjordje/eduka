@@ -79,11 +79,11 @@ export default function Section1() {
                                     ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
                                     : `/${raw.replace(/^\//, "")}`);
                             return (
-                                <div className="col-lg-4 col-md-6 mb-30" key={index}>
+                                <div className="col-12 mb-30" key={index}>
                                 {/* single blog box */}
                                 <div className="vl-single-blog-box">
                                     <div className="vl-blog-thumb image-anime">
-                                        <Link href={`/blog/${blogs.slug}`}>
+                                        <Link href={`/vesti/${blogs.slug}`}>
                                             <img className="w-100" src={imageSrc} alt={blogs.title} />
                                         </Link>
                                     </div>
@@ -103,10 +103,10 @@ export default function Section1() {
                                             </Link>
                                         </div>
                                         <h3 className="title pt-20 pb-24">
-                                            <Link href={`/blog/${blogs.slug}`}>{blogs.title}</Link>
+                                            <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
                                         </h3>
                                         <p>{blogs.excerpt}</p>
-                                        <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
+                                        <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
                                             Learn more
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />

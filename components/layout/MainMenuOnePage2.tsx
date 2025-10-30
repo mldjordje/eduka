@@ -16,7 +16,7 @@ export default function MainMenu() {
                 <Link href="#testimonial">Testimonial</Link>
             </li>
             <li>
-                <Link href="#blog">Blog</Link>
+                <Link href="#blog">Vesti</Link>
             </li>
             <li>
                 <Link href="#contact">Contact</Link>

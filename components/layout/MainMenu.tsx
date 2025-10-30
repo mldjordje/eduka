@@ -11,7 +11,13 @@ export default function MainMenu() {
         <Link href="/about">O nama</Link>
       </li>
       <li>
-        <Link href="/blog">Blog</Link>
+        <Link href="/vesti">Vesti</Link>
+      </li>
+      <li>
+        <Link href="/galerija">Galerija</Link>
+      </li>
+      <li>
+        <Link href="/simpozijum">Simpozijum</Link>
       </li>
       <li>
         <Link href="/postanite-clan">Postanite član</Link>
