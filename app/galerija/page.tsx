@@ -30,7 +30,7 @@ export default function GalerijaPage() {
       <section className="pt-60 pb-60">
         <div className="container">
           <Suspense fallback={<p>Učitavanje...</p>}>
-            {/* @ts-expect-error Server Component async */}
+            
             <GalleryGrid />
           </Suspense>
         </div>
