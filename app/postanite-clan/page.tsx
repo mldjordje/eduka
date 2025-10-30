@@ -84,7 +84,7 @@ export default function ApplicationPage() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
-              <div className="vl-off-white-bg p-40 br-20">                <div className="pb-16"><a className="vl-btn-primary" href="/docs/uplatnica.pdf" target="_blank" rel="noopener noreferrer">Preuzmi uplatnicu (PDF)</a></div>
+              <div className="vl-off-white-bg p-40 br-20">                <div className="pb-16"><a className="vl-btn-primary" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">Preuzmi uplatnicu (PDF)</a></div>
                 <h2 className="title pb-16">Ð£Ð´Ñ€ÑƒÐ¶ÐµÑšÐµ Ð·Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÐµÐ½Ð¸Ñ… Ñ€Ð°Ð´Ð½Ð¸ÐºÐ° Ð¸ ÑÐ°Ñ€Ð°Ð´Ð½Ð¸ÐºÐ° ÐÐ¸ÑˆÐ°Ð²ÑÐºÐ¾Ð³ Ð¾ÐºÑ€ÑƒÐ³Ð° â€žÐ•Ð´ÑƒÐºÐ°â€œ</h2>
                 <p className="pb-8">ÐÐ´Ñ€ÐµÑÐ°: Ð’Ð¾Ñ˜Ð²Ð¾Ð´Ðµ Ð¢Ð°Ð½ÐºÐ¾ÑÐ¸Ñ›Ð° 15, 18000 ÐÐ¸Ñˆ</p>
                 <p className="pb-8">e-mail: edukaudruzenje@gmail.com; info@eduka.co.rs</p>
