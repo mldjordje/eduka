@@ -114,8 +114,8 @@ export default function CmsPage() {
     try {
       const data = new FormData();
       data.append("file", file);
-      const endpoint = UPLOAD_URL || "/api/upload";
-      const res = await fetch(endpoint, { method: "POST", body: data });
+      const uploadEndpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.message || "Upload nije uspeo.");
@@ -168,8 +168,8 @@ export default function CmsPage() {
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
       const url: string = body.url || body.path;
-      const endpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
-      const save = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
+      const galleryEndpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
+      const save = await fetch(galleryEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
       if (!save.ok) throw new Error("Greška pri upisu u galeriju");
       const created: GalleryImage = await save.json();
       setGallery((prev) => [created, ...prev]);
