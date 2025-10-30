@@ -137,7 +137,7 @@ export default function CmsPage() {
     setError(null);
     try {
       const endpoint = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
-      const response = await fetch(endpoint, {
+      const response = await fetch(uploadEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, tags: form.tags }),
@@ -163,16 +163,17 @@ export default function CmsPage() {
     try {
       const data = new FormData();
       data.append("file", file);
-      const endpoint = UPLOAD_URL || "/api/upload";
-      const res = await fetch(endpoint, { method: "POST", body: data });
+      const uploadEndpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
       const url: string = body.url || body.path;
       const galleryEndpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
       const save = await fetch(galleryEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
       if (!save.ok) throw new Error("Greška pri upisu u galeriju");
-      const created: GalleryImage = await save.json();
-      setGallery((prev) => [created, ...prev]);
+      const saved = await save.json().catch(() => ({}));
+      const created: GalleryImage = (saved && (saved.url || saved.id)) ? (saved as any) : ({ id: crypto.randomUUID(), url, name: file.name, createdAt: new Date().toISOString() } as any);
+      setGallery((prev) => [created, ...prev].filter((x) => x && typeof x.url === "string" && x.url.length > 0));
     } catch (e) {
       // no-op minimal
     } finally {
@@ -379,3 +380,5 @@ export default function CmsPage() {
     </Layout>
   );
 }
+
+
