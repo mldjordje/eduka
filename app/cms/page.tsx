@@ -73,7 +73,8 @@ export default function CmsPage() {
       .catch(() => setApplications([]));
 
     // gallery
-    fetch("/api/gallery")
+    const galleryUrl = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
+    fetch(galleryUrl)
       .then((res) => res.json())
       .then((data: GalleryImage[]) => setGallery(data))
       .catch(() => setGallery([]));
@@ -167,7 +168,8 @@ export default function CmsPage() {
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
       const url: string = body.url || body.path;
-      const save = await fetch("/api/gallery", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
+      const endpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
+      const save = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
       if (!save.ok) throw new Error("Greška pri upisu u galeriju");
       const created: GalleryImage = await save.json();
       setGallery((prev) => [created, ...prev]);

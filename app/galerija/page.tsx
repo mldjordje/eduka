@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 async function GalleryGrid() {
-  const res = await fetch("/api/gallery", { cache: "no-store" });
+  const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
+  const url = BASE ? `${BASE}/gallery.php` : "/api/gallery";
+  const res = await fetch(url, { cache: "no-store" });
   const items = res.ok ? ((await res.json()) as { id: string; url: string; name?: string }[]) : [];
   return (
     <div className="row">
@@ -44,4 +46,3 @@ export const metadata: Metadata = {
   description: "Fotografije i momenti sa događaja udruženja Eduka.",
   alternates: { canonical: "/galerija" },
 };
-
