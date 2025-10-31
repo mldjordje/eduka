@@ -50,7 +50,7 @@ export default function Section4() {
             <div className="col-lg-4">
               <div className="vl-brand-iner-title">
                 <h3 className="title">
-                  Trusted by the industry's <br /> leading insurance provider
+                  Veruju nam partneri i institucije
                 </h3>
               </div>
             </div>

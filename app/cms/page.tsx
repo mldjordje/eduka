@@ -34,6 +34,7 @@ export default function CmsPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [editingSlug, setEditingSlug] = useState<string | null>(null);
 
   const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
   const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
@@ -41,7 +42,7 @@ export default function CmsPage() {
   const buildPrintHtml = (app: ApplicationSubmission) => {
     const safe = (v?: string) => (v ?? "");
     const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
-    return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica – ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">Štampaj<\/button>\n<h1>Pristupnica – podaci o podnosiocu<\/h1>\n<div class="muted">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class="section grid">\n<div class="label">Ime i prezime<\/div><div class="val">${safe(app.name)}<\/div>\n<div class="label">Adresa<\/div><div class="val">${safe(app.address)}<\/div>\n<div class="label">E‑mail<\/div><div class="val">${safe(app.email)}<\/div>\n<div class="label">Telefon<\/div><div class="val">${safe(app.phone)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">JMBG<\/div><div class="val">${safe(app.jmbg)}<\/div>\n<div class="label">Broj licence<\/div><div class="val">${safe(app.licenseNumber)}<\/div>\n<div class="label">Lični broj<\/div><div class="val">${safe(app.idNumber)}<\/div>\n<div class="label">Zanimanje<\/div><div class="val">${safe(app.profession)}<\/div>\n<div class="label">Ustanova<\/div><div class="val">${safe(app.institution)}<\/div>\n<div class="label">Staž<\/div><div class="val">${safe(app.yearsOfService)}<\/div>\n<div class="label">Stepen obrazovanja<\/div><div class="val">${safe(app.educationLevel as any)}<\/div>\n<div class="label">Komora<\/div><div class="val">${safe(app.chamber)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">Opcija članarine<\/div><div class="val">${(app.membershipFeeOption === 'monthly') ? 'Odbijanje od plate (200 RSD mesečno)' : (app.membershipFeeOption === 'annual' ? 'Godišnje (2.400 RSD)' : '')}<\/div>\n<div class="label">Saglasnost<\/div><div class="val">${app.agreementAccepted ? 'DA' : 'NE'}<\/div>\n<\/div>\n</body>\n</html>`;
+    return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica � ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick=\"window.print()\" style=\"float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer\">Štampaj<\/button>\n<h1>Pristupnica � podaci o podnosiocu<\/h1>\n<div class=\"muted\">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class=\"section grid\">\n<div class=\"label\">Ime i prezime<\/div><div class=\"val\">${safe(app.name)}<\/div>\n<div class=\"label\">Adresa<\/div><div class=\"val\">${safe(app.address)}<\/div>\n<div class=\"label\">E-mail<\/div><div class=\"val\">${safe(app.email)}<\/div>\n<div class=\"label\">Telefon<\/div><div class=\"val\">${safe(app.phone)}<\/div>\n<\/div>\n<div class=\"section grid\">\n<div class=\"label\">JMBG<\/div><div class=\"val\">${safe(app.jmbg)}<\/div>\n<div class=\"label\">Broj licence<\/div><div class=\"val\">${safe(app.licenseNumber)}<\/div>\n<div class=\"label\">Lični broj<\/div><div class=\"val\">${safe(app.idNumber)}<\/div>\n<div class=\"label\">Zanimanje<\/div><div class=\"val\">${safe(app.profession)}<\/div>\n<div class=\"label\">Ustanova<\/div><div class=\"val\">${safe(app.institution)}<\/div>\n<div class=\"label\">Staž<\/div><div class=\"val\">${safe(app.yearsOfService)}<\/div>\n<div class=\"label\">Stepen obrazovanja<\/div><div class=\"val\">${safe(app.educationLevel as any)}<\/div>\n<div class=\"label\">Komora<\/div><div class=\"val\">${safe(app.chamber)}<\/div>\n<\/div>\n<div class=\"section grid\">\n<div class=\"label\">Opcija članarine<\/div><div class=\"val\">${(app.membershipFeeOption === 'monthly') ? 'Odbijanje od plate (200 RSD mesečno)' : (app.membershipFeeOption === 'annual' ? 'Godišnje (2.400 RSD)' : '')}<\/div>\n<div class=\"label\">Saglasnost<\/div><div class=\"val\">${app.agreementAccepted ? 'DA' : 'NE'}<\/div>\n<\/div>\n</body>\n</html>`;
   };
 
   const handlePrint = (app: ApplicationSubmission) => {
@@ -130,26 +131,64 @@ export default function CmsPage() {
     }
   };
 
+  const handleEdit = (post: BlogPost) => {
+    setForm({
+      title: post.title,
+      slug: post.slug,
+      author: post.author,
+      image: post.image,
+      excerpt: post.excerpt,
+      content: post.content,
+      tags: (post.tags || []).join(", "),
+      date: post.date?.slice(0,10) || "",
+    });
+    setEditingSlug(post.slug);
+    setMessage(null);
+    setError(null);
+  };
+
+  const handleDelete = async (slug: string) => {
+    if (!confirm("Obrisati ovu objavu?")) return;
+    try {
+      const base = API_BASE ? API_BASE.replace(/\/+$/,'') : '';
+      const endpoint = base ? `${base}/posts.php?slug=${encodeURIComponent(slug)}` : `/api/posts/${encodeURIComponent(slug)}`;
+      const res = await fetch(endpoint, { method: 'DELETE' });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || 'Brisanje nije uspelo');
+      }
+      setPosts((prev) => prev.filter(p => p.slug !== slug));
+    } catch (e: any) {
+      setError(e.message || 'Greška pri brisanju objave');
+    }
+  };
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
     setError(null);
     try {
-      const endpoint = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
+      const base = API_BASE ? `${API_BASE}` : "";
+      const isEdit = Boolean(editingSlug);
+      const endpoint = isEdit
+        ? (base ? `${base}/posts.php?slug=${encodeURIComponent(editingSlug!)}` : `/api/posts/${encodeURIComponent(editingSlug!)}`)
+        : (base ? `${base}/posts.php` : "/api/posts");
+      const method = isEdit ? "PUT" : "POST";
       const response = await fetch(endpoint, {
-        method: "POST",
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, tags: form.tags }),
       });
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
-        throw new Error(body.message || "Neuspešno čuvanje objave");
+        throw new Error(body.message || (isEdit ? "Neuspešno ažuriranje" : "Neuspešno čuvanje objave"));
       }
-      const createdPost: BlogPost = await response.json();
-      setPosts((prev) => [createdPost, ...prev]);
+      const savedPost: BlogPost = await response.json();
+      setPosts((prev) => isEdit ? prev.map(p => p.slug === savedPost.slug ? savedPost : p) : [savedPost, ...prev]);
       setForm({ ...initialPostForm });
-      setMessage("Objava je uspešno sačuvana!");
+      setEditingSlug(null);
+      setMessage(isEdit ? "Objava je uspešno ažurirana!" : "Objava je uspešno sačuvana!");
     } catch (err: any) {
       setError(err.message || "Greška prilikom čuvanja objave");
     } finally {
@@ -192,7 +231,7 @@ export default function CmsPage() {
   if (!isAuthed) {
     return (
       <Layout>
-        <SectionHeader title="CMS" isGroup={false} linkGroup="" pageGroup="" current="Login" />
+        <SectionHeader title="CMS" isGroup={false} linkGroup="" pageGroup="" current="Prijava" />
         <section className="pt-100 pb-70">
           <div className="container">
             <div className="row justify-content-center">
@@ -233,7 +272,7 @@ export default function CmsPage() {
           <div className="row">
             <div className="col-lg-6 mb-40">
               <div className="vl-off-white-bg p-40 br-20">
-                <h3 className="title pb-20">Kreiranje nove blog objave</h3>
+                <h3 className="title pb-20">{editingSlug ? "Uređivanje objave" : "Kreiranje nove blog objave"}</h3>
                 <p className="pb-16">Otpremajte sliku direktno sa svog uređaja.</p>
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
@@ -282,7 +321,10 @@ export default function CmsPage() {
                       </div>
                     )}
                     <div className="col-12">
-                      <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>{isSubmitting ? "Čuvanje..." : "Sačuvaj objavu"}</button>
+                      <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>{isSubmitting ? (editingSlug ? "Ažuriranje..." : "Čuvanje...") : (editingSlug ? "Sačuvaj izmene" : "Sačuvaj objavu")}</button>
+                      {editingSlug && (
+                        <button type="button" className="vl-btn-primary ms-2" onClick={() => { setEditingSlug(null); setForm({ ...initialPostForm }); }}>Otkaži</button>
+                      )}
                     </div>
                   </div>
                 </form>
@@ -304,6 +346,10 @@ export default function CmsPage() {
                         <span>{post.author}</span>
                       </div>
                       <p>{post.excerpt}</p>
+                      <div className="d-flex gap-2 pt-8">
+                        <button type="button" className="vl-btn-primary" onClick={() => handleEdit(post)}>Uredi</button>
+                        <button type="button" className="vl-btn-primary" onClick={() => handleDelete(post.slug)}>Obriši</button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -380,5 +426,6 @@ export default function CmsPage() {
     </Layout>
   );
 }
+
 
 

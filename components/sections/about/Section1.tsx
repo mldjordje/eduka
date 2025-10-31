@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+
 import "@/node_modules/react-modal-video/css/modal-video.css";
 import ModalVideo from "react-modal-video";
 import Link from "next/link";
@@ -34,29 +36,29 @@ export default function Section1({ background }: { background: string }) {
                                 </div>
                                 {/* line progress bar item*/}
                                 <div className="vl-bar-single-item">
-                                    <h4 className="title">Endodontic Equiqment</h4>
-                                    <div id="bar1" className="progress barfiller" role="progressbar" aria-label="Endodontic Equiqment" aria-valuenow={86} aria-valuemin={0} aria-valuemax={100}>
+                                    <h4 className="title">Akreditovani programi</h4>
+                                    <div id="bar1" className="progress barfiller" role="progressbar" aria-label="Akreditovani programi" aria-valuenow={86} aria-valuemin={0} aria-valuemax={100}>
                                         <div className="progress-bar fill" style={{ width: "86%" }}></div>
                                     </div>
                                 </div>
                                 {/* line progress bar item*/}
                                 <div className="vl-bar-single-item">
-                                    <h4 className="title">Operatory Cabinetry</h4>
-                                    <div id="bar2" className="progress barfiller" role="progressbar" aria-label="Operatory Cabinetry" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
+                                    <h4 className="title">Radionice i trening</h4>
+                                    <div id="bar2" className="progress barfiller" role="progressbar" aria-label="Radionice i trening" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
                                         <div className="progress-bar fill" style={{ width: "90%" }}></div>
                                     </div>
                                 </div>
                                 {/* line progress bar item*/}
                                 <div className="vl-bar-single-item">
-                                    <h4 className="title">Surgical Microscopes</h4>
-                                    <div id="bar3" className="progress barfiller" role="progressbar" aria-label="Surgical Microscopes" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
+                                    <h4 className="title">Mentorstvo</h4>
+                                    <div id="bar3" className="progress barfiller" role="progressbar" aria-label="Mentorstvo" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
                                         <div className="progress-bar fill" style={{ width: "90%" }}></div>
                                     </div>
                                 </div>
                                 {/* line progress bar item*/}
                                 <div className="vl-bar-single-item">
-                                    <h4 className="title">Dental Operatory Lights</h4>
-                                    <div id="bar4" className="progress barfiller" role="progressbar" aria-label="Dental Operatory Lights" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
+                                    <h4 className="title">Digitalna platforma</h4>
+                                    <div id="bar4" className="progress barfiller" role="progressbar" aria-label="Digitalna platforma" aria-valuenow={90} aria-valuemin={0} aria-valuemax={100}>
                                         <div className="progress-bar fill" style={{ width: "90%" }}></div>
                                     </div>
                                 </div>
@@ -76,3 +78,4 @@ export default function Section1({ background }: { background: string }) {
         </>
     );
 }
+

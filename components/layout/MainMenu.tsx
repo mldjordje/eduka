@@ -34,10 +34,10 @@ export default function MainMenu() {
         </Link>
         <ul className="sub-menu">
           <li>
-            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">Онлине-УЗР Едука</a>
+            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">Akreditovane edukacije</a>
           </li>
           <li>
-            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">Онлине-ДЗ Ниш</a>
+            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">Online platforma</a>
           </li>
         </ul>
       </li>
@@ -47,3 +47,4 @@ export default function MainMenu() {
     </ul>
   );
 }
+

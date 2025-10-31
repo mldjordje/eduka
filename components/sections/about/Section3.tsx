@@ -10,8 +10,8 @@ export default function Section3() {
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-work-inner-content">
                                 <div className="vl-section-title text-center mb-60">
-                                    <h5 className="subtitle">Our Work</h5>
-                                    <h2 className="title pt-16 text-anime-style-3">Our Work Creating Healthier The Happier Smiles</h2>
+                                    <h5 className="subtitle">Naš rad</h5>
+                                    <h2 className="title pt-16 text-anime-style-3">Kako gradimo znanje i praksu</h2>
                                 </div>
                             </div>
                         </div>
@@ -28,9 +28,9 @@ export default function Section3() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Ongoing Support &amp; Growth</Link>
+                                        <Link href="/about">Kontinuirana podrška</Link>
                                     </h4>
-                                    <p className="para pt-16">Post launch, provide ongoing support, updates, and maintenance to ensure.</p>
+                                    <p className="para pt-16">Nakon obuke obezbeđujemo materijale, konsultacije i smernice za primenu u praksi.</p>
                                 </div>
                             </div>
                         </div>
@@ -45,9 +45,9 @@ export default function Section3() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Development &amp; Testing</Link>
+                                        <Link href="/about">Razvoj i testiranje</Link>
                                     </h4>
-                                    <p className="para pt-16">Once the design approved developers bring it to life with clean, responsive.</p>
+                                    <p className="para pt-16">Programe razvijamo sa stručnjacima i stalno unapređujemo kroz povratne informacije.</p>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +62,9 @@ export default function Section3() {
                                 </div>
                                 <div className="content">
                                     <h4 className="title">
-                                        <Link href="/service-single">Discovery &amp; Strategy</Link>
+                                        <Link href="/about">Planiranje i strategija</Link>
                                     </h4>
-                                    <p className="para pt-16">We start learning about your business, your goals, and your target audience. </p>
+                                    <p className="para pt-16">Razumemo potrebe članova i ustanovljavamo ciljeve obuka za merljive rezultate.</p>
                                 </div>
                             </div>
                         </div>
@@ -75,3 +75,4 @@ export default function Section3() {
         </>
     );
 }
+

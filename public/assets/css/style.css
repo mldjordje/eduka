@@ -10434,10 +10434,21 @@ textarea {
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8px;
+  position: relative;
+}
+.vl-single-service-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+  border-radius:8px;
+  z-index:0;
 }
 .vl-single-service-box .vl-service-icon-box {
   padding: 29px;
   padding-right: 232px;
+  position: relative;
+  z-index: 1;
 }
 @media (max-width: 575px) {
   .vl-single-service-box .vl-service-icon-box {
@@ -10465,7 +10476,7 @@ textarea {
   display: block;
 }
 .vl-single-service-box .vl-service-icon-box .content .title {
-  color: var(--vkl-text-text-6);
+  color: #fff;
   font-size: var(--vkl-font-size-font-s24);
   line-height: var(--vkl-specing-height24);
   font-weight: var(--vkl-weight-semibold);
@@ -10476,21 +10487,21 @@ textarea {
   transition: 0.3s;
 }
 .vl-single-service-box .vl-service-icon-box .content .para {
-  color: var(--vkl-text-text-7);
+  color: #f2f2f2;
   font-size: var(--vkl-font-size-font-s16);
   line-height: var(--vkl-specing-height24);
   font-weight: var(--vkl-weight-medium);
 }
 .vl-single-service-box .vl-service-icon-box .content .learnmore {
   text-transform: uppercase;
-  color: var(--vkl-text-text-6);
+  color: #ffffff;
   font-size: var(--vkl-font-size-font-s18);
   line-height: var(--vkl-specing-height18);
   font-weight: var(--vkl-weight-bold);
   transition: 0.3s;
 }
 .vl-single-service-box .vl-service-icon-box .content .learnmore span.right-arow {
-  color: var(--vkl-text-text-6);
+  color: #ffffff;
   display: inline-block;
   transform: rotate(-45deg);
   transition: 0.3s;
@@ -12070,6 +12081,9 @@ textarea {
   right: 0;
   border: 8px solid #fff;
   border-radius: 8px;
+}
+@media (min-width: 1200px) {
+  .video-shape { bottom: -140px; }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .video-shape {

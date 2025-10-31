@@ -62,7 +62,7 @@ return (
                       data-aos-duration={800}
                       data-aos-delay={300}
                     >
-                      <Link href="/o-nama" className="vl-btn-primary">
+                      <Link href="/about" className="vl-btn-primary">
                         Saznaj više
                       </Link>
                     </div>
@@ -182,3 +182,7 @@ return (
 );
 
 }
+
+
+
+

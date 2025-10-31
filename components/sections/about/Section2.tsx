@@ -21,17 +21,17 @@ export default function Section2() {
                                         <ul className="nav nav-pills" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                                                    <span className="tab-title">Our Vision</span>
+                                                    <span className="tab-title">Vizija</span>
                                                 </button>
                                             </li>
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                                    <span className="tab-title">Our History</span>
+                                                    <span className="tab-title">Istorijat</span>
                                                 </button>
                                             </li>
                                             <li className="nav-item" role="presentation">
                                                 <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
-                                                    <span className="tab-title">Why Choose Us</span>
+                                                    <span className="tab-title">Zašto mi</span>
                                                 </button>
                                             </li>
                                         </ul>
@@ -122,3 +122,4 @@ export default function Section2() {
         </>
     );
 }
+

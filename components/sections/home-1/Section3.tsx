@@ -1,4 +1,5 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import SwiperPadding from "@/components/elements/BoxSwiperPadding";
@@ -14,30 +15,12 @@ const swiperOptions = {
   },
   loop: true,
   breakpoints: {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 30,
-    },
-    575: {
-      slidesPerView: 1,
-      spaceBetween: 30,
-    },
-    767: {
-      slidesPerView: 1,
-      spaceBetween: 30,
-    },
-    991: {
-      slidesPerView: 2,
-      spaceBetween: 30,
-    },
-    1199: {
-      slidesPerView: 2,
-      spaceBetween: 30,
-    },
-    1350: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
+    320: { slidesPerView: 1, spaceBetween: 30 },
+    575: { slidesPerView: 1, spaceBetween: 30 },
+    767: { slidesPerView: 1, spaceBetween: 30 },
+    991: { slidesPerView: 2, spaceBetween: 30 },
+    1199: { slidesPerView: 2, spaceBetween: 30 },
+    1350: { slidesPerView: 3, spaceBetween: 30 },
   },
   navigation: {
     nextEl: ".owl-next",
@@ -68,7 +51,7 @@ export default function Section3() {
         </div>
         <div className="row" id="service-slide-1">
           <div className="box-swiper-padding">
-            <Swiper {...swiperOptions} className="owl-carousel owl-theme" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
+            <Swiper {...(swiperOptions as any)} className="owl-carousel owl-theme" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
               {/* single slider box */}
               <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-presenter.png">
                 <div className="vl-service-icon-box">

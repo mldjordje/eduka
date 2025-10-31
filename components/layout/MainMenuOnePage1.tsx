@@ -4,19 +4,19 @@ export default function MainMenu() {
     return (
         <ul>
             <li>
-                <Link href="#about">About us</Link>
+                <Link href="#about">O nama</Link>
             </li>
             <li>
-                <Link href="#service">Services</Link>
+                <Link href="#service">Usluge</Link>
             </li>
             <li>
-                <Link href="#work">Work</Link>
+                <Link href="#work">Rad</Link>
             </li>
             <li>
-                <Link href="#testimonial">Testimonial</Link>
+                <Link href="#testimonial">Utisci</Link>
             </li>
             <li>
-                <Link href="#contact">Contact</Link>
+                <Link href="#contact">Kontakt</Link>
             </li>
             <li>
                 <Link href="#blog">Vesti</Link>
