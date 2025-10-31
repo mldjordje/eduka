@@ -50,9 +50,9 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                         </span>
                       </div>
                       <div className="vl-content">
-                        <div className="title">Kontaktirajte nas </div>
-                        <Link href="tel:+49309233255" className="number">
-                          +60 123 9233255
+                        <div className="title">Pozovite nas</div>
+                        <Link href="tel:+381184261749" className="number">
+                          018 426 1749
                         </Link>
                       </div>
                     </div>
