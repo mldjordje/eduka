@@ -36,13 +36,13 @@ export default function CmsPage() {
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
 
-  const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
+  const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
   const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
 
   const buildPrintHtml = (app: ApplicationSubmission) => {
     const safe = (v?: string) => (v ?? "");
     const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
-    return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica — ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick=\"window.print()\" style=\"float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer\">Štampaj<\/button>\n<h1>Pristupnica — podaci o podnosiocu<\/h1>\n<div class=\"muted\">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class=\"section grid\">\n<div class=\"label\">Ime i prezime<\/div><div class=\"val\">${safe(app.name)}<\/div>\n<div class=\"label\">Adresa<\/div><div class=\"val\">${safe(app.address)}<\/div>\n<div class=\"label\">E-mail<\/div><div class=\"val\">${safe(app.email)}<\/div>\n<div class=\"label\">Telefon<\/div><div class=\"val\">${safe(app.phone)}<\/div>\n<\/div>\n<div class=\"section grid\">\n<div class=\"label\">JMBG<\/div><div class=\"val\">${safe(app.jmbg)}<\/div>\n<div class=\"label\">Broj licence<\/div><div class=\"val\">${safe(app.licenseNumber)}<\/div>\n<div class=\"label\">Lični broj<\/div><div class=\"val\">${safe(app.idNumber)}<\/div>\n<div class=\"label\">Zanimanje<\/div><div class=\"val\">${safe(app.profession)}<\/div>\n<div class=\"label\">Ustanova<\/div><div class=\"val\">${safe(app.institution)}<\/div>\n<div class=\"label\">Staž<\/div><div class=\"val\">${safe(app.yearsOfService)}<\/div>\n<div class=\"label\">Stepen obrazovanja<\/div><div class=\"val\">${safe(app.educationLevel as any)}<\/div>\n<div class=\"label\">Komora<\/div><div class=\"val\">${safe(app.chamber)}<\/div>\n<\/div>\n<div class=\"section grid\">\n<div class=\"label\">Opcija članarine<\/div><div class=\"val\">${(app.membershipFeeOption === 'monthly') ? 'Odbijanje od plate (200 RSD mesečno)' : (app.membershipFeeOption === 'annual' ? 'Godišnje (2.400 RSD)' : '')}<\/div>\n<div class=\"label\">Saglasnost<\/div><div class=\"val\">${app.agreementAccepted ? 'DA' : 'NE'}<\/div>\n<\/div>\n</body>\n</html>`;
+    return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica — ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">Štampaj<\/button>\n<h1>Pristupnica — podaci o podnosiocu<\/h1>\n<div class="muted">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class="section grid">\n<div class="label">Ime i prezime<\/div><div class="val">${safe(app.name)}<\/div>\n<div class="label">Adresa<\/div><div class="val">${safe(app.address)}<\/div>\n<div class="label">E-mail<\/div><div class="val">${safe(app.email)}<\/div>\n<div class="label">Telefon<\/div><div class="val">${safe(app.phone)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">JMBG<\/div><div class="val">${safe(app.jmbg)}<\/div>\n<div class="label">Broj licence<\/div><div class="val">${safe(app.licenseNumber)}<\/div>\n<div class="label">Lični broj<\/div><div class="val">${safe(app.idNumber)}<\/div>\n<div class="label">Zanimanje<\/div><div class="val">${safe(app.profession)}<\/div>\n<div class="label">Ustanova<\/div><div class="val">${safe(app.institution)}<\/div>\n<div class="label">Staž<\/div><div class="val">${safe(app.yearsOfService)}<\/div>\n<div class="label">Stepen obrazovanja<\/div><div class="val">${safe(app.educationLevel as any)}<\/div>\n<div class="label">Komora<\/div><div class="val">${safe(app.chamber)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">Opcija članarine<\/div><div class="val">${app.membershipFeeOption === "monthly" ? "Odbijanje od plate (200 RSD mesečno)" : app.membershipFeeOption === "annual" ? "Godišnje (2.400 RSD)" : ""}<\/div>\n<div class="label">Saglasnost<\/div><div class="val">${app.agreementAccepted ? "DA" : "NE"}<\/div>\n<\/div>\n</body>\n</html>`;
   };
 
   const handlePrint = (app: ApplicationSubmission) => {
@@ -137,7 +137,7 @@ export default function CmsPage() {
       excerpt: post.excerpt,
       content: post.content,
       tags: (post.tags || []).join(", "),
-      date: post.date?.slice(0,10) || "",
+      date: post.date?.slice(0, 10) || "",
     });
     setEditingSlug(post.slug);
     setMessage(null);
@@ -147,16 +147,16 @@ export default function CmsPage() {
   const handleDelete = async (slug: string) => {
     if (!confirm("Obrisati ovu objavu?")) return;
     try {
-      const base = API_BASE ? API_BASE.replace(/\/+$/,'') : '';
+      const base = API_BASE ? API_BASE.replace(/\/+$/, "") : "";
       const endpoint = base ? `${base}/posts.php?slug=${encodeURIComponent(slug)}` : `/api/posts/${encodeURIComponent(slug)}`;
-      const res = await fetch(endpoint, { method: 'DELETE' });
+      const res = await fetch(endpoint, { method: "DELETE" });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || 'Brisanje nije uspelo');
+        throw new Error(body.message || "Brisanje nije uspelo");
       }
-      setPosts((prev) => prev.filter(p => p.slug !== slug));
+      setPosts((prev) => prev.filter((p) => p.slug !== slug));
     } catch (e: any) {
-      setError(e.message || 'Greška pri brisanju objave');
+      setError(e.message || "Greška pri brisanju objave");
     }
   };
 
@@ -169,8 +169,12 @@ export default function CmsPage() {
       const base = API_BASE ? `${API_BASE}` : "";
       const isEdit = Boolean(editingSlug);
       const endpoint = isEdit
-        ? (base ? `${base}/posts.php?slug=${encodeURIComponent(editingSlug!)}` : `/api/posts/${encodeURIComponent(editingSlug!)}`)
-        : (base ? `${base}/posts.php` : "/api/posts");
+        ? base
+          ? `${base}/posts.php?slug=${encodeURIComponent(editingSlug!)}`
+          : `/api/posts/${encodeURIComponent(editingSlug!)}`
+        : base
+        ? `${base}/posts.php`
+        : "/api/posts";
       const method = isEdit ? "PUT" : "POST";
       const response = await fetch(endpoint, {
         method,
@@ -182,7 +186,7 @@ export default function CmsPage() {
         throw new Error(body.message || (isEdit ? "Neuspešno ažuriranje" : "Neuspešno čuvanje objave"));
       }
       const savedPost: BlogPost = await response.json();
-      setPosts((prev) => isEdit ? prev.map(p => p.slug === savedPost.slug ? savedPost : p) : [savedPost, ...prev]);
+      setPosts((prev) => (isEdit ? prev.map((p) => (p.slug === savedPost.slug ? savedPost : p)) : [savedPost, ...prev]));
       setForm({ ...initialPostForm });
       setEditingSlug(null);
       setMessage(isEdit ? "Objava je uspešno ažurirana!" : "Objava je uspešno sačuvana!");
@@ -205,15 +209,19 @@ export default function CmsPage() {
       if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
       const url: string = body.url || body.path;
       const galleryEndpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
-      const save = await fetch(galleryEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url, name: file.name }) });
+      const save = await fetch(galleryEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, name: file.name }),
+      });
       if (!save.ok) throw new Error("Greška pri upisu u galeriju");
       const saved = await save.json().catch(() => ({}));
-      const created: GalleryImage = (saved && (saved.url || saved.id)) ? (saved as any) : ({ id: crypto.randomUUID(), url, name: file.name, createdAt: new Date().toISOString() } as any);
-      setGallery((prev) => [created, ...prev].filter((x) => x && typeof x.url === "string" && x.url.length > 0));
+      const created: GalleryImage = saved && (saved as any).url ? (saved as any) : ({ id: crypto.randomUUID(), url, name: file.name, createdAt: new Date().toISOString() } as any);
+      setGallery((prev) => [created, ...prev].filter((x) => x && typeof (x as any).url === "string" && (x as any).url.length > 0));
     } catch (e) {
       // no-op minimal
     } finally {
-      if (event.target) event.target.value = "";
+      if (event.target) (event.target as HTMLInputElement).value = "";
     }
   };
 
@@ -313,7 +321,7 @@ export default function CmsPage() {
                       <div className="col-12 pb-16">
                         <label className="form-label">Pregled slike</label>
                         <div className="vl-blog-thumb image-anime" style={{ maxWidth: 300 }}>
-                          <img className="w-100" src={form.image.startsWith("http") ? form.image : `/${form.image.replace(/^\\//, "")}`} alt="Pregled slike" />
+                          <img className="w-100" src={form.image.startsWith("http") ? form.image : "/" + form.image.replace(/^\/+/, "")} alt="Pregled slike" />
                         </div>
                       </div>
                     )}
@@ -364,7 +372,7 @@ export default function CmsPage() {
                 {gallery.length > 0 && (
                   <div className="row">
                     {gallery.map((g) => {
-                      const src = g.url.startsWith("http") ? g.url : `/${g.url.replace(/^\\//, "")}`;
+                      const src = g.url.startsWith("http") ? g.url : "/" + g.url.replace(/^\/+/, "");
                       return (
                         <div className="col-sm-6 col-md-4 col-lg-3 mb-16" key={g.id}>
                           <div className="vl-blog-thumb image-anime"><img src={src} alt={g.name || "galerija"} className="w-100" /></div>
