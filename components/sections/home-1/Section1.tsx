@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useState } from "react";
@@ -47,13 +47,13 @@ return (
               <div className="row">
                 <div className="col-lg-6 fix">
                   <div className="vl-banner-area-content fix p-relative">
-                    <h5 className="subtitle">Dobrodošli na Eduku</h5>
+                    <h5 className="subtitle">DobrodoÅ¡li na Eduku</h5>
                     <h1 className="title text-anime-style-3 pt-16 pb-16">
-                      Udruženje zdravstvenih radnika i saradnika Nišavskog okruga
+                      UdruÅ¾enje zdravstvenih radnika i saradnika NiÅ¡avskog okruga
                     </h1>
                     <p className="para pb-32">
-                      Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke,
-                      razmene znanja i podizanja kvaliteta zdravstvene zaštite kroz kontinuiranu edukaciju.
+                      Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapreÄ‘enja struke,
+                      razmene znanja i podizanja kvaliteta zdravstvene zaÅ¡tite kroz kontinuiranu edukaciju.
                     </p>
                     {/* btn */}
                     <div
@@ -63,7 +63,7 @@ return (
                       data-aos-delay={300}
                     >
                       <Link href="/about" className="vl-btn-primary">
-                        Saznaj više
+                        Saznaj viÅ¡e
                       </Link>
                     </div>
                   </div>
@@ -94,10 +94,10 @@ return (
                   <div className="vl-banner-area-content fix p-relative">
                     <h5 className="subtitle">Kontinuirana edukacija</h5>
                     <h1 className="title text-anime-style-3 pt-16 pb-16">
-                      Ulažemo u znanje i profesionalni razvoj zdravstvenih radnika
+                      UlaÅ¾emo u znanje i profesionalni razvoj zdravstvenih radnika
                     </h1>
                     <p className="para pb-32">
-                      Eduka organizuje KME programe, radionice i online seminare sa ciljem stalnog usavršavanja
+                      Eduka organizuje KME programe, radionice i online seminare sa ciljem stalnog usavrÅ¡avanja
                       zdravstvenih radnika svih profila.
                     </p>
                     {/* btn */}
@@ -144,11 +144,11 @@ return (
                   <div className="vl-banner-area-content fix p-relative">
                     <h5 className="subtitle">Postani deo zajednice</h5>
                     <h1 className="title text-anime-style-3 pt-16 pb-16">
-                      Zajedno gradimo bolju budućnost zdravstvene profesije
+                      Zajedno gradimo bolju buduÄ‡nost zdravstvene profesije
                     </h1>
                     <p className="para pb-32">
-                      Pridruži se udruženju Eduka i doprinesi razvoju zdravstvene zaštite kroz saradnju,
-                      razmenu iskustava i zajedničke projekte.
+                      PridruÅ¾i se udruÅ¾enju Eduka i doprinesi razvoju zdravstvene zaÅ¡tite kroz saradnju,
+                      razmenu iskustava i zajedniÄke projekte.
                     </p>
                     {/* btn */}
                     <div
@@ -158,7 +158,7 @@ return (
                       data-aos-delay={300}
                     >
                       <Link href="/prijava" className="vl-btn-primary">
-                        Postani član
+                        Postani Älan
                       </Link>
                     </div>
                   </div>
@@ -182,6 +182,7 @@ return (
 );
 
 }
+
 
 
 
