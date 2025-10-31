@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { BlogPost } from "@/types/blog";
@@ -12,7 +12,7 @@ export default function Section8() {
     fetch(url)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Greška");
+          throw new Error("GreÅ¡ka");
         }
         return res.json();
       })
@@ -79,7 +79,7 @@ export default function Section8() {
                     </h3>
                     <p>{blogs.excerpt}</p>
                     <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
-                      Saznaj više
+                      Saznaj viÅ¡e
                       <span>
                         <i className="fa-regular fa-arrow-right" />
                       </span>
@@ -96,3 +96,4 @@ export default function Section8() {
     </>
   );
 }
+
