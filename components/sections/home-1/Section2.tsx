@@ -12,11 +12,6 @@ export default function Section2() {
                                 <div className="vl-about-radius-thumb reveal image-anime">
                                     <img className="w-100" src="assets/img/eduka/workshop-audience-front.png" alt="Eduka radionica" />
                                 </div>
-                                <div className="vl-about-star-shape">
-                                    <div className="shape">
-                                        <img className="circle" src="assets/img/shape/vl-star-shape-1.2.svg" alt="" />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div className="col-lg-4 order-md-1 mb-30">

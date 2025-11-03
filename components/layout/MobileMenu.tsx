@@ -21,7 +21,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     <div className="vl-offcanvas-header d-flex justify-content-between align-items-center mb-40">
                         <div className="vl-offcanvas-logo">
                             <Link href="/">
-                                <img src="assets/img/logo/vl-logo-1.1.png" alt="" />
+                                <img src="assets/img/logo/logo2.png" alt="Eduka logo" />
                             </Link>
                         </div>
                         <div className="vl-offcanvas-close">
