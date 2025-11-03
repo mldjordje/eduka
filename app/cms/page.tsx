@@ -39,8 +39,7 @@ export default function CmsPage() {
   async function handleGalleryDelete(id: string) {
     if (!confirm("Obrisati ovu sliku iz galerije?")) return;
     try {
-      const base = API_BASE ? API_BASE : "";
-      const endpoint = base ? `${base}/gallery.php?id=${encodeURIComponent(id)}` : `/api/gallery?id=${encodeURIComponent(id)}`;
+      const endpoint = `/api/gallery?id=${encodeURIComponent(id)}`;
       const res = await fetch(endpoint, { method: "DELETE" });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
@@ -89,8 +88,7 @@ export default function CmsPage() {
       .then((data: ApplicationSubmission[]) => setApplications(data))
       .catch(() => setApplications([]));
 
-    const galleryUrl = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
-    fetch(galleryUrl)
+    fetch("/api/gallery")
       .then((res) => res.json())
       .then((data: GalleryImage[]) => setGallery(data))
       .catch(() => setGallery([]));
@@ -224,8 +222,7 @@ export default function CmsPage() {
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
       const url: string = body.url || body.path;
-      const galleryEndpoint = API_BASE ? `${API_BASE}/gallery.php` : "/api/gallery";
-      const save = await fetch(galleryEndpoint, {
+      const save = await fetch("/api/gallery", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, name: file.name }),

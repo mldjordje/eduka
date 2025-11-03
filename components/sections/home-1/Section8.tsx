@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { BlogPost } from "@/types/blog";
@@ -12,7 +12,7 @@ export default function Section8() {
     fetch(url)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("GreÅ¡ka");
+          throw new Error("Greška");
         }
         return res.json();
       })
@@ -56,36 +56,36 @@ export default function Section8() {
                   <div className="vl-single-blog-box">
                     <div className="vl-blog-thumb image-anime">
                       <Link href={`/blog/${blogs.slug}`}>
-                      <img className="w-100" src={imageSrc} alt={blogs.title} />
+                        <img className="w-100" src={imageSrc} alt={blogs.title} />
                       </Link>
                     </div>
                     <div className="vl-blog-content">
-                    <div className="vl-blog-meta">
-                      <Link href="#">
-                        <cite className="meta-icon mr-6">
-                          <img src="assets/img/icons/vl-date-icon-1.1.svg" alt="" />
-                        </cite>
-                        {blogs.date}
-                      </Link>
-                      <Link href="#">
-                        <cite className="meta-icon mr-6">
-                          <img src="assets/img/icons/vl-blog-user1.1.svg" alt="" />
-                        </cite>
-                        {blogs.author}
+                      <div className="vl-blog-meta">
+                        <Link href="#">
+                          <cite className="meta-icon mr-6">
+                            <img src="assets/img/icons/vl-date-icon-1.1.svg" alt="" />
+                          </cite>
+                          {blogs.date}
+                        </Link>
+                        <Link href="#">
+                          <cite className="meta-icon mr-6">
+                            <img src="assets/img/icons/vl-blog-user1.1.svg" alt="" />
+                          </cite>
+                          {blogs.author}
+                        </Link>
+                      </div>
+                      <h3 className="title pt-20 pb-12">
+                        <Link href={`/blog/${blogs.slug}`}>{blogs.title}</Link>
+                      </h3>
+                      <p>{blogs.excerpt}</p>
+                      <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
+                        Saznaj više
+                        <span>
+                          <i className="fa-regular fa-arrow-right" />
+                        </span>
                       </Link>
                     </div>
-                    <h3 className="title pt-20 pb-12">
-                      <Link href={`/blog/${blogs.slug}`}>{blogs.title}</Link>
-                    </h3>
-                    <p>{blogs.excerpt}</p>
-                    <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
-                      Saznaj viÅ¡e
-                      <span>
-                        <i className="fa-regular fa-arrow-right" />
-                      </span>
-                    </Link>
                   </div>
-                </div>
                 </div>
               );
             })}
