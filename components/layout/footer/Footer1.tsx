@@ -11,7 +11,7 @@ export default function Footer() {
                             <div className="vl-footer-widget-1">
                                 <div className="vl-footer-logo">
                                     <Link href="/">
-                                        <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="Eduka" />
+                                        <img src="assets/img/logo/logo2.png" alt="Eduka" />
                                     </Link>
                                 </div>
                                 <div className="vl-footer-content">
@@ -143,4 +143,3 @@ export default function Footer() {
         </>
     );
 }
-

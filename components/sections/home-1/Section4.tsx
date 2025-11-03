@@ -89,7 +89,7 @@ export default function Section4() {
                             <div className="vl-tab-content-block" data-aos="fade-left" data-aos-duration={800} data-aos-delay={300}>
                                 {/* shape */}
                                 <div className="shape">
-                                    <img className="circle" src="assets/img/shape/vl-star-shape-1.2.svg" alt="" />
+                                    {/* removed rotating star */}
                                 </div>
                                 <div className="tab-content" id="v-pills-tabContent">
                                     <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabIndex={0}>

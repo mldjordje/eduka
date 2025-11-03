@@ -14,7 +14,7 @@ export default function Section2() {
                                 </div>
                                 <div className="vl-about-star-shape">
                                     <div className="shape">
-                                        <img className="circle" src="assets/img/shape/vl-star-shape-1.2.svg" alt="" />
+                                        {/* removed rotating star */}
                                     </div>
                                 </div>
                             </div>
