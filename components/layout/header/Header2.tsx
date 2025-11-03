@@ -35,9 +35,9 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                                             </span>
                                         </div>
                                         <div className="vl-content">
-                                            <div className="title">Hotline 24/7</div>
-                                            <Link href="tel:+49309233255" className="number">
-                                                +49 30 9233255
+                                            <div className="title">Pozovite nas</div>
+                                            <Link href="tel:+381638661256" className="number">
+                                                063 866 1256
                                             </Link>
                                         </div>
                                     </div>

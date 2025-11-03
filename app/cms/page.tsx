@@ -35,6 +35,22 @@ export default function CmsPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
+  
+  async function handleGalleryDelete(id: string) {
+    if (!confirm("Obrisati ovu sliku iz galerije?")) return;
+    try {
+      const base = API_BASE ? API_BASE : "";
+      const endpoint = base ? `${base}/gallery.php?id=${encodeURIComponent(id)}` : `/api/gallery?id=${encodeURIComponent(id)}`;
+      const res = await fetch(endpoint, { method: "DELETE" });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Brisanje nije uspelo");
+      }
+      setGallery((prev) => prev.filter((g) => g.id !== id));
+    } catch (e: any) {
+      alert(e.message || "Greška pri brisanju slike");
+    }
+  }
 
   const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
   const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
@@ -376,6 +392,7 @@ export default function CmsPage() {
                       return (
                         <div className="col-sm-6 col-md-4 col-lg-3 mb-16" key={g.id}>
                           <div className="vl-blog-thumb image-anime"><img src={src} alt={g.name || "galerija"} className="w-100" /></div>
+                          <div className="pt-8"><button type="button" className="vl-btn-primary" onClick={() => handleGalleryDelete(g.id)}>Obriši</button></div>
                         </div>
                       );
                     })}
@@ -428,4 +445,3 @@ export default function CmsPage() {
     </Layout>
   );
 }
-

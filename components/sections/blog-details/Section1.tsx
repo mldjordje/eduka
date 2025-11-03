@@ -189,11 +189,11 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                     <h4 className="title pb-24">
                                         If You Need Any Help <br /> Contact With Us
                                     </h4>
-                                    <Link href="tel:+1234567890" className="phone">
+                                    <Link href="tel:+381638661256" className="phone">
                                         <span>
                                             <i className="fa-light fa-phone" />
                                         </span>
-                                        +123 456 7890
+                                        063 866 1256
                                     </Link>
                                 </div>
                                 {/* social widget */}

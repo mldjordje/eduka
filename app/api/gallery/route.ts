@@ -30,3 +30,31 @@ export async function POST(request: Request) {
   }
 }
 
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({ message: "Nedostaje ID slike." }, { status: 400 });
+    }
+    const images = await readDataFile<GalleryImage[]>(FILE_NAME, []);
+    const idx = images.findIndex((it) => it.id === id);
+    if (idx === -1) {
+      return NextResponse.json({ message: "Slika nije pronađena." }, { status: 404 });
+    }
+    const [removed] = images.splice(idx, 1);
+    await writeDataFile(FILE_NAME, images);
+    try {
+      // Best-effort removal of uploaded file if it’s a local upload
+      if (removed?.url && /^\/?uploads\//.test(removed.url)) {
+        const p = removed.url.replace(/^\//, "");
+        const fsPath = require("path").join(process.cwd(), "public", p.replace(/^uploads\//, "uploads/"));
+        const fs = require("fs").promises;
+        await fs.unlink(fsPath).catch(() => {});
+      }
+    } catch {}
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
+  }
+}

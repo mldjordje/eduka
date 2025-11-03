@@ -21,7 +21,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     <div className="vl-offcanvas-header d-flex justify-content-between align-items-center mb-40">
                         <div className="vl-offcanvas-logo">
                             <Link href="/">
-                                <img src="assets/img/logo/vl-logo-1.1.png" alt="" />
+                                <img src="assets/img/logo/logo2.png" alt="Eduka" />
                             </Link>
                         </div>
                         <div className="vl-offcanvas-close">
@@ -90,31 +90,31 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                         </nav>
                     </div>
                     <div className="vl-offcanvas-info mb-40">
-                        <h3 className="vl-offcanvas-sm-title">Contact Us</h3>
+                        <h3 className="vl-offcanvas-sm-title">Kontakt</h3>
                         <span>
-                            <Link href="#">
+                            <Link href="tel:+381638661256">
                                 <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="" />
+                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
                                 </span>
-                                +57 9954 6476
+                                063 866 1256
+                            </Link>
+                        </span>
+                        <br />
+                        <span>
+                            <Link href="mailto:info@eduka.rs">
+                                <span>
+                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
+                                </span>
+                                info@eduka.rs
                             </Link>
                         </span>
                         <br />
                         <span>
                             <Link href="#">
                                 <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="" />
+                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
                                 </span>
-                                dentistsolution@com
-                            </Link>
-                        </span>
-                        <br />
-                        <span>
-                            <Link href="#">
-                                <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="" />
-                                </span>
-                                421 Allen, Mexico 4233
+                                Bulevar oslobođenja 1, Beograd
                             </Link>
                         </span>
                     </div>

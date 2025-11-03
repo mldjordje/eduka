@@ -11,13 +11,14 @@ export default function Footer() {
                             <div className="vl-footer-widget-1">
                                 <div className="vl-footer-logo">
                                     <Link href="/">
-                                        <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="" />
+                                        <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="Eduka" />
                                     </Link>
                                 </div>
                                 <div className="vl-footer-content">
                                     <p className="pt-24 pb-24">
-                                        We’re dedicated to providing <br /> high-quality, compassionate <br />
-                                        dental care for patients of all <br /> ages from preventive care.
+                                        Eduka okuplja zdravstvene radnike radi stručnog usavršavanja,
+                                        razmene iskustava i organizovanja akreditovanih programa
+                                        kontinuirane edukacije širom Srbije.
                                     </p>
                                 </div>
                                 <div className="vl-footer-social">
@@ -107,25 +108,25 @@ export default function Footer() {
                                 <div className="vl-footer-icon-list">
                                     <ul>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="tel:+381638661256">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
                                                 </span>
-                                                +381 11 123 4567
+                                                063 866 1256
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="#">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
                                                 </span>
                                                 Bulevar oslobođenja 1, Beograd
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="mailto:info@eduka.rs">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
                                                 </span>
                                                 info@eduka.rs
                                             </Link>
@@ -133,7 +134,7 @@ export default function Footer() {
                                         <li>
                                             <Link href="#">
                                                 <span>
-                                                    <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="" />
+                                                    <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="Veb" />
                                                 </span>
                                                 www.eduka.rs
                                             </Link>
@@ -170,3 +171,4 @@ export default function Footer() {
         </>
     );
 }
+

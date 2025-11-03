@@ -32,7 +32,6 @@ export default function GalerijaPage() {
       <section className="pt-60 pb-60">
         <div className="container">
           <Suspense fallback={<p>Učitavanje...</p>}>
-            
             <GalleryGrid />
           </Suspense>
         </div>
@@ -46,3 +45,4 @@ export const metadata: Metadata = {
   description: "Fotografije i momenti sa događaja udruženja Eduka.",
   alternates: { canonical: "/galerija" },
 };
+
