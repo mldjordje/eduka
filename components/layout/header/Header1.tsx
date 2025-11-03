@@ -20,7 +20,7 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                     <Link href="/">
                       <img
                         src="assets/img/logo/logo2.png"
-                        alt="logo"
+                        alt="Eduka logo"
                         style={{ maxWidth: "120px", height: "auto" }}
                       />
                     </Link>

@@ -13,7 +13,7 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                             <div className="col-lg-3 col-md-6 col-6">
                                 <div className="vl-logo">
                                     <Link href="/">
-                                        <img src="assets/img/logo/vl-logo-1.1.png" alt="" />
+                                        <img src="assets/img/logo/logo2.png" alt="Eduka logo" />
                                     </Link>
                                 </div>
                             </div>
