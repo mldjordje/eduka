@@ -16,8 +16,9 @@ export default function Footer() {
                                 </div>
                                 <div className="vl-footer-content">
                                     <p className="pt-24 pb-24">
-                                        We’re dedicated to providing <br /> high-quality, compassionate <br />
-                                        dental care for patients of all <br /> ages from preventive care.
+                                        Eduka okuplja zdravstvene radnike radi stručnog usavršavanja,
+                                        razmene iskustava i organizovanja akreditovanih programa
+                                        kontinuirane edukacije širom Srbije.
                                     </p>
                                 </div>
                                 <div className="vl-footer-social">
@@ -48,23 +49,23 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-2">
-                                <h3 className="vl-footer-widget-title mb-24">Quick Links</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Brzi linkovi</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="/">Home Page</Link>
+                                            <Link href="/">Početna</Link>
                                         </li>
                                         <li>
-                                            <Link href="/about">About Us</Link>
+                                            <Link href="/about">O nama</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Appointment</Link>
+                                            <Link href="/vesti">Vesti</Link>
                                         </li>
                                         <li>
-                                            <Link href="/blog">News &amp; Blog</Link>
+                                            <Link href="/galerija">Galerija</Link>
                                         </li>
                                         <li>
-                                            <Link href="/service">Service</Link>
+                                            <Link href="/postanite-clan">Postanite član</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,23 +73,27 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-2 col-md-6 mb-30">
                             <div className="vl-footer-widget-3 ml-40">
-                                <h3 className="vl-footer-widget-title mb-24">Our Services</h3>
+                                <h3 className="vl-footer-widget-title mb-24">Resursi</h3>
                                 <div className="vl-footer-menu">
                                     <ul>
                                         <li>
-                                            <Link href="#">General Dental</Link>
+                                            <Link href="https://eduka.rs/edukacije" target="_blank" rel="noopener noreferrer">
+                                                Akreditovane edukacije
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Cosmetic Dental</Link>
+                                            <Link href="https://eduka.rs" target="_blank" rel="noopener noreferrer">
+                                                Eduka vesti
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Whitening Care</Link>
+                                            <Link href="mailto:edukaudruzenje@gmail.com">Podrška za članove</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Implants</Link>
+                                            <Link href="/blog">Stručni članci</Link>
                                         </li>
                                         <li>
-                                            <Link href="#">Dental Care</Link>
+                                            <Link href="/prijava">Prijava za edukacije</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,13 +101,66 @@ export default function Footer() {
                         </div>
                         <div className="col-lg-4 col-md-6 mb-30">
                             <div className="vl-footer-widget-4">
-                                <h3 className="vl-footer-widget-title mb-24">Subscribe Newsletter</h3>
-                                {/* subcribe form */}
-                                <div className="vl-newslater-form">
-                                    <input name="email" type="email" placeholder="Enter Your Email" />
-                                    <button type="submit" className="w-100 mt-16 vl-btn-primar4y">
-                                        Subscribe
-                                    </button>
+                                <h3 className="vl-footer-widget-title mb-24">Kontakt</h3>
+                                <div className="vl-footer-icon-list">
+                                    <ul>
+                                        <li>
+                                            <Link href="tel:+381184261749">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                                </span>
+                                                018 426 1749 (Mišića)
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="tel:+381638661256">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                                </span>
+                                                063 866 1256 (Tankosića)
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="tel:+38118503748">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                                </span>
+                                                018 503 748
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
+                                                </span>
+                                                Vojvode Mišića 50, Niš
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
+                                                </span>
+                                                Vojvode Tankosića 15, Niš
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <Link href="mailto:edukaudruzenje@gmail.com">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
+                                                </span>
+                                                edukaudruzenje@gmail.com
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="https://www.eduka.rs" target="_blank" rel="noopener noreferrer">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="Veb" />
+                                                </span>
+                                                www.eduka.rs
+                                            </Link>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +170,7 @@ export default function Footer() {
                     <div className="vl-footer-copyright-text-4">
                         <div className="row">
                             <div className="col-lg-6">
-                                <p className="para">© 2025 Dentalx ,Inc. All Rights Reserved.</p>
+                                <p className="para">© {new Date().getFullYear()} Eduka. Sva prava zadržana.</p>
                             </div>
                             <div className="col-lg-6">
                                 <div className="copy-right-menu">

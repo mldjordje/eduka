@@ -70,8 +70,8 @@ export default function Section7() {
                     </div>
                   </div>
                   <div className="vl-contact-info-btn mt-12">
-                    <Link href="mailto:info@eduka.co.rs" className="w-100 text-center vl-btn-primary">
-                      Pišite: info@eduka.co.rs
+                    <Link href="mailto:edukaudruzenje@gmail.com" className="w-100 text-center vl-btn-primary">
+                      Pišite: edukaudruzenje@gmail.com
                     </Link>
                   </div>
                 </div>

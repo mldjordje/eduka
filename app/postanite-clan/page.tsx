@@ -88,8 +88,8 @@ export default function ApplicationPage() {
                 <div className="pb-16"><a className="vl-btn-primary" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">Preuzmi uplatnicu (PDF)</a></div>
                 <h2 className="title pb-16">Pristupnica</h2>
                 <p className="pb-8">Adresa: Vojvode Tankosica 15, 18000 Nis</p>
-                <p className="pb-8">E-mail: edukaudruzenje@gmail.com; info@eduka.co.rs</p>
-                <p className="pb-24">Web: www.eduka.co.rs</p>
+                <p className="pb-8">E-mail: edukaudruzenje@gmail.com</p>
+                <p className="pb-24">Web: www.eduka.rs</p>
 
                 {status === "success" && <div className="alert alert-success">Hvala! Vase podnesene informacije su primljene.</div>}
                 {status === "error" && errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
