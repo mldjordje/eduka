@@ -91,32 +91,60 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     </div>
                     <div className="vl-offcanvas-info mb-40">
                         <h3 className="vl-offcanvas-sm-title">Kontakt</h3>
-                        <span>
-                            <Link href="tel:+381638661256">
-                                <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
-                                </span>
-                                063 866 1256
-                            </Link>
-                        </span>
-                        <br />
-                        <span>
-                            <Link href="mailto:info@eduka.rs">
-                                <span>
-                                    <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
-                                </span>
-                                info@eduka.rs
-                            </Link>
-                        </span>
-                        <br />
-                        <span>
-                            <Link href="#">
+                        <div className="d-flex flex-column gap-2">
+                            <span>
+                                <Link href="tel:+381184261749">
+                                    <span>
+                                        <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                    </span>
+                                    018 426 1749 (Mišića)
+                                </Link>
+                            </span>
+                            <span>
+                                <Link href="tel:+381638661256">
+                                    <span>
+                                        <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                    </span>
+                                    063 866 1256 (Tankosića)
+                                </Link>
+                            </span>
+                            <span>
+                                <Link href="tel:+38118503748">
+                                    <span>
+                                        <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                    </span>
+                                    018 503 748
+                                </Link>
+                            </span>
+                            <span>
+                                <Link href="mailto:edukaudruzenje@gmail.com">
+                                    <span>
+                                        <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
+                                    </span>
+                                    edukaudruzenje@gmail.com
+                                </Link>
+                            </span>
+                            <span className="d-inline-flex align-items-start gap-2">
                                 <span>
                                     <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
                                 </span>
-                                Bulevar oslobođenja 1, Beograd
-                            </Link>
-                        </span>
+                                <span>Vojvode Mišića 50, Niš</span>
+                            </span>
+                            <span className="d-inline-flex align-items-start gap-2">
+                                <span>
+                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
+                                </span>
+                                <span>Vojvode Tankosića 15, Niš</span>
+                            </span>
+                            <span>
+                                <Link href="https://www.eduka.rs" target="_blank" rel="noopener noreferrer">
+                                    <span>
+                                        <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="Veb" />
+                                    </span>
+                                    www.eduka.rs
+                                </Link>
+                            </span>
+                        </div>
                     </div>
                     <div className="vl-offcanvas-social mb-40">
                         <h3 className="vl-offcanvas-sm-title">Follow Us</h3>

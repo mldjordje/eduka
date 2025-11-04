@@ -80,31 +80,55 @@ export default function Footer() {
                                 <div className="vl-footer-icon-list">
                                     <ul>
                                         <li>
+                                            <Link href="tel:+381184261749">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                                </span>
+                                                018 426 1749 (Mišića)
+                                            </Link>
+                                        </li>
+                                        <li>
                                             <Link href="tel:+381638661256">
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
                                                 </span>
-                                                063 866 1256
+                                                063 866 1256 (Tankosića)
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="tel:+38118503748">
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.1.svg" alt="Telefon" />
+                                                </span>
+                                                018 503 748
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <span>
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
                                                 </span>
-                                                Bulevar oslobođenja 1, Beograd
-                                            </Link>
+                                                Vojvode Mišića 50, Niš
+                                            </span>
                                         </li>
                                         <li>
-                                            <Link href="mailto:info@eduka.rs">
+                                            <span>
+                                                <span>
+                                                    <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
+                                                </span>
+                                                Vojvode Tankosića 15, Niš
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <Link href="mailto:edukaudruzenje@gmail.com">
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
                                                 </span>
-                                                info@eduka.rs
+                                                edukaudruzenje@gmail.com
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
+                                            <Link href="https://www.eduka.rs" target="_blank" rel="noopener noreferrer">
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.4.svg" alt="Veb" />
                                                 </span>
