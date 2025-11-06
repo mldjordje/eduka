@@ -8199,8 +8199,13 @@ textarea {
 @media (max-width: 575px) {
   .header-style-1 {
     margin-top: 0px;
-    padding: 20px;
+    /* reduce vertical padding on mobile to avoid covering hero text */
+    padding: 8px 12px;
   }
+  /* shrink logo on mobile to reduce header height */
+  .vl-logo img { max-width: 90px !important; height: auto; }
+  /* make the offcanvas toggle a bit smaller */
+  .vl-header-action-item { padding: 4px 8px; }
 }
 
 .vl-header-icon-box-flex {
@@ -8253,7 +8258,7 @@ textarea {
 @media (max-width: 575px) {
   .header-style-2 {
     margin-top: 0px;
-    padding: 20px;
+    padding: 8px 12px;
     border-radius: 0;
   }
 }
