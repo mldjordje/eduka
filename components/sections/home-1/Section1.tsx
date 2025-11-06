@@ -38,7 +38,7 @@ export default function Section1() {
         <div className="swiper-wrapper">
           <SwiperSlide className="swiper-slide">
             {/* single slider */}
-            <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-presenter.png">
+            <div className="vl-banner-area" data-background="./assets/img/eduka/hero-1.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
@@ -67,7 +67,7 @@ export default function Section1() {
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/workshop-audience-side.png" alt="Učionica Eduka" />
+                      <img src="assets/img/eduka/hero-1.jpg" alt="Učionica Eduka" />
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ export default function Section1() {
 
           <SwiperSlide className="swiper-slide">
             {/* single slider */}
-            <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-lecture.png">
+            <div className="vl-banner-area" data-background="./assets/img/eduka/hero-2.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
@@ -106,7 +106,7 @@ export default function Section1() {
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/workshop-audience-front.png" alt="Publika Eduka" />
+                      <img src="assets/img/eduka/hero-2.jpg" alt="Publika Eduka" />
                     </div>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Section1() {
 
           <SwiperSlide className="swiper-slide">
             {/* single slider */}
-            <div className="vl-banner-area" data-background="./assets/img/eduka/workshop-demonstration.png">
+            <div className="vl-banner-area" data-background="./assets/img/eduka/hero-3.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
@@ -145,7 +145,7 @@ export default function Section1() {
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/workshop-audience-side.png" alt="Publika Eduka sa strane" />
+                      <img src="assets/img/eduka/hero-3.jpg" alt="Publika Eduka sa strane" />
                     </div>
                   </div>
                 </div>

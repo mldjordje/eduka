@@ -43,39 +43,11 @@ export default function Section2() {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-4" />
-                        <div className="col-lg-8">
-                            <div className="vl-about-counter-block">
-                                {/* single counter box */}
-                                <div className="single-couter-box text-center mb-30">
-                                    <h3>
-                                        <span className="title">24X7</span>
-                                    </h3>
-                                    <span className="deseg">Dostupnost</span>
-                                </div>
-                                {/* single counter box */}
-                                <div className="single-couter-box text-center mb-30">
-                                    <h3>
-                                        <span className="title counter">25</span>
-                                        <span>K+</span>
-                                    </h3>
-                                    <span className="deseg">Članova</span>
-                                </div>
-                                {/* single counter box */}
-                                <div className="single-couter-box text-center mb-30">
-                                    <h3>
-                                        <span className="title counter">15</span>
-                                        <span>+</span>
-                                    </h3>
-                                    <span className="deseg">Godina iskustva</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/* Removed counter block per zahtev */}
                 </div>
             </section>
             {/*================= About section End =================*/}
         </>
     );
 }
+
