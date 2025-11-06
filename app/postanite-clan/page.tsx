@@ -86,6 +86,16 @@ export default function ApplicationPage() {
             <div className="col-lg-8">
               <div className="vl-off-white-bg p-40 br-20">
                 <div className="pb-16"><a className="vl-btn-primary" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">Preuzmi uplatnicu (PDF)</a></div>
+                <div className="pb-16">
+                  <p className="pb-8">
+                    Удружење здравствених радника и сарадника Нишавског округа „Едука“ основано је 03.04.2013. као добровољно, непрофитно, ванстраначко удружење. Циљ нам је унапређење здравствене струке кроз планирање, организовање и реализацију програма континуиране медицинске едукације.
+                  </p>
+                  <p className="pb-8">
+                    Организујемо симпозијуме, курсеве, стручне састанке и он‑лајн тестове доступне 24 сата дневно (платформе: www.eduka.co.rs, www.domzdravljanis.co.rs). Потврде се издају уз најмање 60% успешности; у једном дану може се решавати највише 2 теста у складу са прописима.
+                  </p>
+                  <p className="pb-16">Члановима смо на располагању радним данима 7–15 часова.</p>
+                  <p className="pb-8"><strong>Ovde možete da popunite elektronsku pristupnicu.</strong></p>
+                </div>
                 <h2 className="title pb-16">Pristupnica</h2>
                 <p className="pb-8">Adresa: Vojvode Tankosica 15, 18000 Nis</p>
                 <p className="pb-8">E-mail: edukaudruzenje@gmail.com; info@eduka.co.rs</p>
@@ -182,6 +192,12 @@ export default function ApplicationPage() {
                     </div>
                   </div>
                 </form>
+                <div className="pt-16">
+                  <p>
+                    Ovde možete da preuzmete uplatnicu: {" "}
+                    <a className="underline" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">preuzmi uplatnicu (PDF)</a>.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

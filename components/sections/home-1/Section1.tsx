@@ -42,9 +42,7 @@ export default function Section1() {
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
-              <div className="shap3e circle">
-                <img src="assets/img/shape/vl-star-shape-1.1.svg" alt="" />
-              </div>
+              <div className="shap3e circle"></div>
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6 fix">
@@ -56,6 +54,9 @@ export default function Section1() {
                       <p className="para pb-32">
                         Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke,
                         razmene znanja i podizanja kvaliteta zdravstvene zaštite kroz kontinuiranu edukaciju.
+                      </p>
+                      <p className="para pb-32">
+                        udruženje organizuje različite programe kontinuirane edukacije kongrese,simpozijume, seminare, stručne sastanke, kurseve, testove u pisanoj formi a na našoj platformi su vam 24 sata dnevno dostupni i on line testovi.
                       </p>
                       {/* btn */}
                       <div className="vl-hero-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
@@ -81,9 +82,7 @@ export default function Section1() {
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
-              <div className="shap3e circle">
-                <img src="assets/img/shape/vl-star-shape-1.1.svg" alt="" />
-              </div>
+              <div className="shap3e circle"></div>
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6 fix">
@@ -120,9 +119,7 @@ export default function Section1() {
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
               </div>
-              <div className="shap3e circle">
-                <img src="assets/img/shape/vl-star-shape-1.1.svg" alt="" />
-              </div>
+              <div className="shap3e circle"></div>
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6 fix">
@@ -159,4 +156,3 @@ export default function Section1() {
     </>
   );
 }
-

@@ -24,11 +24,7 @@ export default function Section9() {
                 </div>
               </div>
               <div className="col-lg-2">
-                <div className="vl-cta-shape d-none d-lg-block">
-                  <div className="shape-thumb">
-                    <img className="circle" src="assets/img/shape/vl-star-shape-1.1.svg" alt="" />
-                  </div>
-                </div>
+                {/* decorative star shape removed per request */}
               </div>
             </div>
           </div>

@@ -2094,15 +2094,15 @@ img {
 
 .vl-breadcrumb-content .title {
   color: var(--vkl-text-text-1);
-  font-size: var(--vkl-font-size-font-s64);
-  line-height: var(--vkl-specing-height64);
+  font-size: var(--vkl-font-size-font-s40);
+  line-height: var(--vkl-specing-height50);
   font-weight: var(--vkl-weight-semibold);
   padding-bottom: 24px;
 }
 @media (max-width: 575px) {
   .vl-breadcrumb-content .title {
-    font-size: var(--vkl-font-size-font-s40);
-    line-height: var(--vkl-specing-height50);
+    font-size: var(--vkl-font-size-font-s32);
+    line-height: var(--vkl-specing-height40);
   }
 }
 .vl-breadcrumb-content .vl-breadcrumb-list ul li {
@@ -5921,8 +5921,8 @@ textarea {
 .vl-single-blog-box .vl-blog-content .title {
   transition: 0.3s;
   color: var(--vkl-text-text-2);
-  font-size: var(--vkl-font-size-font-s24);
-  line-height: var(--vkl-specing-height30);
+  font-size: var(--vkl-font-size-font-s20);
+  line-height: var(--vkl-specing-height26);
   font-weight: var(--vkl-weight-semibold);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 575px) {
@@ -13508,3 +13508,9 @@ div#banner-slid1e {
 .video-shape { max-width: 100%; }
 .video-shape img { width: 100%; height: auto; display: block; }
 @media (max-width: 575px) { .video-shape { border-width: 4px; } }
+
+/* Custom overrides for news pages */
+.vl-blog-details h1.title {
+  font-size: 32px;
+  line-height: 38px;
+}
