@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { promises as fs } from "fs";
 import path from "path";
@@ -29,7 +30,7 @@ export default async function SimpozijumPage() {
               <h3 className="title pb-12">ПОЗИВ ЗА УЧЕШЋЕ НА НАЦИОНАЛНОМ СИМПОЗИЈУМУ</h3>
               <p className="pb-8">„Дијабетес у лавиринту примарне здравствене заштите“ – Златибор, 25–28. новембар 2025.</p>
               <p className="pb-16">Детаље о програму, бодовању и пријавама прочитајте у вести.</p>
-              <a href="/vesti/dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025" className="vl-btn-primary">Отвори вест</a>
+              <Link href="/vesti/dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025" className="vl-btn-primary">Отвори вест</Link>
             </div>
           </div>
         </div>
