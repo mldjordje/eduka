@@ -1,13 +1,11 @@
 ﻿import Layout from "@/components/layout/Layout";
 import type { Metadata } from "next";
 import Section1 from "@/components/sections/home-1/Section1";
-import Section2 from "@/components/sections/home-1/Section2";
 import Section3 from "@/components/sections/home-1/Section3";
 import Section4 from "@/components/sections/home-1/Section4";
 import Section5 from "@/components/sections/home-1/Section5";
 import Section6 from "@/components/sections/home-1/Section6";
 import Section7 from "@/components/sections/home-1/Section7";
-import Section8 from "@/components/sections/home-1/Section8";
 import Section9 from "@/components/sections/home-1/Section9";
 import NewsTeaser from "@/components/sections/home-1/NewsTeaser";
 
@@ -16,8 +14,6 @@ export default function Home() {
     <>
       <Layout>
         <Section1 />
-        <Section8 />
-        <Section2 />
         <NewsTeaser />
         <Section3 />
         <Section4 />
