@@ -1,7 +1,6 @@
 ﻿import Layout from "@/components/layout/Layout";
 import type { Metadata } from "next";
 import Section1 from "@/components/sections/home-1/Section1";
-import Section2 from "@/components/sections/home-1/Section2";
 import Section3 from "@/components/sections/home-1/Section3";
 import Section4 from "@/components/sections/home-1/Section4";
 import Section5 from "@/components/sections/home-1/Section5";
