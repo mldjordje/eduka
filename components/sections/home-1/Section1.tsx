@@ -92,7 +92,7 @@ export default function Section1() {
                         Ulažemo u znanje i profesionalni razvoj zdravstvenih radnika
                       </h1>
                       <p className="para pb-32">
-                        Eduka organizuje KME programe, radionice i online seminare sa ciljem stalnog usavršavanja
+                        Eduka organizuje KME programe i online seminare sa ciljem stalnog usavršavanja
                         zdravstvenih radnika svih profila.
                       </p>
                       {/* btn */}
