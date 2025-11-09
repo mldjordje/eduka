@@ -7914,22 +7914,22 @@ textarea {
 
 .vl-main-menu ul > li {
   display: inline-block;
-  margin-right: 30px;
+  margin-right: 22px;
   position: relative;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .vl-main-menu ul > li {
-    margin-right: 20px;
+    margin-right: 16px;
   }
 }
 .vl-main-menu ul > li > a {
   color: #fff;
   font-family: var(--vl-fonts-figtree);
-  font-size: 18px;
+  font-size: 16px;
   display: inline-block;
   position: relative;
   transition: 0.3s;
-  padding: 24px 0;
+  padding: 18px 0;
   font-weight: var(--vkl-weight-semibold);
 }
 .vl-main-menu ul > li > a span {
@@ -8182,18 +8182,26 @@ textarea {
 }
 
 .header-style-1 {
-  border-radius: 8px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 20px;
+  padding: 12px 18px;
+  margin-top: 12px;
+  box-shadow: 0 15px 45px rgba(7, 27, 43, 0.25);
+}
+.vl-header-area .vl-logo img {
+  max-width: 110px;
+  height: auto;
+  transition: max-width 0.2s ease;
+}
+.header-sticky .vl-logo img {
+  max-width: 96px !important;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-style-1 {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 16px;
+    padding: 16px;
   }
 }
 @media (max-width: 575px) {
@@ -8210,9 +8218,9 @@ textarea {
 }
 .vl-header-icon-box-flex .vl-icon span {
   background: var(--vkl-text-theme-color-1);
-  height: 50px;
-  width: 50px;
-  line-height: 50px;
+  height: 42px;
+  width: 42px;
+  line-height: 42px;
   text-align: center;
   border-radius: 50px;
   display: inline-block;
@@ -8220,16 +8228,16 @@ textarea {
   transition: 0.3s;
 }
 .vl-header-icon-box-flex .vl-content .title {
-  font-size: var(--vkl-font-size-font-s16);
-  line-height: var(--vkl-specing-height26);
+  font-size: 14px;
+  line-height: 20px;
   font-weight: var(--vkl-weight-medium);
   color: #d0d3d4;
 }
 .vl-header-icon-box-flex .vl-content .number {
   display: inline-block;
   color: var(--vkl-text-text-1);
-  font-size: var(--vkl-font-size-font-s18);
-  line-height: var(--vkl-specing-height18);
+  font-size: 16px;
+  line-height: 18px;
   font-weight: var(--vkl-weight-bold);
 }
 .vl-header-icon-box-flex:hover .vl-icon span {

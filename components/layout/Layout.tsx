@@ -66,6 +66,7 @@ export default function Layout({ headerStyle, footerStyle, mainMenuStyle, childr
   useTextAnimation2();
   useTextAnimation3();
   useAccordion();
+  const mainOffset = scroll ? 110 : 40;
   return (
     <>
       <div id="top" />
@@ -75,7 +76,7 @@ export default function Layout({ headerStyle, footerStyle, mainMenuStyle, childr
       {headerStyle == 2 ? <Header2 mainMenuStyle={mainMenuStyle} scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} offcanvas_bg={offcanvas_bg} offcanvas_menu={offcanvas_menu} offcanvas_social={offcanvas_social} /> : null}
       {headerStyle == 3 ? <Header3 mainMenuStyle={mainMenuStyle} scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} offcanvas_bg={offcanvas_bg} offcanvas_menu={offcanvas_menu} offcanvas_social={offcanvas_social} /> : null}
       {headerStyle == 4 ? <Header4 mainMenuStyle={mainMenuStyle} scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} offcanvas_bg={offcanvas_bg} offcanvas_menu={offcanvas_menu} offcanvas_social={offcanvas_social} /> : null}
-      <main>{children}</main>
+      <main style={{ paddingTop: mainOffset }}>{children}</main>
       {!footerStyle && <Footer1 />}
       {footerStyle == 1 ? <Footer1 /> : null}
       {footerStyle == 2 ? <Footer2 /> : null}

@@ -49,7 +49,7 @@ export default function Section1() {
                     <div className="vl-banner-area-content fix p-relative">
                       <h5 className="subtitle">Dobrodošli na Eduku</h5>
                       <h1 className="title text-anime-style-3 pt-16 pb-16">
-                        Udruženje zdravstvenih radnika i saradnika Nišavskog okruga
+                        Udruženje zdravstvenih radnika Nišavskog okruga
                       </h1>
                       <p className="para pb-32">
                         Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke,
