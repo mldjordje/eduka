@@ -66,7 +66,7 @@ export default function Layout({ headerStyle, footerStyle, mainMenuStyle, childr
   useTextAnimation2();
   useTextAnimation3();
   useAccordion();
-  const mainOffset = scroll ? 110 : 40;
+  const mainOffset = scroll ? 110 : 0;
   return (
     <>
       <div id="top" />
