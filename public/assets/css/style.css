@@ -8146,16 +8146,15 @@ textarea {
   left: 0;
   right: 0;
   top: 0;
-  background: rgba(3, 29, 46, 0.98);
+  background: var(--vkl-text-text-2);
   -webkit-animation: 0.7s ease-in-out 0s normal none 1 running vlfadeInDown;
   animation: 0.7s ease-in-out 0s normal none 1 running vlfadeInDown;
   z-index: 99;
-  box-shadow: 0 18px 50px rgba(1, 7, 14, 0.55);
 }
 .header-sticky.vl-header-area .header-style-1 {
   margin-top: 0;
-  background: rgba(6, 40, 63, 0.95);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border: transparent;
 }
 
 .vl-header-area.vl-header-area-2.header-sticky {
@@ -8183,19 +8182,16 @@ textarea {
 }
 
 .header-style-1 {
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(3, 24, 38, 0.92);
-  backdrop-filter: blur(16px);
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-top: 24px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
 }
 .vl-header-offset {
-  transition: height 0.3s ease;
+  height: 140px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-style-1 {
@@ -8206,15 +8202,19 @@ textarea {
 @media (max-width: 575px) {
   .header-style-1 {
     margin-top: 0px;
-    /* reduce vertical padding on mobile to avoid covering hero text */
     padding: 8px 12px;
   }
-  /* shrink logo on mobile to reduce header height */
-  .vl-logo img { max-width: 90px !important; height: auto; }
-  /* make the offcanvas toggle a bit smaller */
-  .vl-header-action-item { padding: 4px 8px; }
+  .vl-logo img {
+    max-width: 90px !important;
+    height: auto;
+  }
+  .vl-header-offset {
+    height: 100px;
+  }
+  .vl-header-action-item {
+    padding: 4px 8px;
+  }
 }
-
 .vl-header-icon-box-flex {
   display: flex;
   justify-content: flex-end;
