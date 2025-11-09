@@ -12,6 +12,14 @@ interface BlogPostPageProps {
 
 export const dynamic = "force-dynamic";
 
+const SIMPOZIJUM_SLUG = "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025";
+const SIMPOZIJUM_DOWNLOADS = [
+  { label: "Rezime rada (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
+  { label: "Упутство за израду резимеа", file: "Упутство-за-писање-сажетка.pdf" },
+  { label: "Упутство за израду презентације", file: "Упутство-за-израду-презентације.pdf" },
+  { label: "Упутство за израду дигиталног постера", file: "Упутство-за-израду-дигиталног-постера.pdf" },
+];
+
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -122,6 +130,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       </p>
                     ))}
                   </div>
+                  {post.slug === SIMPOZIJUM_SLUG && (
+                    <div className="pt-24">
+                      <h3 className="title pb-16">Materijali za preuzimanje</h3>
+                      <ul>
+                        {SIMPOZIJUM_DOWNLOADS.map((doc) => (
+                          <li key={doc.file} className="pb-10">
+                            <a className="vl-btn-primary" href={`/docs/${encodeURIComponent(doc.file)}`} target="_blank" rel="noopener noreferrer">
+                              {doc.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   {post.tags.length > 0 && (
                     <div className="vl-blog-tags pt-16">
                       <h5 className="subtitle">Tagovi:</h5>

@@ -96,11 +96,11 @@ export default function Footer() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="mailto:info@eduka.rs">
+                                            <Link href="mailto:edukaudruzenje@gmail.com">
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
                                                 </span>
-                                                info@eduka.rs
+                                                edukaudruzenje@gmail.com
                                             </Link>
                                         </li>
                                         <li>
@@ -110,6 +110,17 @@ export default function Footer() {
                                                 </span>
                                                 www.eduka.rs
                                             </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="vl-footer-working-hours pt-24">
+                                    <h4 className="vl-footer-widget-subtitle mb-12">Radno vreme</h4>
+                                    <ul>
+                                        <li>
+                                            <strong>Vojvode Mišića 50:</strong> 14–17 h
+                                        </li>
+                                        <li>
+                                            <strong>Vojvode Tankosića 15:</strong> 7–15 h
                                         </li>
                                     </ul>
                                 </div>

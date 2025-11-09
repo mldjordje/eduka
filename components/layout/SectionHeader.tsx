@@ -1,10 +1,19 @@
 import Link from "next/link";
 
-export default function SectionHeader({ title, current, isGroup, linkGroup, pageGroup }: { title: string; current: string; isGroup: boolean; linkGroup: string; pageGroup: string }) {
+interface SectionHeaderProps {
+  title: string;
+  current: string;
+  isGroup: boolean;
+  linkGroup: string;
+  pageGroup: string;
+  background?: string;
+}
+
+export default function SectionHeader({ title, current, isGroup, linkGroup, pageGroup, background = "assets/img/eduka/workshop-lecture.png" }: SectionHeaderProps) {
   return (
     <>
       {/*================= Breadcrumb section start =================*/}
-      <section className="vl-breadcrumb-area" data-background="assets/img/eduka/workshop-lecture.png">
+      <section className="vl-breadcrumb-area" data-background={background}>
         <div className="container">
           <div className="vl-breadcrumb-content">
             <h2 className="title">{title}</h2>

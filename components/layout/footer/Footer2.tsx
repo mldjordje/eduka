@@ -89,7 +89,7 @@ export default function Footer() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="mailto:info@eduka.rs">Podrška za članove</Link>
+                                            <Link href="mailto:edukaudruzenje@gmail.com">Podrška za članove</Link>
                                         </li>
                                         <li>
                                             <Link href="/blog">Stručni članci</Link>
@@ -124,11 +124,11 @@ export default function Footer() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="mailto:info@eduka.rs">
+                                            <Link href="mailto:edukaudruzenje@gmail.com">
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
                                                 </span>
-                                                info@eduka.rs
+                                                edukaudruzenje@gmail.com
                                             </Link>
                                         </li>
                                         <li>

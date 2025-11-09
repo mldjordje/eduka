@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -79,26 +79,26 @@ export default function ApplicationPage() {
 
   return (
     <Layout>
-      <SectionHeader title="Postanite clan" isGroup={false} linkGroup="" pageGroup="" current="Postanite clan" />
+      <SectionHeader title="Postanite clan" isGroup={false} linkGroup="" pageGroup="" current="Postanite clan" background="assets/img/eduka/hero-1.jpg" />
       <section className="vl-contact-area pt-100 pb-70">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="vl-off-white-bg p-40 br-20">
-                <div className="pb-16"><a className="vl-btn-primary" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">Preuzmi uplatnicu (PDF)</a></div>
+                <div className="pb-16">
                 <div className="pb-16">
                   <p className="pb-8">
-                    Удружење здравствених радника и сарадника Нишавског округа „Едука“ основано је 03.04.2013. као добровољно, непрофитно, ванстраначко удружење. Циљ нам је унапређење здравствене струке кроз планирање, организовање и реализацију програма континуиране медицинске едукације.
+                    ???????? ???????????? ??????? ? ????????? ????????? ?????? �?????� ???????? ?? 03.04.2013. ??? ??????????, ??????????, ???????????? ????????. ??? ??? ?? ?????????? ??????????? ?????? ???? ?????????, ???????????? ? ??????????? ???????? ???????????? ?????????? ?????????.
                   </p>
                   <p className="pb-8">
-                    Организујемо симпозијуме, курсеве, стручне састанке и он‑лајн тестове доступне 24 сата дневно (платформе: www.eduka.co.rs, www.domzdravljanis.co.rs). Потврде се издају уз најмање 60% успешности; у једном дану може се решавати највише 2 теста у складу са прописима.
+                    ???????????? ???????????, ???????, ??????? ???????? ? ??-???? ??????? ???????? 24 ???? ?????? (?????????: www.eduka.co.rs, www.domzdravljanis.co.rs). ??????? ?? ?????? ?? ??????? 60% ??????????; ? ?????? ???? ???? ?? ???????? ??????? 2 ????? ? ?????? ?? ?????????.
                   </p>
-                  <p className="pb-16">Члановима смо на располагању радним данима 7–15 часова.</p>
-                  <p className="pb-8"><strong>Ovde možete da popunite elektronsku pristupnicu.</strong></p>
+                  <p className="pb-16">????????? ??? ?? ??????????? ?????? ?????? 7�15 ??????.</p>
+                  <p className="pb-8"><strong>Ovde mo�ete da popunite elektronsku pristupnicu.</strong></p>
                 </div>
                 <h2 className="title pb-16">Pristupnica</h2>
                 <p className="pb-8">Adresa: Vojvode Tankosica 15, 18000 Nis</p>
-                <p className="pb-8">E-mail: edukaudruzenje@gmail.com; info@eduka.co.rs</p>
+                <p className="pb-8">E-mail: edukaudruzenje@gmail.com</p>
                 <p className="pb-24">Web: www.eduka.co.rs</p>
 
                 {status === "success" && <div className="alert alert-success">Hvala! Vase podnesene informacije su primljene.</div>}
@@ -132,7 +132,7 @@ export default function ApplicationPage() {
                       <input type="text" name="licenseNumber" value={form.licenseNumber} onChange={handleChange} className="form-control" />
                     </div>
                     <div className="col-md-6 pb-20">
-                      <label className="form-label">Lični broj</label>
+                      <label className="form-label">Licni broj</label>
                       <input type="text" name="idNumber" value={form.idNumber} onChange={handleChange} className="form-control" />
                     </div>
                     <div className="col-md-6 pb-20">
@@ -144,7 +144,7 @@ export default function ApplicationPage() {
                       <input type="text" name="institution" value={form.institution} onChange={handleChange} className="form-control" />
                     </div>
                     <div className="col-md-6 pb-20">
-                      <label className="form-label">Godine staža</label>
+                      <label className="form-label">Godine sta�a</label>
                       <input type="number" min="0" name="yearsOfService" value={form.yearsOfService} onChange={handleChange} className="form-control" />
                     </div>
                     <div className="col-md-6 pb-20">
@@ -194,7 +194,7 @@ export default function ApplicationPage() {
                 </form>
                 <div className="pt-16">
                   <p>
-                    Ovde možete da preuzmete uplatnicu: {" "}
+                    Ovde mo�ete da preuzmete uplatnicu: {" "}
                     <a className="underline" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">preuzmi uplatnicu (PDF)</a>.
                   </p>
                 </div>
@@ -206,3 +206,4 @@ export default function ApplicationPage() {
     </Layout>
   );
 }
+

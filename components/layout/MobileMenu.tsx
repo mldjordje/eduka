@@ -45,14 +45,35 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                 </li>
                                 <li className="has-dropdown">
                                     <Link href="#" onClick={(e) => e.preventDefault()}>
-                                        Edukacija
+                                        КМЕ едукација
                                     </Link>
                                     <ul className="sub-menu">
                                         <li>
-                                            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>Онлине-УЗР Едука</a>
+                                            <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                                                Едукација – УЗРС Едука
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>Онлине-ДЗ Ниш</a>
+                                            <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                                                Едукација – ДЗ Ниш
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li className="has-dropdown">
+                                    <Link href="#" onClick={(e) => e.preventDefault()}>
+                                        Online edukacije
+                                    </Link>
+                                    <ul className="sub-menu">
+                                        <li>
+                                            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                                                Онлине – УЗР Едука
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                                                Онлине – ДЗ Ниш
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -101,11 +122,11 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                         </span>
                         <br />
                         <span>
-                            <Link href="mailto:info@eduka.rs">
+                            <Link href="mailto:edukaudruzenje@gmail.com">
                                 <span>
                                     <img src="assets/img/icons/vl-footer-icon-1.3.svg" alt="E-mail" />
                                 </span>
-                                info@eduka.rs
+                                edukaudruzenje@gmail.com
                             </Link>
                         </span>
                         <br />

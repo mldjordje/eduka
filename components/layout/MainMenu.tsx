@@ -27,17 +27,33 @@ export default function MainMenu() {
       </li>
       <li className="has-dropdown">
         <Link href="#">
-          Edukacija
+          КМЕ едукација
           <span>
             <i className="fa-regular fa-angle-down" />
           </span>
         </Link>
         <ul className="sub-menu">
           <li>
-            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">Akreditovane edukacije</a>
+            <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">Едукација – УЗРС Едука</a>
           </li>
           <li>
-            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">Online platforma</a>
+            <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer">Едукација – ДЗ Ниш</a>
+          </li>
+        </ul>
+      </li>
+      <li className="has-dropdown">
+        <Link href="#">
+          Online edukacije
+          <span>
+            <i className="fa-regular fa-angle-down" />
+          </span>
+        </Link>
+        <ul className="sub-menu">
+          <li>
+            <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">Онлине – УЗР Едука</a>
+          </li>
+          <li>
+            <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">Онлине – ДЗ Ниш</a>
           </li>
         </ul>
       </li>
@@ -47,4 +63,3 @@ export default function MainMenu() {
     </ul>
   );
 }
-
