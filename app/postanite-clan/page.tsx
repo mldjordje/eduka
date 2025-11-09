@@ -1,4 +1,4 @@
-"use client";
+ï»¿"use client";
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -86,15 +86,13 @@ export default function ApplicationPage() {
             <div className="col-lg-8">
               <div className="vl-off-white-bg p-40 br-20">
                 <div className="pb-16">
-                <div className="pb-16">
                   <p className="pb-8">
-                    ???????? ???????????? ??????? ? ????????? ????????? ?????? „?????“ ???????? ?? 03.04.2013. ??? ??????????, ??????????, ???????????? ????????. ??? ??? ?? ?????????? ??????????? ?????? ???? ?????????, ???????????? ? ??????????? ???????? ???????????? ?????????? ?????????.
+                    Udruzenje Eduka okuplja zdravstvene radnike i saradnike koji zele da svojim clanstvom podrze kontinuirano usavrsavanje i razmenu znanja.
                   </p>
                   <p className="pb-8">
-                    ???????????? ???????????, ???????, ??????? ???????? ? ??-???? ??????? ???????? 24 ???? ?????? (?????????: www.eduka.co.rs, www.domzdravljanis.co.rs). ??????? ?? ?????? ?? ??????? 60% ??????????; ? ?????? ???? ???? ?? ???????? ??????? 2 ????? ? ?????? ?? ?????????.
+                    Popunjavanjem pristupnice omogucavate brzu evidenciju vasih podataka i odabir nacina placanja clanarine. Nasa administracija vam je na raspolaganju 7-15h za sva dodatna pitanja.
                   </p>
-                  <p className="pb-16">????????? ??? ?? ??????????? ?????? ?????? 7–15 ??????.</p>
-                  <p className="pb-8"><strong>Ovde možete da popunite elektronsku pristupnicu.</strong></p>
+                  <p className="pb-8"><strong>Ovde mozete da popunite elektronsku pristupnicu.</strong></p>
                 </div>
                 <h2 className="title pb-16">Pristupnica</h2>
                 <p className="pb-8">Adresa: Vojvode Tankosica 15, 18000 Nis</p>
@@ -144,8 +142,8 @@ export default function ApplicationPage() {
                       <input type="text" name="institution" value={form.institution} onChange={handleChange} className="form-control" />
                     </div>
                     <div className="col-md-6 pb-20">
-                      <label className="form-label">Godine staža</label>
-                      <input type="number" min="0" name="yearsOfService" value={form.yearsOfService} onChange={handleChange} className="form-control" />
+                      <label className="form-label">Godine staza</label>
+                      <input type="number" name="yearsOfService" value={form.yearsOfService} onChange={handleChange} className="form-control" min="0" />
                     </div>
                     <div className="col-md-6 pb-20">
                       <label className="form-label">Stepen obrazovanja</label>
@@ -182,7 +180,7 @@ export default function ApplicationPage() {
 
                     <div className="col-12 pb-24">
                       <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="agree" checked={form.agreementAccepted} onChange={(e) => setForm((p) => ({ ...p, agreementAccepted: e.target.checked }))} required />
+                        <input className="form-check-input" type="checkbox" id="agree" checked={form.agreementAccepted} onChange={(e) => setForm((prev) => ({ ...prev, agreementAccepted: e.target.checked }))} required />
                         <label className="form-check-label" htmlFor="agree">Saglasan/na sam sa obradom podataka</label>
                       </div>
                     </div>
@@ -192,11 +190,16 @@ export default function ApplicationPage() {
                     </div>
                   </div>
                 </form>
-                <div className="pt-16">
-                  <p>
-                    Ovde možete da preuzmete uplatnicu: {" "}
-                    <a className="underline" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">preuzmi uplatnicu (PDF)</a>.
-                  </p>
+                <div className="pt-32">
+                  <h3 className="title pb-12">Dokumenti za preuzimanje</h3>
+                  <div className="d-flex flex-column flex-md-row gap-3">
+                    <a className="vl-btn-primary" href="/docs/Racun%20novi%20Eduka%202024.pdf" target="_blank" rel="noopener noreferrer">
+                      Preuzmi uplatnicu (PDF)
+                    </a>
+                    <a className="vl-btn-secondary" href="/docs/Eduka%20pristupnica.docx" target="_blank" rel="noopener noreferrer">
+                      Preuzmi pristupnicu (DOCX)
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -206,4 +209,3 @@ export default function ApplicationPage() {
     </Layout>
   );
 }
-
