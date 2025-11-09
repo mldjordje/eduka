@@ -45,17 +45,17 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                                 </li>
                                 <li className="has-dropdown">
                                     <Link href="#" onClick={(e) => e.preventDefault()}>
-                                        КМЕ едукација
+                                        KME edukacija
                                     </Link>
                                     <ul className="sub-menu">
                                         <li>
                                             <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
-                                                Едукација – УЗРС Едука
+                                                Edukacija – UZRS Eduka
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
-                                                Едукација – ДЗ Ниш
+                                                Edukacija – DZ Niš
                                             </a>
                                         </li>
                                     </ul>

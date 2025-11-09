@@ -27,17 +27,17 @@ export default function MainMenu() {
       </li>
       <li className="has-dropdown">
         <Link href="#">
-          КМЕ едукација
+          KME edukacija
           <span>
             <i className="fa-regular fa-angle-down" />
           </span>
         </Link>
         <ul className="sub-menu">
           <li>
-            <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">Едукација – УЗРС Едука</a>
+            <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">Edukacija – UZRS Eduka</a>
           </li>
           <li>
-            <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer">Едукација – ДЗ Ниш</a>
+            <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer">Edukacija – DZ Niš</a>
           </li>
         </ul>
       </li>
