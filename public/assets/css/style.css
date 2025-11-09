@@ -8190,9 +8190,6 @@ textarea {
   padding-right: 20px;
   margin-top: 20px;
 }
-.vl-header-offset {
-  height: 140px;
-}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-style-1 {
     margin-top: 20px;
@@ -8204,16 +8201,8 @@ textarea {
     margin-top: 0px;
     padding: 8px 12px;
   }
-  .vl-logo img {
-    max-width: 90px !important;
-    height: auto;
-  }
-  .vl-header-offset {
-    height: 100px;
-  }
-  .vl-header-action-item {
-    padding: 4px 8px;
-  }
+  .vl-logo img { max-width: 90px !important; height: auto; }
+  .vl-header-action-item { padding: 4px 8px; }
 }
 .vl-header-icon-box-flex {
   display: flex;
