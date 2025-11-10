@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     url: "https://eduka.rs/",
     images: [
       {
-        url: "/assets/img/eduka/hero-2.jpg",
+        url: "/assets/img/eduka/hero-4.jpg",
         width: 1200,
         height: 630,
         alt: "Eduka hero",
