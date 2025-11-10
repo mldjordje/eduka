@@ -143,7 +143,7 @@ export default function Section1() {
                 <div className="content">
                   <h5 className="title">Pišite nam</h5>
                   <Link href="mailto:edukaudruzenje@gmail.com">edukaudruzenje@gmail.com</Link>
-                  <Link href="https://www.eduka.rs">www.eduka.rs</Link>
+                  
                   <div className="pt-10">
                     <a
                       href="https://www.facebook.com"

@@ -146,6 +146,18 @@ export default function Section1() {
                             </div>
                         </div>
                     )}
+                    <div className="row">
+                        <div className="col-12 text-center mt-10">
+                            <Link
+                                href="https://eduka.co.rs/blog/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="vl-btn-primary"
+                            >
+                                Stare vesti (arhiva)
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </section>
             {/*================= Blog section End =================*/}
