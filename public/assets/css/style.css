@@ -1007,10 +1007,59 @@ img {
   transition: 0.3s;
   color: var(--vkl-text-text-1);
 }
+.vl-btn-secondary {
+  display: inline-block;
+  color: var(--vkl-text-theme-color-1);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--vkl-text-theme-color-1);
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: var(--vkl-font-size-font-s16);
+  font-weight: var(--vkl-weight-semibold);
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.vl-btn-secondary:hover {
+  background: var(--vkl-text-theme-color-1);
+  color: var(--vkl-text-text-1);
+}
 
 .vl-before-btn .vl-btn-primary:hover {
   color: var(--vkl-text-theme-color-1);
   background: var(--vkl-text-text-1);
+}
+
+.cms-form .form-control,
+.cms-form select,
+.cms-form textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #c9d8e3;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #0b1d2f;
+  box-shadow: 0 6px 18px rgba(12, 55, 87, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cms-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.cms-form .form-control:focus,
+.cms-form select:focus,
+.cms-form textarea:focus {
+  border-color: var(--vkl-text-theme-color-1);
+  box-shadow: 0 0 0 3px rgba(20, 122, 171, 0.15);
+  outline: none;
+}
+.cms-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 4.5L11 1' stroke='%230b1d2f' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 7px;
+  padding-right: 40px;
 }
 
 .btn-primary2 {
