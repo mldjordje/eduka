@@ -95,7 +95,13 @@ export default function ApplicationPage() {
                   <p className="pb-8"><strong>Ovde mozete da popunite elektronsku pristupnicu.</strong></p>
                 </div>
                 <h2 className="title pb-16">Pristupnica</h2>
-                <p className="pb-8">Adresa: Vojvode Tankosica 15, 18000 Nis</p>
+                <p className="pb-8">
+                  Adrese:
+                  <br />
+                  Vojvode Mišića 50, 18000 Niš
+                  <br />
+                  Vojvode Tankosića 15, 18000 Niš
+                </p>
                 <p className="pb-8">E-mail: edukaudruzenje@gmail.com</p>
                 <p className="pb-24">Web: www.eduka.co.rs</p>
 

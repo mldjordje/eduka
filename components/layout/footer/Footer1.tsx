@@ -64,7 +64,7 @@ export default function Footer() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="/blog">Blog</Link>
+                                            <Link href="/vesti">Vesti</Link>
                                         </li>
                                         <li>
                                             <Link href="/prijava">Prijava</Link>
@@ -92,7 +92,11 @@ export default function Footer() {
                                                 <span>
                                                     <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Adresa" />
                                                 </span>
-                                                Bulevar oslobođenja 1, Beograd
+                                                <span>
+                                                    Vojvode Mišića 50, Niš
+                                                    <br />
+                                                    Vojvode Tankosića 15, Niš
+                                                </span>
                                             </Link>
                                         </li>
                                         <li>
