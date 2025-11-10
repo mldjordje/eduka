@@ -52,11 +52,11 @@ export default function Section1() {
                         Udruženje zdravstvenih radnika Nišavskog okruga
                       </h1>
                       <p className="para pb-32">
-                        Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke,
+                        Eduka okuplja zdravstvene radnike sa ciljem unapređenja struke,
                         razmene znanja i podizanja kvaliteta zdravstvene zaštite kroz kontinuiranu edukaciju.
                       </p>
                       <p className="para pb-32">
-                        udruženje organizuje različite programe kontinuirane edukacije kongrese,simpozijume, seminare, stručne sastanke, kurseve, testove u pisanoj formi a na našoj platformi su vam 24 sata dnevno dostupni i on line testovi.
+                        Udruženje organizuje različite programe kontinuirane edukacije kongrese,simpozijume, seminare, stručne sastanke, kurseve, testove u pisanoj formi a na našoj platformi su vam 24 sata dnevno dostupni i on line testovi.
                       </p>
                       {/* btn */}
                       <div className="vl-hero-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>

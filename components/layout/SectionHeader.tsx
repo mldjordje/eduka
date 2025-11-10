@@ -9,7 +9,7 @@ interface SectionHeaderProps {
   background?: string;
 }
 
-export default function SectionHeader({ title, current, isGroup, linkGroup, pageGroup, background = "assets/img/eduka/workshop-lecture.png" }: SectionHeaderProps) {
+export default function SectionHeader({ title, current, isGroup, linkGroup, pageGroup, background = "assets/img/eduka/hero-2.jpg" }: SectionHeaderProps) {
   return (
     <>
       {/*================= Breadcrumb section start =================*/}
