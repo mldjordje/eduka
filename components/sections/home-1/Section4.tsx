@@ -1,16 +1,15 @@
 export default function Section4() {
     return (
         <>
-            {/*================= Work section start =================*/}
             <section id="work" className="vl-work-area fix pt-100 pb-70">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 mx-auto">
                             <div className="vl-section-title text-center mb-60">
                                 <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                    Kako funkcioniše
+                                    Како функционише
                                 </h5>
-                                <h2 className="title pt-16 text-anime-style-3">Kako funkcioniše Eduka</h2>
+                                <h2 className="title pt-16 text-anime-style-3">Како делује Едука</h2>
                             </div>
                         </div>
                     </div>
@@ -19,7 +18,6 @@ export default function Section4() {
                             <div className="vl-work-tab mr-50">
                                 <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <div className="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                        {/* icon box */}
                                         <div className="vl-tab-icon-box">
                                             <div className="workicon">
                                                 <span className="icon">
@@ -27,15 +25,14 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Prijatan i jasan proces</h4>
+                                                <h4 className="title pb-16">Први корак</h4>
                                                 <p className="para">
-                                                    Pratimo korake i pružamo smernice tokom celog procesa, uz podršku našeg tima.
+                                                    Све почиње пријавом и упознавањем ваших циљева како бисмо припремили адекватан програм.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                        {/* icon box */}
                                         <div className="vl-tab-icon-box">
                                             <div className="workicon">
                                                 <span className="icon">
@@ -43,15 +40,14 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Nakon obuke i praćenje</h4>
+                                                <h4 className="title pb-16">Планирање програма</h4>
                                                 <p className="para">
-                                                    Primena znanja uz dostupne materijale i podršku mentora.
+                                                    Утврђујемо активности, предаваче и стандарде који одговарају вашој установи и потребама.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                        {/* icon box */}
                                         <div className="vl-tab-icon-box">
                                             <div className="workicon">
                                                 <span className="icon">
@@ -59,15 +55,14 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Personalizovan plan</h4>
+                                                <h4 className="title pb-16">Спровођење едукације</h4>
                                                 <p className="para">
-                                                    Aktivnosti prilagođavamo vašim potrebama i ciljevima.
+                                                    Радимо уживо и онлајн, обезбеђујемо материјале и пратимо примену стечених знања.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                                        {/* icon box */}
                                         <div className="vl-tab-icon-box">
                                             <div className="workicon">
                                                 <span className="icon">
@@ -75,9 +70,9 @@ export default function Section4() {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title pb-16">Prvi korak</h4>
+                                                <h4 className="title pb-16">Подршка након обуке</h4>
                                                 <p className="para">
-                                                    Počinje prijavom i upoznavanjem vaših potreba i ciljeva.
+                                                    Чланови добијају сертификате, савете ментора и приступ онлајн тестовима током целе године.
                                                 </p>
                                             </div>
                                         </div>
@@ -87,29 +82,26 @@ export default function Section4() {
                         </div>
                         <div className="col-lg-6 mb-30">
                             <div className="vl-tab-content-block" data-aos="fade-left" data-aos-duration={800} data-aos-delay={300}>
-                                {/* shape */}
-                                <div className="shape">
-                                    {/* removed rotating star */}
-                                </div>
+                                <div className="shape" />
                                 <div className="tab-content" id="v-pills-tabContent">
                                     <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-demonstration.png" alt="Prikaz praktične demonstracije" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-demonstration.png" alt="Први кораци са Едуком" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Predavanje na Eduka događaju" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Планирање програма" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-lecture.png" alt="Predavanje uz prezentaciju" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-lecture.png" alt="Спровођење наставе" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-audience-side.png" alt="Učesnici edukacije" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-audience-side.png" alt="Подршка након едукације" />
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +110,6 @@ export default function Section4() {
                     </div>
                 </div>
             </section>
-            {/*================= Work section End =================*/}
         </>
     );
 }

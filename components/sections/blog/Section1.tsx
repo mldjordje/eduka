@@ -11,13 +11,13 @@ export default function Section1() {
 
     useEffect(() => {
         const controller = new AbortController();
-
-        const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
+        const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
         const url = base ? `${base}/posts.php` : "/api/posts";
+
         fetch(url, { signal: controller.signal })
             .then((res) => {
                 if (!res.ok) {
-                    throw new Error("Greška prilikom učitavanja blogova");
+                    throw new Error("Грешка при учитавању вести.");
                 }
                 return res.json();
             })
@@ -27,7 +27,7 @@ export default function Section1() {
             })
             .catch((err: Error) => {
                 if (err.name !== "AbortError") {
-                    setError("Nije moguće učitati blog objave u ovom trenutku.");
+                    setError("Тренутно није могуће приказати вести.");
                 }
             })
             .finally(() => setIsLoading(false));
@@ -37,7 +37,6 @@ export default function Section1() {
         };
     }, []);
 
-    // Pagination
     const ITEMS_PER_PAGE = 6;
     const totalPages = Math.ceil(blog.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -50,13 +49,12 @@ export default function Section1() {
 
     return (
         <>
-            {/*================= Blog section Start =================*/}
             <section className="vl-blog-iner-sec pt-100 pb-70">
                 <div className="container">
                     <div className="row">
                         {isLoading && (
                             <div className="col-12 text-center mb-30">
-                                <p>Učitavanje objava...</p>
+                                <p>Учитавање објава...</p>
                             </div>
                         )}
                         {error && !isLoading && (
@@ -66,66 +64,55 @@ export default function Section1() {
                         )}
                         {!isLoading && !error && currentBlog.length === 0 && (
                             <div className="col-12 text-center mb-30">
-                                <p>Još uvek nema objava. Dodajte prvu u CMS sekciji.</p>
+                                <p>Још увек нема објава. Додајте прву у CMS секцији.</p>
                             </div>
                         )}
                         {currentBlog.map((blogs, index) => {
                             const raw = blogs.image || "";
-                            const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL((process.env.NEXT_PUBLIC_API_BASE_URL as string)).origin : "");
-                            const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL((process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string)).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
-                            const imageSrc = /^https?:\/\//.test(raw)
-                                ? raw
-                                : (raw.replace(/^\//, "").startsWith("uploads/")
-                                    ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
-                                    : `/${raw.replace(/^\//, "")}`);
+                            const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
+                            const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin : (API_ORIGIN || "https://api.eduka.co.rs");
+                            const imageSrc =
+                                /^https?:\/\//.test(raw)
+                                    ? raw
+                                    : raw.replace(/^\//, "").startsWith("uploads/")
+                                        ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
+                                        : `/${raw.replace(/^\//, "")}`;
                             return (
                                 <div className="col-12 mb-30" key={index}>
-                                {/* single blog box */}
-                                <div className="vl-single-blog-box">
-                                    <div className="vl-blog-thumb image-anime">
-                                        <Link href={`/vesti/${blogs.slug}`}>
-                                            <img className="w-100" src={imageSrc} alt={blogs.title} />
-                                        </Link>
-                                    </div>
-                                    <div className="vl-blog-content">
-                                        <div className="vl-blog-meta">
-                                            <Link href="#">
-                                                <cite className="meta-icon mr-6">
-                                                    <img src="assets/img/icons/vl-date-icon-1.1.svg" alt="" />
-                                                </cite>
-                                                {blogs.date}
-                                            </Link>
-                                            <Link href="#">
-                                                <cite className="meta-icon mr-6">
-                                                    <img src="assets/img/icons/vl-blog-user1.1.svg" alt="" />
-                                                </cite>
-                                                {blogs.author}
+                                    <div className="vl-single-blog-box">
+                                        <div className="vl-blog-thumb image-anime">
+                                            <Link href={`/vesti/${blogs.slug}`}>
+                                                <img className="w-100" src={imageSrc} alt={blogs.title} />
                                             </Link>
                                         </div>
-                                        <h3 className="title pt-20 pb-24">
-                                            <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
-                                        </h3>
-                                        <p>{blogs.excerpt}</p>
-                                        <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
-                                            Learn more
-                                            <span>
-                                                <i className="fa-regular fa-arrow-right" />
-                                            </span>
-                                        </Link>
+                                        <div className="vl-blog-content">
+                                            <div className="vl-blog-meta">
+                                                <span>{blogs.date}</span>
+                                                <span>{blogs.author}</span>
+                                            </div>
+                                            <h3 className="title pt-20 pb-24">
+                                                <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
+                                            </h3>
+                                            <p>{blogs.excerpt}</p>
+                                            <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
+                                                Прочитај више
+                                                <span>
+                                                    <i className="fa-regular fa-arrow-right" />
+                                                </span>
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             );
                         })}
                     </div>
-                    {/* Pagination below */}
                     {totalPages > 1 && (
                         <div className="row">
                             <div className="col-lg-6 mx-auto">
                                 <div className="vl-theme-pagination text-center mt-18 mb-30">
                                     <ul>
                                         <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
-                                            <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>
+                                            <button className="page-link" onClick={() => handlePageChange(currentPage - 1)} aria-label="Претходна страна">
                                                 <i className="fa-regular fa-angle-left" />
                                             </button>
                                         </li>
@@ -137,7 +124,7 @@ export default function Section1() {
                                             </li>
                                         ))}
                                         <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
-                                            <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>
+                                            <button className="page-link" onClick={() => handlePageChange(currentPage + 1)} aria-label="Следећа страна">
                                                 <i className="fa-regular fa-angle-right" />
                                             </button>
                                         </li>
@@ -148,19 +135,13 @@ export default function Section1() {
                     )}
                     <div className="row">
                         <div className="col-12 text-center mt-10">
-                            <Link
-                                href="https://eduka.co.rs/blog/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="vl-btn-primary"
-                            >
-                                Stare vesti (arhiva)
+                            <Link href="https://eduka.co.rs/blog/" target="_blank" rel="noopener noreferrer" className="vl-btn-primary">
+                                Старе вести (архива)
                             </Link>
                         </div>
                     </div>
                 </div>
             </section>
-            {/*================= Blog section End =================*/}
         </>
     );
 }

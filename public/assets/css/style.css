@@ -2041,8 +2041,10 @@ img {
   top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 80px;
-  width: 70px;
+  width: 96px;
+  max-width: 100%;
+  height: auto;
+  max-height: 80px;
 }
 
 @keyframes rotate-loading {

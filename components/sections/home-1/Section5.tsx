@@ -4,7 +4,6 @@ import Link from "next/link";
 export default function Section5() {
     return (
         <>
-            {/*================= Before/After section start =================*/}
             <section className="vl-before-bg fix pt-100 pb-70">
                 <div className="container">
                     <div className="row">
@@ -12,16 +11,16 @@ export default function Section5() {
                             <div className="vl-before-content-wraper">
                                 <div className="vl-section-title mb-60">
                                     <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                                        Postani deo Eduke
+                                        Постаните део Едуке
                                     </h5>
                                     <h2 className="title pt-16 text-anime-style-3">
-                                        Zajedno unapređujemo <br /> zdravstvenu praksu
+                                        Заједно унапредимо <br /> здравствену праксу
                                     </h2>
                                 </div>
                             </div>
                             <div className="vl-before-btn">
-                                <Link href="/prijava" className="vl-btn-primary">
-                                    Pošalji prijavu
+                                <Link href="/postanite-clan" className="vl-btn-primary">
+                                    Попуните приступницу
                                 </Link>
                             </div>
                         </div>
@@ -40,7 +39,6 @@ export default function Section5() {
                     </div>
                 </div>
             </section>
-            {/*================= Before/After section End =================*/}
         </>
     );
 }

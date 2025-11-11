@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <SectionHeader title="Prijava" isGroup={false} linkGroup="" pageGroup="" current="Prijava" />
+        <SectionHeader title="Пријава" isGroup={false} linkGroup="" pageGroup="" current="Пријава" background="assets/img/eduka/hero-2.jpg" />
         <Section1 />
         <Section9 />
       </Layout>

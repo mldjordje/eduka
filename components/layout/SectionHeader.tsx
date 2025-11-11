@@ -12,7 +12,6 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, current, isGroup, linkGroup, pageGroup, background = "assets/img/eduka/hero-4.jpg" }: SectionHeaderProps) {
   return (
     <>
-      {/*================= Breadcrumb section start =================*/}
       <section className="vl-breadcrumb-area" data-background={background}>
         <div className="container">
           <div className="vl-breadcrumb-content">
@@ -20,40 +19,29 @@ export default function SectionHeader({ title, current, isGroup, linkGroup, page
             <div className="vl-breadcrumb-list">
               <ul>
                 <li>
-                  <Link href="/">Početna</Link>
+                  <Link href="/">Почетна</Link>
                 </li>
-
                 <li>
-                  <Link href="#">
-                    <span>
-                      <i className="fa-regular fa-angle-right" />
-                    </span>
-                  </Link>
+                  <span>
+                    <i className="fa-regular fa-angle-right" />
+                  </span>
                 </li>
-
                 <li className={isGroup ? "d-inline-block" : "d-none"}>
                   <Link href={linkGroup}>{pageGroup}</Link>
                 </li>
-
                 <li className={isGroup ? "d-inline-block" : "d-none"}>
-                  <Link href="#">
-                    <span>
-                      <i className="fa-regular fa-angle-right" />
-                    </span>
-                  </Link>
+                  <span>
+                    <i className="fa-regular fa-angle-right" />
+                  </span>
                 </li>
-
                 <li>
-                  <Link href="#" className="active">
-                    {current}
-                  </Link>
+                  <span className="active">{current}</span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </section>
-      {/*================= Breadcrumb section End =================*/}
     </>
   );
 }

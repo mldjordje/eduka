@@ -3,9 +3,9 @@ export default function Loading() {
     <>
       <div className="preloader">
         <div className="loading-container">
-          <div className="loading" />
+          <div className="loading" aria-hidden="true" />
           <div id="loading-icon">
-            <img src="assets/img/eduka/workshop-presenter.png" alt="Eduka logo prikaz" />
+            <img src="assets/img/logo/logo.png" alt="Лого удружења Едука" />
           </div>
         </div>
       </div>

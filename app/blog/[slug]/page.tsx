@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 
 const SIMPOZIJUM_SLUG = "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025";
 const SIMPOZIJUM_DOWNLOADS = [
-  { label: "Rezime rada (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
-  { label: "Упутство за израду резимеа", file: "Упутство-за-писање-сажетка.pdf" },
+  { label: "Резиме рада (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
+  { label: "Упутство за израду сажетка", file: "Упутство-за-писање-сажетка.pdf" },
   { label: "Упутство за израду презентације", file: "Упутство-за-израду-презентације.pdf" },
   { label: "Упутство за израду дигиталног постера", file: "Упутство-за-израду-дигиталног-постера.pdf" },
 ];
@@ -24,27 +24,27 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) {
-    return { title: "Blog" };
+    return { title: "Вести" };
   }
 
   const raw = post.image || "";
-  const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "");
-  const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
+  const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
+  const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs");
   const imageSrc = /^https?:\/\//.test(raw)
     ? raw
-    : (raw.replace(/^\//, "").startsWith("uploads/")
+    : raw.replace(/^\//, "").startsWith("uploads/")
       ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
-      : `/${raw.replace(/^\//, "")}`);
+      : `/${raw.replace(/^\//, "")}`;
 
   return {
-    title: `${post.title} | Eduka Blog`,
+    title: `${post.title} | Едука`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/vesti/${post.slug}` },
     openGraph: {
       type: "article",
-      title: `${post.title} | Eduka Blog`,
+      title: `${post.title} | Едука`,
       description: post.excerpt,
-      url: `https://eduka.rs/blog/${post.slug}`,
+      url: `https://eduka.rs/vesti/${post.slug}`,
       publishedTime: post.date,
       authors: post.author ? [post.author] : undefined,
       tags: post.tags && post.tags.length ? post.tags : undefined,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | Eduka Blog`,
+      title: `${post.title} | Едука`,
       description: post.excerpt,
       images: imageSrc ? [imageSrc] : undefined,
     },
@@ -66,7 +66,7 @@ function formatDate(date: string) {
       month: "long",
       day: "numeric",
     });
-  } catch (error) {
+  } catch {
     return date;
   }
 }
@@ -80,88 +80,80 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const raw = post.image || "";
-  const API_ORIGIN = (process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "");
-  const UPLOAD_ORIGIN = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs"));
+  const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
+  const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs");
   const imageSrc = /^https?:\/\//.test(raw)
     ? raw
-    : (raw.replace(/^\//, "").startsWith("uploads/")
+    : raw.replace(/^\//, "").startsWith("uploads/")
       ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
-      : `/${raw.replace(/^\//, "")}`);
+      : `/${raw.replace(/^\//, "")}`;
 
   return (
-    <>
-      <Layout>
-        <SectionHeader
-          title={post.title}
-          isGroup={true}
-          linkGroup="/blog"
-          pageGroup="Blog"
-          current={post.title}
-        />
-        <section className="vl-blog-details pt-100 pb-70">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-10">
-                <article className="vl-blog-details-content">
-                  <div className="vl-blog-meta">
+    <Layout>
+      <SectionHeader title={post.title} isGroup={true} linkGroup="/vesti" pageGroup="Вести" current={post.title} />
+      <section className="vl-blog-details pt-100 pb-70">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-10">
+              <article className="vl-blog-details-content">
+                <div className="vl-blog-meta">
+                  <ul>
+                    <li>
+                      <span>
+                        <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt="Датум објаве" />
+                      </span>
+                      {formatDate(post.date)}
+                    </li>
+                    <li>
+                      <span>
+                        <img src="/assets/img/icons/vl-blog-user1.1.svg" alt="Аутор" />
+                      </span>
+                      {post.author}
+                    </li>
+                  </ul>
+                </div>
+                <h1 className="title pb-24">{post.title}</h1>
+                <div className="vl-blog-thumb image-anime pb-30">
+                  <img className="w-100" src={imageSrc} alt={post.title} />
+                </div>
+                <div className="vl-blog-text">
+                  {post.content.split("\n").map((paragraph, index) => (
+                    <p key={index} className="pb-16">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                {post.slug === SIMPOZIJUM_SLUG && (
+                  <div className="pt-24">
+                    <h3 className="title pb-16">Материјали за преузимање</h3>
                     <ul>
-                      <li>
-                        <span>
-                          <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt="Datum objave" />
-                        </span>
-                        {formatDate(post.date)}
-                      </li>
-                      <li>
-                        <span>
-                          <img src="/assets/img/icons/vl-blog-user1.1.svg" alt="Autor" />
-                        </span>
-                        {post.author}
-                      </li>
+                      {SIMPOZIJUM_DOWNLOADS.map((doc) => (
+                        <li key={doc.file} className="pb-10">
+                          <a className="vl-btn-primary" href={`/docs/${encodeURIComponent(doc.file)}`} target="_blank" rel="noopener noreferrer">
+                            {doc.label}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
-                  <h1 className="title pb-24">{post.title}</h1>
-                  <div className="vl-blog-thumb image-anime pb-30">
-                    <img className="w-100" src={imageSrc} alt={post.title} />
+                )}
+                {post.tags.length > 0 && (
+                  <div className="vl-blog-tags pt-16">
+                    <h5 className="subtitle">Тагови:</h5>
+                    <ul>
+                      {post.tags.map((tag) => (
+                        <li key={tag}>#{tag}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <div className="vl-blog-text">
-                    {post.content.split("\n").map((paragraph, index) => (
-                      <p key={index} className="pb-16">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                  {post.slug === SIMPOZIJUM_SLUG && (
-                    <div className="pt-24">
-                      <h3 className="title pb-16">Materijali za preuzimanje</h3>
-                      <ul>
-                        {SIMPOZIJUM_DOWNLOADS.map((doc) => (
-                          <li key={doc.file} className="pb-10">
-                            <a className="vl-btn-primary" href={`/docs/${encodeURIComponent(doc.file)}`} target="_blank" rel="noopener noreferrer">
-                              {doc.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {post.tags.length > 0 && (
-                    <div className="vl-blog-tags pt-16">
-                      <h5 className="subtitle">Tagovi:</h5>
-                      <ul>
-                        {post.tags.map((tag) => (
-                          <li key={tag}>#{tag}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </article>
-              </div>
+                )}
+              </article>
             </div>
           </div>
-        </section>
-        <Section2 excludeSlug={post.slug} />
-        <Section9 />
-      </Layout>
-    </>
+        </div>
+      </section>
+      <Section2 excludeSlug={post.slug} />
+      <Section9 />
+    </Layout>
   );
 }

@@ -29,21 +29,21 @@ export default function Home() {
 }
 
 export const metadata: Metadata = {
-  title: "Početna",
+  title: "Почетна",
   description:
-    "Udruženje Eduka — kontinuirana edukacija, radionice i razmena znanja zdravstvenih radnika Nišavskog okruga.",
+    "Удружење Едука окупља здравствене раднике и сараднике ради континуиране едукације, размене знања и заштите професионалних интереса у Нишавском округу.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Eduka — Početna",
+    title: "Едука — Почетна",
     description:
-      "Udruženje Eduka okuplja medicinske radnike i zdravstvene saradnike radi unapređenja struke i kvaliteta zdravstvene zaštite.",
+      "Едука је место где се здравствени радници удружују, уче и заједнички подижу стандарде струке.",
     url: "https://eduka.rs/",
     images: [
       {
         url: "/assets/img/eduka/hero-4.jpg",
         width: 1200,
         height: 630,
-        alt: "Eduka hero",
+        alt: "Едука — главни херој",
       },
     ],
   },

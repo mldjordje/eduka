@@ -7,45 +7,42 @@ import "/public/assets/css/plugins/barfiller.css";
 import "/public/assets/css/style.css";
 
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 
-const figtree = Figtree({
+const notoSans = Noto_Sans({
     weight: ["400", "500", "600", "700"],
-    subsets: ["latin"],
+    subsets: ["latin", "latin-ext", "cyrillic"],
     display: "swap",
 });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://eduka.rs"),
     title: {
-        default: "Eduka | Udruženje zdravstvenih radnika i saradnika Nišavskog okruga",
-        template: "%s | Eduka",
+        default: "Едука | Удружење здравствених радника и сарадника Нишавског округа",
+        template: "%s | Едука",
     },
-    description:
-        "Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke, razmene znanja i podizanja kvaliteta zdravstvene zaštite kroz kontinuiranu edukaciju.",
-    applicationName: "Eduka",
+    description: "Удружење Едука окупља здравствене раднике и сараднике који се континуирано усавршавају, размењују знања и унапређују здравствену заштиту кроз акредитоване програме.",
+    applicationName: "Едука",
     openGraph: {
         type: "website",
         url: "https://eduka.rs",
-        siteName: "Eduka",
-        title: "Eduka | Udruženje zdravstvenih radnika i saradnika Nišavskog okruga",
-        description:
-            "Eduka okuplja medicinske radnike i zdravstvene saradnike sa ciljem unapređenja struke, razmene znanja i podizanja kvaliteta zdravstvene zaštite.",
+        siteName: "Едука",
+        title: "Едука | Удружење здравствених радника и сарадника Нишавског округа",
+        description: "Едука окупља здравствене раднике и сараднике ради заједничког рада на квалитету, професионалном развоју и континуираној едукацији.",
         images: [
             {
                 url: "/assets/img/eduka/workshop-presenter.png",
                 width: 1200,
                 height: 630,
-                alt: "Eduka radionice i edukacije",
+                alt: "Едука – рад у учионици",
             },
         ],
         locale: "sr_RS",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Eduka | Udruženje zdravstvenih radnika i saradnika Nišavskog okruga",
-        description:
-            "Edukacije, radionice i kontinuirano usavršavanje zdravstvenih radnika u Nišavskom okrugu.",
+        title: "Едука | Удружење здравствених радника и сарадника Нишавског округа",
+        description: "Едукације, радионице и континуирано усавршавање здравствених радника у Нишавском округу.",
         images: ["/assets/img/eduka/workshop-presenter.png"],
     },
     alternates: {
@@ -74,7 +71,7 @@ export default function RootLayout({
             <head>
                 <base href="/" />
             </head>
-            <body className={`${figtree.className}`}>{children}</body>
+            <body className={notoSans.className}>{children}</body>
         </html>
     );
 }

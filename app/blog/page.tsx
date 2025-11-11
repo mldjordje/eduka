@@ -1,28 +1,26 @@
-﻿import Layout from "@/components/layout/Layout";
+import Layout from "@/components/layout/Layout";
 import type { Metadata } from "next";
 import Section1 from "@/components/sections/blog/Section1";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section9 from "@/components/sections/home-1/Section9";
 
-export default function Home() {
+export default function BlogPage() {
   return (
-    <>
-      <Layout>
-        <SectionHeader title="Vesti" isGroup={false} linkGroup="" pageGroup="" current="Vesti" />
-        <Section1 />
-        <Section9 />
-      </Layout>
-    </>
+    <Layout>
+      <SectionHeader title="Вести" isGroup={false} linkGroup="" pageGroup="" current="Вести" />
+      <Section1 />
+      <Section9 />
+    </Layout>
   );
 }
 
 export const metadata: Metadata = {
-  title: "Vesti",
-  description: "Novosti i obavestenja udruzenja Eduka.",
+  title: "Вести",
+  description: "Новости и обавештења удружења Едука.",
   alternates: { canonical: "/vesti" },
   openGraph: {
-    title: "Eduka - Vesti",
-    description: "Novosti i obavestenja udruzenja Eduka.",
+    title: "Едука — Вести",
+    description: "Новости и обавештења удружења Едука.",
     url: "https://eduka.rs/vesti",
   },
 };

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 async function GalleryGrid() {
-  const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/,'');
+  const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
   const url = BASE ? `${BASE}/gallery.php` : "/api/gallery";
   const res = await fetch(url, { cache: "no-store" });
   const items = res.ok ? ((await res.json()) as { id: string; url: string; name?: string }[]) : [];
@@ -15,12 +15,12 @@ async function GalleryGrid() {
         return (
           <div className="col-sm-6 col-md-4 col-lg-3 mb-20" key={g.id}>
             <div className="vl-blog-thumb image-anime">
-              <img className="w-100" src={src} alt={g.name || "galerija"} />
+              <img className="w-100" src={src} alt={g.name || "галерија"} />
             </div>
           </div>
         );
       })}
-      {items.length === 0 && <p>Galerija je prazna.</p>}
+      {items.length === 0 && <p>Галерија је празна.</p>}
     </div>
   );
 }
@@ -28,10 +28,10 @@ async function GalleryGrid() {
 export default function GalerijaPage() {
   return (
     <Layout>
-      <SectionHeader title="Galerija" isGroup={false} linkGroup="" pageGroup="" current="Galerija" />
+      <SectionHeader title="Галерија" isGroup={false} linkGroup="" pageGroup="" current="Галерија" />
       <section className="pt-60 pb-60">
         <div className="container">
-          <Suspense fallback={<p>Učitavanje...</p>}>
+          <Suspense fallback={<p>Учитавање...</p>}>
             <GalleryGrid />
           </Suspense>
         </div>
@@ -41,8 +41,7 @@ export default function GalerijaPage() {
 }
 
 export const metadata: Metadata = {
-  title: "Galerija",
-  description: "Fotografije i momenti sa događaja udruženja Eduka.",
+  title: "Галерија",
+  description: "Фотографије и моменти са догађаја удружења Едука.",
   alternates: { canonical: "/galerija" },
 };
-

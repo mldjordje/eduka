@@ -35,7 +35,7 @@ export default function Header({ scroll, isMobileMenu, mainMenuStyle, handleMobi
                                             </span>
                                         </div>
                                         <div className="vl-content">
-                                            <div className="title">Pozovite nas</div>
+                                            <div className="title">Позовите нас</div>
                                             <Link href="tel:+381184261749" className="number">018 426 1749 </Link><br />
                                             <Link href="tel:+381638661256" className="number">063 866 1256 </Link><br />
                                             <Link href="tel:+38118503748" className="number">018 503 748</Link>

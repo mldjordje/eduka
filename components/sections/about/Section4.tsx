@@ -50,7 +50,7 @@ export default function Section4() {
             <div className="col-lg-4">
               <div className="vl-brand-iner-title">
                 <h3 className="title">
-                  Veruju nam partneri i institucije
+                  Верују нам партнери и институције
                 </h3>
               </div>
             </div>

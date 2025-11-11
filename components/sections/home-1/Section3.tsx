@@ -28,10 +28,37 @@ const swiperOptions = {
   },
 };
 
+const activities = [
+  {
+    title: "Планирање и КМЕ програми",
+    description: "Према прописаним критеријумима планирамо, организујемо и спроводимо све видове континуиране медицинске едукације и издајемо сертификате.",
+    background: "./assets/img/eduka/workshop-presenter.png",
+  },
+  {
+    title: "Регистар чланова и стандарди",
+    description: "Водимо регистар чланова, пратимо стандарде здравствено-образовних установа и дајемо предлоге и мишљења при изради програма и нормативâ.",
+    background: "./assets/img/eduka/workshop-lecture.png",
+  },
+  {
+    title: "Сарадња са институцијама",
+    description: "Сарађујемо са коморама, удружењима и референтним телима у земљи и иностранству и активно учествујемо на конгресима, семинарима и стручним састанцима.",
+    background: "./assets/img/eduka/workshop-audience-front.png",
+  },
+  {
+    title: "Етички кодекс и подршка",
+    description: "Надзиремо спровођење етичких и правних норми, утврђујемо повреде професионалних дужности и дајемо мишљења приликом доношења прописа важних за струку.",
+    background: "./assets/img/eduka/workshop-audience-side.png",
+  },
+  {
+    title: "Онлајн едукација 24/7",
+    description: "Преко платформи eduka.co.rs и domzdravljanis.co.rs омогућавамо приступ тестовима и материјалима током целог дана, уз слање потврда и бодова коморама.",
+    background: "./assets/img/eduka/workshop-demonstration.png",
+  },
+];
+
 export default function Section3() {
   return (
     <>
-      {/*================= Service section start =================*/}
       <SwiperPadding />
 
       <section id="service" className="vl-service-bg-1 fix pt-100 pb-100">
@@ -41,9 +68,9 @@ export default function Section3() {
               <div className="vl-service-section-title">
                 <div className="vl-section-title mb-60">
                   <h5 className="subtitle" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                    Naše usluge
+                    Делатност удружења
                   </h5>
-                  <h2 className="title pt-16 text-anime-style-3">Vodič kroz naše programe</h2>
+                  <h2 className="title pt-16 text-anime-style-3">Задаци који нас воде</h2>
                 </div>
               </div>
             </div>
@@ -52,108 +79,41 @@ export default function Section3() {
         <div className="row" id="service-slide-1">
           <div className="box-swiper-padding">
             <Swiper {...(swiperOptions as any)} className="owl-carousel owl-theme" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-              {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-presenter.png">
-                <div className="vl-service-icon-box">
-                  <div className="icon">
-                    <span className="icon1">
-                      <img src="assets/img/icons/vl-service-icon-1.1.svg" alt="" />
-                    </span>
-                  </div>
-                  <div className="content">
-                    <h4 className="title pt-24">
-                      <Link href="/about">Programi usavršavanja</Link>
-                    </h4>
-                    <p className="para pt-16 pb-24">Bilo da se prijavljujete za obuku ili savetovanje, obezbeđujemo jasne informacije i podršku na svakom koraku.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj više
-                      <span className="right-arow">
-                        <i className="fa-regular fa-arrow-right" />
+              {activities.map((item) => (
+                <SwiperSlide key={item.title} className="vl-single-service-box" data-background={item.background}>
+                  <div className="vl-service-icon-box">
+                    <div className="icon">
+                      <span className="icon1">
+                        <img src="assets/img/icons/vl-service-icon-1.1.svg" alt="" />
                       </span>
-                    </Link>
+                    </div>
+                    <div className="content">
+                      <h4 className="title pt-24">
+                        <Link href="/about">{item.title}</Link>
+                      </h4>
+                      <p className="para pt-16 pb-24">{item.description}</p>
+                      <Link href="/about" className="learnmore">
+                        Сазнај више
+                        <span className="right-arow">
+                          <i className="fa-regular fa-arrow-right" />
+                        </span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-              {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-lecture.png">
-                <div className="vl-service-icon-box">
-                  <div className="icon">
-                    <span className="icon1">
-                      <img src="assets/img/icons/vl-service-icon-1.2.svg" alt="" />
-                    </span>
-                  </div>
-                  <div className="content">
-                    <h4 className="title pt-24">
-                      <Link href="/about">Stručne radionice</Link>
-                    </h4>
-                    <p className="para pt-16 pb-24">Prilagođeno različitim profilima zdravstvenih radnika i saradnika, sa praktičnim primerima i smernicama.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj više
-                      <span className="right-arow">
-                        <i className="fa-regular fa-arrow-right" />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
-              {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-demonstration.png">
-                <div className="vl-service-icon-box">
-                  <div className="icon">
-                    <span className="icon1">
-                      <img src="assets/img/icons/vl-service-icon-1.3.svg" alt="" />
-                    </span>
-                  </div>
-                  <div className="content">
-                    <h4 className="title pt-24">
-                      <Link href="/about">Online obuke</Link>
-                    </h4>
-                    <p className="para pt-16 pb-24">Materijali i resursi za kontinuirano usavršavanje i profesionalni razvoj.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj više
-                      <span className="right-arow">
-                        <i className="fa-regular fa-arrow-right" />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
-              {/* single slider box */}
-              <SwiperSlide className="vl-single-service-box" data-background="./assets/img/eduka/workshop-audience-front.png">
-                <div className="vl-service-icon-box">
-                  <div className="icon">
-                    <span className="icon1">
-                      <img src="assets/img/icons/vl-service-icon-1.1.svg" alt="" />
-                    </span>
-                  </div>
-                  <div className="content">
-                    <h4 className="title pt-24">
-                      <Link href="/about">Programi usavršavanja</Link>
-                    </h4>
-                    <p className="para pt-16 pb-24">Bilo da se prijavljujete za obuku ili savetovanje, obezbeđujemo jasne informacije i podršku na svakom koraku.</p>
-                    <Link href="/about" className="learnmore">
-                      Saznaj više
-                      <span className="right-arow">
-                        <i className="fa-regular fa-arrow-right" />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              ))}
             </Swiper>
             <div className="owl-nav">
-              <button className="owl-prev">
+              <button className="owl-prev" aria-label="Претходна">
                 <i className="fa-solid fa-arrow-left" />
               </button>
-              <button className="owl-next">
+              <button className="owl-next" aria-label="Следећа">
                 <i className="fa-solid fa-arrow-right" />
               </button>
             </div>
           </div>
         </div>
       </section>
-      {/*================= Service section End =================*/}
     </>
   );
 }
-

@@ -6,24 +6,21 @@ import Section9 from "@/components/sections/home-1/Section9";
 
 export default function VestiPage() {
   return (
-    <>
-      <Layout>
-        <SectionHeader title="Vesti" isGroup={false} linkGroup="" pageGroup="" current="Vesti" />
-        <Section1 />
-        <Section9 />
-      </Layout>
-    </>
+    <Layout>
+      <SectionHeader title="Вести" isGroup={false} linkGroup="" pageGroup="" current="Вести" />
+      <Section1 />
+      <Section9 />
+    </Layout>
   );
 }
 
 export const metadata: Metadata = {
-  title: "Vesti",
-  description: "Novosti i obaveštenja udruženja Eduka.",
+  title: "Вести",
+  description: "Новости и обавештења удружења Едука.",
   alternates: { canonical: "/vesti" },
   openGraph: {
-    title: "Eduka – Vesti",
-    description: "Novosti i obaveštenja udruženja Eduka.",
+    title: "Едука — Вести",
+    description: "Новости и обавештења удружења Едука.",
     url: "https://eduka.rs/vesti",
   },
 };
-

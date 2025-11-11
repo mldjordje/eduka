@@ -7,14 +7,16 @@ interface MoreBlogProps {
     excludeSlug?: string;
 }
 
-export default function Section1({ excludeSlug }: MoreBlogProps) {
+export default function Section2({ excludeSlug }: MoreBlogProps) {
     const [posts, setPosts] = useState<BlogPost[]>([]);
 
     useEffect(() => {
-        fetch("/api/posts")
+        const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
+        const url = base ? `${base}/posts.php` : "/api/posts";
+        fetch(url)
             .then((res) => {
                 if (!res.ok) {
-                    throw new Error("Greška");
+                    throw new Error("Грешка");
                 }
                 return res.json();
             })
@@ -25,68 +27,52 @@ export default function Section1({ excludeSlug }: MoreBlogProps) {
             .catch(() => setPosts([]));
     }, [excludeSlug]);
 
-    const currentBlog = posts;
     return (
-        <>
-            {/*================= Blog section Start =================*/}
-            <section className="vl-blog-sec-iner pb-70">
-                <div className="container">
-                    <div className="row">
-                        <div className="vl-service-sec-title-iner">
-                            {/* section title */}
-                            <div className="vl-section-title text-center mb-60">
-                                <h2 className="title text-anime-style-3">More Blog</h2>
-                            </div>
+        <section className="vl-blog-sec-iner pb-70">
+            <div className="container">
+                <div className="row">
+                    <div className="vl-service-sec-title-iner">
+                        <div className="vl-section-title text-center mb-60">
+                            <h2 className="title text-anime-style-3">Још вести</h2>
                         </div>
                     </div>
-                    <div className="row">
-                        {currentBlog.map((blogs, index) => {
-                            const imageSrc = blogs.image.startsWith("http")
-                                ? blogs.image
-                                : `/${blogs.image.replace(/^\//, "")}`;
-                            return (
-                                <div className="col-lg-4 col-md-6 mb-30" key={index}>
-                                {/* single blog box */}
+                </div>
+                <div className="row">
+                    {posts.map((blogs) => {
+                        const raw = blogs.image || "";
+                        const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
+                        const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin : (API_ORIGIN || "https://api.eduka.co.rs");
+                        const imageSrc = /^https?:\/\//.test(raw) ? raw : raw.replace(/^\//, "").startsWith("uploads/") ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}` : `/${raw.replace(/^\//, "")}`;
+                        return (
+                            <div className="col-lg-4 col-md-6 mb-30" key={blogs.slug}>
                                 <div className="vl-single-blog-box">
                                     <div className="vl-blog-thumb image-anime">
-                                        <Link href={`/blog/${blogs.slug}`}>
+                                        <Link href={`/vesti/${blogs.slug}`}>
                                             <img className="w-100" src={imageSrc} alt={blogs.title} />
                                         </Link>
                                     </div>
                                     <div className="vl-blog-content">
                                         <div className="vl-blog-meta">
-                                            <Link href="#">
-                                                <cite className="meta-icon mr-6">
-                                                    <img src="assets/img/icons/vl-date-icon-1.1.svg" alt="" />
-                                                </cite>
-                                                {blogs.date}
-                                            </Link>
-                                            <Link href="#">
-                                                <cite className="meta-icon mr-6">
-                                                    <img src="assets/img/icons/vl-blog-user1.1.svg" alt="" />
-                                                </cite>
-                                                {blogs.author}
-                                            </Link>
+                                            <span>{blogs.date}</span>
+                                            <span>{blogs.author}</span>
                                         </div>
                                         <h3 className="title pt-20 pb-12">
-                                            <Link href={`/blog/${blogs.slug}`}>{blogs.title}</Link>
+                                            <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
                                         </h3>
                                         <p>{blogs.excerpt}</p>
-                                        <Link href={`/blog/${blogs.slug}`} className="blog-learnmore">
-                                            Learn more
+                                        <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
+                                            Прочитај више
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
                                             </span>
                                         </Link>
                                     </div>
                                 </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                            </div>
+                        );
+                    })}
                 </div>
-            </section>
-            {/*================= Blog section End =================*/}
-        </>
+            </div>
+        </section>
     );
 }

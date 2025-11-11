@@ -2,7 +2,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -29,15 +28,11 @@ const swiperOptions = {
 };
 
 export default function Section1() {
-  const [isOpen, setOpen] = useState(false);
-
   return (
     <>
-      {/*================= Banner section start =================*/}
       <Swiper {...(swiperOptions as any)} id="banner-slid1e" className="swiper owl-carousel owl-theme position-relative">
         <div className="swiper-wrapper">
           <SwiperSlide className="swiper-slide">
-            {/* single slider */}
             <div className="vl-banner-area" data-background="./assets/img/eduka/hero-1.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
@@ -47,28 +42,24 @@ export default function Section1() {
                 <div className="row">
                   <div className="col-lg-6 fix">
                     <div className="vl-banner-area-content fix p-relative">
-                      <h5 className="subtitle">Dobrodošli na Eduku</h5>
-                      <h1 className="title text-anime-style-3 pt-16 pb-16">
-                        Udruženje zdravstvenih radnika Nišavskog okruga
-                      </h1>
-                      <p className="para pb-32">
-                        Eduka okuplja zdravstvene radnike sa ciljem unapređenja struke,
-                        razmene znanja i podizanja kvaliteta zdravstvene zaštite kroz kontinuiranu edukaciju.
+                      <h5 className="subtitle">Добро дошли у Едуку</h5>
+                      <h1 className="title text-anime-style-3 pt-16 pb-16">Удружење здравствених радника Нишавског округа</h1>
+                      <p className="para pb-24">
+                        Удружење Едука чине здравствени радници и сарадници који желе да се континуирано усавршавају, да размењују знања и да заједно подижу стандарде струке.
                       </p>
                       <p className="para pb-32">
-                        Udruženje organizuje različite programe kontinuirane edukacije kongrese,simpozijume, seminare, stručne sastanke, kurseve, testove u pisanoj formi a na našoj platformi su vam 24 sata dnevno dostupni i on line testovi.
+                        Планирамо и реализујемо акредитоване програме континуиране едукације, издајемо сертификате и повезујемо предаваче, институције и чланове широм Нишавског округа.
                       </p>
-                      {/* btn */}
                       <div className="vl-hero-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                         <Link href="/about" className="vl-btn-primary">
-                          Saznaj više
+                          Сазнај више
                         </Link>
                       </div>
                     </div>
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/hero-1.jpg" alt="Učionica Eduka" />
+                      <img src="assets/img/eduka/hero-1.jpg" alt="Чланови удружења Едука" />
                     </div>
                   </div>
                 </div>
@@ -77,7 +68,6 @@ export default function Section1() {
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            {/* single slider */}
             <div className="vl-banner-area" data-background="./assets/img/eduka/hero-2.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
@@ -87,25 +77,21 @@ export default function Section1() {
                 <div className="row">
                   <div className="col-lg-6 fix">
                     <div className="vl-banner-area-content fix p-relative">
-                      <h5 className="subtitle">Kontinuirana edukacija</h5>
-                      <h1 className="title text-anime-style-3 pt-16 pb-16">
-                        Ulažemo u znanje i profesionalni razvoj zdravstvenih radnika
-                      </h1>
+                      <h5 className="subtitle">Континуирана едукација</h5>
+                      <h1 className="title text-anime-style-3 pt-16 pb-16">Улажемо у знање и професионални развој</h1>
                       <p className="para pb-32">
-                        Eduka organizuje KME programe i online seminare sa ciljem stalnog usavršavanja
-                        zdravstvenih radnika svih profila.
+                        Едука организује КМЕ програме, радионице и онлајн семинаре који прате актуелне прописе и потребе здравствених установа у региону.
                       </p>
-                      {/* btn */}
                       <div className="vl-hero-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                        <Link href="https://eduka.rs/edukacije" target="_blank" rel="noopener noreferrer" className="vl-btn-primary">
-                          Pogledaj edukacije
+                        <Link href="https://eduka.rs/edukacije" prefetch={false} target="_blank" rel="noopener noreferrer" className="vl-btn-primary">
+                          Погледајте едукације
                         </Link>
                       </div>
                     </div>
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/hero-2.jpg" alt="Publika Eduka" />
+                      <img src="assets/img/eduka/hero-2.jpg" alt="Предавање удружења Едука" />
                     </div>
                   </div>
                 </div>
@@ -114,7 +100,6 @@ export default function Section1() {
           </SwiperSlide>
 
           <SwiperSlide className="swiper-slide">
-            {/* single slider */}
             <div className="vl-banner-area" data-background="./assets/img/eduka/hero-3.jpg">
               <div className="shape shape-1">
                 <img src="assets/img/shape/vl-hero-shape-1.1.svg" alt="" />
@@ -124,25 +109,21 @@ export default function Section1() {
                 <div className="row">
                   <div className="col-lg-6 fix">
                     <div className="vl-banner-area-content fix p-relative">
-                      <h5 className="subtitle">Postani deo zajednice</h5>
-                      <h1 className="title text-anime-style-3 pt-16 pb-16">
-                        Zajedno gradimo bolju budućnost zdravstvene profesije
-                      </h1>
+                      <h5 className="subtitle">Постаните део заједнице</h5>
+                      <h1 className="title text-anime-style-3 pt-16 pb-16">Заједно градимо бољу будућност струке</h1>
                       <p className="para pb-32">
-                        Pridruži se udruženju Eduka i doprinesi razvoju zdravstvene zaštite kroz saradnju,
-                        razmenu iskustava i zajedničke projekte.
+                        Чланство у Едуци обезбеђује приступ програмима, менторству, правовременим информацијама и умрежавању са колегама из целе Србије.
                       </p>
-                      {/* btn */}
                       <div className="vl-hero-btn" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
-                        <Link href="/prijava" className="vl-btn-primary">
-                          Postani član
+                        <Link href="/postanite-clan" className="vl-btn-primary">
+                          Постани члан
                         </Link>
                       </div>
                     </div>
                   </div>
                   <div className="col-lg-6 p-relative">
                     <div className="video-shape">
-                      <img src="assets/img/eduka/hero-3.jpg" alt="Publika Eduka sa strane" />
+                      <img src="assets/img/eduka/hero-3.jpg" alt="Јачање професионалне заједнице" />
                     </div>
                   </div>
                 </div>
@@ -152,7 +133,6 @@ export default function Section1() {
         </div>
         <div className="swiper-pagination"></div>
       </Swiper>
-      {/*================= Banner section End =================*/}
     </>
   );
 }
