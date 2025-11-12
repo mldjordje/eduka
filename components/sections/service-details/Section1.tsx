@@ -174,7 +174,7 @@ export default function Section1({ left, single }: { left?: boolean; single?: bo
                                 <div className="row align-items-center">
                                     <div className="col-lg-6 col-md-6 mb-30">
                                         <div className="vl-service-video-thumb p-relative">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Edukativni video prikaz" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/hero-5.jpg" alt="Edukativni video prikaz" />
                                             <div className="popup-video vl-play-btn" onClick={() => setOpen(true)}>
                                                 <span>
                                                     <i className="fa-solid fa-play" />

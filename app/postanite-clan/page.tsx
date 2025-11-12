@@ -192,7 +192,7 @@ export default function ApplicationPage() {
                 <div className="pt-32">
                   <h3 className="title pb-12">Документи за преузимање</h3>
                   <div className="d-flex flex-column flex-md-row gap-3">
-                    <a className="vl-btn-primary" href={`/docs/${encodeURIComponent("Racun novi Eduka 2024.pdf")}`} target="_blank" rel="noopener noreferrer">
+                    <a className="vl-btn-primary" href={`/docs/${encodeURIComponent("Račun novi Eduka 2024.pdf")}`} target="_blank" rel="noopener noreferrer">
                       Преузми уплатницу (PDF)
                     </a>
                     <a className="vl-btn-secondary" href={`/docs/${encodeURIComponent("Eduka pristupnica.docx")}`} target="_blank" rel="noopener noreferrer">

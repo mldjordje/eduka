@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function Section1() {
   return (
@@ -42,7 +42,7 @@ export default function Section1() {
             </div>
             <div className="col-lg-6 mb-30">
               <div className="vl-con-thum-iner ml-30">
-                <img className="w-100 br-8" src="assets/img/eduka/workshop-audience-front.png" alt="Посетиоци Едука догађаја" />
+                <img className="w-100 br-8" src="assets/img/eduka/hero-5.jpg" alt="Посетиоци Едука догађаја" />
               </div>
             </div>
           </div>

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         description: "Едука окупља здравствене раднике и сараднике ради заједничког рада на квалитету, професионалном развоју и континуираној едукацији.",
         images: [
             {
-                url: "/assets/img/eduka/workshop-presenter.png",
+                url: "/assets/img/eduka/hero-5.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Едука – рад у учионици",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Едука | Удружење здравствених радника и сарадника Нишавског округа",
         description: "Едукације, радионице и континуирано усавршавање здравствених радника у Нишавском округу.",
-        images: ["/assets/img/eduka/workshop-presenter.png"],
+        images: ["/assets/img/eduka/hero-5.jpg"],
     },
     alternates: {
         canonical: "https://eduka.rs",

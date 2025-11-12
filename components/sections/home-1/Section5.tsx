@@ -28,12 +28,12 @@ export default function Section5() {
                     <div className="row" data-aos="fade-up" data-aos-duration={800} data-aos-delay={300}>
                         <div className="col-lg-6 mb-30">
                             <div className="box">
-                                <ImageCompare before={"/assets/img/eduka/workshop-audience-side.png"} after={"/assets/img/eduka/workshop-presenter.png"} />
+                                <ImageCompare before={"/assets/img/eduka/workshop-audience-side.png"} after={"/assets/img/eduka/hero-5.jpg"} />
                             </div>
                         </div>
                         <div className="col-lg-6 mb-30">
                             <div className="box">
-                                <ImageCompare before={"/assets/img/eduka/workshop-audience-front.png"} after={"/assets/img/eduka/workshop-lecture.png"} />
+                                <ImageCompare before={"/assets/img/eduka/hero-5.jpg"} after={"/assets/img/eduka/hero-5.jpg"} />
                             </div>
                         </div>
                     </div>

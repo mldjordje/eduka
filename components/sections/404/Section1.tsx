@@ -10,7 +10,7 @@ export default function Section1() {
                         <div className="col-lg-8 mx-auto text-center">
                             <div className="vl-eror-area">
                                 <div className="eror-thumb">
-                                    <img className="w-100" src="assets/img/eduka/workshop-audience-front.png" alt="Učesnici Eduka događaja" />
+                                    <img className="w-100" src="assets/img/eduka/hero-5.jpg" alt="Učesnici Eduka događaja" />
                                 </div>
                                 <div className="eror-content">
                                     <h3 className="title">Sorry, Something Went Wrong</h3>

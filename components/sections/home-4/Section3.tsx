@@ -75,7 +75,7 @@ export default function Section3() {
                             {/* single service box */}
                             <SwiperSlide className="vl-single-service-bo4x">
                                 <div className="vl-thumb image-anime">
-                                    <img className="w-100" src="assets/img/eduka/workshop-presenter.png" alt="Predavanje na edukaciji" />
+                                    <img className="w-100" src="assets/img/eduka/hero-5.jpg" alt="Predavanje na edukaciji" />
                                 </div>
                                 <div className="vl-content">
                                     <Link href="/service-single" className="vl-up-arrow">
@@ -92,7 +92,7 @@ export default function Section3() {
                             {/* single service box */}
                             <SwiperSlide className="vl-single-service-bo4x">
                                 <div className="vl-thumb image-anime">
-                                    <img className="w-100" src="assets/img/eduka/workshop-lecture.png" alt="Radionica sa prezentacijom" />
+                                    <img className="w-100" src="assets/img/eduka/hero-5.jpg" alt="Radionica sa prezentacijom" />
                                 </div>
                                 <div className="vl-content">
                                     <Link href="/service-single" className="vl-up-arrow">
@@ -126,7 +126,7 @@ export default function Section3() {
                             {/* single service box */}
                             <SwiperSlide className="vl-single-service-bo4x">
                                 <div className="vl-thumb image-anime">
-                                    <img className="w-100" src="assets/img/eduka/workshop-audience-front.png" alt="Učesnici Eduka programa" />
+                                    <img className="w-100" src="assets/img/eduka/hero-5.jpg" alt="Učesnici Eduka programa" />
                                 </div>
                                 <div className="vl-content">
                                     <Link href="/service-single" className="vl-up-arrow">

@@ -3,13 +3,13 @@
         "id": 1,
         "name": "Desiree Wolf",
         "position": "Pediatrics",
-        "avatar": "assets/img/eduka/workshop-presenter.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 2,
         "name": "Preston Padberg",
         "position": "Cardiology",
-        "avatar": "assets/img/eduka/workshop-lecture.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 3,
@@ -27,19 +27,19 @@
         "id": 5,
         "name": "Terrell Will",
         "position": "Pediatrics",
-        "avatar": "assets/img/eduka/workshop-audience-front.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 6,
         "name": "Angel Hayes Jr.",
         "position": "Orthopedics",
-        "avatar": "assets/img/eduka/workshop-presenter.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 7,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/eduka/workshop-lecture.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 8,
@@ -57,19 +57,19 @@
         "id": 10,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/eduka/workshop-audience-front.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 11,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/eduka/workshop-presenter.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 12,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/eduka/workshop-lecture.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
 
     {
@@ -88,12 +88,12 @@
         "id": 15,
         "name": "Samuel Waters II",
         "position": "Deromatology",
-        "avatar": "assets/img/eduka/workshop-audience-front.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     },
     {
         "id": 16,
         "name": "Chester Reynolds",
         "position": "Orthopedics",
-        "avatar": "assets/img/eduka/workshop-presenter.png"
+        "avatar": "assets/img/eduka/hero-5.jpg"
     }
 ]

@@ -5,7 +5,7 @@ export default function Section9() {
     <>
       <section className="vl-cta-area">
         <div className="container">
-          <div className="vl-cta-bg" data-background="./assets/img/eduka/workshop-lecture.png">
+          <div className="vl-cta-bg" data-background="./assets/img/eduka/hero-5.jpg">
             <div className="vl-line-shape">
               <img src="assets/img/shape/cta-left-arrow-shape-1.1.svg" alt="" />
             </div>
@@ -14,7 +14,7 @@ export default function Section9() {
               <div className="col-lg-5">
                 <div className="vl-cta-content">
                   <h3 className="title text-anime-style-3 pb-24">Пошаљите питање</h3>
-                  <p className="para pb-24">Наш тим вам је на располагању радним данима од 7 до 15 часова за сва додатна објашњења.</p>
+                  <p className="para pb-24 text-white">Наш тим вам је на располагању радним данима од 7 до 15 часова за сва додатна објашњења.</p>
                   <Link href="/prijava" className="vl-btn-primary">
                     Отворите контакт страницу
                   </Link>

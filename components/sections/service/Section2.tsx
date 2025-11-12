@@ -20,7 +20,7 @@ export default function Section2() {
           <div className="row">
             <div className="col-lg-6 col-md-6 mb-30">
               {/* single slider box */}
-              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/workshop-presenter.png">
+              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/hero-5.jpg">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
@@ -46,7 +46,7 @@ export default function Section2() {
             </div>
             <div className="col-lg-6 col-md-6 mb-30">
               {/* single slider box */}
-              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/workshop-lecture.png">
+              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/hero-5.jpg">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">
@@ -96,7 +96,7 @@ export default function Section2() {
             </div>
             <div className="col-lg-6 col-md-6 mb-30">
               {/* single slider box */}
-              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/workshop-audience-front.png">
+              <div className="vl-single-service-box-iner" data-background="./assets/img/eduka/hero-5.jpg">
                 <div className="vl-service-icon-box">
                   <div className="icon">
                     <span className="icon1">

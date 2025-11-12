@@ -91,12 +91,12 @@ export default function Section4() {
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-presenter.png" alt="Планирање програма" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/hero-5.jpg" alt="Планирање програма" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabIndex={0}>
                                         <div className="vl-tab-thumb reveal image-anime">
-                                            <img className="w-100 br-8" src="assets/img/eduka/workshop-lecture.png" alt="Спровођење наставе" />
+                                            <img className="w-100 br-8" src="assets/img/eduka/hero-5.jpg" alt="Спровођење наставе" />
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabIndex={0}>

@@ -32,17 +32,17 @@ const activities = [
   {
     title: "Планирање и КМЕ програми",
     description: "Према прописаним критеријумима планирамо, организујемо и спроводимо све видове континуиране медицинске едукације и издајемо сертификате.",
-    background: "./assets/img/eduka/workshop-presenter.png",
+    background: "./assets/img/eduka/hero-5.jpg",
   },
   {
     title: "Регистар чланова и стандарди",
     description: "Водимо регистар чланова, пратимо стандарде здравствено-образовних установа и дајемо предлоге и мишљења при изради програма и нормативâ.",
-    background: "./assets/img/eduka/workshop-lecture.png",
+    background: "./assets/img/eduka/hero-5.jpg",
   },
   {
     title: "Сарадња са институцијама",
     description: "Сарађујемо са коморама, удружењима и референтним телима у земљи и иностранству и активно учествујемо на конгресима, семинарима и стручним састанцима.",
-    background: "./assets/img/eduka/workshop-audience-front.png",
+    background: "./assets/img/eduka/hero-5.jpg",
   },
   {
     title: "Етички кодекс и подршка",
