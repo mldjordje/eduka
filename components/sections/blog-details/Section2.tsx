@@ -8,6 +8,25 @@ interface MoreBlogProps {
 }
 
 export default function Section2({ excludeSlug }: MoreBlogProps) {
+    const getTime = (item: BlogPost) => {
+        const enriched = item as BlogPost & { created_at?: string };
+        const candidates = [enriched.created_at, item.date].filter(Boolean) as string[];
+        for (const value of candidates) {
+            const timestamp = new Date(value).getTime();
+            if (!Number.isNaN(timestamp)) {
+                return timestamp;
+            }
+        }
+        return 0;
+    };
+
+    const sortByDateDesc = (items: BlogPost[]) =>
+        [...items].sort((a, b) => {
+            const aTime = getTime(a);
+            const bTime = getTime(b);
+            return bTime - aTime;
+        });
+
     const [posts, setPosts] = useState<BlogPost[]>([]);
 
     useEffect(() => {
@@ -21,7 +40,8 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                 return res.json();
             })
             .then((data: BlogPost[]) => {
-                const filtered = excludeSlug ? data.filter((post) => post.slug !== excludeSlug) : data;
+                const sorted = sortByDateDesc(data);
+                const filtered = excludeSlug ? sorted.filter((post) => post.slug !== excludeSlug) : sorted;
                 setPosts(filtered.slice(0, 3));
             })
             .catch(() => setPosts([]));

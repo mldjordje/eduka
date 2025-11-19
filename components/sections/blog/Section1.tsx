@@ -4,6 +4,25 @@ import { useEffect, useState } from "react";
 import type { BlogPost } from "@/types/blog";
 
 export default function Section1() {
+    const getTime = (item: BlogPost) => {
+        const enriched = item as BlogPost & { created_at?: string };
+        const candidates = [enriched.created_at, item.date].filter(Boolean) as string[];
+        for (const value of candidates) {
+            const timestamp = new Date(value).getTime();
+            if (!Number.isNaN(timestamp)) {
+                return timestamp;
+            }
+        }
+        return 0;
+    };
+
+    const sortByDateDesc = (items: BlogPost[]) =>
+        [...items].sort((a, b) => {
+            const aTime = getTime(a);
+            const bTime = getTime(b);
+            return bTime - aTime;
+        });
+
     const [blog, setBlog] = useState<BlogPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -22,7 +41,7 @@ export default function Section1() {
                 return res.json();
             })
             .then((data: BlogPost[]) => {
-                setBlog(data);
+                setBlog(sortByDateDesc(data));
                 setError(null);
             })
             .catch((err: Error) => {

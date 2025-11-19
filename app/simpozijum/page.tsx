@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 const DOWNLOADS = [
+  { label: "Програм симпозијума (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
   { label: "Резиме рада (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
   { label: "Упутство за израду сажетка", file: "Упутство-за-писање-сажетка.pdf" },
   { label: "Упутство за израду презентације", file: "Упутство-за-израду-презентације.pdf" },
@@ -23,11 +24,11 @@ export default function SimpozijumPage() {
               </div>
             </div>
             <div className="col-lg-6 mb-20">
-              <h3 className="title pb-12">Позив за учешће на националном симпозијуму</h3>
+              <h3 className="title pb-12">Програм националног симпозијума</h3>
               <p className="pb-8">„Дијабетес у лавиринту примарне здравствене заштите“ — Златибор, 25–28. новембар 2025.</p>
-              <p className="pb-16">Детаље о програму, бодовању и пријавама прочитајте у вести.</p>
-              <Link href="/vesti/dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025" className="vl-btn-primary">
-                Отвори вест
+              <p className="pb-16">Детаљна сатница и предавачи доступни су у новој вести и као PDF фајл у наставку.</p>
+              <Link href="/vesti/Program-nacionalnog-simpozijuma" className="vl-btn-primary">
+                Отвори вест о програму
               </Link>
             </div>
           </div>
@@ -56,6 +57,6 @@ export default function SimpozijumPage() {
 
 export const metadata: Metadata = {
   title: "Симпозијум",
-  description: "Обавештења и материјали за симпозијум удружења Едука.",
+  description: "Програм, обавештења и материјали за симпозијум удружења Едука.",
   alternates: { canonical: "/simpozijum" },
 };

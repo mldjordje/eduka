@@ -12,8 +12,13 @@ interface BlogPostPageProps {
 
 export const dynamic = "force-dynamic";
 
-const SIMPOZIJUM_SLUG = "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025";
+const SIMPOZIJUM_SLUGS = [
+  "Program-nacionalnog-simpozijuma",
+  "simpozijum",
+  "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025",
+];
 const SIMPOZIJUM_DOWNLOADS = [
+  { label: "Програм симпозијума (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
   { label: "Резиме рада (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
   { label: "Упутство за израду сажетка", file: "Упутство-за-писање-сажетка.pdf" },
   { label: "Упутство за израду презентације", file: "Упутство-за-израду-презентације.pdf" },
@@ -123,7 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </p>
                   ))}
                 </div>
-                {post.slug === SIMPOZIJUM_SLUG && (
+                {SIMPOZIJUM_SLUGS.includes(post.slug) && (
                   <div className="pt-24">
                     <h3 className="title pb-16">Материјали за преузимање</h3>
                     <ul>
