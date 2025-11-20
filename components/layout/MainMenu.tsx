@@ -27,7 +27,7 @@ export default function MainMenu() {
       </li>
       <li className="has-dropdown">
         <Link href="https://eduka.rs/edukacije" prefetch={false}>
-          Онлајн едукација (КМЕ)
+          КМЕ едукација
           <span>
             <i className="fa-regular fa-angle-down" />
           </span>
