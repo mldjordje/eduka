@@ -73,12 +73,12 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                   </Link>
                   <ul className="sub-menu" style={{ display: "block" }}>
                     <li>
-                      <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                      <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
                         Едукација – УЗРС Едука
                       </a>
                     </li>
                     <li>
-                      <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
+                      <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-дз-ниш/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
                         Едукација – ДЗ Ниш
                       </a>
                     </li>

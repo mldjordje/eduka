@@ -34,12 +34,12 @@ export default function MainMenu() {
         </Link>
         <ul className="sub-menu">
           <li>
-            <a href="https://eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">
+            <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">
               Едукација – УЗРС Едука
             </a>
           </li>
           <li>
-            <a href="https://eduka.co.rs/category/edukacijaедукација-дз-ниш/" target="_blank" rel="noopener noreferrer">
+            <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-дз-ниш/" target="_blank" rel="noopener noreferrer">
               Едукација – ДЗ Ниш
             </a>
           </li>
