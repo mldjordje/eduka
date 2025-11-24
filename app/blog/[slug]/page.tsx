@@ -109,12 +109,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       </span>
                       {formatDate(post.date)}
                     </li>
-                    <li>
-                      <span>
-                        <img src="/assets/img/icons/vl-blog-user1.1.svg" alt="Аутор" />
-                      </span>
-                      {post.author}
-                    </li>
                   </ul>
                 </div>
                 <h1 className="title pb-24">{post.title}</h1>

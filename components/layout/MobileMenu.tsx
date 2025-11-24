@@ -62,11 +62,6 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                     Постаните члан
                   </Link>
                 </li>
-                <li>
-                  <Link href="/cms" onClick={handleMobileMenu}>
-                    CMS
-                  </Link>
-                </li>
                 <li className="has-dropdown">
                   <Link href="https://eduka.rs/edukacije" prefetch={false} onClick={handleMobileMenu}>
                     КМЕ едукација
