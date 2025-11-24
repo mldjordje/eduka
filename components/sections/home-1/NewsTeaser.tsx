@@ -8,6 +8,18 @@ export default function NewsTeaser() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const formatDate = (value: string) => {
+    try {
+      return new Date(value).toLocaleDateString("sr-RS", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return value;
+    }
+  };
+
   useEffect(() => {
     const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
     const url = base ? `${base}/posts.php` : "/api/posts";
@@ -44,8 +56,7 @@ export default function NewsTeaser() {
                   </div>
                   <div className="vl-blog-content">
                     <div className="vl-blog-meta">
-                      <span>{p.date}</span>
-                      <span>{p.author}</span>
+                      <span>{formatDate(p.date)}</span>
                     </div>
                     <h3 className="title pt-16 pb-12">
                       <Link href={`/vesti/${p.slug}`}>{p.title}</Link>

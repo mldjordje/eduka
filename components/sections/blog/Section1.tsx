@@ -16,6 +16,18 @@ export default function Section1() {
         return 0;
     };
 
+    const formatDate = (value: string) => {
+        try {
+            return new Date(value).toLocaleDateString("sr-RS", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+        } catch {
+            return value;
+        }
+    };
+
     const sortByDateDesc = (items: BlogPost[]) =>
         [...items].sort((a, b) => {
             const aTime = getTime(a);
@@ -106,8 +118,7 @@ export default function Section1() {
                                         </div>
                                         <div className="vl-blog-content">
                                             <div className="vl-blog-meta">
-                                                <span>{blogs.date}</span>
-                                                <span>{blogs.author}</span>
+                                                <span>{formatDate(blogs.date)}</span>
                                             </div>
                                             <h3 className="title pt-20 pb-24">
                                                 <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
