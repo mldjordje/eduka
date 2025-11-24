@@ -22,9 +22,6 @@ export default function MainMenu() {
       <li>
         <Link href="/postanite-clan">Постаните члан</Link>
       </li>
-      <li>
-        <Link href="/cms">CMS</Link>
-      </li>
       <li className="has-dropdown">
         <Link href="https://eduka.rs/edukacije" prefetch={false}>
           КМЕ едукација
