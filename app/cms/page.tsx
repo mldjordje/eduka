@@ -13,6 +13,7 @@ const initialPostForm = {
   slug: "",
   author: "",
   image: "",
+  document: "",
   excerpt: "",
   content: "",
   tags: "",
@@ -31,7 +32,9 @@ export default function CmsPage() {
   const [form, setForm] = useState(initialPostForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isDocumentUploading, setIsDocumentUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [documentUploadError, setDocumentUploadError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
@@ -149,12 +152,37 @@ export default function CmsPage() {
     }
   };
 
+  const handleDocumentUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setDocumentUploadError(null);
+    setIsDocumentUploading(true);
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      const uploadEndpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Upload dokumenta nije uspeo.");
+      }
+      const body = await res.json();
+      const url = body.url || body.path;
+      setForm((prev) => ({ ...prev, document: url }));
+    } catch (e: any) {
+      setDocumentUploadError(e.message || "Greška pri uploadu dokumenta.");
+    } finally {
+      setIsDocumentUploading(false);
+    }
+  };
+
   const handleEdit = (post: BlogPost) => {
     setForm({
       title: post.title,
       slug: post.slug,
       author: post.author,
       image: post.image,
+      document: (post as any).document || "",
       excerpt: post.excerpt,
       content: post.content,
       tags: (post.tags || []).join(", "),
@@ -302,6 +330,7 @@ export default function CmsPage() {
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
                 {uploadError && <div className="alert alert-danger">{uploadError}</div>}
+                {documentUploadError && <div className="alert alert-danger">{documentUploadError}</div>}
                 <form onSubmit={handleSubmit} className="cms-form">
                   <div className="row">
                     <div className="col-12 pb-16">
@@ -325,6 +354,17 @@ export default function CmsPage() {
                       <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                       {isUploading && <small>Otpremanje...</small>}
                     </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Dokument (upload)</label>
+                      <input
+                        type="file"
+                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain"
+                        className="form-control"
+                        onChange={handleDocumentUpload}
+                        disabled={isDocumentUploading}
+                      />
+                      {isDocumentUploading && <small>Otpremanje dokumenta...</small>}
+                    </div>
                     <div className="col-12 pb-16">
                       <label className="form-label">Kratak opis</label>
                       <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
@@ -342,6 +382,21 @@ export default function CmsPage() {
                         <label className="form-label">Pregled slike</label>
                         <div className="vl-blog-thumb image-anime" style={{ maxWidth: 300 }}>
                           <img className="w-100" src={form.image.startsWith("http") ? form.image : "/" + form.image.replace(/^\/+/, "")} alt="Pregled slike" />
+                        </div>
+                      </div>
+                    )}
+                    {form.document && (
+                      <div className="col-12 pb-16">
+                        <label className="form-label">Postavljeni dokument</label>
+                        <div>
+                          <a
+                            className="vl-btn-primary"
+                            href={form.document.startsWith("http") ? form.document : "/" + form.document.replace(/^\/+/, "")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Otvori dokument
+                          </a>
                         </div>
                       </div>
                     )}

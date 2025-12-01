@@ -52,6 +52,7 @@ export async function PUT(
     author: body.author ?? current.author,
     date: body.date ?? current.date,
     image: body.image ?? current.image,
+    document: body.document ?? current.document,
     excerpt: body.excerpt ?? current.excerpt,
     content: body.content ?? current.content,
     tags: Array.isArray(body.tags)
