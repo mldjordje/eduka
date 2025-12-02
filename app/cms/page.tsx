@@ -236,10 +236,16 @@ export default function CmsPage() {
         ? `${base}/posts.php`
         : "/api/posts";
       const method = isEdit ? "PUT" : "POST";
+      const payload = {
+        ...form,
+        tags: form.tags,
+        document: form.document,
+        documentName: form.documentName,
+      };
       const response = await fetch(endpoint, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, tags: form.tags }),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
