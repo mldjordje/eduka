@@ -59,7 +59,8 @@ export default function CmsPage() {
 
   const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
   const USE_PHP_API = Boolean(API_BASE);
-  const UPLOAD_URL = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || "";
+  // Prefer explicit upload endpoint; otherwise default to PHP upload on the same API host
+  const UPLOAD_URL = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || (API_BASE ? `${API_BASE}/upload.php` : "")).replace(/\/+$/, "");
 
   const buildPrintHtml = (app: ApplicationSubmission) => {
     const safe = (v?: string) => (v ?? "");
