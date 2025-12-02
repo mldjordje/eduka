@@ -1,8 +1,22 @@
 import { NextResponse } from "next/server";
-import type { BlogPost } from "@/types/blog";
+import type { BlogAttachment, BlogPost } from "@/types/blog";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
 
 const FILE_NAME = "blogPosts.json";
+
+function normalizeAttachments(input: unknown, fallback: BlogAttachment[] = []): BlogAttachment[] {
+  if (!Array.isArray(input)) return fallback;
+
+  return input
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const label = typeof (item as any).label === "string" ? (item as any).label.trim() : "";
+      const url = typeof (item as any).url === "string" ? (item as any).url.trim() : "";
+      if (!url) return null;
+      return { label: label || url.split("/").pop() || url, url } as BlogAttachment;
+    })
+    .filter((item): item is BlogAttachment => Boolean(item?.url));
+}
 
 export async function GET(
   request: Request,
@@ -59,6 +73,7 @@ export async function PUT(
       : typeof body.tags === "string"
       ? body.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
       : current.tags,
+    attachments: normalizeAttachments(body.attachments, current.attachments || []),
   };
   posts[idx] = updated;
   await writeDataFile(FILE_NAME, posts);
