@@ -197,7 +197,7 @@ export default function CmsPage() {
       tags: (post.tags || []).join(", "),
       date: post.date?.slice(0, 10) || "",
       document: post.document ?? "",
-      documentName: post.documentName ?? "",
+      documentName: (post as any).document_name ?? post.documentName ?? "",
     });
     setEditingSlug(post.slug);
     setMessage(null);
