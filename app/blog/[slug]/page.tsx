@@ -51,7 +51,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.excerpt,
       url: `https://eduka.rs/vesti/${post.slug}`,
       publishedTime: post.date,
-      authors: post.author ? [post.author] : undefined,
       tags: post.tags && post.tags.length ? post.tags : undefined,
       images: imageSrc ? [{ url: imageSrc }] : undefined,
     },
@@ -65,15 +64,21 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 function formatDate(date: string) {
-  try {
-    return new Date(date).toLocaleDateString("sr-RS", {
+  const normalized = date ? date.toString().trim() : "";
+  const candidate = normalized.includes("T") ? normalized : normalized.replace(" ", "T");
+  const parsed = candidate ? new Date(candidate) : null;
+  if (parsed && !Number.isNaN(parsed.getTime())) {
+    return parsed.toLocaleDateString("sr-RS", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
-  } catch {
-    return date;
   }
+  if (normalized) {
+    const firstPart = normalized.split(" ")[0];
+    return firstPart || normalized;
+  }
+  return "-";
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -108,12 +113,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt="Датум објаве" />
                       </span>
                       {formatDate(post.date)}
-                    </li>
-                    <li>
-                      <span>
-                        <img src="/assets/img/icons/vl-blog-user1.1.svg" alt="Аутор" />
-                      </span>
-                      {post.author}
                     </li>
                   </ul>
                 </div>

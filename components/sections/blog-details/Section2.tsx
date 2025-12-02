@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { extractPostTimestamp, formatPostDate } from "@/lib/postDates";
 import type { BlogPost } from "@/types/blog";
 
 interface MoreBlogProps {
@@ -8,22 +9,10 @@ interface MoreBlogProps {
 }
 
 export default function Section2({ excludeSlug }: MoreBlogProps) {
-    const getTime = (item: BlogPost) => {
-        const enriched = item as BlogPost & { created_at?: string };
-        const candidates = [enriched.created_at, item.date].filter(Boolean) as string[];
-        for (const value of candidates) {
-            const timestamp = new Date(value).getTime();
-            if (!Number.isNaN(timestamp)) {
-                return timestamp;
-            }
-        }
-        return 0;
-    };
-
     const sortByDateDesc = (items: BlogPost[]) =>
         [...items].sort((a, b) => {
-            const aTime = getTime(a);
-            const bTime = getTime(b);
+            const aTime = extractPostTimestamp(a);
+            const bTime = extractPostTimestamp(b);
             return bTime - aTime;
         });
 
@@ -73,8 +62,7 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                                     </div>
                                     <div className="vl-blog-content">
                                         <div className="vl-blog-meta">
-                                            <span>{blogs.date}</span>
-                                            <span>{blogs.author}</span>
+                                            <span>{formatPostDate(blogs)}</span>
                                         </div>
                                         <h3 className="title pt-20 pb-12">
                                             <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>

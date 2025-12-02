@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { formatPostDate } from "@/lib/postDates";
 import type { BlogPost } from "@/types/blog";
 
 export default function NewsTeaser() {
@@ -44,8 +45,7 @@ export default function NewsTeaser() {
                   </div>
                   <div className="vl-blog-content">
                     <div className="vl-blog-meta">
-                      <span>{p.date}</span>
-                      <span>{p.author}</span>
+                      <span>{formatPostDate(p)}</span>
                     </div>
                     <h3 className="title pt-16 pb-12">
                       <Link href={`/vesti/${p.slug}`}>{p.title}</Link>
