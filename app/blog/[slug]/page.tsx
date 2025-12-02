@@ -76,6 +76,12 @@ function formatDate(date: string) {
   }
 }
 
+function resolveAttachmentUrl(rawUrl: string) {
+  if (!rawUrl) return "";
+  if (/^https?:\/\//.test(rawUrl)) return rawUrl;
+  return `/${rawUrl.replace(/^\/+/, "")}`;
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -128,6 +134,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </p>
                   ))}
                 </div>
+                {post.attachments && post.attachments.length > 0 && (
+                  <div className="pt-24">
+                    <h3 className="title pb-16">Dokumenti za preuzimanje</h3>
+                    <ul>
+                      {post.attachments.map((doc) => {
+                        const href = resolveAttachmentUrl(doc.url);
+                        const label = doc.label || doc.url.split("/").pop() || doc.url;
+                        return (
+                          <li key={doc.url} className="pb-10">
+                            <a className="vl-btn-primary" href={href} target="_blank" rel="noopener noreferrer">
+                              {label}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
                 {SIMPOZIJUM_SLUGS.includes(post.slug) && (
                   <div className="pt-24">
                     <h3 className="title pb-16">Материјали за преузимање</h3>

@@ -3,12 +3,24 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import type { ApplicationSubmission } from "@/types/application";
-import type { BlogPost } from "@/types/blog";
+import type { BlogAttachment, BlogPost } from "@/types/blog";
 import type { GalleryImage } from "@/types/gallery";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 
-const initialPostForm = {
+interface PostFormState {
+  title: string;
+  slug: string;
+  author: string;
+  image: string;
+  excerpt: string;
+  content: string;
+  tags: string;
+  date: string;
+  attachments: BlogAttachment[];
+}
+
+const initialPostForm: PostFormState = {
   title: "",
   slug: "",
   author: "",
@@ -17,6 +29,7 @@ const initialPostForm = {
   content: "",
   tags: "",
   date: "",
+  attachments: [],
 };
 
 export default function CmsPage() {
@@ -28,10 +41,13 @@ export default function CmsPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
   const [gallery, setGallery] = useState<GalleryImage[]>([]);
-  const [form, setForm] = useState(initialPostForm);
+  const [form, setForm] = useState<PostFormState>(initialPostForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [attachmentTitle, setAttachmentTitle] = useState("");
+  const [attachmentError, setAttachmentError] = useState<string | null>(null);
+  const [isUploadingAttachment, setIsUploadingAttachment] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
@@ -149,6 +165,51 @@ export default function CmsPage() {
     }
   };
 
+  const handleAttachmentUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const allowedExt = /\.(pdf|docx?|xlsx?|pptx?|zip)$/i;
+    if (!allowedExt.test(file.name)) {
+      setAttachmentError("Dozvoljeni su samo PDF, DOC/DOCX, XLS/XLSX, PPT/PPTX ili ZIP fajlovi.");
+      if (event.target) (event.target as HTMLInputElement).value = "";
+      return;
+    }
+
+    setAttachmentError(null);
+    setIsUploadingAttachment(true);
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      const uploadEndpoint = UPLOAD_URL || "/api/upload";
+      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Upload dokumenta nije uspeo.");
+      }
+      const body = await res.json();
+      const url = body.url || body.path;
+      const label = attachmentTitle.trim() || file.name;
+      setForm((prev) => ({
+        ...prev,
+        attachments: [...(prev.attachments || []), { label, url }],
+      }));
+      setAttachmentTitle("");
+    } catch (e: any) {
+      setAttachmentError(e.message || "Greška pri uploadu dokumenta.");
+    } finally {
+      if (event.target) (event.target as HTMLInputElement).value = "";
+      setIsUploadingAttachment(false);
+    }
+  };
+
+  const handleAttachmentRemove = (url: string) => {
+    setForm((prev) => ({
+      ...prev,
+      attachments: (prev.attachments || []).filter((a) => a.url !== url),
+    }));
+  };
+
   const handleEdit = (post: BlogPost) => {
     setForm({
       title: post.title,
@@ -159,6 +220,7 @@ export default function CmsPage() {
       content: post.content,
       tags: (post.tags || []).join(", "),
       date: post.date?.slice(0, 10) || "",
+      attachments: post.attachments || [],
     });
     setEditingSlug(post.slug);
     setMessage(null);
@@ -302,6 +364,7 @@ export default function CmsPage() {
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
                 {uploadError && <div className="alert alert-danger">{uploadError}</div>}
+                {attachmentError && <div className="alert alert-danger">{attachmentError}</div>}
                 <form onSubmit={handleSubmit} className="cms-form">
                   <div className="row">
                     <div className="col-12 pb-16">
@@ -325,6 +388,29 @@ export default function CmsPage() {
                       <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                       {isUploading && <small>Otpremanje...</small>}
                     </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Naslov dokumenta</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="npr. Program (PDF)"
+                        value={attachmentTitle}
+                        onChange={(e) => setAttachmentTitle(e.target.value)}
+                        disabled={isUploadingAttachment}
+                      />
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Dokument za preuzimanje</label>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+                        className="form-control"
+                        onChange={handleAttachmentUpload}
+                        disabled={isUploadingAttachment}
+                      />
+                      <small>Dozvoljeni formati: PDF, DOC(X), XLS(X), PPT(X), ZIP.</small>
+                      {isUploadingAttachment && <div><small>Otpremanje dokumenta...</small></div>}
+                    </div>
                     <div className="col-12 pb-16">
                       <label className="form-label">Kratak opis</label>
                       <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
@@ -343,6 +429,21 @@ export default function CmsPage() {
                         <div className="vl-blog-thumb image-anime" style={{ maxWidth: 300 }}>
                           <img className="w-100" src={form.image.startsWith("http") ? form.image : "/" + form.image.replace(/^\/+/, "")} alt="Pregled slike" />
                         </div>
+                      </div>
+                    )}
+                    {form.attachments && form.attachments.length > 0 && (
+                      <div className="col-12 pb-16">
+                        <label className="form-label">Dodati dokumenti</label>
+                        <ul>
+                          {form.attachments.map((att) => (
+                            <li key={att.url} className="d-flex align-items-center gap-2 pb-8">
+                              <span>{att.label || att.url}</span>
+                              <button type="button" className="vl-btn-primary" onClick={() => handleAttachmentRemove(att.url)}>
+                                Ukloni
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     )}
                     <div className="col-12">

@@ -1,8 +1,22 @@
 import { NextResponse } from "next/server";
-import type { BlogPost } from "@/types/blog";
+import type { BlogAttachment, BlogPost } from "@/types/blog";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
 
 const FILE_NAME = "blogPosts.json";
+
+function normalizeAttachments(input: unknown): BlogAttachment[] {
+  if (!Array.isArray(input)) return [];
+
+  return input
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const label = typeof (item as any).label === "string" ? (item as any).label.trim() : "";
+      const url = typeof (item as any).url === "string" ? (item as any).url.trim() : "";
+      if (!url) return null;
+      return { label: label || url.split("/").pop() || url, url } as BlogAttachment;
+    })
+    .filter((item): item is BlogAttachment => Boolean(item?.url));
+}
 
 function slugify(input: string): string {
   return input
@@ -52,6 +66,7 @@ export async function POST(request: Request) {
             .map((tag: string) => tag.trim())
             .filter(Boolean)
         : [],
+      attachments: normalizeAttachments(body.attachments),
     };
 
     const updatedPosts = [newPost, ...posts];
