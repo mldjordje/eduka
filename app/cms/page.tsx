@@ -62,6 +62,29 @@ export default function CmsPage() {
   // Prefer explicit upload endpoint; otherwise default to PHP upload on the same API host
   const UPLOAD_URL = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || (API_BASE ? `${API_BASE}/upload.php` : "")).replace(/\/+$/, "");
 
+  const uploadFileWithFallback = async (file: File) => {
+    const endpoints: string[] = [];
+    if (UPLOAD_URL) endpoints.push(UPLOAD_URL);
+    if (!UPLOAD_URL || UPLOAD_URL !== "/api/upload") endpoints.push("/api/upload"); // fallback to local if remote fails
+
+    let lastError: Error | null = null;
+    for (const endpoint of endpoints) {
+      try {
+        const data = new FormData();
+        data.append("file", file);
+        const res = await fetch(endpoint, { method: "POST", body: data });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body.message || `Upload nije uspeo (${endpoint}).`);
+        const url = body.url || body.path;
+        if (!url) throw new Error("Upload nije vratio putanju fajla.");
+        return url as string;
+      } catch (err: any) {
+        lastError = err instanceof Error ? err : new Error("Upload nije uspeo.");
+      }
+    }
+    throw lastError || new Error("Upload nije uspeo.");
+  };
+
   const buildPrintHtml = (app: ApplicationSubmission) => {
     const safe = (v?: string) => (v ?? "");
     const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
@@ -132,19 +155,10 @@ export default function CmsPage() {
     setUploadError(null);
     setIsUploading(true);
     try {
-      const data = new FormData();
-      data.append("file", file);
-      const uploadEndpoint = UPLOAD_URL || "/api/upload";
-      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || "Upload nije uspeo.");
-      }
-      const body = await res.json();
-      const url = body.url || body.path;
+      const url = await uploadFileWithFallback(file);
       setForm((prev) => ({ ...prev, image: url }));
     } catch (e: any) {
-      setUploadError(e.message || "Greška pri uploadu.");
+      setUploadError(e.message || "Greska pri uploadu.");
     } finally {
       setIsUploading(false);
     }
@@ -223,24 +237,18 @@ export default function CmsPage() {
     const file = event.target.files?.[0];
     if (!file) return;
     try {
-      const data = new FormData();
-      data.append("file", file);
-      const uploadEndpoint = UPLOAD_URL || "/api/upload";
-      const res = await fetch(uploadEndpoint, { method: "POST", body: data });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.message || "Upload nije uspeo");
-      const url: string = body.url || body.path;
+      const url = await uploadFileWithFallback(file);
       const save = await fetch(USE_PHP_API ? `${API_BASE}/gallery.php` : "/api/gallery", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, name: file.name }),
       });
-      if (!save.ok) throw new Error("Greška pri upisu u galeriju");
+      if (!save.ok) throw new Error("Greska pri upisu u galeriju");
       const saved = await save.json().catch(() => ({}));
       const created: GalleryImage = saved && (saved as any).url ? (saved as any) : ({ id: crypto.randomUUID(), url, name: file.name, createdAt: new Date().toISOString() } as any);
       setGallery((prev) => [created, ...prev].filter((x) => x && typeof (x as any).url === "string" && (x as any).url.length > 0));
-    } catch (e) {
-      // no-op minimal
+    } catch (e: any) {
+      setUploadError(e.message || "Greska pri uploadu.");
     } finally {
       if (event.target) (event.target as HTMLInputElement).value = "";
     }
@@ -450,4 +458,3 @@ export default function CmsPage() {
     </Layout>
   );
 }
-
