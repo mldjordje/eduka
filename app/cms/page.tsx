@@ -241,6 +241,7 @@ export default function CmsPage() {
         tags: form.tags,
         document: form.document,
         documentName: form.documentName,
+        document_name: form.documentName,
       };
       const response = await fetch(endpoint, {
         method,
