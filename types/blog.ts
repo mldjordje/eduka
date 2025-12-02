@@ -7,4 +7,6 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   tags: string[];
+  document?: string;
+  documentName?: string;
 }

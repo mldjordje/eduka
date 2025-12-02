@@ -52,6 +52,8 @@ export async function POST(request: Request) {
             .map((tag: string) => tag.trim())
             .filter(Boolean)
         : [],
+      document: body.document ?? "",
+      documentName: body.documentName ?? "",
     };
 
     const updatedPosts = [newPost, ...posts];

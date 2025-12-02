@@ -59,9 +59,10 @@ export async function PUT(
       : typeof body.tags === "string"
       ? body.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
       : current.tags,
+    document: body.document ?? current.document,
+    documentName: body.documentName ?? current.documentName,
   };
   posts[idx] = updated;
   await writeDataFile(FILE_NAME, posts);
   return NextResponse.json(updated, { status: 200 });
 }
-

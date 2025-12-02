@@ -17,6 +17,8 @@ const initialPostForm = {
   content: "",
   tags: "",
   date: "",
+  document: "",
+  documentName: "",
 };
 
 export default function CmsPage() {
@@ -31,6 +33,7 @@ export default function CmsPage() {
   const [form, setForm] = useState(initialPostForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isDocumentUploading, setIsDocumentUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -164,6 +167,25 @@ export default function CmsPage() {
     }
   };
 
+  const handleDocumentUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setUploadError(null);
+    setIsDocumentUploading(true);
+    try {
+      const url = await uploadFileWithFallback(file);
+      setForm((prev) => ({ ...prev, document: url, documentName: file.name }));
+    } catch (e: any) {
+      setUploadError(e.message || "Greska pri uploadu.");
+    } finally {
+      setIsDocumentUploading(false);
+    }
+  };
+
+  const clearDocument = () => {
+    setForm((prev) => ({ ...prev, document: "", documentName: "" }));
+  };
+
   const handleEdit = (post: BlogPost) => {
     setForm({
       title: post.title,
@@ -174,6 +196,8 @@ export default function CmsPage() {
       content: post.content,
       tags: (post.tags || []).join(", "),
       date: post.date?.slice(0, 10) || "",
+      document: post.document ?? "",
+      documentName: post.documentName ?? "",
     });
     setEditingSlug(post.slug);
     setMessage(null);
@@ -333,6 +357,32 @@ export default function CmsPage() {
                       <label className="form-label">Slika (upload)</label>
                       <input type="file" accept="image/*" className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                       {isUploading && <small>Otpremanje...</small>}
+                    </div>
+                    <div className="col-md-6 pb-16">
+                      <label className="form-label">Dokument (PDF/DOCX)</label>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        className="form-control"
+                        onChange={handleDocumentUpload}
+                        disabled={isDocumentUploading}
+                      />
+                      {isDocumentUploading && <small>Otpremanje dokumenta...</small>}
+                      {form.document && (
+                        <div className="pt-8 d-flex gap-2 flex-wrap">
+                          <a
+                            href={form.document}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="vl-btn-secondary"
+                          >
+                            {form.documentName || "Pregled dokumenta"}
+                          </a>
+                          <button type="button" className="vl-btn-primary" onClick={clearDocument}>
+                            Obriši dokument
+                          </button>
+                        </div>
+                      )}
                     </div>
                     <div className="col-12 pb-16">
                       <label className="form-label">Kratak opis</label>

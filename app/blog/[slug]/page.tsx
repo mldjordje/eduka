@@ -128,6 +128,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </p>
                   ))}
                 </div>
+                {post.document && (
+                  <div className="pt-24">
+                    <a
+                      className="vl-btn-primary"
+                      href={post.document}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      {post.documentName || "Preuzmi dokument"}
+                    </a>
+                  </div>
+                )}
                 {SIMPOZIJUM_SLUGS.includes(post.slug) && (
                   <div className="pt-24">
                     <h3 className="title pb-16">Материјали за преузимање</h3>
