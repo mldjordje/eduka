@@ -27,6 +27,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | undefined>
     }
   } catch {}
   return undefined;
+}
 
 function normalizePost(raw: any): BlogPost {
   if (!raw || typeof raw !== "object") return raw;
