@@ -24,7 +24,7 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
         fetch(url)
             .then((res) => {
                 if (!res.ok) {
-                    throw new Error("Грешка");
+                    throw new Error("Greška");
                 }
                 return res.json();
             })
@@ -42,7 +42,7 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                 <div className="row">
                     <div className="vl-service-sec-title-iner">
                         <div className="vl-section-title text-center mb-60">
-                            <h2 className="title text-anime-style-3">Још вести</h2>
+                            <h2 className="title text-anime-style-3">Još vesti</h2>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                                         </h3>
                                         <p>{blogs.excerpt}</p>
                                         <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
-                                            Прочитај више
+                                            Pročitaj više
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />
                                             </span>
@@ -84,3 +84,4 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
         </section>
     );
 }
+

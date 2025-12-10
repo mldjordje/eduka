@@ -55,7 +55,7 @@ async function GalleryGrid() {
 
   return (
     <>
-      {!hasAny && <p>D"DøD¯Dæ¥?D,¥~Dø ¥~Dæ D¨¥?DøDúD«Dø.</p>}
+      {!hasAny && <p>Galerija je prazna.</p>}
       {grouped.map(({ category, items }) => {
         if (items.length === 0) return null;
         return (
@@ -100,10 +100,10 @@ async function GalleryGrid() {
 export default function GalerijaPage() {
   return (
     <Layout>
-      <SectionHeader title={'D"DøD¯Dæ¥?D,¥~Dø'} isGroup={false} linkGroup="" pageGroup="" current={'D"DøD¯Dæ¥?D,¥~Dø'} />
+      <SectionHeader title="Galerija" isGroup={false} linkGroup="" pageGroup="" current="Galerija" />
       <section className="pt-60 pb-60">
         <div className="container">
-          <Suspense fallback={<p>Dœ¥ØD,¥,DøDýDø¥sDæ...</p>}>
+          <Suspense fallback={<p>Učitavanje...</p>}>
             <GalleryGrid />
           </Suspense>
         </div>
@@ -113,7 +113,8 @@ export default function GalerijaPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'D"DøD¯Dæ¥?D,¥~Dø',
-  description: "DD_¥,D_D3¥?Dø¥,D,¥~Dæ D, D¬D_D¬DæD«¥,D, ¥?Dø D'D_D3Dø¥'Dø¥~Dø ¥ŸD'¥?¥ŸDDæ¥sDø DD'¥ŸD§Dø.",
+  title: "Galerija",
+  description: "Pogledajte fotografije i projekte udruženja Eduka.",
   alternates: { canonical: "/galerija" },
 };
+

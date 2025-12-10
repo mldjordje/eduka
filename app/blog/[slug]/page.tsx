@@ -2,7 +2,6 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section2 from "@/components/sections/blog-details/Section2";
 import PostImageSlider from "@/components/sections/blog-details/PostImageSlider";
-import Section9 from "@/components/sections/home-1/Section9";
 import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -25,18 +24,19 @@ const SIMPOZIJUM_SLUGS = [
   "simpozijum",
   "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025",
 ];
+
 const SIMPOZIJUM_DOWNLOADS = [
-  { label: "DY¥?D_D3¥?DøD¬ ¥?D,D¬D¨D_DúD,¥~¥ŸD¬Dø (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
-  { label: "DÿDæDúD,D¬Dæ ¥?DøD'Dø (PDF)", file: 'DÿDD-D~DoD-DÿD?D"D?-2.pdf' },
-  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ ¥?DøDDæ¥,D§Dø", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D¨D,¥?Dø¥sDæ-¥?DøDDæ¥,D§Dø.pdf" },
-  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ D¨¥?DæDúDæD«¥,Dø¥+D,¥~Dæ", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D¨¥?DæDúDæD«¥,Dø¥+D,¥~Dæ.pdf" },
-  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ D'D,D3D,¥,DøD¯D«D_D3 D¨D_¥?¥,Dæ¥?Dø", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D'D,D3D,¥,DøD¯D«D_D3-D¨D_¥?¥,Dæ¥?Dø.pdf" },
+  { label: "Program simpozijuma (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
+  { label: "Dokument 1 (PDF)", file: "DÿDD-D~DoD-DÿD?D\"D?-2.pdf" },
+  { label: "Dokument 2 (PDF)", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D¨D,¥?Dø¥sDæ-¥?DøDDæ¥,D§Dø.pdf" },
+  { label: "Dokument 3 (PDF)", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D¨¥?DæDúDæD«¥,Dø¥+D,¥~Dæ.pdf" },
+  { label: "Dokument 4 (PDF)", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D'D,D3D,¥,DøD¯D«D_D3-D¨D_¥?¥,Dæ¥?Dø.pdf" },
 ];
 
 function resolveImageSrc(raw?: string) {
   if (!raw) return "";
-  const normalized = raw.replace(/^\//, "");
   if (/^https?:\/\//.test(raw)) return raw;
+  const normalized = raw.replace(/^\//, "");
   if (normalized.startsWith("uploads/")) {
     return `${UPLOAD_ORIGIN}/${normalized}`;
   }
@@ -57,19 +57,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) {
-    return { title: "D'Dæ¥?¥,D," };
+    return { title: "Vesti" };
   }
 
   const imageList = collectImages(post);
   const imageSrc = imageList[0] || "";
 
   return {
-    title: `${post.title} | DD'¥ŸD§Dø`,
+    title: `${post.title} | Eduka`,
     description: post.excerpt,
     alternates: { canonical: `/vesti/${post.slug}` },
     openGraph: {
       type: "article",
-      title: `${post.title} | DD'¥ŸD§Dø`,
+      title: `${post.title} | Eduka`,
       description: post.excerpt,
       url: `https://eduka.rs/vesti/${post.slug}`,
       publishedTime: post.date,
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | DD'¥ŸD§Dø`,
+      title: `${post.title} | Eduka`,
       description: post.excerpt,
       images: imageSrc ? [imageSrc] : undefined,
     },
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <Layout>
-      <SectionHeader title={post.title} isGroup={true} linkGroup="/vesti" pageGroup="D'Dæ¥?¥,D," current={post.title} />
+      <SectionHeader title={post.title} isGroup={true} linkGroup="/vesti" pageGroup="Vesti" current={post.title} />
       <section className="vl-blog-details pt-100 pb-70">
         <div className="container">
           <div className="row justify-content-center">
@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <ul>
                     <li>
                       <span>
-                        <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt='D"Dø¥,¥ŸD¬ D_Dñ¥~DøDýDæ' />
+                        <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt="Datum objave" />
                       </span>
                       {formatDate(post.date)}
                     </li>
@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 )}
                 {SIMPOZIJUM_SLUGS.includes(post.slug) && (
                   <div className="pt-24">
-                    <h3 className="title pb-16">DoDø¥,Dæ¥?D,¥~DøD¯D, DúDø D¨¥?Dæ¥ŸDúD,D¬Dø¥sDæ</h3>
+                    <h3 className="title pb-16">Dodatna dokumenta</h3>
                     <ul>
                       {SIMPOZIJUM_DOWNLOADS.map((doc) => (
                         <li key={doc.file} className="pb-10">
@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 )}
                 {post.tags.length > 0 && (
                   <div className="vl-blog-tags pt-16">
-                    <h5 className="subtitle">D›DøD3D_DýD,:</h5>
+                    <h5 className="subtitle">Tagovi:</h5>
                     <ul>
                       {post.tags.map((tag) => (
                         <li key={tag}>#{tag}</li>
@@ -181,3 +181,4 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </Layout>
   );
 }
+

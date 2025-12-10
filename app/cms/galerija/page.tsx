@@ -64,7 +64,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       setMessage("Slika je dodata.");
       setError(null);
     } catch (e: any) {
-      setError(e.message || "Greska pri uploadu.");
+      setError(e.message || "Greška pri uploadu.");
       setMessage(null);
     } finally {
       setUploading(false);
@@ -83,7 +83,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       }
       setGallery((prev) => prev.filter((g) => g.id !== id));
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri brisanju slike");
+      setError(e.message || "Greška pri brisanju slike");
     }
   };
 
@@ -96,12 +96,12 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || "A_uriranje nije uspelo");
+        throw new Error(body.message || "Ažuriranje nije uspelo");
       }
       const updated = await res.json();
       setGallery((prev) => prev.map((img) => (img.id === updated.id ? updated : img)));
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri Ž?uvanju promene.");
+      setError(e.message || "Greška pri čuvanju promene.");
     }
   };
 
@@ -115,19 +115,19 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || "Kategorija nije saŽ?uvana.");
+        throw new Error(body.message || "Kategorija nije sačuvana.");
       }
       const saved = await res.json();
       setCategories((prev) => [saved, ...prev]);
       setNewCategory("");
       setMessage("Kategorija je dodata.");
     } catch (e: any) {
-      setError(e.message || "Gre­ka prilikom Ž?uvanja kategorije.");
+      setError(e.message || "Greška prilikom čuvanja kategorije.");
     }
   };
 
   const handleDeleteCategory = async (id: string) => {
-    if (!confirm("Obrisati kategoriju? Slike Ž®e biti ostavljene bez kategorije.")) return;
+    if (!confirm("Obrisati kategoriju? Slike će biti ostavljene bez kategorije.")) return;
     try {
       const res = await fetch(`${categoryEndpoint}?id=${encodeURIComponent(id)}`, { method: "DELETE" });
       if (!res.ok) {
@@ -137,7 +137,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       setCategories((prev) => prev.filter((c) => c.id !== id));
       setGallery((prev) => prev.map((img) => (img.categoryId === id ? { ...img, categoryId: "" } : img)));
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri brisanju kategorije.");
+      setError(e.message || "Greška pri brisanju kategorije.");
     }
   };
 
@@ -187,12 +187,12 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
               {categories.map((cat) => (
                 <li key={cat.id} className="d-flex justify-content-between align-items-center pb-8">
                   <span>{cat.name} ({categoryCounts[cat.id] || 0})</span>
-                  <button className="vl-btn-primary" type="button" onClick={() => handleDeleteCategory(cat.id)}>
-                    Obri­
+                    <button className="vl-btn-primary" type="button" onClick={() => handleDeleteCategory(cat.id)}>
+                    Obriši
                   </button>
                 </li>
               ))}
-              {categories.length === 0 && <li className="text-muted">Jo­ nema kategorija.</li>}
+              {categories.length === 0 && <li className="text-muted">Još nema kategorija.</li>}
             </ul>
           </div>
         </div>
@@ -241,7 +241,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                           ))}
                         </select>
                         <button type="button" className="vl-btn-primary w-100" onClick={() => handleGalleryDelete(g.id)}>
-                          Obri­
+                          Obriši
                         </button>
                       </div>
                     </div>

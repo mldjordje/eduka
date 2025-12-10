@@ -10,13 +10,45 @@ const APPLICATIONS_ENDPOINT = "/api/applications";
 
 const statusLabels: Record<string, string> = {
   new: "Novo",
-  reviewed: "Obra`eno",
+  reviewed: "Obrađeno",
 };
 
 const buildPrintHtml = (app: ApplicationSubmission) => {
   const safe = (v?: string) => (v ?? "");
   const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
-  return `<!doctype html>\n<html lang="sr">\n<head>\n<meta charset="utf-8"/>\n<title>Pristupnica ƒ?\" ${safe(app.name)}</title>\n<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>\n</head>\n<body>\n<button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">ÿtampaj<\/button>\n<h1>Pristupnica ƒ?\" podaci o podnosiocu<\/h1>\n<div class="muted">Datum prijave: ${fmt(app.createdAt)}<\/div>\n<div class="section grid">\n<div class="label">Ime i prezime<\/div><div class="val">${safe(app.name)}<\/div>\n<div class="label">Adresa<\/div><div class="val">${safe(app.address)}<\/div>\n<div class="label">E-mail<\/div><div class="val">${safe(app.email)}<\/div>\n<div class="label">Telefon<\/div><div class="val">${safe(app.phone)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">JMBG<\/div><div class="val">${safe(app.jmbg)}<\/div>\n<div class="label">Broj licence<\/div><div class="val">${safe(app.licenseNumber)}<\/div>\n<div class="label">LiŽ?ni broj<\/div><div class="val">${safe(app.idNumber)}<\/div>\n<div class="label">Zanimanje<\/div><div class="val">${safe(app.profession)}<\/div>\n<div class="label">Ustanova<\/div><div class="val">${safe(app.institution)}<\/div>\n<div class="label">Sta_<\/div><div class="val">${safe(app.yearsOfService)}<\/div>\n<div class="label">Stepen obrazovanja<\/div><div class="val">${safe(app.educationLevel as any)}<\/div>\n<div class="label">Komora<\/div><div class="val">${safe(app.chamber)}<\/div>\n<\/div>\n<div class="section grid">\n<div class="label">Opcija Ž?lanarine<\/div><div class="val">${app.membershipFeeOption === "monthly" ? "Odbijanje od plate (200 RSD meseŽ?no)" : app.membershipFeeOption === "annual" ? "Godi­nje (2.400 RSD)" : ""}<\/div>\n<div class="label">Saglasnost<\/div><div class="val">${app.agreementAccepted ? "DA" : "NE"}<\/div>\n<\/div>\n</body>\n</html>`;
+  return `<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8"/>
+<title>Pristupnica – ${safe(app.name)}</title>
+<style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>
+</head>
+<body>
+<button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">Štampaj</button>
+<h1>Pristupnica – podaci o podnosiocu</h1>
+<div class="muted">Datum prijave: ${fmt(app.createdAt)}</div>
+<div class="section grid">
+<div class="label">Ime i prezime</div><div class="val">${safe(app.name)}</div>
+<div class="label">Adresa</div><div class="val">${safe(app.address)}</div>
+<div class="label">E-mail</div><div class="val">${safe(app.email)}</div>
+<div class="label">Telefon</div><div class="val">${safe(app.phone)}</div>
+</div>
+<div class="section grid">
+<div class="label">JMBG</div><div class="val">${safe(app.jmbg)}</div>
+<div class="label">Broj licence</div><div class="val">${safe(app.licenseNumber)}</div>
+<div class="label">Lični broj</div><div class="val">${safe(app.idNumber)}</div>
+<div class="label">Zanimanje</div><div class="val">${safe(app.profession)}</div>
+<div class="label">Ustanova</div><div class="val">${safe(app.institution)}</div>
+<div class="label">Staž</div><div class="val">${safe(app.yearsOfService)}</div>
+<div class="label">Stepen obrazovanja</div><div class="val">${safe(app.educationLevel as any)}</div>
+<div class="label">Komora</div><div class="val">${safe(app.chamber)}</div>
+</div>
+<div class="section grid">
+<div class="label">Opcija članarine</div><div class="val">${app.membershipFeeOption === "monthly" ? "Odbijanje od plate (200 RSD mesečno)" : app.membershipFeeOption === "annual" ? "Godišnje (2.400 RSD)" : ""}</div>
+<div class="label">Saglasnost</div><div class="val">${app.agreementAccepted ? "DA" : "NE"}</div>
+</div>
+</body>
+</html>`;
 };
 
 function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
@@ -78,13 +110,13 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || "A_uriranje nije uspelo.");
+        throw new Error(body.message || "Ažuriranje nije uspelo.");
       }
       const updated = await res.json();
       setApplications((prev) => prev.map((app) => (app.id === updated.id ? updated : app)));
-      setMessage("Status je a_uriran.");
+      setMessage("Status je ažuriran.");
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri a_uriranju.");
+      setError(e.message || "Greška pri ažuriranju.");
     }
   };
 
@@ -98,13 +130,13 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.message || "Napomena nije saŽ?uvana.");
+        throw new Error(body.message || "Napomena nije sačuvana.");
       }
       const updated = await res.json();
       setApplications((prev) => prev.map((app) => (app.id === updated.id ? updated : app)));
-      setMessage("Napomena saŽ?uvana.");
+      setMessage("Napomena sačuvana.");
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri Ž?uvanju napomene.");
+      setError(e.message || "Greška pri čuvanju napomene.");
     }
   };
 
@@ -188,7 +220,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
           <select className="form-control" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as any)}>
             <option value="all">Svi</option>
             <option value="new">Novo</option>
-            <option value="reviewed">Obra`eno</option>
+            <option value="reviewed">Obrađeno</option>
           </select>
         </div>
       </div>
@@ -225,7 +257,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
                           onChange={(e) => handleStatusChange(application.id, e.target.value as "new" | "reviewed")}
                         >
                           <option value="new">Novo</option>
-                          <option value="reviewed">Obra`eno</option>
+                          <option value="reviewed">Obrađeno</option>
                         </select>
                       </td>
                       <td style={{ minWidth: 220 }}>
@@ -238,12 +270,12 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
                           }
                         />
                         <button className="vl-btn-secondary" type="button" onClick={() => handleNoteSave(application.id)}>
-                          SaŽ?uvaj
+                          Sačuvaj
                         </button>
                       </td>
                       <td>{formatDate(application.createdAt)}</td>
                       <td className="d-flex gap-2 flex-wrap">
-                        <button type="button" className="vl-btn-primary" onClick={() => handlePrint(application)}>ÿtampaj</button>
+                        <button type="button" className="vl-btn-primary" onClick={() => handlePrint(application)}>Štampaj</button>
                       </td>
                     </tr>
                   ))}
@@ -271,4 +303,3 @@ export default function CmsPristupnicePage() {
     </Layout>
   );
 }
-

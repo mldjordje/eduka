@@ -7,7 +7,7 @@ import Section9 from "@/components/sections/home-1/Section9";
 export default function VestiPage() {
   return (
     <Layout>
-      <SectionHeader title="Вести" isGroup={false} linkGroup="" pageGroup="" current="Вести" />
+      <SectionHeader title="Vesti" isGroup={false} linkGroup="" pageGroup="" current="Vesti" />
       <Section1 />
       <Section9 />
     </Layout>
@@ -15,12 +15,13 @@ export default function VestiPage() {
 }
 
 export const metadata: Metadata = {
-  title: "Вести",
-  description: "Новости и обавештења удружења Едука.",
+  title: "Vesti",
+  description: "Najnovije vesti i objave udruženja Eduka.",
   alternates: { canonical: "/vesti" },
   openGraph: {
-    title: "Едука — Вести",
-    description: "Новости и обавештења удружења Едука.",
+    title: "Eduka | Vesti",
+    description: "Najnovije vesti i objave udruženja Eduka.",
     url: "https://eduka.rs/vesti",
   },
 };
+

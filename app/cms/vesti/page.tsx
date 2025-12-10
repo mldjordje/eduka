@@ -130,7 +130,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       }
       setPosts((prev) => prev.filter((p) => p.slug !== slug));
     } catch (e: any) {
-      setError(e.message || "Gre­ka pri brisanju objave");
+      setError(e.message || "Greška pri brisanju objave");
     }
   };
 
@@ -166,15 +166,15 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       });
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
-        throw new Error(body.message || (isEdit ? "Neuspe­no a_uriranje" : "Neuspe­no Ž?uvanje objave"));
+        throw new Error(body.message || (isEdit ? "Neuspešno ažuriranje" : "Neuspešno čuvanje objave"));
       }
       const savedPost: BlogPost = await response.json();
       setPosts((prev) => (isEdit ? prev.map((p) => (p.slug === savedPost.slug ? savedPost : p)) : [savedPost, ...prev]));
       setForm({ ...initialPostForm });
       setEditingSlug(null);
-      setMessage(isEdit ? "Objava je uspe­no a_urirana!" : "Objava je uspe­no saŽ?uvana!");
+      setMessage(isEdit ? "Objava je uspešno ažurirana!" : "Objava je uspešno sačuvana!");
     } catch (err: any) {
-      setError(err.message || "Gre­ka prilikom Ž?uvanja objave");
+      setError(err.message || "Greška prilikom čuvanja objave");
     } finally {
       setIsSubmitting(false);
     }
@@ -209,7 +209,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       <div className="row">
         <div className="col-lg-6 mb-40">
           <div className="vl-off-white-bg p-40 br-20">
-            <h3 className="title pb-20">{editingSlug ? "UreŽ`ivanje objave" : "Kreiranje nove blog objave"}</h3>
+            <h3 className="title pb-20">{editingSlug ? "Uređivanje objave" : "Kreiranje nove blog objave"}</h3>
             <p className="pb-16">Otpremajte jednu ili više slika, prva na listi biće naslovna u slideru.</p>
             {message && <div className="alert alert-success">{message}</div>}
             {error && <div className="alert alert-danger">{error}</div>}
@@ -253,7 +253,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                         {form.documentName || "Pregled dokumenta"}
                       </a>
                       <button type="button" className="vl-btn-primary" onClick={clearDocument}>
-                        Obri­i dokument
+                        Obriši dokument
                       </button>
                     </div>
                   )}
@@ -263,7 +263,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                   <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
                 </div>
                 <div className="col-12 pb-16">
-                  <label className="form-label">Sadr_aj *</label>
+                  <label className="form-label">Sadržaj *</label>
                   <textarea name="content" value={form.content} onChange={handleInputChange} rows={6} required className="form-control" />
                 </div>
                 <div className="col-12 pb-24">
@@ -294,7 +294,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                 )}
                 <div className="col-12">
                   <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>
-                    {isSubmitting ? (editingSlug ? "A_uriranje..." : "ŽOuvanje...") : editingSlug ? "SaŽ?uvaj izmene" : "SaŽ?uvaj objavu"}
+                    {isSubmitting ? (editingSlug ? "Ažuriranje..." : "Čuvanje...") : editingSlug ? "Sačuvaj izmene" : "Sačuvaj objavu"}
                   </button>
                 </div>
               </div>
@@ -304,9 +304,9 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
         <div className="col-lg-6 mb-40">
           <div className="vl-off-white-bg p-40 br-20 h-100">
             <h3 className="title pb-12">Poslednje objave</h3>
-            <p className="pb-16">Sve_e objave su prikazane redom kojim su objavljene.</p>
+            <p className="pb-16">Sveže objave su prikazane redom kojim su objavljene.</p>
             <div className="cms-post-list">
-              {posts.length === 0 && <p>Jo­ uvek nema objava.</p>}
+              {posts.length === 0 && <p>Još uvek nema objava.</p>}
               {posts.map((post) => (
                 <div key={post.slug} className="cms-post-item">
                   <h4 className="cms-post-title">
@@ -319,7 +319,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                   <p>{post.excerpt}</p>
                   <div className="d-flex gap-2 pt-8">
                     <button type="button" className="vl-btn-primary" onClick={() => handleEdit(post)}>Uredi</button>
-                    <button type="button" className="vl-btn-primary" onClick={() => handleDelete(post.slug)}>Obri­i</button>
+                    <button type="button" className="vl-btn-primary" onClick={() => handleDelete(post.slug)}>Obriši</button>
                   </div>
                 </div>
               ))}

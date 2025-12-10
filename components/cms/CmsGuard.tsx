@@ -18,7 +18,7 @@ export default function CmsGuard({ children }: CmsGuardProps) {
     setLoginError(null);
     const ok = login(loginUser, loginPass);
     if (!ok) {
-      setLoginError("Pogre­no korisniŽ?ko ime ili lozinka.");
+      setLoginError("Pogrešno korisničko ime ili lozinka.");
     }
   };
 
@@ -35,7 +35,7 @@ export default function CmsGuard({ children }: CmsGuardProps) {
             {loginError && <div className="alert alert-danger">{loginError}</div>}
             <form onSubmit={handleLogin}>
               <div className="pb-16">
-                <label className="form-label">KorisniŽ?ko ime</label>
+                <label className="form-label">Korisničko ime</label>
                 <input className="form-control" value={loginUser} onChange={(e) => setLoginUser(e.target.value)} />
               </div>
               <div className="pb-24">
@@ -52,4 +52,3 @@ export default function CmsGuard({ children }: CmsGuardProps) {
 
   return <>{children({ logout })}</>;
 }
-

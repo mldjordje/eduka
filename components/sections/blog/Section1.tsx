@@ -25,7 +25,7 @@ export default function Section1() {
         fetch(url, { signal: controller.signal })
             .then((res) => {
                 if (!res.ok) {
-                    throw new Error("Грешка при учитавању вести.");
+                    throw new Error("Greška prilikom učitavanja vesti.");
                 }
                 return res.json();
             })
@@ -35,7 +35,7 @@ export default function Section1() {
             })
             .catch((err: Error) => {
                 if (err.name !== "AbortError") {
-                    setError("Тренутно није могуће приказати вести.");
+                    setError("Došlo je do greške prilikom učitavanja vesti.");
                 }
             })
             .finally(() => setIsLoading(false));
@@ -62,7 +62,7 @@ export default function Section1() {
                     <div className="row">
                         {isLoading && (
                             <div className="col-12 text-center mb-30">
-                                <p>Учитавање објава...</p>
+                                <p>Učitavanje...</p>
                             </div>
                         )}
                         {error && !isLoading && (
@@ -72,7 +72,7 @@ export default function Section1() {
                         )}
                         {!isLoading && !error && currentBlog.length === 0 && (
                             <div className="col-12 text-center mb-30">
-                                <p>Још увек нема објава. Додајте прву у CMS секцији.</p>
+                                <p>Trenutno nema dostupnih vesti. Dodajte ih u CMS-u.</p>
                             </div>
                         )}
                         {currentBlog.map((blogs, index) => {
@@ -102,7 +102,7 @@ export default function Section1() {
                                             </h3>
                                             <p>{blogs.excerpt}</p>
                                             <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
-                                                Прочитај више
+                                                Pročitaj više
                                                 <span>
                                                     <i className="fa-regular fa-arrow-right" />
                                                 </span>
@@ -119,7 +119,7 @@ export default function Section1() {
                                 <div className="vl-theme-pagination text-center mt-18 mb-30">
                                     <ul>
                                         <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
-                                            <button className="page-link" onClick={() => handlePageChange(currentPage - 1)} aria-label="Претходна страна">
+                                            <button className="page-link" onClick={() => handlePageChange(currentPage - 1)} aria-label="Prethodna stranica">
                                                 <i className="fa-regular fa-angle-left" />
                                             </button>
                                         </li>
@@ -131,7 +131,7 @@ export default function Section1() {
                                             </li>
                                         ))}
                                         <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
-                                            <button className="page-link" onClick={() => handlePageChange(currentPage + 1)} aria-label="Следећа страна">
+                                            <button className="page-link" onClick={() => handlePageChange(currentPage + 1)} aria-label="Sledeća stranica">
                                                 <i className="fa-regular fa-angle-right" />
                                             </button>
                                         </li>
@@ -143,7 +143,7 @@ export default function Section1() {
                     <div className="row">
                         <div className="col-12 text-center mt-10">
                             <Link href="https://eduka.co.rs/blog/" target="_blank" rel="noopener noreferrer" className="vl-btn-primary">
-                                Старе вести (архива)
+                                Pogledaj blog (eksterno)
                             </Link>
                         </div>
                     </div>
@@ -152,3 +152,4 @@ export default function Section1() {
         </>
     );
 }
+
