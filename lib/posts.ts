@@ -31,8 +31,15 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | undefined>
 
 function normalizePost(raw: any): BlogPost {
   if (!raw || typeof raw !== "object") return raw;
+  const normalizedImages = Array.isArray(raw.images)
+    ? raw.images.filter((item: any) => typeof item === "string" && item.trim().length > 0)
+    : raw.image
+    ? [raw.image]
+    : [];
   return {
     ...(raw as BlogPost),
+    image: raw.image || normalizedImages[0] || "",
+    images: normalizedImages.length ? normalizedImages : undefined,
     document: raw.document ?? raw.document_name ?? "",
     documentName: raw.documentName ?? raw.document_name ?? "",
   };

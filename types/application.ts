@@ -20,5 +20,7 @@ export interface ApplicationSubmission {
   // Članarina/ugovor
   membershipFeeOption?: "monthly" | "annual";
   agreementAccepted?: boolean;
+  status?: "new" | "reviewed";
+  note?: string;
   createdAt: string;
 }

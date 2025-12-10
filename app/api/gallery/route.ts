@@ -21,11 +21,41 @@ export async function POST(request: Request) {
       url: body.url,
       name: body.name,
       createdAt: new Date().toISOString(),
+      categoryId: body.categoryId || "",
     };
     const updated = [item, ...images];
     await writeDataFile(FILE_NAME, updated);
     return NextResponse.json(item, { status: 201 });
   } catch (e) {
+    return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    const body = await request.json();
+    if (!body.id) {
+      return NextResponse.json({ message: "Nedostaje ID slike." }, { status: 400 });
+    }
+    const images = await readDataFile<GalleryImage[]>(FILE_NAME, []);
+    const idx = images.findIndex((it) => it.id === body.id);
+    if (idx === -1) {
+      return NextResponse.json({ message: "Slika nije pronaŽ`ena." }, { status: 404 });
+    }
+    const updatedItem: GalleryImage = {
+      ...images[idx],
+      name: typeof body.name === "string" ? body.name : images[idx].name,
+      categoryId:
+        typeof body.categoryId === "string"
+          ? body.categoryId
+          : body.categoryId === null
+          ? ""
+          : images[idx].categoryId || "",
+    };
+    images[idx] = updatedItem;
+    await writeDataFile(FILE_NAME, images);
+    return NextResponse.json(updatedItem);
+  } catch {
     return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
   }
 }

@@ -13,6 +13,20 @@ function slugify(input: string): string {
     .replace(/-+/g, "-");
 }
 
+function normalizeImages(input: unknown): string[] {
+  if (Array.isArray(input)) {
+    return input
+      .map((item) => (typeof item === "string" ? item : ""))
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+  if (typeof input === "string") {
+    const trimmed = input.trim();
+    return trimmed ? [trimmed] : [];
+  }
+  return [];
+}
+
 export async function GET() {
   const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
   return NextResponse.json(posts);
@@ -22,7 +36,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     if (!body.title || !body.content || !body.author) {
-      return NextResponse.json({ message: "Naslov, sadržaj i autor su obavezni." }, { status: 400 });
+      return NextResponse.json({ message: "Naslov, sadr_aj i autor su obavezni." }, { status: 400 });
     }
 
     const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
@@ -33,15 +47,19 @@ export async function POST(request: Request) {
     }
 
     if (posts.some((post) => post.slug === slug)) {
-      return NextResponse.json({ message: "Blog sa zadatim slug identifikatorom već postoji." }, { status: 409 });
+      return NextResponse.json({ message: "Blog sa zadatim slug identifikatorom veŽØ postoji." }, { status: 409 });
     }
+
+    const images = normalizeImages(body.images?.length ? body.images : body.image);
+    const coverImage = images[0] || body.image || "assets/img/eduka/hero-5.jpg";
 
     const newPost: BlogPost = {
       slug,
       title: body.title,
       author: body.author,
       date: body.date || new Date().toISOString(),
-      image: body.image || "assets/img/eduka/hero-5.jpg",
+      image: coverImage,
+      images: images.length ? images : undefined,
       excerpt: body.excerpt || body.content.slice(0, 140).concat("..."),
       content: body.content,
       tags: Array.isArray(body.tags)
@@ -64,3 +82,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
   }
 }
+

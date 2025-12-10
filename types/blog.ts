@@ -4,6 +4,7 @@ export interface BlogPost {
   author: string;
   date: string;
   image: string;
+  images?: string[];
   excerpt: string;
   content: string;
   tags: string[];

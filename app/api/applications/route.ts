@@ -35,9 +35,11 @@ export async function POST(request: Request) {
       // kompatibilnost sa starom formom
       message: body.message,
       preferredDate: body.preferredDate,
-      // članarina
+      // Ž?lanarina
       membershipFeeOption: body.membershipFeeOption,
       agreementAccepted: Boolean(body.agreementAccepted),
+      status: "new",
+      note: body.note,
       createdAt: new Date().toISOString(),
     };
 
@@ -46,6 +48,34 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newSubmission, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: "Greška prilikom slanja prijave." }, { status: 400 });
+    return NextResponse.json({ message: "Gre­ka prilikom slanja prijave." }, { status: 400 });
   }
 }
+
+export async function PATCH(request: Request) {
+  try {
+    const body = await request.json();
+    if (!body.id) {
+      return NextResponse.json({ message: "Nedostaje ID prijave." }, { status: 400 });
+    }
+
+    const submissions = await readDataFile<ApplicationSubmission[]>(FILE_NAME, []);
+    const idx = submissions.findIndex((item) => item.id === body.id);
+    if (idx === -1) {
+      return NextResponse.json({ message: "Prijava nije pronaŽ`ena." }, { status: 404 });
+    }
+
+    const updated: ApplicationSubmission = {
+      ...submissions[idx],
+      status: body.status || submissions[idx].status || "new",
+      note: typeof body.note === "string" ? body.note : submissions[idx].note,
+    };
+
+    submissions[idx] = updated;
+    await writeDataFile(FILE_NAME, submissions);
+    return NextResponse.json(updated);
+  } catch {
+    return NextResponse.json({ message: "Gre­ka prilikom a_uriranja prijave." }, { status: 400 });
+  }
+}
+

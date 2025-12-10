@@ -1,6 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section2 from "@/components/sections/blog-details/Section2";
+import PostImageSlider from "@/components/sections/blog-details/PostImageSlider";
 import Section9 from "@/components/sections/home-1/Section9";
 import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
@@ -12,42 +13,63 @@ interface BlogPostPageProps {
 
 export const dynamic = "force-dynamic";
 
+const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin
+  : "";
+const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
+  ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin
+  : API_ORIGIN || "https://api.eduka.co.rs";
+
 const SIMPOZIJUM_SLUGS = [
   "Program-nacionalnog-simpozijuma",
   "simpozijum",
   "dijabetes-u-lavirintu-primarne-zdravstvene-zastite-zlatibor-2025",
 ];
 const SIMPOZIJUM_DOWNLOADS = [
-  { label: "Програм симпозијума (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
-  { label: "Резиме рада (PDF)", file: "РЕЗИМЕ-РАДА-2.pdf" },
-  { label: "Упутство за израду сажетка", file: "Упутство-за-писање-сажетка.pdf" },
-  { label: "Упутство за израду презентације", file: "Упутство-за-израду-презентације.pdf" },
-  { label: "Упутство за израду дигиталног постера", file: "Упутство-за-израду-дигиталног-постера.pdf" },
+  { label: "DY¥?D_D3¥?DøD¬ ¥?D,D¬D¨D_DúD,¥~¥ŸD¬Dø (PDF)", file: "Program_Simpozijuma_Eduka-2025.pdf" },
+  { label: "DÿDæDúD,D¬Dæ ¥?DøD'Dø (PDF)", file: 'DÿDD-D~DoD-DÿD?D"D?-2.pdf' },
+  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ ¥?DøDDæ¥,D§Dø", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D¨D,¥?Dø¥sDæ-¥?DøDDæ¥,D§Dø.pdf" },
+  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ D¨¥?DæDúDæD«¥,Dø¥+D,¥~Dæ", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D¨¥?DæDúDæD«¥,Dø¥+D,¥~Dæ.pdf" },
+  { label: "DœD¨¥Ÿ¥,¥?¥,DýD_ DúDø D,Dú¥?DøD'¥Ÿ D'D,D3D,¥,DøD¯D«D_D3 D¨D_¥?¥,Dæ¥?Dø", file: "DœD¨¥Ÿ¥,¥?¥,DýD_-DúDø-D,Dú¥?DøD'¥Ÿ-D'D,D3D,¥,DøD¯D«D_D3-D¨D_¥?¥,Dæ¥?Dø.pdf" },
 ];
+
+function resolveImageSrc(raw?: string) {
+  if (!raw) return "";
+  const normalized = raw.replace(/^\//, "");
+  if (/^https?:\/\//.test(raw)) return raw;
+  if (normalized.startsWith("uploads/")) {
+    return `${UPLOAD_ORIGIN}/${normalized}`;
+  }
+  return `/${normalized}`;
+}
+
+function collectImages(post: any) {
+  const candidates =
+    post?.images && Array.isArray(post.images) && post.images.length > 0
+      ? post.images
+      : post?.image
+      ? [post.image]
+      : [];
+  return candidates.map((img: string) => resolveImageSrc(img)).filter(Boolean);
+}
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) {
-    return { title: "Вести" };
+    return { title: "D'Dæ¥?¥,D," };
   }
 
-  const raw = post.image || "";
-  const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
-  const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs");
-  const imageSrc = /^https?:\/\//.test(raw)
-    ? raw
-    : raw.replace(/^\//, "").startsWith("uploads/")
-      ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
-      : `/${raw.replace(/^\//, "")}`;
+  const imageList = collectImages(post);
+  const imageSrc = imageList[0] || "";
 
   return {
-    title: `${post.title} | Едука`,
+    title: `${post.title} | DD'¥ŸD§Dø`,
     description: post.excerpt,
     alternates: { canonical: `/vesti/${post.slug}` },
     openGraph: {
       type: "article",
-      title: `${post.title} | Едука`,
+      title: `${post.title} | DD'¥ŸD§Dø`,
       description: post.excerpt,
       url: `https://eduka.rs/vesti/${post.slug}`,
       publishedTime: post.date,
@@ -56,7 +78,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | Едука`,
+      title: `${post.title} | DD'¥ŸD§Dø`,
       description: post.excerpt,
       images: imageSrc ? [imageSrc] : undefined,
     },
@@ -89,18 +111,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const raw = post.image || "";
-  const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
-  const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin : (API_ORIGIN || "https://api.eduka.co.rs");
-  const imageSrc = /^https?:\/\//.test(raw)
-    ? raw
-    : raw.replace(/^\//, "").startsWith("uploads/")
-      ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}`
-      : `/${raw.replace(/^\//, "")}`;
+  const imageList = collectImages(post);
 
   return (
     <Layout>
-      <SectionHeader title={post.title} isGroup={true} linkGroup="/vesti" pageGroup="Вести" current={post.title} />
+      <SectionHeader title={post.title} isGroup={true} linkGroup="/vesti" pageGroup="D'Dæ¥?¥,D," current={post.title} />
       <section className="vl-blog-details pt-100 pb-70">
         <div className="container">
           <div className="row justify-content-center">
@@ -110,18 +125,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <ul>
                     <li>
                       <span>
-                        <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt="Датум објаве" />
+                        <img src="/assets/img/icons/vl-date-icon-1.1.svg" alt='D"Dø¥,¥ŸD¬ D_Dñ¥~DøDýDæ' />
                       </span>
                       {formatDate(post.date)}
                     </li>
                   </ul>
                 </div>
                 <h1 className="title pb-24">{post.title}</h1>
-                <div className="vl-blog-thumb image-anime pb-30">
-                  <img className="w-100" src={imageSrc} alt={post.title} />
-                </div>
+                <PostImageSlider images={imageList} title={post.title} />
                 <div className="vl-blog-text">
-                  {post.content.split("\n").map((paragraph, index) => (
+                  {(post.content || "").split("\n").map((paragraph, index) => (
                     <p key={index} className="pb-16">
                       {paragraph}
                     </p>
@@ -129,20 +142,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 {post.document && (
                   <div className="pt-24">
-                    <a
-                      className="vl-btn-primary"
-                      href={post.document}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download
-                    >
+                    <a className="vl-btn-primary" href={post.document} target="_blank" rel="noopener noreferrer" download>
                       {post.documentName || "Preuzmi dokument"}
                     </a>
                   </div>
                 )}
                 {SIMPOZIJUM_SLUGS.includes(post.slug) && (
                   <div className="pt-24">
-                    <h3 className="title pb-16">Материјали за преузимање</h3>
+                    <h3 className="title pb-16">DoDø¥,Dæ¥?D,¥~DøD¯D, DúDø D¨¥?Dæ¥ŸDúD,D¬Dø¥sDæ</h3>
                     <ul>
                       {SIMPOZIJUM_DOWNLOADS.map((doc) => (
                         <li key={doc.file} className="pb-10">
@@ -156,7 +163,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 )}
                 {post.tags.length > 0 && (
                   <div className="vl-blog-tags pt-16">
-                    <h5 className="subtitle">Тагови:</h5>
+                    <h5 className="subtitle">D›DøD3D_DýD,:</h5>
                     <ul>
                       {post.tags.map((tag) => (
                         <li key={tag}>#{tag}</li>
