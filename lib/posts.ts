@@ -2,6 +2,12 @@ import type { BlogPost } from "@/types/blog";
 
 const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || '').replace(/\/+$/,'');
 
+function localBase() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/,"");
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`.replace(/\/+$/,"");
+  return "http://localhost:3000";
+}
+
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {
     if (BASE) {
@@ -11,8 +17,14 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return Array.isArray(data) ? data.map(normalizePost) : [];
     }
   } catch {}
-  // Fallback: empty list if external API nije dostupan
-  return [];
+  try {
+    const res = await fetch(`${localBase()}/api/posts`, { cache: "no-store" });
+    if (!res.ok) throw new Error("Local API error");
+    const data = await res.json();
+    return Array.isArray(data) ? data.map(normalizePost) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
@@ -26,7 +38,14 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | undefined>
       return undefined;
     }
   } catch {}
-  return undefined;
+  try {
+    const res = await fetch(`${localBase()}/api/posts/${encodeURIComponent(slug)}`, { cache: "no-store" });
+    if (!res.ok) return undefined;
+    const data = await res.json();
+    return normalizePost(data);
+  } catch {
+    return undefined;
+  }
 }
 
 function normalizePost(raw: any): BlogPost {
