@@ -6,7 +6,7 @@ import "/public/assets/css/plugins/barfiller.css";
 
 import "/public/assets/css/style.css";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans } from "next/font/google";
 
 const notoSans = Noto_Sans({
@@ -52,13 +52,14 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
     },
-    viewport: {
-        width: "device-width",
-        initialScale: 1,
-    },
     icons: {
         icon: "/assets/img/logo/logo2.png",
     },
+};
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
 };
 
 export default function RootLayout({
