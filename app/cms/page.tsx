@@ -1,4 +1,4 @@
- "use client";
+﻿"use client";
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -52,3 +52,4 @@ export default function CmsHomePage() {
     </Layout>
   );
 }
+

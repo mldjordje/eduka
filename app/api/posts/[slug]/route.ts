@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import type { BlogPost } from "@/types/blog";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
 
@@ -27,7 +27,7 @@ export async function GET(
   const post = posts.find((item) => item.slug === slug);
 
   if (!post) {
-    return NextResponse.json({ message: "ŽOlanak nije pronaŽ`en." }, { status: 404 });
+    return NextResponse.json({ message: "Članak nije pronađen." }, { status: 404 });
   }
 
   return NextResponse.json(post);
@@ -41,7 +41,7 @@ export async function DELETE(
   const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
   const exists = posts.some((p) => p.slug === slug);
   if (!exists) {
-    return NextResponse.json({ message: "ŽOlanak nije pronaŽ`en." }, { status: 404 });
+    return NextResponse.json({ message: "Članak nije pronađen." }, { status: 404 });
   }
   const updated = posts.filter((p) => p.slug !== slug);
   await writeDataFile(FILE_NAME, updated);
@@ -57,7 +57,7 @@ export async function PUT(
   const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
   const idx = posts.findIndex((p) => p.slug === slug);
   if (idx === -1) {
-    return NextResponse.json({ message: "ŽOlanak nije pronaŽ`en." }, { status: 404 });
+    return NextResponse.json({ message: "Članak nije pronađen." }, { status: 404 });
   }
   const current = posts[idx];
 
@@ -89,4 +89,5 @@ export async function PUT(
   await writeDataFile(FILE_NAME, posts);
   return NextResponse.json(updated, { status: 200 });
 }
+
 

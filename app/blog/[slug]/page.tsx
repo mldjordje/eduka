@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import Section2 from "@/components/sections/blog-details/Section2";
 import PostImageSlider from "@/components/sections/blog-details/PostImageSlider";
+import Section9 from "@/components/sections/home-1/Section9";
 import { getPostBySlug } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -181,4 +182,3 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </Layout>
   );
 }
-

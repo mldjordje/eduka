@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import type { BlogPost } from "@/types/blog";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
 
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     if (!body.title || !body.content || !body.author) {
-      return NextResponse.json({ message: "Naslov, sadr_aj i autor su obavezni." }, { status: 400 });
+      return NextResponse.json({ message: "Naslov, sadržaj i autor su obavezni." }, { status: 400 });
     }
 
     const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     }
 
     if (posts.some((post) => post.slug === slug)) {
-      return NextResponse.json({ message: "Blog sa zadatim slug identifikatorom veŽØ postoji." }, { status: 409 });
+      return NextResponse.json({ message: "Blog sa zadatim slug identifikatorom već postoji." }, { status: 409 });
     }
 
     const images = normalizeImages(body.images?.length ? body.images : body.image);
@@ -82,4 +82,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
   }
 }
+
 

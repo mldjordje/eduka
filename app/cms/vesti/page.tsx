@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -73,7 +73,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       }
       setForm((prev) => ({ ...prev, images: [...prev.images, ...uploaded] }));
     } catch (e: any) {
-      setUploadError(e.message || "Greska pri uploadu.");
+      setUploadError(e.message || "Greška pri uploadu.");
     } finally {
       setIsUploading(false);
       event.target.value = "";
@@ -89,7 +89,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       const url = await uploadFileWithFallback(file);
       setForm((prev) => ({ ...prev, document: url, documentName: file.name }));
     } catch (e: any) {
-      setUploadError(e.message || "Greska pri uploadu.");
+      setUploadError(e.message || "Greška pri uploadu.");
     } finally {
       setIsDocumentUploading(false);
     }
@@ -345,3 +345,7 @@ export default function CmsVestiPage() {
     </Layout>
   );
 }
+
+
+
+
