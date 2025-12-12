@@ -36,7 +36,7 @@ if (!isset($_FILES['file'])) {
   exit;
 }
 
-$uploadDir = __DIR__ . '/uploads/';
+$uploadDir = dirname(__FILE__) . '/uploads/';
 if (!is_dir($uploadDir)) {
   mkdir($uploadDir, 0755, true);
 }
