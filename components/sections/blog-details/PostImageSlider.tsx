@@ -1,11 +1,5 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
 interface PostImageSliderProps {
   images: string[];
   title: string;
@@ -22,17 +16,12 @@ export default function PostImageSlider({ images, title }: PostImageSliderProps)
   }
 
   return (
-    <div className="pb-30">
-      <Swiper modules={[Navigation, Pagination]} navigation pagination={{ clickable: true }} className="vl-blog-slider">
-        {images.map((src, idx) => (
-          <SwiperSlide key={`${src}-${idx}`}>
-            <div className="vl-blog-thumb image-anime">
-              <img className="w-100" src={src} alt={`${title} ${idx + 1}`} />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="pb-30 d-flex flex-wrap gap-3">
+      {images.map((src, idx) => (
+        <div key={`${src}-${idx}`} className="vl-blog-thumb image-anime" style={{ flex: "1 1 320px" }}>
+          <img className="w-100" src={src} alt={`${title} ${idx + 1}`} />
+        </div>
+      ))}
     </div>
   );
 }
-

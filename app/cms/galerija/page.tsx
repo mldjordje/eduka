@@ -99,7 +99,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
         throw new Error(body.message || "Ažuriranje nije uspelo");
       }
       const updated = await res.json();
-      setGallery((prev) => prev.map((img) => (img.id === updated.id ? updated : img)));
+      setGallery((prev) => prev.map((img) => (img.id === updated.id ? { ...img, ...updated } : img)));
     } catch (e: any) {
       setError(e.message || "Greška pri čuvanju promene.");
     }

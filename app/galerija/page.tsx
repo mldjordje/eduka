@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 
-const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
-
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
   ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin
@@ -30,7 +28,7 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 }
 
 async function GalleryGrid() {
-  const imagesUrl = BASE ? `${BASE}/gallery.php` : "/api/gallery";
+  const imagesUrl = "/api/gallery";
   const categoriesUrl = "/api/gallery/categories";
 
   const [imagesPayload, categoriesPayload] = await Promise.all([
@@ -117,4 +115,3 @@ export const metadata: Metadata = {
   description: "Pogledajte fotografije i projekte udruženja Eduka.",
   alternates: { canonical: "/galerija" },
 };
-
