@@ -100,7 +100,9 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   };
 
   const handleEdit = (post: BlogPost) => {
-    const images = post.images && post.images.length > 0 ? post.images : post.image ? [post.image] : [];
+    const images = (post.images && post.images.length > 0 ? post.images : post.image ? [post.image] : []).filter(
+      (img) => typeof img === "string" && img.trim().length > 0
+    );
     setForm({
       title: post.title,
       slug: post.slug,
@@ -180,7 +182,10 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     }
   };
 
-  const previewImages = useMemo(() => form.images.map((img) => resolveImage(img)), [form.images]);
+  const previewImages = useMemo(
+    () => form.images.map((raw) => ({ raw, src: resolveImage(raw) })),
+    [form.images]
+  );
 
   const formatDate = (value: string) => {
     if (!value) return "-";
@@ -195,8 +200,12 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     });
   };
 
-  const removeImage = (url: string) => {
-    setForm((prev) => ({ ...prev, images: prev.images.filter((img) => img !== url) }));
+  const removeImage = (idx: number) => {
+    setForm((prev) => {
+      const next = [...prev.images];
+      next.splice(idx, 1);
+      return { ...prev, images: next };
+    });
   };
 
   return (
@@ -275,15 +284,15 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                     <label className="form-label">Pregled slika (prva je naslovna)</label>
                     <div className="d-flex flex-wrap gap-3">
                       {previewImages.map((img, idx) => (
-                        <div key={img + idx} className="vl-blog-thumb image-anime" style={{ width: 120 }}>
-                          <img className="w-100" src={img} alt={`Slika ${idx + 1}`} />
+                        <div key={img.raw + idx} className="vl-blog-thumb image-anime" style={{ width: 120 }}>
+                          <img className="w-100" src={img.src || "/assets/img/placeholder.png"} alt={`Slika ${idx + 1}`} />
                           <div className="pt-6 d-flex gap-2 flex-wrap">
                             {idx !== 0 && (
                               <button type="button" className="vl-btn-secondary" onClick={() => setAsCover(form.images[idx])}>
                                 Naslovna
                               </button>
                             )}
-                            <button type="button" className="vl-btn-primary" onClick={() => removeImage(form.images[idx])}>
+                            <button type="button" className="vl-btn-primary" onClick={() => removeImage(idx)}>
                               Ukloni
                             </button>
                           </div>
@@ -345,7 +354,6 @@ export default function CmsVestiPage() {
     </Layout>
   );
 }
-
 
 
 
