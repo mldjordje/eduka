@@ -1,4 +1,4 @@
-const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.eduka.co.rs").replace(/\/+$/, "");
 const USE_PHP_API = Boolean(API_BASE);
 const UPLOAD_URL = (process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT || (API_BASE ? `${API_BASE}/upload.php` : "")).replace(/\/+$/, "");
 
@@ -29,4 +29,3 @@ export async function uploadFileWithFallback(file: File) {
   }
   throw lastError || new Error("Upload nije uspeo.");
 }
-
