@@ -8,7 +8,7 @@ $allowed_origins = [
   'https://www.eduka.co.rs',
   'https://eduka.rs',
   'https://www.eduka.rs',
-  'http://localhost:3000'
+  'http://localhost:3000',
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
@@ -32,7 +32,18 @@ header('Content-Type: application/json; charset=utf-8');
 
 if (!isset($_FILES['file'])) {
   http_response_code(400);
-  echo json_encode(['message'=>'Fajl nije prosleđen.']);
+  echo json_encode(['message' => 'Fajl nije prosleŽ`en.']);
+  exit;
+}
+
+$file = $_FILES['file'];
+$tmpPath = $file['tmp_name'] ?? '';
+$origName = $file['name'] ?? '';
+$size = $file['size'] ?? 0;
+
+if ($file['error'] !== UPLOAD_ERR_OK || !$tmpPath || !is_uploaded_file($tmpPath)) {
+  http_response_code(400);
+  echo json_encode(['message' => 'Došlo je do greške pri otpremanju fajla.']);
   exit;
 }
 
@@ -57,18 +68,12 @@ $allowed = [
   'image/webp',
   'application/pdf',
   'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ];
 
 if (!in_array($mime, $allowed, true)) {
   http_response_code(400);
-  echo json_encode(['message'=>'Nedozvoljen tip fajla.']);
-  exit;
-}
-
-if ($size > 5 * 1024 * 1024) {
-  http_response_code(400);
-  echo json_encode(['message'=>'Fajl je prevelik (maks 5MB).']);
+  echo json_encode(['message' => 'Nedozvoljen tip fajla.']);
   exit;
 }
 
@@ -78,13 +83,13 @@ $dest = $uploadDir . $name;
 
 if (!move_uploaded_file($tmpPath, $dest)) {
   http_response_code(500);
-  echo json_encode(['message'=>'Greška pri uploadu fajla.']);
+  echo json_encode(['message' => 'Greška pri uploadu fajla.']);
   exit;
 }
 
 echo json_encode([
   'success' => true,
-  'url' => 'https://api.eduka.co.rs/uploads/'.$name,
+  'url' => 'https://api.eduka.co.rs/uploads/' . $name,
   'name' => $origName,
-  'mime' => $mime
+  'mime' => $mime,
 ], JSON_UNESCAPED_UNICODE);
