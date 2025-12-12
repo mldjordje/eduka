@@ -1,8 +1,9 @@
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.eduka.co.rs").replace(/\/+$/, "");
 const UPLOAD_URL =
   (process.env.NEXT_PUBLIC_UPLOAD_URL || "https://api.eduka.co.rs/upload.php").replace(/\/+$/, "");
 
 export function getUploadInfo() {
-  return { UPLOAD_URL };
+  return { API_BASE, UPLOAD_URL };
 }
 
 export async function uploadFileWithFallback(file: File) {
