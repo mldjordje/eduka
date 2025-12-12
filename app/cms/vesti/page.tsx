@@ -284,9 +284,11 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                     <label className="form-label">Pregled slika (prva je naslovna)</label>
                     <div className="d-flex flex-wrap gap-3">
                       {previewImages.map((img, idx) => (
-                        <div key={img.raw + idx} className="vl-blog-thumb image-anime" style={{ width: 120 }}>
-                          <img className="w-100" src={img.src || "/assets/img/placeholder.png"} alt={`Slika ${idx + 1}`} />
-                          <div className="pt-6 d-flex gap-2 flex-wrap">
+                        <div key={img.raw + idx} style={{ width: 140 }}>
+                          <div className="vl-blog-thumb image-anime mb-6" style={{ width: 120 }}>
+                            <img className="w-100" src={img.src || "/assets/img/placeholder.png"} alt={`Slika ${idx + 1}`} />
+                          </div>
+                          <div className="d-flex gap-2 flex-wrap">
                             {idx !== 0 && (
                               <button type="button" className="vl-btn-secondary" onClick={() => setAsCover(form.images[idx])}>
                                 Naslovna
@@ -354,6 +356,5 @@ export default function CmsVestiPage() {
     </Layout>
   );
 }
-
 
 
