@@ -29,7 +29,7 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 }
 
 async function GalleryGrid() {
-  const headerStore = headers();
+  const headerStore = await headers();
   const host = headerStore.get("x-forwarded-host") || headerStore.get("host") || "";
   const proto = headerStore.get("x-forwarded-proto") || "https";
   const fallbackBase =
