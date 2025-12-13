@@ -44,6 +44,16 @@ function resolveImageSrc(raw?: string) {
   return `/${normalized}`;
 }
 
+function resolveDocumentSrc(raw?: string) {
+  if (!raw) return "";
+  if (/^https?:\/\//.test(raw)) return raw;
+  const normalized = raw.replace(/^\//, "");
+  if (normalized.startsWith("uploads/")) {
+    return `${UPLOAD_ORIGIN}/${normalized}`;
+  }
+  return `/${normalized}`;
+}
+
 function collectImages(post: any) {
   const candidates =
     post?.images && Array.isArray(post.images) && post.images.length > 0
@@ -113,6 +123,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const imageList = collectImages(post);
+  const documentUrl = resolveDocumentSrc(post.document);
 
   return (
     <Layout>
@@ -141,9 +152,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </p>
                   ))}
                 </div>
-                {post.document && (
+                {documentUrl && (
                   <div className="pt-24">
-                    <a className="vl-btn-primary" href={post.document} target="_blank" rel="noopener noreferrer" download>
+                    <a className="vl-btn-primary" href={documentUrl} target="_blank" rel="noopener noreferrer" download>
                       {post.documentName || "Preuzmi dokument"}
                     </a>
                   </div>
