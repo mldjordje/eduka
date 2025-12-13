@@ -3,6 +3,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
+import { headers } from "next/headers";
 
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
@@ -28,8 +29,16 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 }
 
 async function GalleryGrid() {
-  const imagesUrl = "/api/gallery";
-  const categoriesUrl = "/api/gallery/categories";
+  const headerStore = headers();
+  const host = headerStore.get("x-forwarded-host") || headerStore.get("host") || "";
+  const proto = headerStore.get("x-forwarded-proto") || "https";
+  const fallbackBase =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}`.replace(/\/+$/, "") : "http://localhost:3000");
+  const base = host ? `${proto}://${host}` : fallbackBase;
+
+  const imagesUrl = `${base}/api/gallery`;
+  const categoriesUrl = `${base}/api/gallery/categories`;
 
   const [imagesPayload, categoriesPayload] = await Promise.all([
     fetchJson<GalleryImage[]>(imagesUrl),
