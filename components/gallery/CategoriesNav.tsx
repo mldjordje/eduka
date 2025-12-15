@@ -26,6 +26,7 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 export function CategoriesNav() {
   const [categories, setCategories] = useState<GalleryCategory[] | null>(null);
   const [counts, setCounts] = useState<Record<string, number>>({});
+  const palette = ["#0ea5e9", "#6d28d9", "#0d9488", "#f59e0b", "#ef4444", "#1d4ed8"];
 
   useEffect(() => {
     Promise.all([fetchJson<GalleryImage[]>(imagesUrl), fetchJson<GalleryCategory[]>(categoriesUrl)]).then(
@@ -63,14 +64,34 @@ export function CategoriesNav() {
         list.map((cat) => (
           <div key={cat.id} className="col-sm-6 col-md-4 col-lg-3 mb-20">
             <Link href={`/galerija/${cat.slug}`} className="text-decoration-none">
-              <Card shadow="sm" className="h-100 hover:shadow-lg transition-all">
-                <CardBody>
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <h4 className="title fs-18 mb-0 text-dark">{cat.name}</h4>
+              <Card
+                shadow="sm"
+                className="h-100 hover:shadow-lg transition-all"
+                style={{
+                  background: `linear-gradient(135deg, ${palette[list.indexOf(cat) % palette.length]}22, #ffffff 55%)`,
+                  border: "1px solid #eef2f7",
+                }}
+              >
+                <CardBody className="d-flex flex-column justify-content-between h-100">
+                  <div>
+                    <Chip
+                      variant="flat"
+                      color="primary"
+                      size="sm"
+                      className="mb-3 text-uppercase fw-semibold"
+                    >
+                      Kategorija
+                    </Chip>
+                    <h4 className="title fs-18 mb-2 text-dark">{cat.name}</h4>
+                    <p className="text-muted mb-0">
+                      Pogledaj galeriju <span aria-hidden>→</span>
+                    </p>
                   </div>
-                  <Chip variant="flat" color="primary" size="sm">
-                    {counts[`${cat.id}`] || 0} fotografija
-                  </Chip>
+                  <div className="pt-3">
+                    <Chip variant="flat" color="secondary" size="sm">
+                      {counts[`${cat.id}`] || 0} fotografija
+                    </Chip>
+                  </div>
                 </CardBody>
               </Card>
             </Link>
@@ -79,12 +100,19 @@ export function CategoriesNav() {
       {!isLoading && (
         <div className="col-sm-6 col-md-4 col-lg-3 mb-20">
           <Link href="/galerija/ostalo" className="text-decoration-none">
-            <Card shadow="sm" className="h-100 hover:shadow-lg transition-all">
-              <CardBody>
-                <h4 className="title fs-18 mb-2 text-dark">Ostalo</h4>
-                <Chip variant="flat" color="default" size="sm">
-                  {uncategorizedCount} fotografija
-                </Chip>
+              <Card
+                shadow="sm"
+                className="h-100 hover:shadow-lg transition-all"
+                style={{
+                  background: "linear-gradient(135deg, #94a3b8 22%, #ffffff 55%)",
+                  border: "1px solid #eef2f7",
+                }}
+              >
+                <CardBody>
+                  <h4 className="title fs-18 mb-2 text-dark">Ostalo</h4>
+                  <Chip variant="flat" color="default" size="sm">
+                    {uncategorizedCount} fotografija
+                  </Chip>
               </CardBody>
             </Card>
           </Link>
