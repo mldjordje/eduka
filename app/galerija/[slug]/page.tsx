@@ -41,13 +41,15 @@ async function loadData() {
 }
 
 type Params = { slug: string };
+type PageProps = { params: Promise<Params> };
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
   const { categories } = await loadData();
   const category =
-    params.slug === "ostalo"
+    slug === "ostalo"
       ? { name: "Ostalo", slug: "ostalo" }
-      : categories.find((c) => c.slug === params.slug);
+      : categories.find((c) => c.slug === slug);
   if (!category) return { title: "Galerija" };
   return {
     title: `Galerija - ${category.name}`,
@@ -55,12 +57,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-export default async function GalerijaSlugPage({ params }: { params: Params }) {
+export default async function GalerijaSlugPage({ params }: PageProps) {
+  const { slug } = await params;
   const { items, categories } = await loadData();
   const category =
-    params.slug === "ostalo"
+    slug === "ostalo"
       ? { id: "", name: "Ostalo", slug: "ostalo" }
-      : categories.find((c) => c.slug === params.slug);
+      : categories.find((c) => c.slug === slug);
 
   if (!category) notFound();
 
