@@ -3,12 +3,12 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
-import { headers } from "next/headers";
-
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
+const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin
+  : "https://api.eduka.co.rs";
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
   ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin
-  : API_ORIGIN || "https://api.eduka.co.rs";
+  : API_ORIGIN;
 
 const resolveSrc = (raw: string) => {
   if (!raw) return "";
@@ -29,16 +29,9 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 }
 
 async function GalleryGrid() {
-  const headerStore = await headers();
-  const host = headerStore.get("x-forwarded-host") || headerStore.get("host") || "";
-  const proto = headerStore.get("x-forwarded-proto") || "https";
-  const fallbackBase =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}`.replace(/\/+$/, "") : "http://localhost:3000");
-  const base = host ? `${proto}://${host}` : fallbackBase;
-
-  const imagesUrl = `${base}/api/gallery`;
-  const categoriesUrl = `${base}/api/gallery/categories`;
+  const remoteBase = API_ORIGIN.replace(/\/+$/, "");
+  const imagesUrl = `${remoteBase}/gallery.php`;
+  const categoriesUrl = `${remoteBase}/gallery_categories.php`;
 
   const [imagesPayload, categoriesPayload] = await Promise.all([
     fetchJson<GalleryImage[]>(imagesUrl),
