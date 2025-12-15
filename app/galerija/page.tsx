@@ -41,14 +41,18 @@ async function GalleryGrid() {
   const items = Array.isArray(imagesPayload) ? imagesPayload : [];
   const categories = Array.isArray(categoriesPayload) ? categoriesPayload : [];
 
-  const grouped = categories.map((cat) => ({
-    category: cat,
-    items: items.filter((img) => (img.categoryId || "") === cat.id),
-  }));
+  const grouped = categories.map((cat) => {
+    const catId = `${cat.id}`;
+    return {
+      category: cat,
+      items: items.filter((img) => `${img.categoryId || ""}` === catId),
+    };
+  });
 
   const uncategorized = items.filter((img) => {
-    if (!img.categoryId) return true;
-    return !categories.some((cat) => cat.id === img.categoryId);
+    const imgCategoryId = `${img.categoryId || ""}`;
+    if (!imgCategoryId) return true;
+    return !categories.some((cat) => `${cat.id}` === imgCategoryId);
   });
 
   const hasAny = items.length > 0;
