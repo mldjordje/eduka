@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL
   ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin
@@ -28,7 +29,26 @@ async function fetchJson<T>(url: string): Promise<T | null> {
   }
 }
 
-async function GalleryGrid() {
+function CategoryCard({
+  category,
+  count,
+  href,
+}: {
+  category: Pick<GalleryCategory, "name" | "slug">;
+  count: number;
+  href: string;
+}) {
+  return (
+    <div className="col-sm-6 col-md-4 col-lg-3 mb-20">
+      <Link href={href} className="d-block p-16 vl-off-white-bg br-12 h-100 text-decoration-none">
+        <h4 className="title fs-18 pb-8">{category.name}</h4>
+        <p className="mb-0 text-muted">{count} fotografija</p>
+      </Link>
+    </div>
+  );
+}
+
+async function CategoriesList() {
   const remoteBase = API_ORIGIN.replace(/\/+$/, "");
   const imagesUrl = `${remoteBase}/gallery.php`;
   const categoriesUrl = `${remoteBase}/gallery_categories.php`;
@@ -41,62 +61,33 @@ async function GalleryGrid() {
   const items = Array.isArray(imagesPayload) ? imagesPayload : [];
   const categories = Array.isArray(categoriesPayload) ? categoriesPayload : [];
 
-  const grouped = categories.map((cat) => {
-    const catId = `${cat.id}`;
-    return {
-      category: cat,
-      items: items.filter((img) => `${img.categoryId || ""}` === catId),
-    };
+  const countsByCategory: Record<string, number> = {};
+  items.forEach((img) => {
+    const key = `${img.categoryId || ""}`;
+    countsByCategory[key] = (countsByCategory[key] || 0) + 1;
   });
 
-  const uncategorized = items.filter((img) => {
-    const imgCategoryId = `${img.categoryId || ""}`;
-    if (!imgCategoryId) return true;
-    return !categories.some((cat) => `${cat.id}` === imgCategoryId);
-  });
-
+  const uncategorizedCount = countsByCategory[""] || 0;
   const hasAny = items.length > 0;
 
   return (
     <>
       {!hasAny && <p>Galerija je prazna.</p>}
-      {grouped.map(({ category, items }) => {
-        if (items.length === 0) return null;
-        return (
-          <div key={category.id} className="pb-30">
-            <h3 className="title pb-16">{category.name}</h3>
-            <div className="row">
-              {items.map((g) => {
-                const src = resolveSrc(g.url);
-                return (
-                  <div className="col-sm-6 col-md-4 col-lg-3 mb-20" key={g.id}>
-                    <div className="vl-blog-thumb image-anime">
-                      <img className="w-100" src={src} alt={g.name || category.name} />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
-      {uncategorized.length > 0 && (
-        <div className="pb-10">
-          <h3 className="title pb-16">Ostalo</h3>
-          <div className="row">
-            {uncategorized.map((g) => {
-              const src = resolveSrc(g.url);
-              return (
-                <div className="col-sm-6 col-md-4 col-lg-3 mb-20" key={g.id}>
-                  <div className="vl-blog-thumb image-anime">
-                    <img className="w-100" src={src} alt={g.name || "galerija"} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <div className="row">
+        {categories.map((cat) => (
+          <CategoryCard
+            key={cat.id}
+            category={cat}
+            count={countsByCategory[`${cat.id}`] || 0}
+            href={`/galerija/${cat.slug}`}
+          />
+        ))}
+        <CategoryCard
+          category={{ name: "Ostalo", slug: "ostalo" }}
+          count={uncategorizedCount}
+          href="/galerija/ostalo"
+        />
+      </div>
     </>
   );
 }
@@ -108,7 +99,7 @@ export default function GalerijaPage() {
       <section className="pt-60 pb-60">
         <div className="container">
           <Suspense fallback={<p>Učitavanje...</p>}>
-            <GalleryGrid />
+            <CategoriesList />
           </Suspense>
         </div>
       </section>
