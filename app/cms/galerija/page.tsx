@@ -238,7 +238,6 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                     }}
                     disallowEmptySelection={false}
                     aria-label="Kategorija"
-                  >
                     items={categoryOptions}
                   >
                     {(item) => (
@@ -274,7 +273,6 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                                   handleCategoryChange(g.id, next || "");
                                 }}
                                 aria-label="Kategorija slike"
-                              >
                                 items={categoryOptions}
                               >
                                 {(item) => (
