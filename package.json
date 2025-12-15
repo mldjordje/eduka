@@ -14,6 +14,8 @@
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.7",
     "isotope-layout": "^3.0.6",
+    "@heroui/react": "^2.1.5",
+    "framer-motion": "^11.13.1",
     "next": "15.3.6",
     "react": "^18",
     "react-before-after-slider-component": "^1.1.8",

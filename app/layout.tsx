@@ -8,6 +8,7 @@ import "/public/assets/css/style.css";
 
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans } from "next/font/google";
+import { HeroProvider } from "@/components/HeroProvider";
 
 const notoSans = Noto_Sans({
     weight: ["400", "500", "600", "700"],
@@ -72,7 +73,9 @@ export default function RootLayout({
             <head>
                 <base href="/" />
             </head>
-            <body className={notoSans.className}>{children}</body>
+            <body className={notoSans.className}>
+                <HeroProvider>{children}</HeroProvider>
+            </body>
         </html>
     );
 }

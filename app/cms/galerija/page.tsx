@@ -6,6 +6,7 @@ import CmsGuard from "@/components/cms/CmsGuard";
 import { uploadFileWithFallback } from "@/lib/cmsUpload";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { Button, Card, CardBody, CardHeader, Divider, Input, Select, SelectItem, Spinner } from "@heroui/react";
 
 const galleryEndpoint = "/api/gallery";
 const categoryEndpoint = "https://api.eduka.co.rs/gallery_categories.php";
@@ -22,14 +23,17 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const loadData = () => {
+    setLoading(true);
     Promise.all([
       fetch(galleryEndpoint).then((res) => res.json()).catch(() => []),
       fetch(categoryEndpoint).then((res) => res.json()).catch(() => []),
     ]).then(([images, cats]) => {
       setGallery(Array.isArray(images) ? images : []);
       setCategories(Array.isArray(cats) ? cats : []);
+      setLoading(false);
     });
   };
 
@@ -162,94 +166,125 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
     <>
       <div className="row">
         <div className="col-12 d-flex justify-content-end pb-20">
-          <button className="vl-btn-primary" onClick={onLogout}>Odjava</button>
+          <Button color="primary" onPress={onLogout}>Odjava</Button>
         </div>
       </div>
       <div className="row">
         <div className="col-lg-4 mb-30">
-          <div className="vl-off-white-bg p-32 br-20 h-100">
-            <h3 className="title pb-16">Kategorije</h3>
-            {message && <div className="alert alert-success">{message}</div>}
-            {error && <div className="alert alert-danger">{error}</div>}
-            <div className="d-flex gap-2 pb-16">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nova kategorija"
-                value={newCategory}
-                onChange={(e) => setNewCategory(e.target.value)}
-              />
-              <button className="vl-btn-primary" type="button" onClick={handleAddCategory}>
-                Dodaj
-              </button>
-            </div>
-            <ul className="list-unstyled mb-0">
-              {categories.map((cat) => (
-                <li key={cat.id} className="d-flex justify-content-between align-items-center pb-8">
-                  <span>{cat.name} ({categoryCounts[cat.id] || 0})</span>
-                    <button className="vl-btn-primary" type="button" onClick={() => handleDeleteCategory(cat.id)}>
-                    Obriši
-                  </button>
-                </li>
-              ))}
-              {categories.length === 0 && <li className="text-muted">Još nema kategorija.</li>}
-            </ul>
-          </div>
+          <Card shadow="sm" className="h-100">
+            <CardHeader className="d-flex flex-column align-items-start gap-2">
+              <h3 className="title m-0">Kategorije</h3>
+              {message && <div className="alert alert-success w-100 mb-0">{message}</div>}
+              {error && <div className="alert alert-danger w-100 mb-0">{error}</div>}
+              <div className="d-flex gap-2 w-100">
+                <Input
+                  fullWidth
+                  aria-label="Nova kategorija"
+                  labelPlacement="outside"
+                  placeholder="Nova kategorija"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  size="sm"
+                />
+                <Button color="primary" onPress={handleAddCategory}>
+                  Dodaj
+                </Button>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              {loading && (
+                <div className="d-flex justify-content-center py-3">
+                  <Spinner size="sm" />
+                </div>
+              )}
+              {!loading && (
+                <ul className="list-unstyled mb-0">
+                  {categories.map((cat) => (
+                    <li key={cat.id} className="d-flex justify-content-between align-items-center pb-10">
+                      <span>{cat.name} ({categoryCounts[cat.id] || 0})</span>
+                      <Button color="danger" variant="light" size="sm" onPress={() => handleDeleteCategory(cat.id)}>
+                        Obriši
+                      </Button>
+                    </li>
+                  ))}
+                  {categories.length === 0 && <li className="text-muted">Još nema kategorija.</li>}
+                </ul>
+              )}
+            </CardBody>
+          </Card>
         </div>
         <div className="col-lg-8 mb-30">
-          <div className="vl-off-white-bg p-32 br-20 h-100">
-            <h3 className="title pb-16">Dodaj sliku</h3>
-            <div className="row pb-12">
-              <div className="col-md-6 pb-12">
-                <label className="form-label">Odaberi kategoriju (opciono)</label>
-                <select className="form-control" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-                  <option value="">Bez kategorije</option>
-                  {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </option>
-                  ))}
-                </select>
+          <Card shadow="sm" className="h-100">
+            <CardHeader className="d-flex flex-column align-items-start gap-1">
+              <h3 className="title m-0">Dodaj sliku</h3>
+              {uploading && <small>Otpremanje...</small>}
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              <div className="row pb-12">
+                <div className="col-md-6 pb-12">
+                  <Select
+                    label="Odaberi kategoriju (opciono)"
+                    selectedKeys={new Set([selectedCategory || ""])}
+                    onSelectionChange={(keys) => {
+                      const next = Array.from(keys)[0] as string;
+                      setSelectedCategory(next || "");
+                    }}
+                    disallowEmptySelection={false}
+                    aria-label="Kategorija"
+                  >
+                    <SelectItem key="">Bez kategorije</SelectItem>
+                    {categories.map((cat) => (
+                      <SelectItem key={cat.id}>{cat.name}</SelectItem>
+                    ))}
+                  </Select>
+                </div>
+                <div className="col-md-6 pb-12 d-flex flex-column gap-2">
+                  <label className="form-label m-0">Slika</label>
+                  <Input type="file" aria-label="Slika" onChange={handleGalleryUpload} isDisabled={uploading} />
+                </div>
               </div>
-              <div className="col-md-6 pb-12">
-                <label className="form-label">Slika</label>
-                <input type="file" accept="image/*" className="form-control" onChange={handleGalleryUpload} disabled={uploading} />
-                {uploading && <small>Otpremanje...</small>}
-              </div>
-            </div>
-            {gallery.length === 0 && <p>Galerija je prazna.</p>}
-            {gallery.length > 0 && (
-              <div className="row">
-                {gallery.map((g) => {
-                  const src = srcResolver(g.url);
-                  return (
-                    <div className="col-sm-6 col-md-4 col-lg-3 mb-16" key={g.id}>
-                      <div className="vl-blog-thumb image-anime">
-                        <img src={src} alt={g.name || "galerija"} className="w-100" />
+              {gallery.length === 0 && <p>Galerija je prazna.</p>}
+              {gallery.length > 0 && (
+                <div className="row">
+                  {gallery.map((g) => {
+                    const src = srcResolver(g.url);
+                    return (
+                      <div className="col-sm-6 col-md-4 col-lg-3 mb-16" key={g.id}>
+                        <Card shadow="sm" className="h-100">
+                          <CardBody className="p-0">
+                            <div className="vl-blog-thumb image-anime">
+                              <img src={src} alt={g.name || "galerija"} className="w-100" />
+                            </div>
+                            <div className="p-3 d-flex flex-column gap-2">
+                              <Select
+                                size="sm"
+                                selectedKeys={new Set([g.categoryId || ""])}
+                                onSelectionChange={(keys) => {
+                                  const next = Array.from(keys)[0] as string;
+                                  handleCategoryChange(g.id, next || "");
+                                }}
+                                aria-label="Kategorija slike"
+                              >
+                                <SelectItem key="">Bez kategorije</SelectItem>
+                                {categories.map((cat) => (
+                                  <SelectItem key={cat.id}>{cat.name}</SelectItem>
+                                ))}
+                              </Select>
+                              <Button color="primary" onPress={() => handleGalleryDelete(g.id)}>
+                                Obriši
+                              </Button>
+                            </div>
+                          </CardBody>
+                        </Card>
                       </div>
-                      <div className="pt-8">
-                        <select
-                          className="form-control mb-8"
-                          value={g.categoryId || ""}
-                          onChange={(e) => handleCategoryChange(g.id, e.target.value)}
-                        >
-                          <option value="">Bez kategorije</option>
-                          {categories.map((cat) => (
-                            <option key={cat.id} value={cat.id}>
-                              {cat.name}
-                            </option>
-                          ))}
-                        </select>
-                        <button type="button" className="vl-btn-primary w-100" onClick={() => handleGalleryDelete(g.id)}>
-                          Obriši
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                    );
+                  })}
+                </div>
+              )}
+            </CardBody>
+          </Card>
         </div>
       </div>
     </>
