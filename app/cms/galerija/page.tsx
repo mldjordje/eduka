@@ -8,7 +8,7 @@ import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 const galleryEndpoint = "/api/gallery";
-const categoryEndpoint = "/api/gallery/categories";
+const categoryEndpoint = "https://api.eduka.co.rs/gallery_categories.php";
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
   ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin
