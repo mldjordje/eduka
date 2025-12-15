@@ -154,6 +154,11 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
     return counts;
   }, [gallery]);
 
+  const categoryOptions = useMemo(
+    () => [{ id: "", name: "Bez kategorije" }, ...categories.map((c) => ({ id: c.id, name: c.name }))],
+    [categories]
+  );
+
   const srcResolver = (url: string) => {
     if (!url) return "";
     if (/^https?:\/\//.test(url)) return url;
@@ -234,10 +239,13 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                     disallowEmptySelection={false}
                     aria-label="Kategorija"
                   >
-                    <SelectItem key="">Bez kategorije</SelectItem>
-                    {categories.map((cat) => (
-                      <SelectItem key={cat.id}>{cat.name}</SelectItem>
-                    ))}
+                    items={categoryOptions}
+                  >
+                    {(item) => (
+                      <SelectItem key={item.id} textValue={item.name}>
+                        {item.name}
+                      </SelectItem>
+                    )}
                   </Select>
                 </div>
                 <div className="col-md-6 pb-12 d-flex flex-column gap-2">
@@ -267,10 +275,13 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                                 }}
                                 aria-label="Kategorija slike"
                               >
-                                <SelectItem key="">Bez kategorije</SelectItem>
-                                {categories.map((cat) => (
-                                  <SelectItem key={cat.id}>{cat.name}</SelectItem>
-                                ))}
+                                items={categoryOptions}
+                              >
+                                {(item) => (
+                                  <SelectItem key={item.id} textValue={item.name}>
+                                    {item.name}
+                                  </SelectItem>
+                                )}
                               </Select>
                               <Button color="primary" onPress={() => handleGalleryDelete(g.id)}>
                                 Obriši
