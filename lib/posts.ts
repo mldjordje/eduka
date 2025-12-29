@@ -30,7 +30,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
   try {
     if (BASE) {
-      const res = await fetch(`${BASE}/post.php?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
+      const res = await fetch(`${BASE}/posts.php?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         return normalizePost(data);
