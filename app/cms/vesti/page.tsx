@@ -1,10 +1,10 @@
-﻿"use client";
+"use client";
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import { getUploadInfo, uploadFileWithFallback } from "@/lib/cmsUpload";
-import type { BlogPost } from "@/types/blog";
+import type { BlogPost, BlogDocument } from "@/types/blog";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 
@@ -21,6 +21,8 @@ const initialPostForm = {
   date: "",
   document: "",
   documentName: "",
+  documents: [] as BlogDocument[],
+  showOnSimpozijum: false,
 };
 
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
@@ -46,6 +48,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
+  const [togglingSlug, setTogglingSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const postsUrl = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
@@ -58,6 +61,11 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setForm((prev) => ({ ...prev, [name]: checked }));
   };
 
   const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -81,28 +89,44 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   };
 
   const handleDocumentUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(event.target.files || []);
+    if (!files.length) return;
     setUploadError(null);
     setIsDocumentUploading(true);
     try {
-      const url = await uploadFileWithFallback(file);
-      setForm((prev) => ({ ...prev, document: url, documentName: file.name }));
+      for (const file of files) {
+        const url = await uploadFileWithFallback(file);
+        setForm((prev) => ({
+          ...prev,
+          documents: [...prev.documents, { url, name: file.name }],
+        }));
+      }
     } catch (e: any) {
-      setUploadError(e.message || "Greška pri uploadu.");
+      setUploadError(e.message || "Greška pri uploadu dokumenta.");
     } finally {
       setIsDocumentUploading(false);
+      event.target.value = "";
     }
   };
 
-  const clearDocument = () => {
-    setForm((prev) => ({ ...prev, document: "", documentName: "" }));
+  const removeDocument = (idx: number) => {
+    setForm((prev) => {
+      const next = [...prev.documents];
+      next.splice(idx, 1);
+      return { ...prev, documents: next };
+    });
   };
 
   const handleEdit = (post: BlogPost) => {
     const images = (post.images && post.images.length > 0 ? post.images : post.image ? [post.image] : []).filter(
       (img) => typeof img === "string" && img.trim().length > 0
     );
+    const documents: BlogDocument[] = post.documents && post.documents.length > 0
+      ? post.documents
+      : post.document
+      ? [{ url: post.document, name: (post as any).document_name ?? post.documentName ?? post.document }]
+      : [];
+
     setForm({
       title: post.title,
       slug: post.slug,
@@ -114,6 +138,8 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       date: post.date?.slice(0, 10) || "",
       document: post.document ?? "",
       documentName: (post as any).document_name ?? post.documentName ?? "",
+      documents,
+      showOnSimpozijum: post.showOnSimpozijum ?? false,
     });
     setEditingSlug(post.slug);
     setMessage(null);
@@ -133,6 +159,30 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       setPosts((prev) => prev.filter((p) => p.slug !== slug));
     } catch (e: any) {
       setError(e.message || "Greška pri brisanju objave");
+    }
+  };
+
+  const handleToggleSimpozijum = async (post: BlogPost) => {
+    setTogglingSlug(post.slug);
+    try {
+      const base = API_BASE ? API_BASE.replace(/\/+$/, "") : "";
+      const endpoint = base
+        ? `${base}/posts.php?slug=${encodeURIComponent(post.slug)}`
+        : `/api/posts/${encodeURIComponent(post.slug)}`;
+      const newValue = !post.showOnSimpozijum;
+      const res = await fetch(endpoint, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: post.slug, showOnSimpozijum: newValue }),
+      });
+      if (!res.ok) throw new Error("Greška pri ažuriranju");
+      setPosts((prev) =>
+        prev.map((p) => (p.slug === post.slug ? { ...p, showOnSimpozijum: newValue } : p))
+      );
+    } catch (e: any) {
+      setError(e.message || "Greška pri ažuriranju simpozijum statusa");
+    } finally {
+      setTogglingSlug(null);
     }
   };
 
@@ -157,9 +207,11 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
         image: form.images[0] || "",
         images: form.images,
         tags: form.tags,
-        document: form.document,
-        documentName: form.documentName,
-        document_name: form.documentName,
+        document: form.documents[0]?.url ?? form.document,
+        documentName: form.documents[0]?.name ?? form.documentName,
+        document_name: form.documents[0]?.name ?? form.documentName,
+        documents: form.documents,
+        showOnSimpozijum: form.showOnSimpozijum,
       };
       const response = await fetch(endpoint, {
         method,
@@ -246,27 +298,50 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                   <input type="file" accept="image/*" multiple className="form-control" onChange={handleImageUpload} disabled={isUploading} />
                   {isUploading && <small>Otpremanje...</small>}
                 </div>
-                <div className="col-md-6 pb-16">
-                  <label className="form-label">Dokument (PDF/DOCX)</label>
+
+                <div className="col-12 pb-16">
+                  <label className="form-label">Dokumenti (PDF/DOCX) — možete dodati više</label>
                   <input
                     type="file"
                     accept=".pdf,.doc,.docx"
+                    multiple
                     className="form-control"
                     onChange={handleDocumentUpload}
                     disabled={isDocumentUploading}
                   />
                   {isDocumentUploading && <small>Otpremanje dokumenta...</small>}
-                  {form.document && (
-                    <div className="pt-8 d-flex gap-2 flex-wrap">
-                      <a href={form.document} target="_blank" rel="noreferrer" className="vl-btn-secondary">
-                        {form.documentName || "Pregled dokumenta"}
-                      </a>
-                      <button type="button" className="vl-btn-primary" onClick={clearDocument}>
-                        Obriši dokument
-                      </button>
+                  {form.documents.length > 0 && (
+                    <div className="pt-10">
+                      {form.documents.map((doc, idx) => (
+                        <div key={idx} className="d-flex align-items-center gap-2 pb-6">
+                          <a href={doc.url} target="_blank" rel="noreferrer" className="vl-btn-secondary" style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {doc.name || "Dokument"}
+                          </a>
+                          <button type="button" className="vl-btn-primary" onClick={() => removeDocument(idx)}>
+                            Ukloni
+                          </button>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
+
+                <div className="col-12 pb-16">
+                  <div className="d-flex align-items-center gap-3">
+                    <input
+                      type="checkbox"
+                      id="showOnSimpozijum"
+                      name="showOnSimpozijum"
+                      checked={form.showOnSimpozijum}
+                      onChange={handleCheckboxChange}
+                      style={{ width: 18, height: 18, cursor: "pointer" }}
+                    />
+                    <label htmlFor="showOnSimpozijum" className="form-label mb-0" style={{ cursor: "pointer" }}>
+                      Prikaži ovu vest na stranici <strong>Simpozijum</strong>
+                    </label>
+                  </div>
+                </div>
+
                 <div className="col-12 pb-16">
                   <label className="form-label">Kratak opis</label>
                   <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
@@ -307,6 +382,16 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                   <button type="submit" className="vl-btn-primary" disabled={isSubmitting}>
                     {isSubmitting ? (editingSlug ? "Ažuriranje..." : "Čuvanje...") : editingSlug ? "Sačuvaj izmene" : "Sačuvaj objavu"}
                   </button>
+                  {editingSlug && (
+                    <button
+                      type="button"
+                      className="vl-btn-secondary"
+                      style={{ marginLeft: 12 }}
+                      onClick={() => { setForm({ ...initialPostForm }); setEditingSlug(null); setMessage(null); setError(null); }}
+                    >
+                      Otkaži
+                    </button>
+                  )}
                 </div>
               </div>
             </form>
@@ -315,20 +400,45 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
         <div className="col-lg-6 mb-40">
           <div className="vl-off-white-bg p-40 br-20 h-100">
             <h3 className="title pb-12">Poslednje objave</h3>
-            <p className="pb-16">Sveže objave su prikazane redom kojim su objavljene.</p>
+            <p className="pb-16">
+              Sveže objave su prikazane redom kojim su objavljene. Štiklirajte vest da se prikaže na stranici Simpozijum.
+            </p>
             <div className="cms-post-list">
               {posts.length === 0 && <p>Još uvek nema objava.</p>}
               {posts.map((post) => (
                 <div key={post.slug} className="cms-post-item">
-                  <h4 className="cms-post-title">
-                    <Link href={`/vesti/${post.slug}`}>{post.title}</Link>
-                  </h4>
-                  <div className="cms-post-meta">
-                    <span>{formatDate(post.date)}</span>
-                    <span>{post.author}</span>
+                  <div className="d-flex align-items-start gap-3 pb-6">
+                    <div style={{ paddingTop: 4 }}>
+                      <input
+                        type="checkbox"
+                        id={`simp-${post.slug}`}
+                        checked={Boolean(post.showOnSimpozijum)}
+                        disabled={togglingSlug === post.slug}
+                        onChange={() => handleToggleSimpozijum(post)}
+                        title="Prikaži na stranici Simpozijum"
+                        style={{ width: 18, height: 18, cursor: "pointer" }}
+                      />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label htmlFor={`simp-${post.slug}`} style={{ cursor: "pointer", display: "block" }}>
+                        <h4 className="cms-post-title mb-0">
+                          <Link href={`/vesti/${post.slug}`}>{post.title}</Link>
+                        </h4>
+                        {post.showOnSimpozijum && (
+                          <small style={{ color: "#0d6efd", fontWeight: 600 }}>✓ Simpozijum</small>
+                        )}
+                      </label>
+                      <div className="cms-post-meta">
+                        <span>{formatDate(post.date)}</span>
+                        <span>{post.author}</span>
+                        {post.documents && post.documents.length > 0 && (
+                          <span>{post.documents.length} dok.</span>
+                        )}
+                      </div>
+                      <p>{post.excerpt}</p>
+                    </div>
                   </div>
-                  <p>{post.excerpt}</p>
-                  <div className="d-flex gap-2 pt-8">
+                  <div className="d-flex gap-2 pt-4">
                     <button type="button" className="vl-btn-primary" onClick={() => handleEdit(post)}>Uredi</button>
                     <button type="button" className="vl-btn-primary" onClick={() => handleDelete(post.slug)}>Obriši</button>
                   </div>
@@ -356,5 +466,3 @@ export default function CmsVestiPage() {
     </Layout>
   );
 }
-
-

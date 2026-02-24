@@ -1,3 +1,8 @@
+export interface BlogDocument {
+  url: string;
+  name: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -10,4 +15,6 @@ export interface BlogPost {
   tags: string[];
   document?: string;
   documentName?: string;
+  documents?: BlogDocument[];
+  showOnSimpozijum?: boolean;
 }
