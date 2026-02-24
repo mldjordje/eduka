@@ -18,26 +18,6 @@ export default async function SimpozijumPage() {
   return (
     <Layout>
       <SectionHeader title="Симпозијум" isGroup={false} linkGroup="" pageGroup="" current="Симпозијум" />
-      <section className="pt-60 pb-20">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6 mb-20">
-              <div className="image-anime">
-                <img className="w-100" src="/assets/img/eduka/simpozijum.jpg" alt="Позив за учешће на националном симпозијуму" />
-              </div>
-            </div>
-            <div className="col-lg-6 mb-20">
-              <h3 className="title pb-12">Програм националног симпозијума</h3>
-              <p className="pb-8">„Дијабетес у лавиринту примарне здравствене заштите" — Златибор, 25–28. новембар 2025.</p>
-              <p className="pb-16">Детаљна сатница и предавачи доступни су у новој вести и као PDF фајл у наставку.</p>
-              <Link href="/vesti/Program-nacionalnog-simpozijuma" className="vl-btn-primary">
-                Отвори вест о програму
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {simpozijumPosts.length > 0 && (
         <section className="pt-40 pb-20">
           <div className="container">
