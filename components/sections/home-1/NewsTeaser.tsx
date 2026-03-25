@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formatPostDate } from "@/lib/postDates";
+import { getContentApiBase, resolveStoredMediaUrl } from "@/lib/contentApi";
 import type { BlogPost } from "@/types/blog";
 
 export default function NewsTeaser() {
@@ -10,8 +11,7 @@ export default function NewsTeaser() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
-    const url = base ? `${base}/posts.php` : "/api/posts";
+    const url = `${getContentApiBase()}/posts.php`;
     fetch(url)
       .then((r) => {
         if (!r.ok) throw new Error("Грешка при учитавању вести");
@@ -32,9 +32,7 @@ export default function NewsTeaser() {
         <div className="row">
           {items.map((p) => {
             const raw = p.image || "";
-            const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin : "";
-            const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin : (API_ORIGIN || "https://api.eduka.co.rs");
-            const imageSrc = /^https?:\/\//.test(raw) ? raw : raw.replace(/^\//, "").startsWith("uploads/") ? `${UPLOAD_ORIGIN}/${raw.replace(/^\//, "")}` : `/${raw.replace(/^\//, "")}`;
+            const imageSrc = resolveStoredMediaUrl(raw);
             return (
               <div className="col-12 mb-20" key={p.slug}>
                 <div className="vl-single-blog-box">

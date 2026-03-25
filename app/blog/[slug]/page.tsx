@@ -4,6 +4,7 @@ import Section2 from "@/components/sections/blog-details/Section2";
 import PostImageSlider from "@/components/sections/blog-details/PostImageSlider";
 import Section9 from "@/components/sections/home-1/Section9";
 import { getPostBySlug } from "@/lib/posts";
+import { resolveStoredMediaUrl } from "@/lib/contentApi";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -12,13 +13,6 @@ interface BlogPostPageProps {
 }
 
 export const dynamic = "force-dynamic";
-
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin
-  : "";
-const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
-  ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin
-  : API_ORIGIN || "https://api.eduka.co.rs";
 
 const SIMPOZIJUM_SLUGS = [
   "Program-nacionalnog-simpozijuma",
@@ -35,23 +29,11 @@ const SIMPOZIJUM_DOWNLOADS = [
 ];
 
 function resolveImageSrc(raw?: string) {
-  if (!raw) return "";
-  if (/^https?:\/\//.test(raw)) return raw;
-  const normalized = raw.replace(/^\//, "");
-  if (normalized.startsWith("uploads/")) {
-    return `${UPLOAD_ORIGIN}/${normalized}`;
-  }
-  return `/${normalized}`;
+  return resolveStoredMediaUrl(raw);
 }
 
 function resolveDocumentSrc(raw?: string) {
-  if (!raw) return "";
-  if (/^https?:\/\//.test(raw)) return raw;
-  const normalized = raw.replace(/^\//, "");
-  if (normalized.startsWith("uploads/")) {
-    return `${UPLOAD_ORIGIN}/${normalized}`;
-  }
-  return `/${normalized}`;
+  return resolveStoredMediaUrl(raw);
 }
 
 function collectImages(post: any) {

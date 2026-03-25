@@ -1,11 +1,27 @@
 import type { BlogPost, BlogDocument } from "@/types/blog";
+import { getContentApiBase } from "@/lib/contentApi";
 
-const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || '').replace(/\/+$/,'');
+const BASE = getContentApiBase();
 
 function localBase() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/,"");
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/,"");
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`.replace(/\/+$/,"");
   return "http://localhost:3000";
+}
+
+function getSlugCandidates(slug: string) {
+  const candidates = new Set<string>();
+  const normalized = typeof slug === "string" ? slug.trim() : "";
+
+  if (normalized) {
+    candidates.add(normalized);
+    try {
+      candidates.add(decodeURIComponent(normalized));
+    } catch {}
+  }
+
+  return [...candidates];
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -28,24 +44,29 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  const candidates = getSlugCandidates(slug);
+
   try {
-    if (BASE) {
-      const res = await fetch(`${BASE}/posts.php?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
+    for (const candidate of candidates) {
+      const res = await fetch(`${BASE}/posts.php?slug=${encodeURIComponent(candidate)}`, { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         return normalizePost(data);
       }
-      return undefined;
     }
   } catch {}
   try {
-    const res = await fetch(`${localBase()}/api/posts/${encodeURIComponent(slug)}`, { cache: "no-store" });
-    if (!res.ok) return undefined;
-    const data = await res.json();
-    return normalizePost(data);
+    for (const candidate of candidates) {
+      const res = await fetch(`${localBase()}/api/posts/${encodeURIComponent(candidate)}`, { cache: "no-store" });
+      if (res.ok) {
+        const data = await res.json();
+        return normalizePost(data);
+      }
+    }
   } catch {
-    return undefined;
   }
+
+  return undefined;
 }
 
 function normalizeDocuments(raw: any): BlogDocument[] {

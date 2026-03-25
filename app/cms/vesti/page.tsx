@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import { getUploadInfo, uploadFileWithFallback } from "@/lib/cmsUpload";
+import { resolveStoredMediaUrl } from "@/lib/contentApi";
 import type { BlogPost, BlogDocument } from "@/types/blog";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
@@ -25,17 +26,8 @@ const initialPostForm = {
   showOnSimpozijum: false,
 };
 
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
-const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
-  ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin
-  : API_ORIGIN || "https://api.eduka.co.rs";
-
 const resolveImage = (raw: string) => {
-  if (!raw) return "";
-  if (/^https?:\/\//.test(raw)) return raw;
-  const normalized = raw.replace(/^\//, "");
-  if (normalized.startsWith("uploads/")) return `${UPLOAD_ORIGIN}/${normalized}`;
-  return `/${normalized}`;
+  return resolveStoredMediaUrl(raw);
 };
 
 function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
