@@ -5,7 +5,8 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import { getUploadInfo, uploadFileWithFallback } from "@/lib/cmsUpload";
 import { resolveStoredMediaUrl } from "@/lib/contentApi";
-import type { BlogPost, BlogDocument } from "@/types/blog";
+import { slugifyBlogValue } from "@/lib/slugify";
+import type { BlogDocument, BlogPost } from "@/types/blog";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 
@@ -26,9 +27,7 @@ const initialPostForm = {
   showOnSimpozijum: false,
 };
 
-const resolveImage = (raw: string) => {
-  return resolveStoredMediaUrl(raw);
-};
+const resolveImage = (raw: string) => resolveStoredMediaUrl(raw);
 
 function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -41,6 +40,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   const [error, setError] = useState<string | null>(null);
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
   const [togglingSlug, setTogglingSlug] = useState<string | null>(null);
+  const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(false);
 
   useEffect(() => {
     const postsUrl = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
@@ -52,6 +52,26 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
+
+    if (name === "title") {
+      setForm((prev) => ({
+        ...prev,
+        title: value,
+        slug: !editingSlug && !isSlugManuallyEdited ? slugifyBlogValue(value) : prev.slug,
+      }));
+      return;
+    }
+
+    if (name === "slug") {
+      const hasManualValue = value.trim().length > 0;
+      setIsSlugManuallyEdited(hasManualValue);
+      setForm((prev) => ({
+        ...prev,
+        slug: hasManualValue ? slugifyBlogValue(value) : !editingSlug ? slugifyBlogValue(prev.title) : "",
+      }));
+      return;
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -134,6 +154,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       showOnSimpozijum: post.showOnSimpozijum ?? false,
     });
     setEditingSlug(post.slug);
+    setIsSlugManuallyEdited(true);
     setMessage(null);
     setError(null);
   };
@@ -178,6 +199,14 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     }
   };
 
+  const resetForm = () => {
+    setForm({ ...initialPostForm });
+    setEditingSlug(null);
+    setIsSlugManuallyEdited(false);
+    setMessage(null);
+    setError(null);
+  };
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -196,6 +225,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       const method = isEdit ? "PUT" : "POST";
       const payload = {
         ...form,
+        slug: form.slug || slugifyBlogValue(form.title),
         image: form.images[0] || "",
         images: form.images,
         tags: form.tags,
@@ -216,8 +246,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       }
       const savedPost: BlogPost = await response.json();
       setPosts((prev) => (isEdit ? prev.map((p) => (p.slug === savedPost.slug ? savedPost : p)) : [savedPost, ...prev]));
-      setForm({ ...initialPostForm });
-      setEditingSlug(null);
+      resetForm();
       setMessage(isEdit ? "Objava je uspešno ažurirana!" : "Objava je uspešno sačuvana!");
     } catch (err: any) {
       setError(err.message || "Greška prilikom čuvanja objave");
@@ -230,6 +259,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     () => form.images.map((raw) => ({ raw, src: resolveImage(raw) })),
     [form.images]
   );
+  const slugPreview = form.slug || (!editingSlug ? slugifyBlogValue(form.title) : "");
 
   const formatDate = (value: string) => {
     if (!value) return "-";
@@ -276,6 +306,11 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                 <div className="col-md-6 pb-16">
                   <label className="form-label">Slug</label>
                   <input type="text" name="slug" value={form.slug} onChange={handleInputChange} placeholder="automatski ako ostane prazno" className="form-control" />
+                  {!editingSlug && slugPreview && (
+                    <small style={{ display: "block", marginTop: 6, color: "#6c757d" }}>
+                      URL: /vesti/{slugPreview}
+                    </small>
+                  )}
                 </div>
                 <div className="col-md-6 pb-16">
                   <label className="form-label">Autor *</label>
@@ -292,7 +327,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                 </div>
 
                 <div className="col-12 pb-16">
-                  <label className="form-label">Dokumenti (PDF/DOCX) — možete dodati više</label>
+                  <label className="form-label">Dokumenti (PDF/DOCX) - možete dodati više</label>
                   <input
                     type="file"
                     accept=".pdf,.doc,.docx"
@@ -379,7 +414,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                       type="button"
                       className="vl-btn-secondary"
                       style={{ marginLeft: 12 }}
-                      onClick={() => { setForm({ ...initialPostForm }); setEditingSlug(null); setMessage(null); setError(null); }}
+                      onClick={resetForm}
                     >
                       Otkaži
                     </button>

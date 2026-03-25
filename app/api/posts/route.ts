@@ -1,17 +1,9 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import type { BlogPost } from "@/types/blog";
+import { ensureUniqueSlug, slugifyBlogValue } from "@/lib/slugify";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
 
 const FILE_NAME = "blogPosts.json";
-
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .trim()
-    .replace(/[\s_]+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
-    .replace(/-+/g, "-");
-}
 
 function normalizeImages(input: unknown): string[] {
   if (Array.isArray(input)) {
@@ -40,14 +32,11 @@ export async function POST(request: Request) {
     }
 
     const posts = await readDataFile<BlogPost[]>(FILE_NAME, []);
-    const slug = body.slug ? slugify(body.slug) : slugify(body.title);
+    const requestedSlug = body.slug ? slugifyBlogValue(body.slug) : slugifyBlogValue(body.title);
+    const slug = ensureUniqueSlug(requestedSlug, posts.map((post) => post.slug));
 
     if (!slug) {
       return NextResponse.json({ message: "Slug nije validan." }, { status: 400 });
-    }
-
-    if (posts.some((post) => post.slug === slug)) {
-      return NextResponse.json({ message: "Blog sa zadatim slug identifikatorom već postoji." }, { status: 409 });
     }
 
     const images = normalizeImages(body.images?.length ? body.images : body.image);
@@ -78,9 +67,7 @@ export async function POST(request: Request) {
     await writeDataFile(FILE_NAME, updatedPosts);
 
     return NextResponse.json(newPost, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ message: "Nevalidan zahtev." }, { status: 400 });
   }
 }
-
-
