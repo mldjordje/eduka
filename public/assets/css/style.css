@@ -13569,3 +13569,67 @@ div#banner-slid1e {
   font-size: 32px;
   line-height: 38px;
 }
+.vl-post-image-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.vl-post-image-trigger .vl-blog-thumb {
+  margin-bottom: 0;
+}
+.vl-post-image-trigger img {
+  display: block;
+}
+.vl-post-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(11, 18, 32, 0.92);
+}
+.vl-post-lightbox-content {
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+}
+.vl-post-lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 48px);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+.vl-post-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+}
+@media (max-width: 767px) {
+  .vl-post-lightbox {
+    padding: 16px;
+  }
+  .vl-post-lightbox-image {
+    max-height: calc(100vh - 32px);
+    border-radius: 12px;
+  }
+  .vl-post-lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 26px;
+  }
+}
