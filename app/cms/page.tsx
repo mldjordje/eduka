@@ -8,6 +8,7 @@ import Link from "next/link";
 const links = [
   { href: "/cms/vesti", title: "Vesti i blog", description: "Kreiranje, izmena i brisanje objava sa više slika i dokumenata." },
   { href: "/cms/galerija", title: "Galerija", description: "Upravljanje slikama i kategorijama za projekte." },
+  { href: "/cms/video-galerija", title: "Video galerija", description: "Dodavanje i brisanje YouTube video klipova i Shorts sadržaja." },
   { href: "/cms/pristupnice", title: "Pristupnice", description: "Pregled, filtriranje i označavanje pristiglih prijava." },
 ];
 
