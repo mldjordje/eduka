@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { readDataFile, writeDataFile } from "@/util/jsonStorage";
-import { buildYouTubeWatchUrl, extractYouTubeVideoId } from "@/lib/youtube";
+import { buildYouTubeWatchUrl, getYouTubeVideoMeta } from "@/lib/youtube";
 import type { VideoGalleryItem } from "@/types/video-gallery";
 
 export const dynamic = "force-dynamic";
@@ -10,13 +10,20 @@ const REMOTE_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.eduka.
 const REMOTE_ENDPOINT = REMOTE_BASE ? `${REMOTE_BASE}/video_gallery.php` : "";
 const USING_REMOTE = Boolean(REMOTE_ENDPOINT);
 
+function parseShortFlag(value: unknown) {
+  return value === true || value === 1 || value === "1" || value === "true";
+}
+
 function normalizeVideo(input: any, fallbackCreatedAt?: string): VideoGalleryItem {
   const videoId = `${input?.videoId || ""}`.trim();
   const youtubeUrlRaw = typeof input?.youtubeUrl === "string" ? input.youtubeUrl : "";
+  const metaFromUrl = getYouTubeVideoMeta(youtubeUrlRaw);
+
   return {
     id: `${input?.id ?? crypto.randomUUID()}`,
     youtubeUrl: youtubeUrlRaw || buildYouTubeWatchUrl(videoId),
     videoId,
+    isShort: parseShortFlag(input?.isShort) || Boolean(metaFromUrl?.isShort),
     title: typeof input?.title === "string" ? input.title : undefined,
     description: typeof input?.description === "string" ? input.description : undefined,
     createdAt: input?.createdAt || fallbackCreatedAt || new Date().toISOString(),
@@ -53,7 +60,8 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const youtubeUrl = typeof body.youtubeUrl === "string" ? body.youtubeUrl.trim() : "";
-    const videoId = extractYouTubeVideoId(youtubeUrl);
+    const meta = getYouTubeVideoMeta(youtubeUrl);
+    const videoId = meta?.videoId ?? null;
 
     if (!youtubeUrl || !videoId) {
       return NextResponse.json(
@@ -65,6 +73,7 @@ export async function POST(request: Request) {
     const payload = {
       youtubeUrl: buildYouTubeWatchUrl(videoId),
       videoId,
+      isShort: Boolean(meta?.isShort),
       title: typeof body.title === "string" ? body.title.trim() : "",
       description: typeof body.description === "string" ? body.description.trim() : "",
     };
@@ -82,7 +91,7 @@ export async function POST(request: Request) {
         }
         if (response.status !== 404 && response.status !== 405) {
           return NextResponse.json(
-            { message: (remoteBody as any).message || "Čuvanje video klipa nije uspelo." },
+            { message: (remoteBody as any).message || "Cuvanje video klipa nije uspelo." },
             { status: response.status || 500 }
           );
         }
@@ -94,7 +103,7 @@ export async function POST(request: Request) {
     const items = await readLocalItems();
     if (items.some((item) => item.videoId === videoId)) {
       return NextResponse.json(
-        { message: "Ovaj YouTube video je već dodat u galeriju." },
+        { message: "Ovaj YouTube video je vec dodat u galeriju." },
         { status: 409 }
       );
     }
@@ -103,6 +112,7 @@ export async function POST(request: Request) {
       id: crypto.randomUUID(),
       youtubeUrl: payload.youtubeUrl,
       videoId,
+      isShort: payload.isShort,
       title: payload.title || undefined,
       description: payload.description || undefined,
       createdAt,
@@ -148,7 +158,7 @@ export async function DELETE(request: Request) {
     const nextItems = items.filter((item) => item.id !== id);
 
     if (nextItems.length === items.length) {
-      return NextResponse.json({ message: "Video nije pronađen." }, { status: 404 });
+      return NextResponse.json({ message: "Video nije pronadjen." }, { status: 404 });
     }
 
     await writeDataFile(FILE_NAME, nextItems);

@@ -21,7 +21,7 @@ function sanitizeVideoId(value: string | null | undefined) {
   return /^[a-zA-Z0-9_-]{11}$/.test(cleaned) ? cleaned : null;
 }
 
-export function extractYouTubeVideoId(input: string) {
+export function getYouTubeVideoMeta(input: string) {
   const candidate = normalizeCandidate(input);
   if (!candidate) return null;
 
@@ -34,23 +34,26 @@ export function extractYouTubeVideoId(input: string) {
     }
 
     if (host.includes("youtu.be")) {
-      return sanitizeVideoId(parsed.pathname.split("/").filter(Boolean)[0]);
+      const videoId = sanitizeVideoId(parsed.pathname.split("/").filter(Boolean)[0]);
+      return videoId ? { videoId, isShort: false } : null;
     }
 
     const directParam = sanitizeVideoId(parsed.searchParams.get("v"));
     if (directParam) {
-      return directParam;
+      return { videoId: directParam, isShort: false };
     }
 
     const segments = parsed.pathname.split("/").filter(Boolean);
     const shortsIndex = segments.findIndex((segment) => segment === "shorts");
     if (shortsIndex >= 0) {
-      return sanitizeVideoId(segments[shortsIndex + 1]);
+      const videoId = sanitizeVideoId(segments[shortsIndex + 1]);
+      return videoId ? { videoId, isShort: true } : null;
     }
 
     const embedIndex = segments.findIndex((segment) => segment === "embed");
     if (embedIndex >= 0) {
-      return sanitizeVideoId(segments[embedIndex + 1]);
+      const videoId = sanitizeVideoId(segments[embedIndex + 1]);
+      return videoId ? { videoId, isShort: false } : null;
     }
   } catch {
     return null;
@@ -59,12 +62,34 @@ export function extractYouTubeVideoId(input: string) {
   return null;
 }
 
+export function extractYouTubeVideoId(input: string) {
+  return getYouTubeVideoMeta(input)?.videoId ?? null;
+}
+
+export function isYouTubeShortUrl(input: string) {
+  return Boolean(getYouTubeVideoMeta(input)?.isShort);
+}
+
 export function buildYouTubeWatchUrl(videoId: string) {
   return `https://www.youtube.com/watch?v=${videoId}`;
 }
 
-export function buildYouTubeEmbedUrl(videoId: string) {
-  return `https://www.youtube-nocookie.com/embed/${videoId}`;
+export function buildYouTubeEmbedUrl(videoId: string, options?: { isShort?: boolean }) {
+  const params = new URLSearchParams({
+    autoplay: "0",
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    iv_load_policy: "3",
+    cc_load_policy: "0",
+  });
+
+  if (options?.isShort) {
+    params.set("loop", "1");
+    params.set("playlist", videoId);
+  }
+
+  return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
 }
 
 export function buildYouTubeThumbnailUrl(videoId: string) {

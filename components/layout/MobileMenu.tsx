@@ -53,6 +53,11 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                   </Link>
                 </li>
                 <li>
+                  <Link href="/video-galerija" onClick={handleMobileMenu}>
+                    Видео галерија
+                  </Link>
+                </li>
+                <li>
                   <Link href="/simpozijum" onClick={handleMobileMenu}>
                     Симпозијум
                   </Link>
@@ -69,17 +74,17 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                 </li>
                 <li className="has-dropdown">
                   <Link href="https://eduka.rs/edukacije" prefetch={false} onClick={handleMobileMenu}>
-                    КМЕ едукација
+                    KME едукација
                   </Link>
                   <ul className="sub-menu" style={{ display: "block" }}>
                     <li>
                       <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
-                        Едукација – УЗРС Едука
+                        Едукација - УЗРС Едука
                       </a>
                     </li>
                     <li>
                       <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-дз-ниш/" target="_blank" rel="noopener noreferrer" onClick={handleMobileMenu}>
-                        Едукација – ДЗ Ниш
+                        Едукација - ДЗ Ниш
                       </a>
                     </li>
                   </ul>
@@ -91,12 +96,12 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                   <ul className="sub-menu" style={{ display: "block" }}>
                     <li>
                       <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">
-                        Онлајн – УЗР Едука
+                        Онлајн - УЗР Едука
                       </a>
                     </li>
                     <li>
                       <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">
-                        Онлајн – ДЗ Ниш
+                        Онлајн - ДЗ Ниш
                       </a>
                     </li>
                   </ul>
@@ -152,13 +157,13 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                 <span>
                   <img src="assets/img/icons/vl-footer-icon-1.2.svg" alt="Адреса" />
                 </span>
-                Војводе Танкосића 15, Ниш
+                Војводе Танковића 15, Ниш
                 <br />
                 Војводе Мишића 50, Ниш
               </Link>
             </span>
             <div className="pt-16">
-              <strong>Радно време:</strong> радним данима од 7–17 часова
+              <strong>Радно време:</strong> радним данима од 7-17 часова
             </div>
           </div>
           <div className="vl-offcanvas-social mb-40">

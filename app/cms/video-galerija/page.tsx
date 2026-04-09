@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
-import { buildYouTubeEmbedUrl, extractYouTubeVideoId } from "@/lib/youtube";
+import { buildYouTubeEmbedUrl, getYouTubeVideoMeta } from "@/lib/youtube";
 import type { VideoGalleryItem } from "@/types/video-gallery";
 
 const initialForm = {
@@ -51,14 +51,14 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
       const body = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(body.message || "Čuvanje video klipa nije uspelo.");
+        throw new Error(body.message || "Cuvanje video klipa nije uspelo.");
       }
 
       setItems((prev) => [body as VideoGalleryItem, ...prev]);
       setForm(initialForm);
       setMessage("Video klip je dodat u galeriju.");
     } catch (err: any) {
-      setError(err.message || "Greška prilikom čuvanja video klipa.");
+      setError(err.message || "Greska prilikom cuvanja video klipa.");
     } finally {
       setIsSubmitting(false);
     }
@@ -81,11 +81,13 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
       setMessage("Video klip je obrisan.");
       setError(null);
     } catch (err: any) {
-      setError(err.message || "Greška prilikom brisanja video klipa.");
+      setError(err.message || "Greska prilikom brisanja video klipa.");
     }
   };
 
-  const previewVideoId = useMemo(() => extractYouTubeVideoId(form.youtubeUrl), [form.youtubeUrl]);
+  const previewMeta = useMemo(() => getYouTubeVideoMeta(form.youtubeUrl), [form.youtubeUrl]);
+  const previewVideoId = previewMeta?.videoId ?? null;
+  const previewIsShort = Boolean(previewMeta?.isShort);
 
   return (
     <>
@@ -99,7 +101,7 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
           <div className="vl-off-white-bg p-40 br-20">
             <h3 className="title pb-20">Dodaj YouTube video</h3>
             <p className="pb-16">
-              Nalepite običan YouTube link ili Shorts link. Sistem će automatski prepoznati video ID.
+              Nalepite obican YouTube link ili Shorts link. Sistem ce automatski prepoznati tip klipa.
             </p>
             {message && <div className="alert alert-success">{message}</div>}
             {error && <div className="alert alert-danger">{error}</div>}
@@ -118,7 +120,12 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
                   />
                   {form.youtubeUrl && !previewVideoId && (
                     <small style={{ display: "block", marginTop: 6, color: "#dc3545" }}>
-                      Link nije prepoznat kao važeći YouTube video ili Shorts URL.
+                      Link nije prepoznat kao vazeci YouTube video ili Shorts URL.
+                    </small>
+                  )}
+                  {previewVideoId && (
+                    <small style={{ display: "block", marginTop: 6, color: "#6c757d" }}>
+                      Tip klipa: {previewIsShort ? "YouTube Shorts" : "standardni YouTube video"}
                     </small>
                   )}
                 </div>
@@ -146,7 +153,7 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
                 </div>
                 <div className="col-12">
                   <button type="submit" className="vl-btn-primary" disabled={isSubmitting || !previewVideoId}>
-                    {isSubmitting ? "Čuvanje..." : "Dodaj video"}
+                    {isSubmitting ? "Cuvanje..." : "Dodaj video"}
                   </button>
                 </div>
               </div>
@@ -156,10 +163,16 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
                 <h4 className="title fs-20 pb-12">Pregled</h4>
                 <div
                   className="overflow-hidden br-16"
-                  style={{ position: "relative", paddingBottom: "56.25%", backgroundColor: "#000" }}
+                  style={{
+                    position: "relative",
+                    paddingBottom: previewIsShort ? "177.78%" : "56.25%",
+                    backgroundColor: "#000",
+                    maxWidth: previewIsShort ? 360 : "100%",
+                    margin: previewIsShort ? "0 auto" : undefined,
+                  }}
                 >
                   <iframe
-                    src={buildYouTubeEmbedUrl(previewVideoId)}
+                    src={buildYouTubeEmbedUrl(previewVideoId, { isShort: previewIsShort })}
                     title="Pregled videa"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -175,21 +188,29 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
           <div className="vl-off-white-bg p-40 br-20 h-100">
             <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap pb-16">
               <div>
-                <h3 className="title mb-0">Sačuvani video klipovi</h3>
+                <h3 className="title mb-0">Sacuvani video klipovi</h3>
                 <p className="mb-0">Pregled svih unetih YouTube klipova u video galeriji.</p>
               </div>
               <a href="/video-galerija" target="_blank" rel="noreferrer" className="vl-btn-secondary">
                 Otvori javnu stranicu
               </a>
             </div>
-            {items.length === 0 && <p>Još nema dodatih video klipova.</p>}
+            {items.length === 0 && <p>Jos nema dodatih video klipova.</p>}
             <div className="row">
               {items.map((item) => (
                 <div className="col-md-6 mb-24" key={item.id}>
                   <div className="border br-16 overflow-hidden bg-white h-100">
-                    <div style={{ position: "relative", paddingBottom: "56.25%", backgroundColor: "#000" }}>
+                    <div
+                      style={{
+                        position: "relative",
+                        paddingBottom: item.isShort ? "177.78%" : "56.25%",
+                        backgroundColor: "#000",
+                        maxWidth: item.isShort ? 340 : "100%",
+                        margin: item.isShort ? "0 auto" : undefined,
+                      }}
+                    >
                       <iframe
-                        src={buildYouTubeEmbedUrl(item.videoId)}
+                        src={buildYouTubeEmbedUrl(item.videoId, { isShort: item.isShort })}
                         title={item.title || "YouTube video"}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
@@ -198,7 +219,26 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
                       />
                     </div>
                     <div className="p-3 d-flex flex-column gap-2">
-                      <h4 className="title fs-18 mb-0">{item.title || "Bez naslova"}</h4>
+                      <div className="d-flex flex-wrap gap-2 align-items-center">
+                        <h4 className="title fs-18 mb-0">{item.title || "Bez naslova"}</h4>
+                        {item.isShort && (
+                          <span
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              borderRadius: 999,
+                              padding: "4px 10px",
+                              background: "#111",
+                              color: "#fff",
+                              fontSize: 12,
+                              fontWeight: 700,
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            Shorts
+                          </span>
+                        )}
+                      </div>
                       {item.description && <p className="mb-0">{item.description}</p>}
                       <small className="text-muted">
                         Dodato {new Date(item.createdAt).toLocaleDateString("sr-RS")}
@@ -213,7 +253,7 @@ function CmsVideoGalerijaContent({ onLogout }: { onLogout: () => void }) {
                           YouTube
                         </a>
                         <button type="button" className="vl-btn-primary" onClick={() => handleDelete(item.id)}>
-                          Obriši
+                          Obrisi
                         </button>
                       </div>
                     </div>

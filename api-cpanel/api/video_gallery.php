@@ -35,6 +35,7 @@ function ensure_schema(PDO $pdo): void {
       id INT UNSIGNED NOT NULL AUTO_INCREMENT,
       youtubeUrl VARCHAR(1024) NOT NULL,
       videoId VARCHAR(32) NOT NULL,
+      isShort TINYINT(1) NOT NULL DEFAULT 0,
       title VARCHAR(255) NULL,
       description TEXT NULL,
       createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -42,6 +43,16 @@ function ensure_schema(PDO $pdo): void {
       UNIQUE KEY video_gallery_video_id_unique (videoId)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ");
+
+  try {
+    $stmt = $pdo->query("SHOW COLUMNS FROM video_gallery LIKE 'isShort'");
+    $exists = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : false;
+    if (!$exists) {
+      $pdo->exec("ALTER TABLE video_gallery ADD COLUMN isShort TINYINT(1) NOT NULL DEFAULT 0 AFTER videoId");
+    }
+  } catch (Throwable $e) {
+    // ignore
+  }
 }
 
 function json_input() {
@@ -56,6 +67,7 @@ function normalize_video_row(array $row): array {
     'id' => isset($row['id']) ? (string)$row['id'] : '',
     'youtubeUrl' => isset($row['youtubeUrl']) ? (string)$row['youtubeUrl'] : '',
     'videoId' => isset($row['videoId']) ? (string)$row['videoId'] : '',
+    'isShort' => !empty($row['isShort']),
     'title' => isset($row['title']) && $row['title'] !== null ? (string)$row['title'] : null,
     'description' => isset($row['description']) && $row['description'] !== null ? (string)$row['description'] : null,
     'createdAt' => isset($row['createdAt']) ? (string)$row['createdAt'] : '',
@@ -67,7 +79,7 @@ try {
   $method = $_SERVER['REQUEST_METHOD'];
 
   if ($method === 'GET') {
-    $stmt = $pdo->query('SELECT id, youtubeUrl, videoId, title, description, createdAt FROM video_gallery ORDER BY createdAt DESC, id DESC');
+    $stmt = $pdo->query('SELECT id, youtubeUrl, videoId, isShort, title, description, createdAt FROM video_gallery ORDER BY createdAt DESC, id DESC');
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $items = array_map('normalize_video_row', $rows);
     echo json_encode($items, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -80,6 +92,7 @@ try {
       $input = [
         'youtubeUrl' => $_POST['youtubeUrl'] ?? '',
         'videoId' => $_POST['videoId'] ?? '',
+        'isShort' => $_POST['isShort'] ?? 0,
         'title' => $_POST['title'] ?? '',
         'description' => $_POST['description'] ?? '',
       ];
@@ -87,6 +100,7 @@ try {
 
     $youtubeUrl = trim((string)($input['youtubeUrl'] ?? ''));
     $videoId = trim((string)($input['videoId'] ?? ''));
+    $isShort = !empty($input['isShort']) ? 1 : 0;
     $title = isset($input['title']) ? trim((string)$input['title']) : '';
     $description = isset($input['description']) ? trim((string)$input['description']) : '';
 
@@ -106,20 +120,21 @@ try {
     $check->execute([$videoId]);
     if ($check->fetch(PDO::FETCH_ASSOC)) {
       http_response_code(409);
-      echo json_encode(['message' => 'Ovaj YouTube video je već dodat u galeriju.'], JSON_UNESCAPED_UNICODE);
+      echo json_encode(['message' => 'Ovaj YouTube video je vec dodat u galeriju.'], JSON_UNESCAPED_UNICODE);
       exit;
     }
 
-    $insert = $pdo->prepare('INSERT INTO video_gallery (youtubeUrl, videoId, title, description, createdAt) VALUES (?, ?, ?, ?, NOW())');
+    $insert = $pdo->prepare('INSERT INTO video_gallery (youtubeUrl, videoId, isShort, title, description, createdAt) VALUES (?, ?, ?, ?, ?, NOW())');
     $insert->execute([
       $youtubeUrl,
       $videoId,
+      $isShort,
       $title !== '' ? $title : null,
       $description !== '' ? $description : null,
     ]);
 
     $id = $pdo->lastInsertId();
-    $stmt = $pdo->prepare('SELECT id, youtubeUrl, videoId, title, description, createdAt FROM video_gallery WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT id, youtubeUrl, videoId, isShort, title, description, createdAt FROM video_gallery WHERE id = ?');
     $stmt->execute([$id]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -141,7 +156,7 @@ try {
     $stmt->execute([$id]);
     if (!$stmt->fetch(PDO::FETCH_ASSOC)) {
       http_response_code(404);
-      echo json_encode(['message' => 'Video nije pronađen.'], JSON_UNESCAPED_UNICODE);
+      echo json_encode(['message' => 'Video nije pronadjen.'], JSON_UNESCAPED_UNICODE);
       exit;
     }
 
@@ -157,7 +172,7 @@ try {
 } catch (Throwable $e) {
   http_response_code(500);
   echo json_encode([
-    'message' => 'Greška u video gallery API-ju',
+    'message' => 'Greska u video gallery API-ju',
     'error' => $e->getMessage(),
   ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }

@@ -17,6 +17,9 @@ export default function MainMenu() {
         <Link href="/galerija">Галерија</Link>
       </li>
       <li>
+        <Link href="/video-galerija">Видео галерија</Link>
+      </li>
+      <li>
         <Link href="/simpozijum">Симпозијум</Link>
       </li>
       <li>
@@ -27,7 +30,7 @@ export default function MainMenu() {
       </li>
       <li className="has-dropdown">
         <Link href="https://eduka.rs/edukacije" prefetch={false}>
-          КМЕ едукација
+          KME едукација
           <span>
             <i className="fa-regular fa-angle-down" />
           </span>
@@ -35,12 +38,12 @@ export default function MainMenu() {
         <ul className="sub-menu">
           <li>
             <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-узрс-едука/" target="_blank" rel="noopener noreferrer">
-              Едукација – УЗРС Едука
+              Едукација - УЗРС Едука
             </a>
           </li>
           <li>
             <a href="https://starisajt.eduka.co.rs/category/edukacija/едукација-дз-ниш/" target="_blank" rel="noopener noreferrer">
-              Едукација – ДЗ Ниш
+              Едукација - ДЗ Ниш
             </a>
           </li>
         </ul>
@@ -55,12 +58,12 @@ export default function MainMenu() {
         <ul className="sub-menu">
           <li>
             <a href="https://eduka.org.rs/" target="_blank" rel="noopener noreferrer">
-              Онлајн – УЗР Едука
+              Онлајн - УЗР Едука
             </a>
           </li>
           <li>
             <a href="https://online.dznis.com/index.php" target="_blank" rel="noopener noreferrer">
-              Онлајн – ДЗ Ниш
+              Онлајн - ДЗ Ниш
             </a>
           </li>
         </ul>
