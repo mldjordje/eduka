@@ -6,7 +6,7 @@ import CmsGuard from "@/components/cms/CmsGuard";
 import { uploadFileWithFallback } from "@/lib/cmsUpload";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 import { ChangeEvent, DragEvent, useEffect, useMemo, useRef, useState } from "react";
-import { Button, Card, CardBody, CardHeader, Chip, Divider, Input, Select, SelectItem, Spinner } from "@heroui/react";
+import { Button, Card, CardBody, CardHeader, Chip, Divider, Input, Spinner } from "@heroui/react";
 
 const galleryEndpoint = "/api/gallery";
 const categoryEndpoint = "https://api.eduka.co.rs/gallery_categories.php";
@@ -225,19 +225,159 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
 
   return (
     <>
+      <style jsx global>{`
+        /* CMS Galerija UI reset/upgrade (avoid theme conflicts; ensure readability) */
+        .cms-gal-wrap {
+          --cms-bg: #f6f8fb;
+          --cms-card: #ffffff;
+          --cms-border: #e6edf5;
+          --cms-text: #0f172a;
+          --cms-muted: #64748b;
+          --cms-primary: #2563eb;
+          --cms-danger: #dc2626;
+        }
+
+        .cms-gal-wrap .cms-toolbar {
+          background: linear-gradient(135deg, #0b1220, #111c34);
+          border-radius: 16px;
+          padding: 14px 16px;
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .cms-gal-wrap .cms-toolbar h2 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 700;
+          letter-spacing: 0.2px;
+        }
+
+        .cms-gal-wrap .cms-card {
+          background: var(--cms-card);
+          border: 1px solid var(--cms-border);
+          border-radius: 16px;
+          overflow: hidden;
+        }
+
+        .cms-gal-wrap .cms-card-header {
+          padding: 14px 16px;
+          border-bottom: 1px solid var(--cms-border);
+          background: linear-gradient(180deg, #ffffff, #fbfdff);
+        }
+
+        .cms-gal-wrap .cms-card-title {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--cms-text);
+        }
+
+        .cms-gal-wrap .cms-help {
+          margin: 6px 0 0;
+          color: var(--cms-muted);
+          font-size: 13px;
+        }
+
+        .cms-gal-wrap .cms-body {
+          padding: 16px;
+        }
+
+        .cms-gal-wrap .cms-field-label {
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--cms-text);
+          margin-bottom: 6px;
+        }
+
+        .cms-gal-wrap .cms-select {
+          width: 100%;
+          height: 42px;
+          border-radius: 12px;
+          border: 1px solid var(--cms-border);
+          padding: 0 12px;
+          background: #fff;
+          color: var(--cms-text);
+          outline: none;
+        }
+
+        .cms-gal-wrap .cms-select:focus {
+          border-color: rgba(37, 99, 235, 0.45);
+          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .cms-gal-wrap .cms-drop {
+          border: 1.5px dashed rgba(37, 99, 235, 0.35);
+          background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(255,255,255,1));
+          border-radius: 16px;
+          padding: 16px;
+        }
+
+        .cms-gal-wrap .cms-drop.is-dragging {
+          border-color: rgba(37, 99, 235, 0.9);
+          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .cms-gal-wrap .cms-kpi {
+          font-size: 12px;
+          color: var(--cms-muted);
+        }
+
+        .cms-gal-wrap .cms-cat-item {
+          padding: 10px 0;
+          border-bottom: 1px solid #f0f4fa;
+        }
+
+        .cms-gal-wrap .cms-cat-item:last-child {
+          border-bottom: 0;
+        }
+
+        .cms-gal-wrap .cms-thumb {
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+          background: #0b1220;
+        }
+
+        .cms-gal-wrap .cms-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        @media (min-width: 992px) {
+          .cms-gal-wrap .cms-sticky {
+            position: sticky;
+            top: 18px;
+          }
+        }
+      `}</style>
+
+      <div className="cms-gal-wrap">
       <div className="row">
-        <div className="col-12 d-flex justify-content-end pb-20">
-          <Button color="primary" onPress={onLogout}>Odjava</Button>
+        <div className="col-12 pb-20">
+          <div className="cms-toolbar d-flex align-items-center justify-content-between gap-3 flex-wrap">
+            <div className="d-flex flex-column">
+              <h2>CMS · Galerija</h2>
+              <div className="cms-kpi">Upload slika, upravljanje kategorijama i sadržajem galerije.</div>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+              <Button color="primary" onPress={onLogout}>Odjava</Button>
+            </div>
+          </div>
         </div>
       </div>
       <div className="row">
         <div className="col-lg-4 mb-30">
-          <Card shadow="sm" className="h-100">
-            <CardHeader className="d-flex flex-column align-items-start gap-2">
-              <h3 className="title m-0">Kategorije</h3>
+          <div className="cms-sticky">
+          <div className="cms-card">
+            <div className="cms-card-header">
+              <h3 className="cms-card-title">Kategorije</h3>
+              <p className="cms-help">Dodaj, obriši i filtriraj prikaz slike po kategoriji.</p>
               {message && <div className="alert alert-success w-100 mb-0">{message}</div>}
               {error && <div className="alert alert-danger w-100 mb-0">{error}</div>}
-              <div className="d-flex gap-2 w-100">
+            </div>
+            <div className="cms-body">
+              <div className="d-flex gap-2 w-100 align-items-end">
                 <Input
                   fullWidth
                   aria-label="Nova kategorija"
@@ -251,85 +391,83 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                   Dodaj
                 </Button>
               </div>
-            </CardHeader>
-            <Divider />
-            <CardBody>
+              <Divider className="my-3" />
               {loading && (
                 <div className="d-flex justify-content-center py-3">
                   <Spinner size="sm" />
                 </div>
               )}
               {!loading && (
-                <ul className="list-unstyled mb-0">
-                  <li className="d-flex justify-content-between align-items-center pb-10">
-                    <span>Sve kategorije ({gallery.length})</span>
-                    <Button
-                      size="sm"
-                      variant={filterCategory === "__all__" ? "solid" : "light"}
-                      color="primary"
-                      onPress={() => setFilterCategory("__all__")}
-                      className="flex-shrink-0"
+                <>
+                  <div className="pb-12">
+                    <div className="cms-field-label">Filter prikaza</div>
+                    <select
+                      className="cms-select"
+                      value={filterCategory}
+                      onChange={(e) => setFilterCategory(e.target.value)}
+                      aria-label="Filter kategorije"
                     >
-                      Prikaži
-                    </Button>
-                  </li>
-                  {categories.map((cat) => (
-                    <li key={cat.id} className="d-flex justify-content-between align-items-start pb-10">
-                      <span className="pe-2" style={{ minWidth: 0 }}>
-                        <span className="d-block text-truncate" title={cat.name}>{cat.name}</span>
-                        <small className="text-muted">Slika: {categoryCounts[cat.id] || 0}</small>
-                      </span>
-                      <div className="d-flex align-items-center gap-2 flex-wrap justify-content-end" style={{ maxWidth: 190 }}>
+                      <option value="__all__">Sve kategorije ({gallery.length})</option>
+                      <option value="">Bez kategorije ({categoryCounts["none"] || 0})</option>
+                      {categories.map((c) => (
+                        <option key={c.id} value={c.id}>
+                          {c.name} ({categoryCounts[c.id] || 0})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <Divider className="my-2" />
+
+                  <div className="pt-8">
+                    {categories.length === 0 && <div className="text-muted">Još nema kategorija.</div>}
+                    {categories.map((cat) => (
+                      <div key={cat.id} className="cms-cat-item d-flex justify-content-between align-items-start gap-2">
+                        <div style={{ minWidth: 0 }}>
+                          <div className="fw-semibold text-truncate" title={cat.name} style={{ color: "var(--cms-text)" }}>
+                            {cat.name}
+                          </div>
+                          <div className="cms-kpi">Slika: {categoryCounts[cat.id] || 0}</div>
+                        </div>
                         <Button
                           size="sm"
-                          variant={filterCategory === cat.id ? "solid" : "light"}
-                          color="primary"
-                          onPress={() => setFilterCategory(cat.id)}
-                          className="flex-grow-1"
+                          color="danger"
+                          variant="light"
+                          onPress={() => handleDeleteCategory(cat.id)}
                         >
-                          Prikaži
-                        </Button>
-                        <Button color="danger" variant="light" size="sm" onPress={() => handleDeleteCategory(cat.id)}>
                           Obriši
                         </Button>
                       </div>
-                    </li>
-                  ))}
-                  {categories.length === 0 && <li className="text-muted">Još nema kategorija.</li>}
-                </ul>
+                    ))}
+                  </div>
+                </>
               )}
-            </CardBody>
-          </Card>
+            </div>
+          </div>
+          </div>
         </div>
         <div className="col-lg-8 mb-30">
-          <Card shadow="sm" className="h-100">
-            <CardHeader className="d-flex flex-column align-items-start gap-1">
-              <h3 className="title m-0">Dodaj sliku</h3>
-              <small className="text-muted">
-                Korak 1: izaberi kategoriju (opciono). Korak 2: prevuci slike u polje ili klikni „Izaberi slike“.
-              </small>
-            </CardHeader>
-            <Divider />
-            <CardBody>
+          <div className="cms-card">
+            <div className="cms-card-header">
+              <h3 className="cms-card-title">Galerija</h3>
+              <p className="cms-help">Upload slika, pretraga i uređivanje kategorije po slici.</p>
+            </div>
+            <div className="cms-body">
               <div className="row pb-12 align-items-end">
                 <div className="col-md-6 pb-12">
-                  <Select
-                    label="Kategorija za nove slike (opciono)"
-                    selectedKeys={new Set([selectedCategory || ""])}
-                    onSelectionChange={(keys) => {
-                      const next = Array.from(keys)[0] as string;
-                      setSelectedCategory(next || "");
-                    }}
-                    disallowEmptySelection={false}
-                    aria-label="Kategorija"
-                    items={categoryOptions}
+                  <div className="cms-field-label">Kategorija za nove slike (opciono)</div>
+                  <select
+                    className="cms-select"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    aria-label="Kategorija za nove slike"
                   >
-                    {(item) => (
-                      <SelectItem key={item.id} textValue={item.name}>
-                        {item.name}
-                      </SelectItem>
-                    )}
-                  </Select>
+                    {categoryOptions.map((opt) => (
+                      <option key={opt.id} value={opt.id}>
+                        {opt.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="col-md-6 pb-12 d-flex flex-wrap justify-content-md-end gap-2">
                   <Button
@@ -378,13 +516,8 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                   setIsDragging(false);
                 }}
                 onDrop={onDrop}
-                className={`p-3 p-md-4 br-12 border ${isDragging ? "border-primary" : "border-secondary"} d-flex flex-column gap-2`}
-                style={{
-                  cursor: uploading ? "not-allowed" : "pointer",
-                  opacity: uploading ? 0.7 : 1,
-                  userSelect: "none",
-                  background: isDragging ? "rgba(13, 110, 253, 0.06)" : "transparent",
-                }}
+                className={`cms-drop d-flex flex-column gap-2 ${isDragging ? "is-dragging" : ""}`}
+                style={{ cursor: uploading ? "not-allowed" : "pointer", opacity: uploading ? 0.7 : 1, userSelect: "none" }}
               >
                 <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-2 flex-wrap text-center text-md-start">
                   <Chip color="primary" variant="flat">Upload</Chip>
@@ -428,51 +561,46 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                     const src = srcResolver(g.url);
                     return (
                       <div className="col-6 col-md-4 col-lg-3 mb-16" key={g.id}>
-                        <Card shadow="sm" className="h-100">
-                          <CardBody className="p-0">
-                            <div className="vl-blog-thumb image-anime" style={{ aspectRatio: "4 / 3", overflow: "hidden" }}>
-                              <img
-                                src={src}
-                                alt={g.name || "galerija"}
-                                className="w-100 h-100"
-                                style={{ objectFit: "cover" }}
-                                loading="lazy"
-                              />
+                        <div className="cms-card h-100">
+                          <div className="cms-thumb">
+                            <img src={src} alt={g.name || "galerija"} loading="lazy" />
+                          </div>
+                          <div className="cms-body" style={{ padding: 12 }}>
+                            <div className="text-truncate fw-semibold" title={g.name || ""} style={{ color: "var(--cms-text)" }}>
+                              {g.name || "—"}
                             </div>
-                            <div className="p-3 d-flex flex-column gap-2">
-                              <div className="d-flex flex-column">
-                                <small className="text-muted text-truncate" title={g.name || ""}>{g.name || "—"}</small>
-                              </div>
-                              <Select
-                                size="sm"
-                                selectedKeys={new Set([g.categoryId || ""])}
-                                onSelectionChange={(keys) => {
-                                  const next = Array.from(keys)[0] as string;
-                                  handleCategoryChange(g.id, next || "");
-                                }}
+                            <div className="pt-2">
+                              <div className="cms-field-label">Kategorija</div>
+                              <select
+                                className="cms-select"
+                                style={{ height: 38, borderRadius: 12 }}
+                                value={g.categoryId || ""}
+                                onChange={(e) => handleCategoryChange(g.id, e.target.value)}
                                 aria-label="Kategorija slike"
-                                items={categoryOptions}
                               >
-                                {(item) => (
-                                  <SelectItem key={item.id} textValue={item.name}>
-                                    {item.name}
-                                  </SelectItem>
-                                )}
-                              </Select>
+                                {categoryOptions.map((opt) => (
+                                  <option key={opt.id} value={opt.id}>
+                                    {opt.name}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="pt-2">
                               <Button color="danger" className="w-100" onPress={() => handleGalleryDelete(g.id)}>
-                                Obriši sliku
+                                Obriši
                               </Button>
                             </div>
-                          </CardBody>
-                        </Card>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
               )}
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         </div>
+      </div>
       </div>
     </>
   );
