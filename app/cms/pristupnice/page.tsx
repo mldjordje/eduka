@@ -4,12 +4,12 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import type { ApplicationSubmission } from "@/types/application";
+import { getContentApiBase } from "@/lib/contentApi";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
-/** Ista logika kao forma na /postanite-clan: produkcija → PHP API, lokalno → Next route. */
+/** Uvek cPanel API (api.eduka.co.rs); override preko NEXT_PUBLIC_API_BASE_URL za dev/staging. */
 function getApplicationsEndpoint() {
-  const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
-  return base ? `${base}/applications.php` : "/api/applications";
+  return `${getContentApiBase()}/applications.php`;
 }
 
 const statusLabels: Record<string, string> = {

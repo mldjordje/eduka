@@ -2,6 +2,7 @@
 
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
+import { getContentApiBase } from "@/lib/contentApi";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 interface FormState {
@@ -56,8 +57,7 @@ export default function ApplicationPage() {
     setErrorMessage(null);
 
     try {
-      const base = process.env.NEXT_PUBLIC_API_BASE_URL || "";
-      const endpoint = base ? `${base}/applications.php` : "/api/applications";
+      const endpoint = `${getContentApiBase()}/applications.php`;
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

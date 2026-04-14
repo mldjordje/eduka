@@ -99,9 +99,16 @@ if (!move_uploaded_file($tmpPath, $dest)) {
   exit;
 }
 
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+  || (isset($_SERVER['SERVER_PORT']) && (string) $_SERVER['SERVER_PORT'] === '443')
+  || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+$scheme = $isHttps ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'api.eduka.co.rs';
+$publicBase = $scheme . '://' . trim((string) $host);
+
 echo json_encode([
   'success' => true,
-  'url' => 'https://api.eduka.co.rs/uploads/' . $name,
+  'url' => $publicBase . '/uploads/' . $name,
   'name' => $origName,
   'mime' => $mime,
 ], JSON_UNESCAPED_UNICODE);

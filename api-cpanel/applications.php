@@ -7,6 +7,7 @@
  */
 
 $allowed_origins = [
+  'https://api.eduka.co.rs',
   'https://eduka.co.rs',
   'https://www.eduka.co.rs',
   'https://eduka.rs',

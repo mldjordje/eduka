@@ -1,3 +1,4 @@
+/** cPanel: poddomen api.eduka.co.rs → document root public_html/api (PHP skripte). */
 const DEFAULT_API_BASE = "https://api.eduka.co.rs";
 
 function trimTrailingSlash(value: string) {

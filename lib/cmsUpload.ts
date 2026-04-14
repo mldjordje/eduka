@@ -1,14 +1,16 @@
-const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.eduka.co.rs").replace(/\/+$/, "");
-const UPLOAD_URL =
-  (process.env.NEXT_PUBLIC_UPLOAD_URL || "https://api.eduka.co.rs/upload.php").replace(/\/+$/, "");
-const UPLOAD_ORIGIN = /^https?:\/\//.test(UPLOAD_URL) ? new URL(UPLOAD_URL).origin : "";
+import { getContentApiBase } from "@/lib/contentApi";
 
 export function getUploadInfo() {
-  return { API_BASE, UPLOAD_URL };
+  const API_BASE = getContentApiBase();
+  const UPLOAD_URL = (
+    process.env.NEXT_PUBLIC_UPLOAD_URL || `${getContentApiBase()}/upload.php`
+  ).replace(/\/+$/, "");
+  const UPLOAD_ORIGIN = /^https?:\/\//.test(UPLOAD_URL) ? new URL(UPLOAD_URL).origin : "";
+  return { API_BASE, UPLOAD_URL, UPLOAD_ORIGIN };
 }
 
 export async function uploadFileWithFallback(file: File) {
-  const { UPLOAD_URL } = getUploadInfo();
+  const { UPLOAD_URL, UPLOAD_ORIGIN } = getUploadInfo();
   try {
     const data = new FormData();
     data.append("file", file);

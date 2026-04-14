@@ -4,16 +4,16 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import { uploadFileWithFallback } from "@/lib/cmsUpload";
+import { getContentApiBase, getUploadOrigin } from "@/lib/contentApi";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 import { ChangeEvent, DragEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Button, Card, CardBody, CardHeader, Chip, Divider, Input, Spinner } from "@heroui/react";
 
 const galleryEndpoint = "/api/gallery";
-const categoryEndpoint = "https://api.eduka.co.rs/gallery_categories.php";
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin : "";
+const categoryEndpoint = `${getContentApiBase()}/gallery_categories.php`;
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
   ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT).origin
-  : API_ORIGIN || "https://api.eduka.co.rs";
+  : getUploadOrigin();
 
 function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
   const [gallery, setGallery] = useState<GalleryImage[]>([]);

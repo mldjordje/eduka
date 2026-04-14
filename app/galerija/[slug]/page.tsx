@@ -3,13 +3,12 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
+import { getContentApiBase, getUploadOrigin } from "@/lib/contentApi";
 
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_BASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL as string).origin
-  : "https://api.eduka.co.rs";
+const API_ORIGIN = new URL(getContentApiBase()).origin;
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
   ? new URL(process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT as string).origin
-  : API_ORIGIN;
+  : getUploadOrigin();
 
 const resolveSrc = (raw: string) => {
   if (!raw) return "";

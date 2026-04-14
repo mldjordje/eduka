@@ -4,14 +4,11 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardBody, Chip, Skeleton } from "@heroui/react";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
+import { getContentApiBase } from "@/lib/contentApi";
 
-const API_ORIGIN =
-  typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_BASE_URL
-    ? new URL(process.env.NEXT_PUBLIC_API_BASE_URL).origin
-    : "https://api.eduka.co.rs";
-
-const imagesUrl = `${API_ORIGIN.replace(/\/+$/, "")}/gallery.php`;
-const categoriesUrl = `${API_ORIGIN.replace(/\/+$/, "")}/gallery_categories.php`;
+const remoteBase = getContentApiBase();
+const imagesUrl = `${remoteBase}/gallery.php`;
+const categoriesUrl = `${remoteBase}/gallery_categories.php`;
 
 async function fetchJson<T>(url: string): Promise<T | null> {
   try {
