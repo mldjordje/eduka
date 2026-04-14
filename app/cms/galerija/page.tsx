@@ -268,19 +268,24 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                       variant={filterCategory === "__all__" ? "solid" : "light"}
                       color="primary"
                       onPress={() => setFilterCategory("__all__")}
+                      className="flex-shrink-0"
                     >
                       Prikaži
                     </Button>
                   </li>
                   {categories.map((cat) => (
-                    <li key={cat.id} className="d-flex justify-content-between align-items-center pb-10">
-                      <span>{cat.name} ({categoryCounts[cat.id] || 0})</span>
-                      <div className="d-flex align-items-center gap-2">
+                    <li key={cat.id} className="d-flex justify-content-between align-items-start pb-10">
+                      <span className="pe-2" style={{ minWidth: 0 }}>
+                        <span className="d-block text-truncate" title={cat.name}>{cat.name}</span>
+                        <small className="text-muted">Slika: {categoryCounts[cat.id] || 0}</small>
+                      </span>
+                      <div className="d-flex align-items-center gap-2 flex-wrap justify-content-end" style={{ maxWidth: 190 }}>
                         <Button
                           size="sm"
                           variant={filterCategory === cat.id ? "solid" : "light"}
                           color="primary"
                           onPress={() => setFilterCategory(cat.id)}
+                          className="flex-grow-1"
                         >
                           Prikaži
                         </Button>
@@ -326,12 +331,13 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                     )}
                   </Select>
                 </div>
-                <div className="col-md-6 pb-12 d-flex justify-content-md-end gap-2">
+                <div className="col-md-6 pb-12 d-flex flex-wrap justify-content-md-end gap-2">
                   <Button
                     color="primary"
                     variant="bordered"
                     isDisabled={uploading}
                     onPress={() => fileInputRef.current?.click()}
+                    className="w-100 w-md-auto"
                   >
                     Izaberi slike
                   </Button>
@@ -372,19 +378,26 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                   setIsDragging(false);
                 }}
                 onDrop={onDrop}
-                className={`p-4 br-12 border ${isDragging ? "border-primary" : "border-secondary"} d-flex flex-column gap-2`}
-                style={{ cursor: uploading ? "not-allowed" : "pointer", opacity: uploading ? 0.7 : 1 }}
+                className={`p-3 p-md-4 br-12 border ${isDragging ? "border-primary" : "border-secondary"} d-flex flex-column gap-2`}
+                style={{
+                  cursor: uploading ? "not-allowed" : "pointer",
+                  opacity: uploading ? 0.7 : 1,
+                  userSelect: "none",
+                  background: isDragging ? "rgba(13, 110, 253, 0.06)" : "transparent",
+                }}
               >
-                <div className="d-flex align-items-center gap-2 flex-wrap">
+                <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-2 flex-wrap text-center text-md-start">
                   <Chip color="primary" variant="flat">Upload</Chip>
                   <span className="fw-semibold">Prevuci slike ovde</span>
                   <span className="text-muted">ili klikni da izabereš fajlove</span>
                 </div>
-                <small className="text-muted">Dozvoljeno: JPG/PNG/GIF/WebP, do 10MB po fajlu. Može i više slika odjednom.</small>
+                <small className="text-muted text-center text-md-start">
+                  Dozvoljeno: JPG/PNG/GIF/WebP, do 10MB po fajlu. Može i više slika odjednom.
+                </small>
                 {uploading && (
-                  <div className="d-flex align-items-center gap-2">
+                  <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                     <Spinner size="sm" />
-                    <small>
+                    <small className="text-center text-md-start">
                       Otpremanje{uploadInfo ? ` (${uploadInfo.done + 1}/${uploadInfo.total})` : ""}{uploadInfo?.currentName ? `: ${uploadInfo.currentName}` : ""}…
                     </small>
                   </div>
@@ -403,7 +416,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                     onChange={(e) => setSearch(e.target.value)}
                   />
                 </div>
-                <div className="col-md-6 pb-12 d-flex justify-content-md-end">
+                <div className="col-md-6 pb-12 d-flex justify-content-md-end align-items-end">
                   <small className="text-muted">Prikaz: {galleryView.length} / {gallery.length}</small>
                 </div>
               </div>
@@ -414,7 +427,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                   {galleryView.map((g) => {
                     const src = srcResolver(g.url);
                     return (
-                      <div className="col-12 col-sm-6 col-md-4 col-xl-3 mb-16" key={g.id}>
+                      <div className="col-6 col-md-4 col-lg-3 mb-16" key={g.id}>
                         <Card shadow="sm" className="h-100">
                           <CardBody className="p-0">
                             <div className="vl-blog-thumb image-anime" style={{ aspectRatio: "4 / 3", overflow: "hidden" }}>
@@ -446,7 +459,7 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
                                   </SelectItem>
                                 )}
                               </Select>
-                              <Button color="danger" onPress={() => handleGalleryDelete(g.id)}>
+                              <Button color="danger" className="w-100" onPress={() => handleGalleryDelete(g.id)}>
                                 Obriši sliku
                               </Button>
                             </div>
