@@ -50,11 +50,12 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                     {posts.map((blogs) => {
                         const raw = (blogs.images && blogs.images.length > 0 ? blogs.images[0] : blogs.image) || "";
                         const imageSrc = resolveStoredMediaUrl(raw);
+                        const safeSlug = encodeURIComponent(String(blogs.slug || "").trim());
                         return (
                             <div className="col-lg-4 col-md-6 mb-30" key={blogs.slug}>
                                 <div className="vl-single-blog-box">
                                     <div className="vl-blog-thumb image-anime">
-                                        <Link href={`/vesti/${blogs.slug}`}>
+                                        <Link href={`/vesti/${safeSlug}`}>
                                             <img className="w-100" src={imageSrc} alt={blogs.title} />
                                         </Link>
                                     </div>
@@ -63,10 +64,10 @@ export default function Section2({ excludeSlug }: MoreBlogProps) {
                                             <span>{formatPostDate(blogs)}</span>
                                         </div>
                                         <h3 className="title pt-20 pb-12">
-                                            <Link href={`/vesti/${blogs.slug}`}>{blogs.title}</Link>
+                                            <Link href={`/vesti/${safeSlug}`}>{blogs.title}</Link>
                                         </h3>
                                         <p>{blogs.excerpt}</p>
-                                        <Link href={`/vesti/${blogs.slug}`} className="blog-learnmore">
+                                        <Link href={`/vesti/${safeSlug}`} className="blog-learnmore">
                                             Pročitaj više
                                             <span>
                                                 <i className="fa-regular fa-arrow-right" />

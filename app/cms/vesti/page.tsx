@@ -449,7 +449,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                     <div style={{ flex: 1 }}>
                       <label htmlFor={`simp-${post.slug}`} style={{ cursor: "pointer", display: "block" }}>
                         <h4 className="cms-post-title mb-0">
-                          <Link href={`/vesti/${post.slug}`}>{post.title}</Link>
+                          <Link href={`/vesti/${encodeURIComponent(String(post.slug || "").trim())}`}>{post.title}</Link>
                         </h4>
                         {post.showOnSimpozijum && (
                           <small style={{ color: "#0d6efd", fontWeight: 600 }}>✓ Simpozijum</small>

@@ -33,11 +33,12 @@ export default function NewsTeaser() {
           {items.map((p) => {
             const raw = p.image || "";
             const imageSrc = resolveStoredMediaUrl(raw);
+            const safeSlug = encodeURIComponent(String(p.slug || "").trim());
             return (
               <div className="col-12 mb-20" key={p.slug}>
                 <div className="vl-single-blog-box">
                   <div className="vl-blog-thumb image-anime">
-                    <Link href={`/vesti/${p.slug}`}>
+                    <Link href={`/vesti/${safeSlug}`}>
                       <img className="w-100" src={imageSrc} alt={p.title} />
                     </Link>
                   </div>
@@ -46,7 +47,7 @@ export default function NewsTeaser() {
                       <span>{formatPostDate(p)}</span>
                     </div>
                     <h3 className="title pt-16 pb-12">
-                      <Link href={`/vesti/${p.slug}`}>{p.title}</Link>
+                      <Link href={`/vesti/${safeSlug}`}>{p.title}</Link>
                     </h3>
                     <p>{p.excerpt}</p>
                   </div>

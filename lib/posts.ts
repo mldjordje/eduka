@@ -1,5 +1,6 @@
 import type { BlogPost, BlogDocument } from "@/types/blog";
 import { getContentApiBase } from "@/lib/contentApi";
+import { slugifyBlogValue } from "@/lib/slugify";
 
 const BASE = getContentApiBase();
 
@@ -22,6 +23,16 @@ function getSlugCandidates(slug: string) {
   }
 
   return [...candidates];
+}
+
+function normalizeSlugLoose(value: string) {
+  const trimmed = (value || "").toString().trim();
+  if (!trimmed) return "";
+  try {
+    return slugifyBlogValue(decodeURIComponent(trimmed));
+  } catch {
+    return slugifyBlogValue(trimmed);
+  }
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -65,6 +76,17 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | undefined>
     }
   } catch {
   }
+
+  // Fallback: if a post slug was changed/normalized differently, try a loose match.
+  // This prevents sporadic 404s when the list shows a slug variant that doesn't match the detail endpoint exactly.
+  try {
+    const target = normalizeSlugLoose(slug);
+    if (target) {
+      const all = await getAllPosts();
+      const found = all.find((p) => normalizeSlugLoose(p.slug) === target);
+      if (found) return found;
+    }
+  } catch {}
 
   return undefined;
 }

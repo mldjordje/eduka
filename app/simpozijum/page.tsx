@@ -41,7 +41,7 @@ export default async function SimpozijumPage() {
                         ))}
                       </div>
                     )}
-                    <Link href={`/vesti/${post.slug}`} className="vl-btn-primary">
+                    <Link href={`/vesti/${encodeURIComponent(String(post.slug || "").trim())}`} className="vl-btn-primary">
                       Читај вест
                     </Link>
                   </div>
