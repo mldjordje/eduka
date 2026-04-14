@@ -6,7 +6,11 @@ import CmsGuard from "@/components/cms/CmsGuard";
 import type { ApplicationSubmission } from "@/types/application";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
-const APPLICATIONS_ENDPOINT = "/api/applications";
+/** Ista logika kao forma na /postanite-clan: produkcija → PHP API, lokalno → Next route. */
+function getApplicationsEndpoint() {
+  const base = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/+$/, "");
+  return base ? `${base}/applications.php` : "/api/applications";
+}
 
 const statusLabels: Record<string, string> = {
   new: "Novo",
@@ -61,7 +65,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
 
   const loadApplications = async () => {
     try {
-      const res = await fetch(APPLICATIONS_ENDPOINT, { cache: "no-store" });
+      const res = await fetch(getApplicationsEndpoint(), { cache: "no-store" });
       const data = await res.json();
       const list = Array.isArray(data) ? data : [];
       setApplications(list);
@@ -103,7 +107,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
     try {
       setMessage(null);
       setError(null);
-      const res = await fetch(APPLICATIONS_ENDPOINT, {
+      const res = await fetch(getApplicationsEndpoint(), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, status }),
@@ -123,7 +127,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   const handleNoteSave = async (id: string) => {
     try {
       const note = noteDrafts[id] ?? "";
-      const res = await fetch(APPLICATIONS_ENDPOINT, {
+      const res = await fetch(getApplicationsEndpoint(), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, note }),
