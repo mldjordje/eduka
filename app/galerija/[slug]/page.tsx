@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { GalleryCategory, GalleryImage } from "@/types/gallery";
 import { getContentApiBase, getUploadOrigin } from "@/lib/contentApi";
+import GalleryLightbox from "@/components/gallery/GalleryLightbox";
 
 const API_ORIGIN = new URL(getContentApiBase()).origin;
 const UPLOAD_ORIGIN = process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT
@@ -71,6 +72,16 @@ export default async function GalerijaSlugPage({ params }: PageProps) {
       ? items.filter((img) => !img.categoryId)
       : items.filter((img) => `${img.categoryId || ""}` === `${category.id}`);
 
+  const lightboxItems = filtered.map((g) => {
+    const src = resolveSrc(g.url);
+    return {
+      id: g.id,
+      src,
+      alt: g.name || category.name,
+      name: g.name || "",
+    };
+  });
+
   return (
     <Layout>
       <SectionHeader title="Galerija" isGroup={false} linkGroup="" pageGroup="" current={category.name} />
@@ -78,18 +89,7 @@ export default async function GalerijaSlugPage({ params }: PageProps) {
         <div className="container">
           <h2 className="title pb-16">{category.name}</h2>
           {filtered.length === 0 && <p>Trenutno nema fotografija u ovoj kategoriji.</p>}
-          <div className="row">
-            {filtered.map((g) => {
-              const src = resolveSrc(g.url);
-              return (
-                <div className="col-sm-6 col-md-4 col-lg-3 mb-20" key={g.id}>
-                  <div className="vl-blog-thumb image-anime">
-                    <img className="w-100" src={src} alt={g.name || category.name} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {filtered.length > 0 && <GalleryLightbox items={lightboxItems} />}
         </div>
       </section>
     </Layout>

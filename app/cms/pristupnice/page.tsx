@@ -26,6 +26,17 @@ const buildPrintHtml = (app: ApplicationSubmission) => {
 <meta charset="utf-8"/>
 <title>Pristupnica – ${safe(app.name)}</title>
 <style>*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#111}h1{font-size:20px;margin:0 0 12px}.muted{color:#555;font-size:12px}.grid{display:grid;grid-template-columns:1fr 2fr;gap:8px 16px;margin-top:12px}.label{font-weight:600}.val{border-bottom:1px dashed #bbb;padding-bottom:2px}.section{margin-top:18px;padding-top:12px;border-top:1px solid #e5e5e5}@media print{button{display:none}body{margin:6mm}}</style>
+<script>
+  // Auto-trigger print dialog after content render.
+  window.addEventListener('load', function () {
+    try {
+      setTimeout(function () {
+        window.focus();
+        window.print();
+      }, 250);
+    } catch (e) {}
+  });
+</script>
 </head>
 <body>
 <button onclick="window.print()" style="float:right;padding:6px 10px;margin:0 0 8px;background:#0a5;color:#fff;border:none;border-radius:4px;cursor:pointer">Štampaj</button>
@@ -150,6 +161,9 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
     w.document.open();
     w.document.write(buildPrintHtml(app));
     w.document.close();
+    try {
+      w.focus();
+    } catch {}
   };
 
   const formatDate = (value: string) => {

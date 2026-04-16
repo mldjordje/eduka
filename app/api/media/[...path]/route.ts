@@ -1,61 +1,63 @@
 import { getUploadOrigin } from "@/lib/contentApi";
+import type { NextRequest } from "next/server";
 
-interface MediaRouteProps {
-  params: Promise<{ path: string[] }>;
+export const runtime = "nodejs";
+
+function buildUpstreamUrl(req: NextRequest, pathSegments: string[]) {
+  const upstreamOrigin = getUploadOrigin().replace(/\/+$/, "");
+  const joinedPath = pathSegments.map((s) => encodeURIComponent(s)).join("/");
+  const upstream = new URL(`${upstreamOrigin}/${joinedPath}`);
+  upstream.search = req.nextUrl.search;
+  return upstream;
 }
 
-function buildUpstreamUrl(path: string[], search: string) {
-  const normalizedPath = path
-    .filter(Boolean)
-    .map((segment) => encodeURIComponent(segment))
-    .join("/");
-
-  return `${getUploadOrigin()}/${normalizedPath}${search}`;
-}
-
-export async function GET(request: Request, { params }: MediaRouteProps) {
-  const { path } = await params;
-
-  if (!path || path.length === 0) {
-    return new Response("Missing media path.", { status: 400 });
-  }
-
-  const requestUrl = new URL(request.url);
-  const upstreamUrl = buildUpstreamUrl(path, requestUrl.search);
-  const upstream = await fetch(upstreamUrl, {
-    headers: {
-      Accept: request.headers.get("accept") || "*/*",
-    },
-    next: { revalidate: 3600 },
-  });
-
-  if (!upstream.ok) {
-    return new Response(upstream.body, {
-      status: upstream.status,
-      headers: upstream.headers,
-    });
-  }
-
-  const headers = new Headers();
-  const passthroughHeaders = [
+function pickHeaders(upstreamHeaders: Headers) {
+  const h = new Headers();
+  const allow = [
     "content-type",
     "content-length",
     "cache-control",
     "etag",
     "last-modified",
+    "accept-ranges",
+    "content-range",
+    "content-disposition",
   ];
+  for (const key of allow) {
+    const v = upstreamHeaders.get(key);
+    if (v) h.set(key, v);
+  }
+  return h;
+}
 
-  for (const headerName of passthroughHeaders) {
-    const value = upstream.headers.get(headerName);
-    if (value) {
-      headers.set(headerName, value);
-    }
+async function proxy(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+  const { path } = await ctx.params;
+  const upstreamUrl = buildUpstreamUrl(req, path || []);
+
+  const upstreamRes = await fetch(upstreamUrl, {
+    method: req.method,
+    // Support PDFs/videos & large files.
+    headers: {
+      range: req.headers.get("range") || "",
+    },
+    cache: "no-store",
+  });
+
+  const headers = pickHeaders(upstreamRes.headers);
+  if (!headers.get("cache-control")) {
+    headers.set("cache-control", "public, max-age=31536000, immutable");
   }
 
-  headers.set("Access-Control-Allow-Origin", "*");
-
-  return new Response(upstream.body, {
-    status: upstream.status,
+  return new Response(upstreamRes.body, {
+    status: upstreamRes.status,
     headers,
   });
+}
+
+export async function GET(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+  return proxy(req, ctx);
+}
+
+export async function HEAD(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+  return proxy(req, ctx);
 }
