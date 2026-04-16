@@ -1,81 +1,43 @@
+import { getContentApiBase } from "@/lib/contentApi";
 import { NextResponse } from "next/server";
-import type { ApplicationSubmission } from "@/types/application";
-import { readDataFile, writeDataFile } from "@/util/jsonStorage";
+import type { NextRequest } from "next/server";
 
-const FILE_NAME = "applications.json";
-
-export async function GET() {
-  const submissions = await readDataFile<ApplicationSubmission[]>(FILE_NAME, []);
-  return NextResponse.json(submissions);
+function apiUrl() {
+  return `${getContentApiBase()}/applications.php`;
 }
 
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    // Obavezna polja za pristupnicu
-    if (!body.name || !body.email || !body.phone) {
-      return NextResponse.json({ message: "Molimo popunite ime, email i telefon." }, { status: 400 });
-    }
+async function forward(req: NextRequest, method: string) {
+  const url = apiUrl();
+  const body =
+    method === "GET" || method === "HEAD" ? undefined : await req.text().catch(() => undefined);
 
-    const submissions = await readDataFile<ApplicationSubmission[]>(FILE_NAME, []);
-    const newSubmission: ApplicationSubmission = {
-      id: crypto.randomUUID(),
-      name: body.name,
-      address: body.address,
-      email: body.email,
-      phone: body.phone,
-      jmbg: body.jmbg,
-      licenseNumber: body.licenseNumber,
-      idNumber: body.idNumber,
-      profession: body.profession,
-      institution: body.institution,
-      yearsOfService: body.yearsOfService,
-      educationLevel: body.educationLevel,
-      chamber: body.chamber,
-      // kompatibilnost sa starom formom
-      message: body.message,
-      preferredDate: body.preferredDate,
-      // Ž?lanarina
-      membershipFeeOption: body.membershipFeeOption,
-      agreementAccepted: Boolean(body.agreementAccepted),
-      status: "new",
-      note: body.note,
-      createdAt: new Date().toISOString(),
-    };
+  const res = await fetch(url, {
+    method,
+    cache: "no-store",
+    headers: {
+      "Content-Type": req.headers.get("content-type") || "application/json",
+    },
+    body,
+  });
 
-    const updated = [newSubmission, ...submissions];
-    await writeDataFile(FILE_NAME, updated);
-
-    return NextResponse.json(newSubmission, { status: 201 });
-  } catch (error) {
-    return NextResponse.json({ message: "Gre­ka prilikom slanja prijave." }, { status: 400 });
-  }
+  const text = await res.text();
+  return new NextResponse(text, {
+    status: res.status,
+    headers: {
+      "Content-Type": res.headers.get("content-type") || "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
 }
 
-export async function PATCH(request: Request) {
-  try {
-    const body = await request.json();
-    if (!body.id) {
-      return NextResponse.json({ message: "Nedostaje ID prijave." }, { status: 400 });
-    }
-
-    const submissions = await readDataFile<ApplicationSubmission[]>(FILE_NAME, []);
-    const idx = submissions.findIndex((item) => item.id === body.id);
-    if (idx === -1) {
-      return NextResponse.json({ message: "Prijava nije pronaŽ`ena." }, { status: 404 });
-    }
-
-    const updated: ApplicationSubmission = {
-      ...submissions[idx],
-      status: body.status || submissions[idx].status || "new",
-      note: typeof body.note === "string" ? body.note : submissions[idx].note,
-    };
-
-    submissions[idx] = updated;
-    await writeDataFile(FILE_NAME, submissions);
-    return NextResponse.json(updated);
-  } catch {
-    return NextResponse.json({ message: "Gre­ka prilikom a_uriranja prijave." }, { status: 400 });
-  }
+export async function GET(req: NextRequest) {
+  return forward(req, "GET");
 }
 
+export async function POST(req: NextRequest) {
+  return forward(req, "POST");
+}
+
+export async function PATCH(req: NextRequest) {
+  return forward(req, "PATCH");
+}

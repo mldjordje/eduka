@@ -4,12 +4,11 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CmsGuard from "@/components/cms/CmsGuard";
 import type { ApplicationSubmission } from "@/types/application";
-import { getContentApiBase } from "@/lib/contentApi";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
-/** Uvek cPanel API (api.eduka.co.rs); override preko NEXT_PUBLIC_API_BASE_URL za dev/staging. */
+/** Same-origin proxy to avoid browser CORS/preflight issues. */
 function getApplicationsEndpoint() {
-  return `${getContentApiBase()}/applications.php`;
+  return "/api/applications";
 }
 
 const statusLabels: Record<string, string> = {
