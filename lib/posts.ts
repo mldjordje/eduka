@@ -4,6 +4,32 @@ import { slugifyBlogValue } from "@/lib/slugify";
 
 const BASE = getContentApiBase();
 
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function fetchJsonWithTimeout(url: string, opts?: { timeoutMs?: number; retries?: number }) {
+  const timeoutMs = opts?.timeoutMs ?? 8000;
+  const retries = opts?.retries ?? 1;
+
+  let lastErr: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, { cache: "no-store", signal: controller.signal });
+      return res;
+    } catch (e) {
+      lastErr = e;
+      if (attempt < retries) await sleep(250 * (attempt + 1));
+    } finally {
+      clearTimeout(t);
+    }
+  }
+
+  throw lastErr;
+}
+
 function localBase() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/,"");
   if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/,"");
@@ -38,14 +64,14 @@ function normalizeSlugLoose(value: string) {
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {
     if (BASE) {
-      const res = await fetch(`${BASE}/posts.php`, { cache: "no-store" });
+      const res = await fetchJsonWithTimeout(`${BASE}/posts.php`, { timeoutMs: 12000, retries: 1 });
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
       return Array.isArray(data) ? data.map(normalizePost) : [];
     }
   } catch {}
   try {
-    const res = await fetch(`${localBase()}/api/posts`, { cache: "no-store" });
+    const res = await fetchJsonWithTimeout(`${localBase()}/api/posts`, { timeoutMs: 12000, retries: 1 });
     if (!res.ok) throw new Error("Local API error");
     const data = await res.json();
     return Array.isArray(data) ? data.map(normalizePost) : [];
@@ -56,25 +82,36 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
   const candidates = getSlugCandidates(slug);
+  let hadNetworkError = false;
 
-  try {
-    for (const candidate of candidates) {
-      const res = await fetch(`${BASE}/posts.php?slug=${encodeURIComponent(candidate)}`, { cache: "no-store" });
+  for (const candidate of candidates) {
+    try {
+      const res = await fetchJsonWithTimeout(`${BASE}/posts.php?slug=${encodeURIComponent(candidate)}`, {
+        timeoutMs: 12000,
+        retries: 1,
+      });
       if (res.ok) {
         const data = await res.json();
         return normalizePost(data);
       }
+    } catch {
+      hadNetworkError = true;
     }
-  } catch {}
-  try {
-    for (const candidate of candidates) {
-      const res = await fetch(`${localBase()}/api/posts/${encodeURIComponent(candidate)}`, { cache: "no-store" });
+  }
+
+  for (const candidate of candidates) {
+    try {
+      const res = await fetchJsonWithTimeout(`${localBase()}/api/posts/${encodeURIComponent(candidate)}`, {
+        timeoutMs: 12000,
+        retries: 1,
+      });
       if (res.ok) {
         const data = await res.json();
         return normalizePost(data);
       }
+    } catch {
+      hadNetworkError = true;
     }
-  } catch {
   }
 
   // Fallback: if a post slug was changed/normalized differently, try a loose match.
@@ -87,6 +124,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | undefined>
       if (found) return found;
     }
   } catch {}
+
+  // If we experienced a network/API issue, don't pretend the post doesn't exist (404).
+  // Throwing will surface the actual problem (and avoids sporadic false 404s).
+  if (hadNetworkError) {
+    throw new Error("Posts API unavailable");
+  }
 
   return undefined;
 }
