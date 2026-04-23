@@ -1,5 +1,9 @@
 import type { ApplicationSubmission } from "@/types/application";
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import fontkit from "@pdf-lib/fontkit";
+import type { PDFFont, PDFDocument as PDFDocumentType } from "pdf-lib";
+import { PDFDocument, rgb } from "pdf-lib";
 
 function safe(v?: string) {
   return (v ?? "").trim();
@@ -13,11 +17,29 @@ function fmtDate(d?: string) {
 
 type Row = { label: string; value: string };
 
+let cachedFonts: { regular: PDFFont; bold: PDFFont } | null = null;
+
+async function embedDejaVu(pdf: PDFDocumentType) {
+  if (cachedFonts) return cachedFonts;
+
+  pdf.registerFontkit(fontkit);
+
+  const regularPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans.ttf");
+  const boldPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans-Bold.ttf");
+
+  const [regularBytes, boldBytes] = await Promise.all([readFile(regularPath), readFile(boldPath)]);
+
+  const regular = await pdf.embedFont(new Uint8Array(regularBytes));
+  const bold = await pdf.embedFont(new Uint8Array(boldBytes));
+
+  cachedFonts = { regular, bold };
+  return cachedFonts;
+}
+
 export async function buildPristupnicaPdf(app: ApplicationSubmission) {
   const pdf = await PDFDocument.create();
+  const { regular: font, bold: fontBold } = await embedDejaVu(pdf);
   const page = pdf.addPage([595.28, 841.89]); // A4 (pt)
-  const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
 
   const marginX = 48;
   const topY = 800;
