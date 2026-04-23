@@ -86,7 +86,7 @@ web_modules/
 # Next.js build output
 .next
 out
-api/
+/api/
 
 # Nuxt.js build / generate output
 .nuxt
@@ -129,4 +129,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-package-lock.json
+# package-lock.json should be committed for reproducible installs
