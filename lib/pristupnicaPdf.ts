@@ -21,8 +21,8 @@ let cachedFontBytes: { regular: Uint8Array; bold: Uint8Array } | null = null;
 
 async function embedDejaVu(pdf: PDFDocumentType) {
   if (!cachedFontBytes) {
-    const regularPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans.ttf");
-    const boldPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans-Bold.ttf");
+    const regularPath = path.join(process.cwd(), "public", "fonts", "DejaVuSans.ttf");
+    const boldPath = path.join(process.cwd(), "public", "fonts", "DejaVuSans-Bold.ttf");
     const [regularBytes, boldBytes] = await Promise.all([readFile(regularPath), readFile(boldPath)]);
     cachedFontBytes = { regular: new Uint8Array(regularBytes), bold: new Uint8Array(boldBytes) };
   }

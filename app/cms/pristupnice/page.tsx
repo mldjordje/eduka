@@ -17,6 +17,89 @@ const statusLabels: Record<string, string> = {
   reviewed: "Obrađeno",
 };
 
+function PristupnicaModal({ app, onClose }: { app: ApplicationSubmission; onClose: () => void }) {
+  const formatDate = (value: string) => {
+    if (!value) return "-";
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? "-" : parsed.toLocaleString("sr-RS");
+  };
+
+  const fields: { label: string; value: string }[] = [
+    { label: "Ime i prezime", value: app.name || "-" },
+    { label: "Adresa", value: app.address || "-" },
+    { label: "E-mail", value: app.email || "-" },
+    { label: "Telefon", value: app.phone || "-" },
+    { label: "JMBG", value: app.jmbg || "-" },
+    { label: "Broj licence", value: app.licenseNumber || "-" },
+    { label: "Lični broj", value: app.idNumber || "-" },
+    { label: "Zanimanje", value: app.profession || "-" },
+    { label: "Ustanova", value: app.institution || "-" },
+    { label: "Godine staža", value: app.yearsOfService || "-" },
+    { label: "Stepen obrazovanja", value: app.educationLevel || "-" },
+    { label: "Komora", value: app.chamber || "-" },
+    {
+      label: "Opcija članarine",
+      value:
+        app.membershipFeeOption === "monthly"
+          ? "Odbijanje od plate (200 RSD mesečno)"
+          : app.membershipFeeOption === "annual"
+            ? "Godišnje (2.400 RSD)"
+            : "-",
+    },
+    { label: "Saglasnost", value: app.agreementAccepted ? "DA" : "NE" },
+    { label: "Napomena (CMS)", value: app.note || "-" },
+    { label: "Datum prijave", value: formatDate(app.createdAt) },
+  ];
+
+  return (
+    <div
+      style={{
+        position: "fixed", inset: 0, zIndex: 1050,
+        background: "rgba(0,0,0,0.5)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "16px",
+      }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          background: "#fff", borderRadius: 8, maxWidth: 600, width: "100%",
+          maxHeight: "85vh", overflowY: "auto",
+          padding: "28px 32px",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+          <h5 style={{ margin: 0, fontWeight: 700 }}>Pregled pristupnice</h5>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", lineHeight: 1 }}
+            aria-label="Zatvori"
+          >
+            &times;
+          </button>
+        </div>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+          <tbody>
+            {fields.map((f) => (
+              <tr key={f.label} style={{ borderBottom: "1px solid #eee" }}>
+                <td style={{ padding: "8px 12px 8px 0", fontWeight: 600, whiteSpace: "nowrap", color: "#444", width: "40%" }}>
+                  {f.label}
+                </td>
+                <td style={{ padding: "8px 0", wordBreak: "break-word" }}>{f.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div style={{ marginTop: 20, textAlign: "right" }}>
+          <button type="button" className="vl-btn-secondary" onClick={onClose}>Zatvori</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
   const [filter, setFilter] = useState("");
@@ -24,6 +107,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [previewApp, setPreviewApp] = useState<ApplicationSubmission | null>(null);
 
   const loadApplications = async () => {
     try {
@@ -160,6 +244,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
 
   return (
     <>
+      {previewApp && <PristupnicaModal app={previewApp} onClose={() => setPreviewApp(null)} />}
       <div className="row">
         <div className="col-12 d-flex justify-content-between align-items-center pb-20 flex-wrap gap-3">
           <div>
@@ -244,6 +329,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
                       </td>
                       <td>{formatDate(application.createdAt)}</td>
                       <td className="d-flex gap-2 flex-wrap">
+                        <button type="button" className="vl-btn-secondary" onClick={() => setPreviewApp(application)}>Pregled</button>
                         <button type="button" className="vl-btn-primary" onClick={() => handlePrint(application)}>Štampaj</button>
                         <a
                           className="vl-btn-secondary"
