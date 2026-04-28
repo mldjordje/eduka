@@ -17,23 +17,20 @@ function fmtDate(d?: string) {
 
 type Row = { label: string; value: string };
 
-let cachedFonts: { regular: PDFFont; bold: PDFFont } | null = null;
+let cachedFontBytes: { regular: Uint8Array; bold: Uint8Array } | null = null;
 
 async function embedDejaVu(pdf: PDFDocumentType) {
-  if (cachedFonts) return cachedFonts;
+  if (!cachedFontBytes) {
+    const regularPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans.ttf");
+    const boldPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans-Bold.ttf");
+    const [regularBytes, boldBytes] = await Promise.all([readFile(regularPath), readFile(boldPath)]);
+    cachedFontBytes = { regular: new Uint8Array(regularBytes), bold: new Uint8Array(boldBytes) };
+  }
 
   pdf.registerFontkit(fontkit);
-
-  const regularPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans.ttf");
-  const boldPath = path.join(process.cwd(), "node_modules", "dejavu-fonts-ttf", "ttf", "DejaVuSans-Bold.ttf");
-
-  const [regularBytes, boldBytes] = await Promise.all([readFile(regularPath), readFile(boldPath)]);
-
-  const regular = await pdf.embedFont(new Uint8Array(regularBytes));
-  const bold = await pdf.embedFont(new Uint8Array(boldBytes));
-
-  cachedFonts = { regular, bold };
-  return cachedFonts;
+  const regular = await pdf.embedFont(cachedFontBytes.regular);
+  const bold = await pdf.embedFont(cachedFontBytes.bold);
+  return { regular, bold };
 }
 
 export async function buildPristupnicaPdf(app: ApplicationSubmission) {

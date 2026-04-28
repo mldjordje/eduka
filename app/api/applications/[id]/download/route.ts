@@ -30,7 +30,13 @@ export async function GET(_request: Request, ctx: { params: Promise<{ id: string
     return new Response("Not found", { status: 404 });
   }
 
-  const pdfBytes = await buildPristupnicaPdf(app);
+  let pdfBytes: Uint8Array;
+  try {
+    pdfBytes = await buildPristupnicaPdf(app);
+  } catch (err) {
+    console.error("[pristupnica/download] PDF generation failed:", err);
+    return new Response("PDF generation failed", { status: 500 });
+  }
   const body = new Uint8Array(pdfBytes);
   const namePart = safeFilename((app as any).name || "pristupnica");
   const filename = `pristupnica-${namePart}-${id.slice(0, 8)}.pdf`;
