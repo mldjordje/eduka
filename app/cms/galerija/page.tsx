@@ -20,6 +20,8 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
   const [categories, setCategories] = useState<GalleryCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [newCategory, setNewCategory] = useState("");
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
+  const [editingCategoryName, setEditingCategoryName] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -191,6 +193,39 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
       setGallery((prev) => prev.map((img) => (img.categoryId === id ? { ...img, categoryId: "" } : img)));
     } catch (e: any) {
       setError(e.message || "Greška pri brisanju kategorije.");
+    }
+  };
+
+  const startCategoryEdit = (category: GalleryCategory) => {
+    setEditingCategoryId(category.id);
+    setEditingCategoryName(category.name);
+    setMessage(null);
+    setError(null);
+  };
+
+  const cancelCategoryEdit = () => {
+    setEditingCategoryId(null);
+    setEditingCategoryName("");
+  };
+
+  const handleUpdateCategory = async () => {
+    if (!editingCategoryId || !editingCategoryName.trim()) return;
+    try {
+      const res = await fetch(categoryEndpoint, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: editingCategoryId, name: editingCategoryName.trim() }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Izmena kategorije nije sačuvana.");
+      }
+      const updated = await res.json();
+      setCategories((prev) => prev.map((cat) => (cat.id === updated.id ? { ...cat, ...updated } : cat)));
+      setMessage("Naziv kategorije je izmenjen.");
+      cancelCategoryEdit();
+    } catch (e: any) {
+      setError(e.message || "Greška pri izmeni kategorije.");
     }
   };
 
@@ -421,24 +456,58 @@ function CmsGalerijaContent({ onLogout }: { onLogout: () => void }) {
 
                   <div className="pt-8">
                     {categories.length === 0 && <div className="text-muted">Još nema kategorija.</div>}
-                    {categories.map((cat) => (
-                      <div key={cat.id} className="cms-cat-item d-flex justify-content-between align-items-start gap-2">
-                        <div style={{ minWidth: 0 }}>
-                          <div className="fw-semibold text-truncate" title={cat.name} style={{ color: "var(--cms-text)" }}>
-                            {cat.name}
-                          </div>
-                          <div className="cms-kpi">Slika: {categoryCounts[cat.id] || 0}</div>
+                    {categories.map((cat) => {
+                      const isEditing = editingCategoryId === cat.id;
+                      return (
+                        <div key={cat.id} className="cms-cat-item">
+                          {isEditing ? (
+                            <div className="d-flex flex-column gap-2">
+                              <Input
+                                fullWidth
+                                aria-label="Izmeni naziv kategorije"
+                                value={editingCategoryName}
+                                onChange={(e) => setEditingCategoryName(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") handleUpdateCategory();
+                                  if (e.key === "Escape") cancelCategoryEdit();
+                                }}
+                                size="sm"
+                              />
+                              <div className="d-flex gap-2">
+                                <Button size="sm" color="primary" onPress={handleUpdateCategory}>
+                                  Sačuvaj
+                                </Button>
+                                <Button size="sm" variant="light" onPress={cancelCategoryEdit}>
+                                  Otkaži
+                                </Button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="d-flex justify-content-between align-items-start gap-2">
+                              <div style={{ minWidth: 0 }}>
+                                <div className="fw-semibold text-truncate" title={cat.name} style={{ color: "var(--cms-text)" }}>
+                                  {cat.name}
+                                </div>
+                                <div className="cms-kpi">Slika: {categoryCounts[cat.id] || 0}</div>
+                              </div>
+                              <div className="d-flex gap-1">
+                                <Button size="sm" variant="light" onPress={() => startCategoryEdit(cat)}>
+                                  Izmeni
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  color="danger"
+                                  variant="light"
+                                  onPress={() => handleDeleteCategory(cat.id)}
+                                >
+                                  Obriši
+                                </Button>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        <Button
-                          size="sm"
-                          color="danger"
-                          variant="light"
-                          onPress={() => handleDeleteCategory(cat.id)}
-                        >
-                          Obriši
-                        </Button>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </>
               )}
