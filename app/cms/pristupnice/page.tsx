@@ -107,7 +107,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   };
 
   const handlePrint = (app: ApplicationSubmission) => {
-    const w = window.open("", "_blank", "noopener,noreferrer,width=900,height=700");
+    const w = window.open("", "_blank", "width=900,height=700");
     if (!w) return;
     w.document.open();
     w.document.write(buildPristupnicaPrintHtml(app));

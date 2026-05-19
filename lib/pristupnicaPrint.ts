@@ -1,7 +1,13 @@
 import type { ApplicationSubmission } from "@/types/application";
 
 export function buildPristupnicaPrintHtml(app: ApplicationSubmission) {
-  const safe = (v?: string) => (v ?? "");
+  const safe = (v?: string) =>
+    (v ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   const fmt = (d?: string) => (d ? new Date(d).toLocaleString("sr-RS") : "");
 
   return `<!doctype html>
@@ -48,4 +54,3 @@ export function buildPristupnicaPrintHtml(app: ApplicationSubmission) {
 </body>
 </html>`;
 }
-
