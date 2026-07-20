@@ -4,6 +4,7 @@
  * GET    — lista prijava
  * POST   — nova prijava (isto telo kao Next /api/applications)
  * PATCH  — ažuriranje statusa / napomene po id
+ * DELETE — brisanje prijave po id
  */
 
 $allowed_origins = [
@@ -24,7 +25,7 @@ if ($origin && in_array($origin, $allowed_origins, true)) {
   header('Access-Control-Allow-Origin: *');
 }
 
-header('Access-Control-Allow-Methods: GET, POST, PATCH, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header('Access-Control-Max-Age: 86400');
 
@@ -175,6 +176,30 @@ try {
     $list[$idx] = $current;
     save_applications($storePath, $list);
     echo json_encode($current, JSON_UNESCAPED_UNICODE);
+    exit;
+  }
+
+  if ($method === 'DELETE') {
+    $body = read_json_body();
+    $id = isset($body['id']) ? trim((string) $body['id']) : '';
+    if ($id === '') {
+      http_response_code(400);
+      echo json_encode(['message' => 'Nedostaje ID prijave.'], JSON_UNESCAPED_UNICODE);
+      exit;
+    }
+
+    $list = load_applications($storePath);
+    $filtered = array_values(array_filter($list, function ($item) use ($id) {
+      return !is_array($item) || !isset($item['id']) || (string) $item['id'] !== $id;
+    }));
+    if (count($filtered) === count($list)) {
+      http_response_code(404);
+      echo json_encode(['message' => 'Prijava nije pronađena.'], JSON_UNESCAPED_UNICODE);
+      exit;
+    }
+
+    save_applications($storePath, $filtered);
+    echo json_encode(['success' => true], JSON_UNESCAPED_UNICODE);
     exit;
   }
 

@@ -24,6 +24,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const loadApplications = async () => {
     try {
@@ -103,6 +104,39 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
       setMessage("Napomena sačuvana.");
     } catch (e: any) {
       setError(e.message || "Greška pri čuvanju napomene.");
+    }
+  };
+
+  const handleDelete = async (application: ApplicationSubmission) => {
+    const confirmed = window.confirm(
+      `Da li sigurno želite da obrišete pristupnicu za ${application.name}? Ova radnja se ne može poništiti.`
+    );
+    if (!confirmed) return;
+
+    try {
+      setMessage(null);
+      setError(null);
+      setDeletingId(application.id);
+      const res = await fetch(getApplicationsEndpoint(), {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: application.id }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || "Brisanje nije uspelo.");
+      }
+      setApplications((prev) => prev.filter((app) => app.id !== application.id));
+      setNoteDrafts((prev) => {
+        const next = { ...prev };
+        delete next[application.id];
+        return next;
+      });
+      setMessage("Pristupnica je obrisana.");
+    } catch (e: any) {
+      setError(e.message || "Greška pri brisanju pristupnice.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -251,6 +285,14 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
                         >
                           Preuzmi
                         </a>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          disabled={deletingId === application.id}
+                          onClick={() => handleDelete(application)}
+                        >
+                          {deletingId === application.id ? "Brisanje..." : "Obriši"}
+                        </button>
                       </td>
                     </tr>
                   ))}

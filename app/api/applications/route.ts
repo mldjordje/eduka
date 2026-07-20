@@ -34,6 +34,11 @@ export async function PATCH(request: Request) {
   return proxy(request, { method: "PATCH", body });
 }
 
+export async function DELETE(request: Request) {
+  const body = await request.text();
+  return proxy(request, { method: "DELETE", body });
+}
+
 export async function POST(request: Request) {
   const body = await request.text();
   return proxy(request, { method: "POST", body });
