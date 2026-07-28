@@ -154,6 +154,11 @@ export async function getSimpozijumPosts(): Promise<BlogPost[]> {
   return all.filter((p) => p.showOnSimpozijum);
 }
 
+export async function getKongresPosts(): Promise<BlogPost[]> {
+  const all = await getAllPosts();
+  return all.filter((p) => p.showOnKongres);
+}
+
 function normalizePost(raw: any): BlogPost {
   if (!raw || typeof raw !== "object") return raw;
   const normalizedImages = Array.isArray(raw.images)
@@ -164,6 +169,12 @@ function normalizePost(raw: any): BlogPost {
 
   const documents = normalizeDocuments(raw.documents ?? raw.documents_json ?? []);
 
+  const tags = Array.isArray(raw.tags)
+    ? raw.tags
+    : typeof raw.tags === "string"
+    ? raw.tags.split(",").map((tag: string) => tag.trim()).filter(Boolean)
+    : [];
+
   return {
     ...(raw as BlogPost),
     image: raw.image || normalizedImages[0] || "",
@@ -171,6 +182,8 @@ function normalizePost(raw: any): BlogPost {
     document: raw.document ?? "",
     documentName: raw.documentName ?? raw.document_name ?? "",
     documents: documents.length ? documents : undefined,
+    tags,
     showOnSimpozijum: Boolean(raw.show_on_simpozijum ?? raw.showOnSimpozijum ?? false),
+    showOnKongres: tags.some((tag: string) => tag.toLocaleLowerCase("sr").trim() === "kongres"),
   };
 }

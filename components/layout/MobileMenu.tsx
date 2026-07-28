@@ -63,6 +63,11 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                   </Link>
                 </li>
                 <li>
+                  <Link href="/kongres" onClick={handleMobileMenu}>
+                    Kongres
+                  </Link>
+                </li>
+                <li>
                   <Link href="/postanite-clan" onClick={handleMobileMenu}>
                     Постаните члан
                   </Link>

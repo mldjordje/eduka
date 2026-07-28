@@ -17,4 +17,5 @@ export interface BlogPost {
   documentName?: string;
   documents?: BlogDocument[];
   showOnSimpozijum?: boolean;
+  showOnKongres?: boolean;
 }

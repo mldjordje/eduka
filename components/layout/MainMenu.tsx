@@ -23,6 +23,9 @@ export default function MainMenu() {
         <Link href="/simpozijum">Симпозијум</Link>
       </li>
       <li>
+        <Link href="/kongres">Kongres</Link>
+      </li>
+      <li>
         <Link href="/postanite-clan">Постаните члан</Link>
       </li>
       <li>

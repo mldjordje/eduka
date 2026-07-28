@@ -25,9 +25,17 @@ const initialPostForm = {
   documentName: "",
   documents: [] as BlogDocument[],
   showOnSimpozijum: false,
+  showOnKongres: false,
 };
 
 const resolveImage = (raw: string) => resolveStoredMediaUrl(raw);
+
+const normalizeCmsPost = (post: BlogPost): BlogPost => ({
+  ...post,
+  showOnKongres:
+    post.showOnKongres ??
+    (post.tags || []).some((tag) => tag.toLocaleLowerCase("sr").trim() === "kongres"),
+});
 
 function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -46,7 +54,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     const postsUrl = API_BASE ? `${API_BASE}/posts.php` : "/api/posts";
     fetch(postsUrl)
       .then((res) => res.json())
-      .then((data: BlogPost[]) => setPosts(data))
+      .then((data: BlogPost[]) => setPosts(data.map(normalizeCmsPost)))
       .catch(() => setPosts([]));
   }, []);
 
@@ -152,6 +160,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       documentName: (post as any).document_name ?? post.documentName ?? "",
       documents,
       showOnSimpozijum: post.showOnSimpozijum ?? false,
+      showOnKongres: post.showOnKongres ?? false,
     });
     setEditingSlug(post.slug);
     setIsSlugManuallyEdited(true);
@@ -199,6 +208,32 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
     }
   };
 
+  const handleToggleKongres = async (post: BlogPost) => {
+    setTogglingSlug(post.slug);
+    try {
+      const base = API_BASE ? API_BASE.replace(/\/+$/, "") : "";
+      const endpoint = base
+        ? `${base}/posts.php?slug=${encodeURIComponent(post.slug)}`
+        : `/api/posts/${encodeURIComponent(post.slug)}`;
+      const tags = (post.tags || []).filter((tag) => tag.toLocaleLowerCase("sr").trim() !== "kongres");
+      const newValue = !post.showOnKongres;
+      if (newValue) tags.push("kongres");
+      const res = await fetch(endpoint, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: post.slug, tags }),
+      });
+      if (!res.ok) throw new Error("Greška pri ažuriranju");
+      setPosts((prev) =>
+        prev.map((p) => (p.slug === post.slug ? { ...p, tags, showOnKongres: newValue } : p))
+      );
+    } catch (e: any) {
+      setError(e.message || "Greška pri ažuriranju kongres statusa");
+    } finally {
+      setTogglingSlug(null);
+    }
+  };
+
   const resetForm = () => {
     setForm({ ...initialPostForm });
     setEditingSlug(null);
@@ -223,12 +258,17 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
         ? `${base}/posts.php`
         : "/api/posts";
       const method = isEdit ? "PUT" : "POST";
+      const tags = form.tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag && tag.toLocaleLowerCase("sr") !== "kongres");
+      if (form.showOnKongres) tags.push("kongres");
       const payload = {
         ...form,
         slug: form.slug || slugifyBlogValue(form.title),
         image: form.images[0] || "",
         images: form.images,
-        tags: form.tags,
+        tags,
         document: form.documents[0]?.url ?? form.document,
         documentName: form.documents[0]?.name ?? form.documentName,
         document_name: form.documents[0]?.name ?? form.documentName,
@@ -245,7 +285,8 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
         throw new Error(body.message || (isEdit ? "Neuspešno ažuriranje" : "Neuspešno čuvanje objave"));
       }
       const savedPost: BlogPost = await response.json();
-      setPosts((prev) => (isEdit ? prev.map((p) => (p.slug === savedPost.slug ? savedPost : p)) : [savedPost, ...prev]));
+      const normalizedSavedPost = normalizeCmsPost(savedPost);
+      setPosts((prev) => (isEdit ? prev.map((p) => (p.slug === normalizedSavedPost.slug ? normalizedSavedPost : p)) : [normalizedSavedPost, ...prev]));
       resetForm();
       setMessage(isEdit ? "Objava je uspešno ažurirana!" : "Objava je uspešno sačuvana!");
     } catch (err: any) {
@@ -370,6 +411,22 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                 </div>
 
                 <div className="col-12 pb-16">
+                  <div className="d-flex align-items-center gap-3">
+                    <input
+                      type="checkbox"
+                      id="showOnKongres"
+                      name="showOnKongres"
+                      checked={form.showOnKongres}
+                      onChange={handleCheckboxChange}
+                      style={{ width: 18, height: 18, cursor: "pointer" }}
+                    />
+                    <label htmlFor="showOnKongres" className="form-label mb-0" style={{ cursor: "pointer" }}>
+                      Prikaži ovu vest na stranici <strong>Kongres</strong>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="col-12 pb-16">
                   <label className="form-label">Kratak opis</label>
                   <textarea name="excerpt" value={form.excerpt} onChange={handleInputChange} rows={3} className="form-control" />
                 </div>
@@ -428,7 +485,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
           <div className="vl-off-white-bg p-40 br-20 h-100">
             <h3 className="title pb-12">Poslednje objave</h3>
             <p className="pb-16">
-              Sveže objave su prikazane redom kojim su objavljene. Štiklirajte vest da se prikaže na stranici Simpozijum.
+              Sveže objave su prikazane redom kojim su objavljene. Označite gde vest treba da se prikaže.
             </p>
             <div className="cms-post-list">
               {posts.length === 0 && <p>Još uvek nema objava.</p>}
@@ -454,6 +511,9 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                         {post.showOnSimpozijum && (
                           <small style={{ color: "#0d6efd", fontWeight: 600 }}>✓ Simpozijum</small>
                         )}
+                        {post.showOnKongres && (
+                          <small style={{ color: "#7c3aed", fontWeight: 600, marginLeft: 8 }}>✓ Kongres</small>
+                        )}
                       </label>
                       <div className="cms-post-meta">
                         <span>{formatDate(post.date)}</span>
@@ -464,6 +524,20 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
                       </div>
                       <p>{post.excerpt}</p>
                     </div>
+                  </div>
+                  <div className="d-flex align-items-center gap-2 pb-8">
+                    <input
+                      type="checkbox"
+                      id={`kongres-${post.slug}`}
+                      checked={Boolean(post.showOnKongres)}
+                      disabled={togglingSlug === post.slug}
+                      onChange={() => handleToggleKongres(post)}
+                      title="Prikaži na stranici Kongres"
+                      style={{ width: 18, height: 18, cursor: "pointer" }}
+                    />
+                    <label htmlFor={`kongres-${post.slug}`} style={{ cursor: "pointer", margin: 0 }}>
+                      Prikaži na stranici Kongres
+                    </label>
                   </div>
                   <div className="d-flex gap-2 pt-4">
                     <button type="button" className="vl-btn-primary" onClick={() => handleEdit(post)}>Uredi</button>

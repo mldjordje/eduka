@@ -17,6 +17,9 @@ const statusLabels: Record<string, string> = {
   reviewed: "Obrađeno",
 };
 
+const isCongressApplication = (application: ApplicationSubmission) =>
+  application.message?.startsWith("PRIJAVA ZA KONGRES") ?? false;
+
 function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
   const [filter, setFilter] = useState("");
@@ -60,6 +63,7 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
           app.name.toLowerCase().includes(query) ||
           (app.email || "").toLowerCase().includes(query) ||
           (app.phone || "").toLowerCase().includes(query) ||
+          (app.message || "").toLowerCase().includes(query) ||
           (app.note || "").toLowerCase().includes(query)
         );
       })
@@ -165,6 +169,8 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
       "Adresa",
       "Zanimanje",
       "Ustanova",
+      "Vrsta prijave",
+      "Detalji prijave",
       "Status",
       "Napomena",
       "Datum",
@@ -176,6 +182,8 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
       app.address || "",
       app.profession || "",
       app.institution || "",
+      isCongressApplication(app) ? "Kongres" : "Članstvo",
+      app.message || "",
       statusLabels[app.status || "new"] || "Novo",
       app.note || "",
       formatDate(app.createdAt),
@@ -250,7 +258,12 @@ function CmsPristupniceContent({ onLogout }: { onLogout: () => void }) {
                 <tbody>
                   {filteredApplications.map((application) => (
                     <tr key={application.id}>
-                      <td>{application.name}</td>
+                      <td>
+                        <div>{application.name}</div>
+                        {isCongressApplication(application) && (
+                          <small style={{ color: "#7c3aed", fontWeight: 700 }}>Kongres</small>
+                        )}
+                      </td>
                       <td>{application.email}</td>
                       <td>{application.phone}</td>
                       <td>
