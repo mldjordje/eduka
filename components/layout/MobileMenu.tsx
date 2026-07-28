@@ -64,7 +64,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu, offcanvas_b
                 </li>
                 <li>
                   <Link href="/kongres" onClick={handleMobileMenu}>
-                    Kongres
+                    Конгрес
                   </Link>
                 </li>
                 <li>
