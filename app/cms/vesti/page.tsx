@@ -332,7 +332,7 @@ function CmsVestiContent({ onLogout }: { onLogout: () => void }) {
       </div>
       <div className="row">
         <div className="col-lg-6 mb-40">
-          <div className="vl-off-white-bg p-40 br-20">
+          <div className="vl-off-white-bg p-40 br-20" id="nova-objava">
             <h3 className="title pb-20">{editingSlug ? "Uređivanje objave" : "Kreiranje nove blog objave"}</h3>
             <p className="pb-16">Otpremajte jednu ili više slika, prva na listi biće naslovna u slideru.</p>
             {message && <div className="alert alert-success">{message}</div>}
