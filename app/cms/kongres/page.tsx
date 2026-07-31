@@ -142,6 +142,39 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
     }
   };
 
+  const deleteApplication = async (application: ApplicationSubmission) => {
+    const confirmed = window.confirm(
+      `Da li sigurno želite da izbrišete kongresni rezime za ${application.name}? Ova radnja se ne može poništiti.`
+    );
+    if (!confirmed) return;
+
+    setBusyId(application.id);
+    setMessage(null);
+    setError(null);
+    try {
+      const response = await fetch("/api/applications", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: application.id }),
+      });
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.message || "Kongresni rezime nije izbrisan.");
+      }
+      setApplications((current) => current.filter((item) => item.id !== application.id));
+      setNoteDrafts((current) => {
+        const next = { ...current };
+        delete next[application.id];
+        return next;
+      });
+      setMessage("Kongresni rezime je izbrisan.");
+    } catch (deleteError: any) {
+      setError(deleteError.message || "Brisanje nije uspelo.");
+    } finally {
+      setBusyId(null);
+    }
+  };
+
   return (
     <>
       <div className="row align-items-center pb-30">
@@ -245,6 +278,7 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                       <th>Detalji</th>
                       <th>Status</th>
                       <th>Interna napomena</th>
+                      <th>Akcije</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -313,6 +347,16 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                             }
                           >
                             Sačuvaj napomenu
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            disabled={busyId === application.id}
+                            onClick={() => deleteApplication(application)}
+                          >
+                            {busyId === application.id ? "Brisanje..." : "Izbriši"}
                           </button>
                         </td>
                       </tr>
