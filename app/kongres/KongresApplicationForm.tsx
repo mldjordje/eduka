@@ -136,6 +136,11 @@ export default function KongresApplicationForm() {
             onChange={(event) => setResumeFile(event.target.files?.[0] || null)}
           />
           <small className="d-block pt-6">Дозвољени формати: PDF, DOC и DOCX.</small>
+          <div className="alert alert-info mt-12 mb-0" role="note">
+            <strong>Напомена:</strong> Резиме рада куцати у фонту Times New Roman: size 11
+            {" "}( са словима ћ,ч,ш,ђ,џ,ж ); са највише до 200 речи. Елементи резимеа рада:
+            увод, циљ рада, методологија, резултати рада, закључак.
+          </div>
         </div>
         <div className="col-12 pb-24">
           <div className="form-check">
