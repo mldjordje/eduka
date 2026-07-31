@@ -5,7 +5,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import KongresApplicationForm from "./KongresApplicationForm";
 
-const resumeExampleFile = "РЕЗИМЕ - КОНГРЕС АКТУЕЛНОСТИ У ЗДРАВСТВУ.docx";
+const instructions = [
+  {
+    title: "Упутство за писање резимеа рада",
+    pdf: "Упутство за писање резимеа рада.pdf",
+    word: "Упутство за писање резимеа рада.docx",
+  },
+  {
+    title: "Упутство за израду презентације",
+    pdf: "Упутство за израду презентације.pdf",
+    word: "Упутство за израду презентације.docx",
+  },
+  {
+    title: "Упутство за израду дигиталног постера",
+    pdf: "Упутство за израду дигиталног постера.pdf",
+    word: "Упутство за израду дигиталног постера.docx",
+  },
+];
 
 export default async function KongresPage() {
   const posts = await getKongresPosts();
@@ -32,25 +48,31 @@ export default async function KongresPage() {
         <div className="container">
           <h3 id="kongres-sadrzaj" className="title pb-24">Информације и материјали</h3>
 
-          <div className="vl-off-white-bg br-20 p-32 mb-30">
-            <div className="row align-items-center">
-              <div className="col-lg-8 pb-16 pb-lg-0">
-                <h4 className="title pb-8">Пример резимеа рада</h4>
-                <p className="mb-0">
-                  Преузмите пример резимеа за Конгрес „Актуелности у здравству“ и користите га
-                  као образац приликом припреме свог рада.
-                </p>
+          <div className="row mb-30">
+            {instructions.map((instruction) => (
+              <div className="col-lg-4 col-md-6 mb-20" key={instruction.title}>
+                <div className="vl-off-white-bg br-20 p-24 h-100 d-flex flex-column">
+                  <h4 className="title pb-16">{instruction.title}</h4>
+                  <div className="d-flex gap-2 flex-wrap mt-auto">
+                    <a
+                      className="vl-btn-primary"
+                      href={`/docs/${encodeURIComponent(instruction.pdf)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Преузми PDF
+                    </a>
+                    <a
+                      className="vl-btn-secondary"
+                      href={`/docs/${encodeURIComponent(instruction.word)}`}
+                      download
+                    >
+                      Преузми Word
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="col-lg-4 text-lg-end">
-                <a
-                  className="vl-btn-primary"
-                  href={`/docs/${encodeURIComponent(resumeExampleFile)}`}
-                  download
-                >
-                  Преузми пример резимеа
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
 
           {posts.length === 0 ? (
@@ -105,7 +127,7 @@ export default async function KongresPage() {
                 <h3 className="title pb-12">Пријава за учешће</h3>
                 <p className="pb-24">
                   Попуните формулар. Ако пријављујете рад или постер, унесите његов наслов;
-                  резиме рада и остала документа можете да преузмете из материјала изнад.
+                  припремљени резиме можете да приложите директно уз пријаву.
                 </p>
                 <KongresApplicationForm />
               </div>

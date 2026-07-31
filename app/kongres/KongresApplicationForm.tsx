@@ -1,5 +1,6 @@
 "use client";
 
+import { uploadFileWithFallback } from "@/lib/cmsUpload";
 import { getContentApiBase } from "@/lib/contentApi";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -11,7 +12,6 @@ type FormState = {
   profession: string;
   participationType: string;
   paperTitle: string;
-  note: string;
   agreementAccepted: boolean;
 };
 
@@ -23,7 +23,6 @@ const initialState: FormState = {
   profession: "",
   participationType: "учесник",
   paperTitle: "",
-  note: "",
   agreementAccepted: false,
 };
 
@@ -31,6 +30,8 @@ export default function KongresApplicationForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [fileInputKey, setFileInputKey] = useState(0);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -42,14 +43,16 @@ export default function KongresApplicationForm() {
     setStatus("loading");
     setError("");
 
-    const message = [
-      "PRIJAVA ZA KONGRES",
-      `Начин учешћа: ${form.participationType}`,
-      form.paperTitle ? `Наслов рада: ${form.paperTitle}` : "",
-      form.note ? `Напомена: ${form.note}` : "",
-    ].filter(Boolean).join("\n");
-
     try {
+      const resumeUrl = resumeFile ? await uploadFileWithFallback(resumeFile) : "";
+      const message = [
+        "PRIJAVA ZA KONGRES",
+        `Начин учешћа: ${form.participationType}`,
+        form.paperTitle ? `Наслов рада: ${form.paperTitle}` : "",
+        resumeUrl ? `Резиме: ${resumeUrl}` : "",
+        resumeFile ? `Назив фајла: ${resumeFile.name}` : "",
+      ].filter(Boolean).join("\n");
+
       const response = await fetch(`${getContentApiBase()}/applications.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -68,6 +71,8 @@ export default function KongresApplicationForm() {
         throw new Error(body.message || "Пријава није послата.");
       }
       setForm(initialState);
+      setResumeFile(null);
+      setFileInputKey((current) => current + 1);
       setStatus("success");
     } catch (submitError: any) {
       setError(submitError.message || "Дошло је до грешке. Покушајте поново.");
@@ -118,8 +123,19 @@ export default function KongresApplicationForm() {
           <input id="congress-paper" name="paperTitle" value={form.paperTitle} onChange={handleChange} className="form-control" />
         </div>
         <div className="col-12 pb-20">
-          <label className="form-label" htmlFor="congress-note">Напомена</label>
-          <textarea id="congress-note" name="note" value={form.note} onChange={handleChange} rows={4} className="form-control" />
+          <label className="form-label" htmlFor="congress-resume">
+            Резиме рада {form.participationType !== "учесник" ? "*" : ""}
+          </label>
+          <input
+            key={fileInputKey}
+            id="congress-resume"
+            type="file"
+            accept=".pdf,.doc,.docx"
+            className="form-control"
+            required={form.participationType !== "учесник"}
+            onChange={(event) => setResumeFile(event.target.files?.[0] || null)}
+          />
+          <small className="d-block pt-6">Дозвољени формати: PDF, DOC и DOCX.</small>
         </div>
         <div className="col-12 pb-24">
           <div className="form-check">

@@ -23,6 +23,17 @@ const formatDate = (value: string) => {
   return Number.isNaN(parsed.getTime()) ? "—" : parsed.toLocaleString("sr-RS");
 };
 
+const parseKongresMessage = (message = "") => {
+  const resumeUrl = message.match(/^Резиме:\s*(https?:\/\/\S+)/m)?.[1] || "";
+  const resumeName = message.match(/^Назив фајла:\s*(.+)$/m)?.[1]?.trim() || "Преузми резиме";
+  const details = message
+    .replace(/^PRIJAVA ZA KONGRES\s*/m, "")
+    .replace(/^Резиме:\s*https?:\/\/\S+\s*/m, "")
+    .replace(/^Назив фајла:\s*.+$/m, "")
+    .trim();
+  return { details, resumeUrl, resumeName };
+};
+
 function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [applications, setApplications] = useState<ApplicationSubmission[]>([]);
@@ -237,7 +248,9 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {applications.map((application) => (
+                    {applications.map((application) => {
+                      const parsedMessage = parseKongresMessage(application.message);
+                      return (
                       <tr key={application.id}>
                         <td>
                           <strong>{application.name}</strong>
@@ -250,7 +263,17 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                           <small>{formatDate(application.createdAt)}</small>
                         </td>
                         <td style={{ minWidth: 240, whiteSpace: "pre-line" }}>
-                          {(application.message || "").replace(/^PRIJAVA ZA KONGRES\s*/, "") || "—"}
+                          <div>{parsedMessage.details || "—"}</div>
+                          {parsedMessage.resumeUrl && (
+                            <a
+                              className="vl-btn-secondary d-inline-block mt-2"
+                              href={parsedMessage.resumeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {parsedMessage.resumeName}
+                            </a>
+                          )}
                         </td>
                         <td style={{ minWidth: 150 }}>
                           <select
@@ -293,7 +316,8 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                           </button>
                         </td>
                       </tr>
-                    ))}
+                    );
+                    })}
                   </tbody>
                 </table>
               </div>
