@@ -144,6 +144,9 @@ export default function Footer() {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <p className="para">© {new Date().getFullYear()} Едука. Сва права задржана.</p>
+                                <p className="para mb-0">
+                                    Izrada sajta: <a href="https://adspire.rs" target="_blank" rel="noopener noreferrer">Adspire</a>
+                                </p>
                             </div>
                             <div className="col-lg-6 col-md-6">
                                 <div className="copy-right-menu">
