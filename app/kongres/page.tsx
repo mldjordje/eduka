@@ -8,15 +8,23 @@ import KongresApplicationForm from "./KongresApplicationForm";
 const instructions = [
   {
     title: "Упутство за писање резимеа рада",
-    pdf: "Упутство за писање резимеа рада.pdf",
+    file: "Упутство за писање резимеа рада.pdf",
+    format: "PDF",
   },
   {
     title: "Упутство за израду презентације",
-    pdf: "Упутство за израду презентације.pdf",
+    file: "Упутство за израду презентације.pdf",
+    format: "PDF",
   },
   {
     title: "Упутство за израду дигиталног постера",
-    pdf: "Упутство за израду дигиталног постера.pdf",
+    file: "Упутство за израду дигиталног постера.pdf",
+    format: "PDF",
+  },
+  {
+    title: "Обавештење за учеснике Конгреса",
+    file: "ОБАВЕШТЕЊЕ ЗА УЧЕСНИКЕ КОНГРЕСА.docx",
+    format: "DOCX",
   },
 ];
 
@@ -53,11 +61,11 @@ export default async function KongresPage() {
                   <div className="mt-auto">
                     <a
                       className="vl-btn-primary"
-                      href={`/docs/${encodeURIComponent(instruction.pdf)}`}
+                      href={`/docs/${encodeURIComponent(instruction.file)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Преузми PDF
+                      Преузми {instruction.format}
                     </a>
                   </div>
                 </div>
