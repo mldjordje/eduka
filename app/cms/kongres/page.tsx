@@ -297,6 +297,7 @@ function KongresCmsContent({ onLogout }: { onLogout: () => void }) {
                           <small>{formatDate(application.createdAt)}</small>
                         </td>
                         <td style={{ minWidth: 240, whiteSpace: "pre-line" }}>
+                          <div>Broj licence: {application.licenseNumber || "—"}</div>
                           <div>{parsedMessage.details || "—"}</div>
                           {parsedMessage.resumeUrl && (
                             <a

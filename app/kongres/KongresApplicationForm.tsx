@@ -8,6 +8,7 @@ type FormState = {
   name: string;
   email: string;
   phone: string;
+  licenseNumber: string;
   institution: string;
   profession: string;
   participationType: string;
@@ -19,6 +20,7 @@ const initialState: FormState = {
   name: "",
   email: "",
   phone: "",
+  licenseNumber: "",
   institution: "",
   profession: "",
   participationType: "учесник",
@@ -60,6 +62,7 @@ export default function KongresApplicationForm() {
           name: form.name,
           email: form.email,
           phone: form.phone,
+          licenseNumber: form.licenseNumber.trim(),
           institution: form.institution,
           profession: form.profession,
           message,
@@ -98,8 +101,12 @@ export default function KongresApplicationForm() {
           <input id="congress-email" type="email" name="email" value={form.email} onChange={handleChange} required className="form-control" autoComplete="email" />
         </div>
         <div className="col-md-6 pb-20">
-          <label className="form-label" htmlFor="congress-phone">Телефон *</label>
-          <input id="congress-phone" name="phone" value={form.phone} onChange={handleChange} required className="form-control" autoComplete="tel" />
+          <label className="form-label" htmlFor="congress-phone">Контакт телефон *</label>
+          <input id="congress-phone" type="tel" name="phone" value={form.phone} onChange={handleChange} required className="form-control" autoComplete="tel" />
+        </div>
+        <div className="col-md-6 pb-20">
+          <label className="form-label" htmlFor="congress-license">Број лиценце</label>
+          <input id="congress-license" name="licenseNumber" value={form.licenseNumber} onChange={handleChange} className="form-control" />
         </div>
         <div className="col-md-6 pb-20">
           <label className="form-label" htmlFor="congress-institution">Установа</label>
